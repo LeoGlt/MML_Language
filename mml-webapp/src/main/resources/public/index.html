@@ -1,109 +1,126 @@
 <!doctype html>
 <html lang="fr">
 
-<head>
-  <meta charset="utf-8">
-  <title>MML</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
-</head>
-
-<body>
-  <h1>Multi Machine Learning Language</h1>
-  <div>
-    <h2>Data</h2>
-    <p>Déposez ici un fichier CSV</p>
-    <input type="file">
-  </div>
-
-  <div>
-    <h2>Algorithms</h2>
-    <p>Choose an algorithm</p>
-    <div id = "Algorithme">
-      <input type="radio" id="DT" name="algorithm" value="DT" onclick="chooseAlgo(this);">
-      <label for="DT">Decision Tree</label>
-      <div id ="DT_param">
-        <form name = "maxdepth" id="DT_maxdepth">
-        <textarea name="mml" rows="1" cols="10" ></textarea>
-        </form>
-      </div>
+  <body>
+    <h1>Multi Machine Learning Language</h1>
+    <div>
+      <h2>Data</h2>
+      <p>Déposez ici un fichier CSV</p>
+      <input type="file">
     </div>
+  
+    <div>
+      <h2>Algorithms</h2>
+      <p>Choose an algorithm</p>
+      <div id = "Algorithme">
+        <input type="radio" id="DT" name="algorithm" value="DT" onclick="chooseAlgo(this);">
+        <label for="DT">Decision Tree</label>
+        <div id ="DT_param">
+          <form name = "maxdepth" id="DT_maxdepth">
+          <textarea name="mml" rows="1" cols="10" ></textarea>
+          </form>
+        </div>
+      </div>
+      
+      <div>
+        <input type="radio" id="SVM" name="algorithm" value="SVM" onclick="chooseAlgo(this);">
+        <label for="SVM">SVM</label>
+        <div id="SVM_param">
+          <div id="SVM_kernel" style = "margin-left:40px;">
+            Kernel : 
+            <input type="radio" id="linear"  name="kernel_svm" value="linear">
+            <label for="linear">linear</label>
+          
+            <input type="radio" id="radial" name="kernel_svm" value="radial" checked>
+            <label for="radial">radial</label>
+          </div>
+          
+          <div id="SVM_gamma" style = "margin-left:40px;">
+            Gamma : 
+            <input type="radio" id="auto" name="gamma_svm" value="linear" checked>
+            <label for="auto">auto</label>
     
-    <div>
-      <input type="radio" id="SVM" name="algorithm" value="SVM" onclick="chooseAlgo(this);">
-      <label for="SVM">SVM</label>
-      <div id="SVM_param">
-          <input type="radio" id="linear" name="kernel_svm" value="linear">
-          <label for="linear">linear</label>
-  
-          <input type="radio" id="radial" name="kernel_svm" value="poly">
-          <label for="radial">radial</label>
-      </div>
+            <input type="radio" id="scale" name="gamma_svm" value="scale">
+            <label for="scale">scale</label>
+          </div>
         
-    </div>
+        
+        <div id="SVM_C" style = "margin-left:40px;">
+          C :
+            <input type="radio" id="auto" name="gamma_svm" value="linear" checked>
+            <label for="auto">auto</label>
+    
+            <input type="radio" id="scale" name="gamma_svm" value="scale">
+            <label for="scale">scale</label>
+          </div>
+        </div>
+        </div>
+          
+      </div>
+    
+      <div>
+        <input type="radio" id="LR" name="algorithm" value="LR" onclick="chooseAlgo(this);">
+        <label for="LR">Logistic Regression</label>
+      </div>
+    
+      <div>
+        <input type="radio" id="RF" name="algorithm" value="RF" onclick="chooseAlgo(this);">
+        <label for="RF">Random Forest</label>
+     </div>
   
     <div>
-      <input type="radio" id="LR" name="algorithm" value="LR" onclick="chooseAlgo(this);">
-      <label for="LR">Logistic Regression</label>
+          <h2>Framework</h2>
+          <p>Choose a framework to implement your algorithm</p>
+          <div>
+            <input type="radio" id="sklearn" name="implementation" value="sklearn" checked>
+            <label for="sklearn">scikit-learn</label>
+          </div>
+  
     </div>
   
-    <div>
-      <input type="radio" id="RF" name="algorithm" value="RF" onclick="chooseAlgo(this);">
-      <label for="RF">Random Forest</label>
-   </div>
-
-  <div>
-        <h2>Framework</h2>
-        <p>Choose a framework to implement your algorithm</p>
         <div>
-          <input type="radio" id="sklearn" name="implementation" value="sklearn" checked>
-          <label for="sklearn">scikit-learn</label>
+          <h2>Méthode de validation</h2>
+          <p>Choisissez une méthode de validation de vos résultats</p>
+          <div>
+            <input type="radio" id="split" name="validation" value="split" checked>
+            <label for="split">Séparation en deux échantillons</label>
+          </div>
+  
+          <div>
+            <input type="radio" id="crossval" name="validation" value="crossval">
+            <label for="split">Validation croisée</label>
+          </div>
         </div>
-
-  </div>
-
-      <div>
-        <h2>Méthode de validation</h2>
-        <p>Choisissez une méthode de validation de vos résultats</p>
+  
         <div>
-          <input type="radio" id="split" name="validation" value="split" checked>
-          <label for="split">Séparation en deux échantillons</label>
+          <h2>Pourcentage de données de validation</h2>
+          <p>Sélectionnez le pourcentage de données qui serviront pour la validation du modèle</p>
+          <div>
+            <input type="range" id="start" name="volume" min="0" max="100">
+            <label for="Select pourcentage">Pourcentage retenu : <span class="output">50
+          </div>
         </div>
-
+  
+        <h2>Sorties souhaitées</h2>
+        <p>Veuillez selectionner les sorties souhaitées</p>
         <div>
-          <input type="radio" id="crossval" name="validation" value="crossval">
-          <label for="split">Validation croisée</label>
+          <input type="checkbox" id="acctest" name="model" value="acctest" checked>
+          <label for="acctest">Test de la précision</label>
         </div>
-      </div>
-
-      <div>
-        <h2>Pourcentage de données de validation</h2>
-        <p>Sélectionnez le pourcentage de données qui serviront pour la validation du modèle</p>
+  
         <div>
-          <input type="range" id="start" name="volume" min="0" max="100">
-          <label for="Select pourcentage">Pourcentage retenu : <span class="output">50
+          <input type="checkbox" id="graph" name="model" value="graph" checked>
+          <label for="acctest">Graphiques</label>
         </div>
-      </div>
+  
+        <div>
+          <input type="checkbox" id="graph" name="model" value="graph" checked>
+          <label for="acctest">ChaiPasTrop</label>
+        </div>
+  
+  </body>
+  
+  </html>
 
-      <h2>Sorties souhaitées</h2>
-      <p>Veuillez selectionner les sorties souhaitées</p>
-      <div>
-        <input type="checkbox" id="acctest" name="model" value="acctest" checked>
-        <label for="acctest">Test de la précision</label>
-      </div>
-
-      <div>
-        <input type="checkbox" id="graph" name="model" value="graph" checked>
-        <label for="acctest">Graphiques</label>
-      </div>
-
-      <div>
-        <input type="checkbox" id="graph" name="model" value="graph" checked>
-        <label for="acctest">ChaiPasTrop</label>
-      </div>
-
-</body>
-
-</html>
-
+<link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
