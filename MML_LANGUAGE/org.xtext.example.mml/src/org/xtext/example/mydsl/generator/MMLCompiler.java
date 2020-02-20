@@ -202,6 +202,16 @@ public class MMLCompiler {
 				// Accuracy for R
 
 			}
+			if (metric == ValidationMetric.BALANCED_ACCURACY) {
+				//BALANCED_ACCURACY for Python
+				
+				//BALANCED_ACCURACY for R
+			}
+			if (metric == ValidationMetric.F1) {
+				//F1 score for Python
+				
+				//F1 score for R
+			}
 		}
 		
 		//Final Python Code
