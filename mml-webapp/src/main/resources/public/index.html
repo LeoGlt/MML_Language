@@ -17,20 +17,22 @@
   </div>
 
   <div>
-    <h2>Méthode de machine learning</h2>
-    <p>Choisissez un modèle</p>
-    <div>
-      <input type="radio" id="DT" name="algorithm" value="DT">
+    <h2>Algorithms</h2>
+    <p>Choose an algorithm</p>
+    <div id = "Algorithme">
+      <input type="radio" id="DT" name="algorithm" value="DT" onclick="chooseAlgo(this);">
       <label for="DT">Decision Tree</label>
-      <form style="display:none;" name = "maxdepth" id="DT_maxdepth">
-          <textarea name="mml" rows="1" cols="10" ></textarea>
-      </form>
+      <div id ="DT_param">
+        <form name = "maxdepth" id="DT_maxdepth">
+        <textarea name="mml" rows="1" cols="10" ></textarea>
+        </form>
+      </div>
     </div>
     
     <div>
-      <input type="radio" id="SVM" name="algorithm" value="SVM">
+      <input type="radio" id="SVM" name="algorithm" value="SVM" onclick="chooseAlgo(this);">
       <label for="SVM">SVM</label>
-      <div>
+      <div id="SVM_param">
           <input type="radio" id="linear" name="kernel_svm" value="linear">
           <label for="linear">linear</label>
   
@@ -41,13 +43,13 @@
     </div>
   
     <div>
-      <input type="radio" id="LR" name="algorithm" value="LR">
-      <label for="dewey">Logistic Regression</label>
+      <input type="radio" id="LR" name="algorithm" value="LR" onclick="chooseAlgo(this);">
+      <label for="LR">Logistic Regression</label>
     </div>
   
     <div>
-      <input type="radio" id="RF" name="algorithm" value="RF">
-      <label for="dewey">Random Forest</label>
+      <input type="radio" id="RF" name="algorithm" value="RF" onclick="chooseAlgo(this);">
+      <label for="RF">Random Forest</label>
    </div>
 
   <div>
@@ -104,4 +106,4 @@
 
 </html>
 
-<script type="text/javascript" src="animation.js"></script>
+<script src="script.js"></script>
