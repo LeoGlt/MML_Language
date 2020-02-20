@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="fr">
 
+<<<<<<< HEAD
   <body>
     <h1>Multi Machine Learning Language</h1>
     <div>
@@ -12,15 +13,25 @@
     <div>
       <h2>Algorithms</h2>
       <p>Choose an algorithm</p>
-      <div id = "Algorithme">
+      <div id="Algorithme">
+
         <input type="radio" id="DT" name="algorithm" value="DT" onclick="chooseAlgo(this);">
         <label for="DT">Decision Tree</label>
-        <div id ="DT_param">
-          <form name = "maxdepth" id="DT_maxdepth">
-          <textarea name="mml" rows="1" cols="10" ></textarea>
-          </form>
+  
+        <div id="DT_param">
+          <div id="Criterion" style="margin-left : 40px;">Criterion :
+            <input type="radio" id="gini" name="criterion" value="gini" checked>
+            <label for="gini">Gini</label>
+            <input type="radio" id="entropy" name="criterion" value="entropy">
+            <label for="etropy">Entropy</label>
+          </div>
+          <div id ="max_depth" style="margin-left : 40px;">Max depth : 
+            <form name="maxdepth" id="DT_maxdepth">
+              <textarea name="mml" rows="1" cols="10"></textarea>
+            </form>
+  
+          </div>
         </div>
-      </div>
       
       <div>
         <input type="radio" id="SVM" name="algorithm" value="SVM" onclick="chooseAlgo(this);">
@@ -45,18 +56,18 @@
           </div>
         
         
-        <div id="SVM_C" style = "margin-left:40px;">
-          C :
-            <input type="radio" id="auto" name="gamma_svm" value="linear" checked>
-            <label for="auto">auto</label>
-    
-            <input type="radio" id="scale" name="gamma_svm" value="scale">
-            <label for="scale">scale</label>
+          <div id="SVM_C" style = "margin-left:40px;">
+            C :
+              <input type="radio" id="auto" name="gamma_svm" value="linear" checked>
+              <label for="auto">auto</label>
+      
+              <input type="radio" id="scale" name="gamma_svm" value="scale">
+              <label for="scale">scale</label>
           </div>
         </div>
-        </div>
-          
       </div>
+          
+    </div>
     
       <div>
         <input type="radio" id="LR" name="algorithm" value="LR" onclick="chooseAlgo(this);">
@@ -66,7 +77,7 @@
       <div>
         <input type="radio" id="RF" name="algorithm" value="RF" onclick="chooseAlgo(this);">
         <label for="RF">Random Forest</label>
-     </div>
+      </div>
   
     <div>
           <h2>Framework</h2>
@@ -75,9 +86,12 @@
             <input type="radio" id="sklearn" name="implementation" value="sklearn" checked>
             <label for="sklearn">scikit-learn</label>
           </div>
+          <div>
+            <input type="radio" id="R" name="implementation" value="R">
+            <label for="R">R</label>
+          </div>
   
     </div>
-  
         <div>
           <h2>Méthode de validation</h2>
           <p>Choisissez une méthode de validation de vos résultats</p>
@@ -91,7 +105,6 @@
             <label for="split">Validation croisée</label>
           </div>
         </div>
-  
         <div>
           <h2>Pourcentage de données de validation</h2>
           <p>Sélectionnez le pourcentage de données qui serviront pour la validation du modèle</p>
