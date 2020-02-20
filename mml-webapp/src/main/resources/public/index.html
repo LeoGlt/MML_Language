@@ -1,12 +1,7 @@
 <!doctype html>
 <html lang="fr">
 
-<head>
-  <meta charset="utf-8">
-  <title>MML</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
-</head>
+
 
 <body>
   <h1>Multi Machine Learning Language</h1>
@@ -19,48 +14,61 @@
   <div>
     <h2>Algorithms</h2>
     <p>Choose an algorithm</p>
-    <div id = "Algorithme">
+    <div id="Algorithme">
       <input type="radio" id="DT" name="algorithm" value="DT" onclick="chooseAlgo(this);">
       <label for="DT">Decision Tree</label>
-      <div id ="DT_param">
-        <form name = "maxdepth" id="DT_maxdepth">
-        <textarea name="mml" rows="1" cols="10" ></textarea>
-        </form>
+
+      <div id="DT_param">
+        <div id="Criterion" style="margin-left : 40px;">Criterion :
+          <input type="radio" id="gini" name="criterion" value="gini" checked>
+          <label for="gini">Gini</label>
+          <input type="radio" id="entropy" name="criterion" value="entropy">
+          <label for="etropy">Entropy</label>
+        </div>
+        <div id ="max_depth" style="margin-left : 40px;">Max depth : 
+          <form name="maxdepth" id="DT_maxdepth">
+            <textarea name="mml" rows="1" cols="10"></textarea>
+          </form>
+
+        </div>
       </div>
-    </div>
-    
-    <div>
-      <input type="radio" id="SVM" name="algorithm" value="SVM" onclick="chooseAlgo(this);">
-      <label for="SVM">SVM</label>
-      <div id="SVM_param">
+
+      <div>
+        <input type="radio" id="SVM" name="algorithm" value="SVM" onclick="chooseAlgo(this);">
+        <label for="SVM">SVM</label>
+        <div id="SVM_param">
           <input type="radio" id="linear" name="kernel_svm" value="linear">
           <label for="linear">linear</label>
-  
+
           <input type="radio" id="radial" name="kernel_svm" value="poly">
           <label for="radial">radial</label>
-      </div>
-        
-    </div>
-  
-    <div>
-      <input type="radio" id="LR" name="algorithm" value="LR" onclick="chooseAlgo(this);">
-      <label for="LR">Logistic Regression</label>
-    </div>
-  
-    <div>
-      <input type="radio" id="RF" name="algorithm" value="RF" onclick="chooseAlgo(this);">
-      <label for="RF">Random Forest</label>
-   </div>
+        </div>
 
-  <div>
+      </div>
+
+      <div>
+        <input type="radio" id="LR" name="algorithm" value="LR" onclick="chooseAlgo(this);">
+        <label for="LR">Logistic Regression</label>
+      </div>
+
+      <div>
+        <input type="radio" id="RF" name="algorithm" value="RF" onclick="chooseAlgo(this);">
+        <label for="RF">Random Forest</label>
+      </div>
+
+      <div>
         <h2>Framework</h2>
         <p>Choose a framework to implement your algorithm</p>
         <div>
           <input type="radio" id="sklearn" name="implementation" value="sklearn" checked>
           <label for="sklearn">scikit-learn</label>
         </div>
+        <div>
+          <input type="radio" id="R" name="implementation" value="R">
+          <label for="sklearn">R</label>
+        </div>
 
-  </div>
+      </div>
 
       <div>
         <h2>Méthode de validation</h2>
@@ -106,4 +114,5 @@
 
 </html>
 
+<link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
