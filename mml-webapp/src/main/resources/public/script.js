@@ -6,22 +6,23 @@ let NB_algo = 0;
 function GenerateAlgoHTML(){
   
   let algo_div = document.getElementById("Algo");
-  
+  let new_algo = document.createElement('div');
   NB_algo += 1;
   ADD.value = 'Add another one';
   
   console.log(NB_algo);
   
-  let head_html = '<div id = "Algo' + String(NB_algo) + '"> <p>Choose an algorithm</p>';
+  let head_html = '<div id = "Algo' + String(NB_algo) + '"> <h3>Algorithm n°' + String(NB_algo) + '</h3> <p>Choose an algorithm</p>';
   let DT_html = MakeDThtml(NB_algo);
   let SVM_html = MakeSVMhtml(NB_algo);
   let LR_html = MakeLRhtml(NB_algo);
   let RF_html = MakeRFhtml(NB_algo);
   let framework_html = MakeFrameworkhtml(NB_algo);
-  let end_html = '</div>';
+  let end_html = '</div> <br></br>';
   
-  algo_div.innerHTML += head_html + DT_html + SVM_html + LR_html + RF_html + framework_html + end_html;
-  undisplayAll(NB_algo);
+  new_algo.innerHTML += head_html + DT_html + SVM_html + LR_html + RF_html + framework_html + end_html;
+  algo_div.insertBefore(new_algo,document.getElementById("Add_algo_button"));
+  undisplayAll(NB_algo)
 };
 
 
@@ -81,7 +82,7 @@ function MakeRFhtml(nb_algo){
 }
 
 function MakeFrameworkhtml(nb_algo){
-  let t = '<div> <h3>Framework</h3> <p>Choose a framework to implement your algorithm</p>';
+  let t = '<div> <h4>Framework</h4> <p>Choose a framework to implement your algorithm</p>';
   t += '<div> <input type="radio" id="sklearn' + String(nb_algo) + '" name="implementation' + String(nb_algo) + '" value="sklearn" checked> <label for="sklearn' + String(nb_algo) + '">scikit-learn</label>'
   t += '<input type="radio" id="R' + String(nb_algo) + '" name="implementation' + String(nb_algo) + '" value="R"> <label for="R' + String(nb_algo) + '">R</label> </div>';
   t += '</div>'
@@ -90,7 +91,6 @@ function MakeFrameworkhtml(nb_algo){
 
 
 ADD.addEventListener('click', GenerateAlgoHTML);
-
 
 //Les algos
 
