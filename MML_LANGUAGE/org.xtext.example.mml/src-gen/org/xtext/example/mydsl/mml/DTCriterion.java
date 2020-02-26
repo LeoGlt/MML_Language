@@ -11,113 +11,91 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>SVM Classification</b></em>',
+ * A representation of the literals of the enumeration '<em><b>DT Criterion</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.xtext.example.mydsl.mml.MmlPackage#getSVMClassification()
+ * @see org.xtext.example.mydsl.mml.MmlPackage#getDTCriterion()
  * @model
  * @generated
  */
-public enum SVMClassification implements Enumerator
+public enum DTCriterion implements Enumerator
 {
   /**
-   * The '<em><b>CClass</b></em>' literal object.
+   * The '<em><b>Gini</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #CCLASS_VALUE
+   * @see #GINI_VALUE
    * @generated
    * @ordered
    */
-  CCLASS(0, "cClass", "C-classification"),
+  GINI(0, "gini", "gini"),
 
   /**
-   * The '<em><b>Nu Class</b></em>' literal object.
+   * The '<em><b>Entropy</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #NU_CLASS_VALUE
+   * @see #ENTROPY_VALUE
    * @generated
    * @ordered
    */
-  NU_CLASS(1, "nuClass", "nu-classification"),
+  ENTROPY(1, "entropy", "entropy");
 
   /**
-   * The '<em><b>One Class</b></em>' literal object.
+   * The '<em><b>Gini</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #ONE_CLASS_VALUE
+   * @see #GINI
+   * @model name="gini"
    * @generated
    * @ordered
    */
-  ONE_CLASS(2, "oneClass", "one-classification");
+  public static final int GINI_VALUE = 0;
 
   /**
-   * The '<em><b>CClass</b></em>' literal value.
+   * The '<em><b>Entropy</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #CCLASS
-   * @model name="cClass" literal="C-classification"
+   * @see #ENTROPY
+   * @model name="entropy"
    * @generated
    * @ordered
    */
-  public static final int CCLASS_VALUE = 0;
+  public static final int ENTROPY_VALUE = 1;
 
   /**
-   * The '<em><b>Nu Class</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #NU_CLASS
-   * @model name="nuClass" literal="nu-classification"
-   * @generated
-   * @ordered
-   */
-  public static final int NU_CLASS_VALUE = 1;
-
-  /**
-   * The '<em><b>One Class</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #ONE_CLASS
-   * @model name="oneClass" literal="one-classification"
-   * @generated
-   * @ordered
-   */
-  public static final int ONE_CLASS_VALUE = 2;
-
-  /**
-   * An array of all the '<em><b>SVM Classification</b></em>' enumerators.
+   * An array of all the '<em><b>DT Criterion</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final SVMClassification[] VALUES_ARRAY =
-    new SVMClassification[]
+  private static final DTCriterion[] VALUES_ARRAY =
+    new DTCriterion[]
     {
-      CCLASS,
-      NU_CLASS,
-      ONE_CLASS,
+      GINI,
+      ENTROPY,
     };
 
   /**
-   * A public read-only list of all the '<em><b>SVM Classification</b></em>' enumerators.
+   * A public read-only list of all the '<em><b>DT Criterion</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final List<SVMClassification> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<DTCriterion> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>SVM Classification</b></em>' literal with the specified literal value.
+   * Returns the '<em><b>DT Criterion</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param literal the literal.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static SVMClassification get(String literal)
+  public static DTCriterion get(String literal)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      SVMClassification result = VALUES_ARRAY[i];
+      DTCriterion result = VALUES_ARRAY[i];
       if (result.toString().equals(literal))
       {
         return result;
@@ -127,18 +105,18 @@ public enum SVMClassification implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>SVM Classification</b></em>' literal with the specified name.
+   * Returns the '<em><b>DT Criterion</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param name the name.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static SVMClassification getByName(String name)
+  public static DTCriterion getByName(String name)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      SVMClassification result = VALUES_ARRAY[i];
+      DTCriterion result = VALUES_ARRAY[i];
       if (result.getName().equals(name))
       {
         return result;
@@ -148,20 +126,19 @@ public enum SVMClassification implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>SVM Classification</b></em>' literal with the specified integer value.
+   * Returns the '<em><b>DT Criterion</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the integer value.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static SVMClassification get(int value)
+  public static DTCriterion get(int value)
   {
     switch (value)
     {
-      case CCLASS_VALUE: return CCLASS;
-      case NU_CLASS_VALUE: return NU_CLASS;
-      case ONE_CLASS_VALUE: return ONE_CLASS;
+      case GINI_VALUE: return GINI;
+      case ENTROPY_VALUE: return ENTROPY;
     }
     return null;
   }
@@ -193,7 +170,7 @@ public enum SVMClassification implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  private SVMClassification(int value, String name, String literal)
+  private DTCriterion(int value, String name, String literal)
   {
     this.value = value;
     this.name = name;
@@ -245,4 +222,4 @@ public enum SVMClassification implements Enumerator
     return literal;
   }
   
-} //SVMClassification
+} //DTCriterion

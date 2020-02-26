@@ -57,7 +57,8 @@ public class MmlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) (rule start)
-	 *     (rule start) (ambiguity) max_depth=INT
+	 *     (rule start) (ambiguity) criterionSpecified?='criterion='
+	 *     (rule start) (ambiguity) maxdepthSpecified?='max_depth='
 	 */
 	protected void emit_DT_DTKeyword_1_0_or_DecisionTreeKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -69,6 +70,9 @@ public class MmlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) (rule start)
+	 *     (rule start) (ambiguity) criterionSpecified?='criterion='
+	 *     (rule start) (ambiguity) maxdepthSpecified?='max_depth='
+	 *     (rule start) (ambiguity) nestimSpecified?='n_estimators='
 	 */
 	protected void emit_RandomForest_RFKeyword_1_1_or_RandomForestKeyword_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

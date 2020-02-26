@@ -9,6 +9,17 @@ package org.xtext.example.mydsl.mml;
  * A representation of the model object '<em><b>Logistic Regression</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.xtext.example.mydsl.mml.LogisticRegression#isPenaltySpecified <em>Penalty Specified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.LogisticRegression#getPenalty <em>Penalty</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.LogisticRegression#isTolSpecified <em>Tol Specified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.LogisticRegression#getTol <em>Tol</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.LogisticRegression#isCSpecified <em>CSpecified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.LogisticRegression#getC <em>C</em>}</li>
+ * </ul>
  *
  * @see org.xtext.example.mydsl.mml.MmlPackage#getLogisticRegression()
  * @model
@@ -16,4 +27,139 @@ package org.xtext.example.mydsl.mml;
  */
 public interface LogisticRegression extends MLAlgorithm
 {
+  /**
+   * Returns the value of the '<em><b>Penalty Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Penalty Specified</em>' attribute.
+   * @see #setPenaltySpecified(boolean)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getLogisticRegression_PenaltySpecified()
+   * @model
+   * @generated
+   */
+  boolean isPenaltySpecified();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.LogisticRegression#isPenaltySpecified <em>Penalty Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Penalty Specified</em>' attribute.
+   * @see #isPenaltySpecified()
+   * @generated
+   */
+  void setPenaltySpecified(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Penalty</b></em>' attribute.
+   * The literals are from the enumeration {@link org.xtext.example.mydsl.mml.regPenalty}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Penalty</em>' attribute.
+   * @see org.xtext.example.mydsl.mml.regPenalty
+   * @see #setPenalty(regPenalty)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getLogisticRegression_Penalty()
+   * @model
+   * @generated
+   */
+  regPenalty getPenalty();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.LogisticRegression#getPenalty <em>Penalty</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Penalty</em>' attribute.
+   * @see org.xtext.example.mydsl.mml.regPenalty
+   * @see #getPenalty()
+   * @generated
+   */
+  void setPenalty(regPenalty value);
+
+  /**
+   * Returns the value of the '<em><b>Tol Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Tol Specified</em>' attribute.
+   * @see #setTolSpecified(boolean)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getLogisticRegression_TolSpecified()
+   * @model
+   * @generated
+   */
+  boolean isTolSpecified();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.LogisticRegression#isTolSpecified <em>Tol Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Tol Specified</em>' attribute.
+   * @see #isTolSpecified()
+   * @generated
+   */
+  void setTolSpecified(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Tol</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Tol</em>' attribute.
+   * @see #setTol(String)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getLogisticRegression_Tol()
+   * @model
+   * @generated
+   */
+  String getTol();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.LogisticRegression#getTol <em>Tol</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Tol</em>' attribute.
+   * @see #getTol()
+   * @generated
+   */
+  void setTol(String value);
+
+  /**
+   * Returns the value of the '<em><b>CSpecified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>CSpecified</em>' attribute.
+   * @see #setCSpecified(boolean)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getLogisticRegression_CSpecified()
+   * @model
+   * @generated
+   */
+  boolean isCSpecified();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.LogisticRegression#isCSpecified <em>CSpecified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>CSpecified</em>' attribute.
+   * @see #isCSpecified()
+   * @generated
+   */
+  void setCSpecified(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>C</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>C</em>' attribute.
+   * @see #setC(String)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getLogisticRegression_C()
+   * @model
+   * @generated
+   */
+  String getC();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.LogisticRegression#getC <em>C</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>C</em>' attribute.
+   * @see #getC()
+   * @generated
+   */
+  void setC(String value);
+
 } // LogisticRegression

@@ -3,8 +3,13 @@
  */
 package org.xtext.example.mydsl.mml.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.xtext.example.mydsl.mml.DTCriterion;
 import org.xtext.example.mydsl.mml.MmlPackage;
 import org.xtext.example.mydsl.mml.RandomForest;
 
@@ -12,11 +17,142 @@ import org.xtext.example.mydsl.mml.RandomForest;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Random Forest</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.RandomForestImpl#isNestimSpecified <em>Nestim Specified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.RandomForestImpl#getN_estimators <em>Nestimators</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.RandomForestImpl#isMaxdepthSpecified <em>Maxdepth Specified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.RandomForestImpl#getMax_depth <em>Max depth</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.RandomForestImpl#isCriterionSpecified <em>Criterion Specified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.RandomForestImpl#getCriterion <em>Criterion</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class RandomForestImpl extends MLAlgorithmImpl implements RandomForest
 {
+  /**
+   * The default value of the '{@link #isNestimSpecified() <em>Nestim Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isNestimSpecified()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean NESTIM_SPECIFIED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isNestimSpecified() <em>Nestim Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isNestimSpecified()
+   * @generated
+   * @ordered
+   */
+  protected boolean nestimSpecified = NESTIM_SPECIFIED_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getN_estimators() <em>Nestimators</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getN_estimators()
+   * @generated
+   * @ordered
+   */
+  protected static final int NESTIMATORS_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getN_estimators() <em>Nestimators</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getN_estimators()
+   * @generated
+   * @ordered
+   */
+  protected int n_estimators = NESTIMATORS_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isMaxdepthSpecified() <em>Maxdepth Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMaxdepthSpecified()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean MAXDEPTH_SPECIFIED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isMaxdepthSpecified() <em>Maxdepth Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMaxdepthSpecified()
+   * @generated
+   * @ordered
+   */
+  protected boolean maxdepthSpecified = MAXDEPTH_SPECIFIED_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getMax_depth() <em>Max depth</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMax_depth()
+   * @generated
+   * @ordered
+   */
+  protected static final int MAX_DEPTH_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getMax_depth() <em>Max depth</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMax_depth()
+   * @generated
+   * @ordered
+   */
+  protected int max_depth = MAX_DEPTH_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isCriterionSpecified() <em>Criterion Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isCriterionSpecified()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean CRITERION_SPECIFIED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isCriterionSpecified() <em>Criterion Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isCriterionSpecified()
+   * @generated
+   * @ordered
+   */
+  protected boolean criterionSpecified = CRITERION_SPECIFIED_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getCriterion() <em>Criterion</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCriterion()
+   * @generated
+   * @ordered
+   */
+  protected static final DTCriterion CRITERION_EDEFAULT = DTCriterion.GINI;
+
+  /**
+   * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCriterion()
+   * @generated
+   * @ordered
+   */
+  protected DTCriterion criterion = CRITERION_EDEFAULT;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -36,6 +172,299 @@ public class RandomForestImpl extends MLAlgorithmImpl implements RandomForest
   protected EClass eStaticClass()
   {
     return MmlPackage.Literals.RANDOM_FOREST;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isNestimSpecified()
+  {
+    return nestimSpecified;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNestimSpecified(boolean newNestimSpecified)
+  {
+    boolean oldNestimSpecified = nestimSpecified;
+    nestimSpecified = newNestimSpecified;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.RANDOM_FOREST__NESTIM_SPECIFIED, oldNestimSpecified, nestimSpecified));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int getN_estimators()
+  {
+    return n_estimators;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setN_estimators(int newN_estimators)
+  {
+    int oldN_estimators = n_estimators;
+    n_estimators = newN_estimators;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.RANDOM_FOREST__NESTIMATORS, oldN_estimators, n_estimators));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isMaxdepthSpecified()
+  {
+    return maxdepthSpecified;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setMaxdepthSpecified(boolean newMaxdepthSpecified)
+  {
+    boolean oldMaxdepthSpecified = maxdepthSpecified;
+    maxdepthSpecified = newMaxdepthSpecified;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.RANDOM_FOREST__MAXDEPTH_SPECIFIED, oldMaxdepthSpecified, maxdepthSpecified));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int getMax_depth()
+  {
+    return max_depth;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setMax_depth(int newMax_depth)
+  {
+    int oldMax_depth = max_depth;
+    max_depth = newMax_depth;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.RANDOM_FOREST__MAX_DEPTH, oldMax_depth, max_depth));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isCriterionSpecified()
+  {
+    return criterionSpecified;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setCriterionSpecified(boolean newCriterionSpecified)
+  {
+    boolean oldCriterionSpecified = criterionSpecified;
+    criterionSpecified = newCriterionSpecified;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.RANDOM_FOREST__CRITERION_SPECIFIED, oldCriterionSpecified, criterionSpecified));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DTCriterion getCriterion()
+  {
+    return criterion;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setCriterion(DTCriterion newCriterion)
+  {
+    DTCriterion oldCriterion = criterion;
+    criterion = newCriterion == null ? CRITERION_EDEFAULT : newCriterion;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.RANDOM_FOREST__CRITERION, oldCriterion, criterion));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case MmlPackage.RANDOM_FOREST__NESTIM_SPECIFIED:
+        return isNestimSpecified();
+      case MmlPackage.RANDOM_FOREST__NESTIMATORS:
+        return getN_estimators();
+      case MmlPackage.RANDOM_FOREST__MAXDEPTH_SPECIFIED:
+        return isMaxdepthSpecified();
+      case MmlPackage.RANDOM_FOREST__MAX_DEPTH:
+        return getMax_depth();
+      case MmlPackage.RANDOM_FOREST__CRITERION_SPECIFIED:
+        return isCriterionSpecified();
+      case MmlPackage.RANDOM_FOREST__CRITERION:
+        return getCriterion();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
+    switch (featureID)
+    {
+      case MmlPackage.RANDOM_FOREST__NESTIM_SPECIFIED:
+        setNestimSpecified((Boolean)newValue);
+        return;
+      case MmlPackage.RANDOM_FOREST__NESTIMATORS:
+        setN_estimators((Integer)newValue);
+        return;
+      case MmlPackage.RANDOM_FOREST__MAXDEPTH_SPECIFIED:
+        setMaxdepthSpecified((Boolean)newValue);
+        return;
+      case MmlPackage.RANDOM_FOREST__MAX_DEPTH:
+        setMax_depth((Integer)newValue);
+        return;
+      case MmlPackage.RANDOM_FOREST__CRITERION_SPECIFIED:
+        setCriterionSpecified((Boolean)newValue);
+        return;
+      case MmlPackage.RANDOM_FOREST__CRITERION:
+        setCriterion((DTCriterion)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID)
+  {
+    switch (featureID)
+    {
+      case MmlPackage.RANDOM_FOREST__NESTIM_SPECIFIED:
+        setNestimSpecified(NESTIM_SPECIFIED_EDEFAULT);
+        return;
+      case MmlPackage.RANDOM_FOREST__NESTIMATORS:
+        setN_estimators(NESTIMATORS_EDEFAULT);
+        return;
+      case MmlPackage.RANDOM_FOREST__MAXDEPTH_SPECIFIED:
+        setMaxdepthSpecified(MAXDEPTH_SPECIFIED_EDEFAULT);
+        return;
+      case MmlPackage.RANDOM_FOREST__MAX_DEPTH:
+        setMax_depth(MAX_DEPTH_EDEFAULT);
+        return;
+      case MmlPackage.RANDOM_FOREST__CRITERION_SPECIFIED:
+        setCriterionSpecified(CRITERION_SPECIFIED_EDEFAULT);
+        return;
+      case MmlPackage.RANDOM_FOREST__CRITERION:
+        setCriterion(CRITERION_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID)
+  {
+    switch (featureID)
+    {
+      case MmlPackage.RANDOM_FOREST__NESTIM_SPECIFIED:
+        return nestimSpecified != NESTIM_SPECIFIED_EDEFAULT;
+      case MmlPackage.RANDOM_FOREST__NESTIMATORS:
+        return n_estimators != NESTIMATORS_EDEFAULT;
+      case MmlPackage.RANDOM_FOREST__MAXDEPTH_SPECIFIED:
+        return maxdepthSpecified != MAXDEPTH_SPECIFIED_EDEFAULT;
+      case MmlPackage.RANDOM_FOREST__MAX_DEPTH:
+        return max_depth != MAX_DEPTH_EDEFAULT;
+      case MmlPackage.RANDOM_FOREST__CRITERION_SPECIFIED:
+        return criterionSpecified != CRITERION_SPECIFIED_EDEFAULT;
+      case MmlPackage.RANDOM_FOREST__CRITERION:
+        return criterion != CRITERION_EDEFAULT;
+    }
+    return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (nestimSpecified: ");
+    result.append(nestimSpecified);
+    result.append(", n_estimators: ");
+    result.append(n_estimators);
+    result.append(", maxdepthSpecified: ");
+    result.append(maxdepthSpecified);
+    result.append(", max_depth: ");
+    result.append(max_depth);
+    result.append(", criterionSpecified: ");
+    result.append(criterionSpecified);
+    result.append(", criterion: ");
+    result.append(criterion);
+    result.append(')');
+    return result.toString();
   }
 
 } //RandomForestImpl

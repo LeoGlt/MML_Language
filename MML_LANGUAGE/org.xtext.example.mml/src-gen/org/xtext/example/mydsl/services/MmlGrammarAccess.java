@@ -206,11 +206,13 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cSVMAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cSVMKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cGammaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cGammaSpecifiedAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final Keyword cGammaSpecifiedGammaKeyword_2_0_0 = (Keyword)cGammaSpecifiedAssignment_2_0.eContents().get(0);
 		private final Assignment cGammaAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cGammaFLOATParserRuleCall_2_1_0 = (RuleCall)cGammaAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cCKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cCSpecifiedAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final Keyword cCSpecifiedCKeyword_3_0_0 = (Keyword)cCSpecifiedAssignment_3_0.eContents().get(0);
 		private final Assignment cCAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cCFLOATParserRuleCall_3_1_0 = (RuleCall)cCAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
@@ -218,19 +220,16 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cKernelSpecifiedKernelKeyword_4_0_0 = (Keyword)cKernelSpecifiedAssignment_4_0.eContents().get(0);
 		private final Assignment cKernelAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final RuleCall cKernelSVMKernelEnumRuleCall_4_1_0 = (RuleCall)cKernelAssignment_4_1.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Assignment cClassificationSpecifiedAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
-		private final Keyword cClassificationSpecifiedClassificationKeyword_5_0_0 = (Keyword)cClassificationSpecifiedAssignment_5_0.eContents().get(0);
-		private final Assignment cSvmclassificationAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cSvmclassificationSVMClassificationEnumRuleCall_5_1_0 = (RuleCall)cSvmclassificationAssignment_5_1.eContents().get(0);
 		
 		//SVM:
-		//	{SVM} 'SVM' ('gamma=' gamma=FLOAT)? ('C=' C=FLOAT)? (kernelSpecified?='kernel=' kernel=SVMKernel)?
-		//	(classificationSpecified?='classification' svmclassification=SVMClassification)?;
+		//	{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=FLOAT)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel='
+		//	kernel=SVMKernel)?
+		//	//(classificationSpecified?='classification' svmclassification = SVMClassification)?
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SVM} 'SVM' ('gamma=' gamma=FLOAT)? ('C=' C=FLOAT)? (kernelSpecified?='kernel=' kernel=SVMKernel)?
-		//(classificationSpecified?='classification' svmclassification=SVMClassification)?
+		//{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=FLOAT)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel='
+		//kernel=SVMKernel)?
 		public Group getGroup() { return cGroup; }
 		
 		//{SVM}
@@ -239,11 +238,14 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		//'SVM'
 		public Keyword getSVMKeyword_1() { return cSVMKeyword_1; }
 		
-		//('gamma=' gamma=FLOAT)?
+		//(gammaSpecified?='gamma=' gamma=FLOAT)?
 		public Group getGroup_2() { return cGroup_2; }
 		
+		//gammaSpecified?='gamma='
+		public Assignment getGammaSpecifiedAssignment_2_0() { return cGammaSpecifiedAssignment_2_0; }
+		
 		//'gamma='
-		public Keyword getGammaKeyword_2_0() { return cGammaKeyword_2_0; }
+		public Keyword getGammaSpecifiedGammaKeyword_2_0_0() { return cGammaSpecifiedGammaKeyword_2_0_0; }
 		
 		//gamma=FLOAT
 		public Assignment getGammaAssignment_2_1() { return cGammaAssignment_2_1; }
@@ -251,11 +253,14 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		//FLOAT
 		public RuleCall getGammaFLOATParserRuleCall_2_1_0() { return cGammaFLOATParserRuleCall_2_1_0; }
 		
-		//('C=' C=FLOAT)?
+		//(CSpecified?='C=' C=FLOAT)?
 		public Group getGroup_3() { return cGroup_3; }
 		
+		//CSpecified?='C='
+		public Assignment getCSpecifiedAssignment_3_0() { return cCSpecifiedAssignment_3_0; }
+		
 		//'C='
-		public Keyword getCKeyword_3_0() { return cCKeyword_3_0; }
+		public Keyword getCSpecifiedCKeyword_3_0_0() { return cCSpecifiedCKeyword_3_0_0; }
 		
 		//C=FLOAT
 		public Assignment getCAssignment_3_1() { return cCAssignment_3_1; }
@@ -277,21 +282,6 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//SVMKernel
 		public RuleCall getKernelSVMKernelEnumRuleCall_4_1_0() { return cKernelSVMKernelEnumRuleCall_4_1_0; }
-		
-		//(classificationSpecified?='classification' svmclassification=SVMClassification)?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//classificationSpecified?='classification'
-		public Assignment getClassificationSpecifiedAssignment_5_0() { return cClassificationSpecifiedAssignment_5_0; }
-		
-		//'classification'
-		public Keyword getClassificationSpecifiedClassificationKeyword_5_0_0() { return cClassificationSpecifiedClassificationKeyword_5_0_0; }
-		
-		//svmclassification=SVMClassification
-		public Assignment getSvmclassificationAssignment_5_1() { return cSvmclassificationAssignment_5_1; }
-		
-		//SVMClassification
-		public RuleCall getSvmclassificationSVMClassificationEnumRuleCall_5_1_0() { return cSvmclassificationSVMClassificationEnumRuleCall_5_1_0; }
 	}
 	public class DTElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.DT");
@@ -300,14 +290,27 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final Keyword cDTKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
 		private final Keyword cDecisionTreeKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
-		private final Assignment cMax_depthAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMax_depthINTTerminalRuleCall_2_0 = (RuleCall)cMax_depthAssignment_2.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cMaxdepthSpecifiedAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final Keyword cMaxdepthSpecifiedMax_depthKeyword_2_0_0 = (Keyword)cMaxdepthSpecifiedAssignment_2_0.eContents().get(0);
+		private final Assignment cMax_depthAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cMax_depthINTTerminalRuleCall_2_1_0 = (RuleCall)cMax_depthAssignment_2_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cCriterionSpecifiedAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final Keyword cCriterionSpecifiedCriterionKeyword_3_0_0 = (Keyword)cCriterionSpecifiedAssignment_3_0.eContents().get(0);
+		private final Assignment cCriterionAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cCriterionDTCriterionEnumRuleCall_3_1_0 = (RuleCall)cCriterionAssignment_3_1.eContents().get(0);
 		
+		////enum SVMClassification:
+		////cClass= "C-classification" | nuClass ="nu-classification" | oneClass="one-classification"
+		////;
 		//DT:
-		//	{DT} ('DT' | 'DecisionTree') max_depth=INT?;
+		//	{DT} ('DT' | 'DecisionTree') (maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion='
+		//	criterion=DTCriterion)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{DT} ('DT' | 'DecisionTree') max_depth=INT?
+		//{DT} ('DT' | 'DecisionTree') (maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion='
+		//criterion=DTCriterion)?
 		public Group getGroup() { return cGroup; }
 		
 		//{DT}
@@ -322,11 +325,35 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		//'DecisionTree'
 		public Keyword getDecisionTreeKeyword_1_1() { return cDecisionTreeKeyword_1_1; }
 		
-		//max_depth=INT?
-		public Assignment getMax_depthAssignment_2() { return cMax_depthAssignment_2; }
+		//(maxdepthSpecified?='max_depth=' max_depth=INT)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//maxdepthSpecified?='max_depth='
+		public Assignment getMaxdepthSpecifiedAssignment_2_0() { return cMaxdepthSpecifiedAssignment_2_0; }
+		
+		//'max_depth='
+		public Keyword getMaxdepthSpecifiedMax_depthKeyword_2_0_0() { return cMaxdepthSpecifiedMax_depthKeyword_2_0_0; }
+		
+		//max_depth=INT
+		public Assignment getMax_depthAssignment_2_1() { return cMax_depthAssignment_2_1; }
 		
 		//INT
-		public RuleCall getMax_depthINTTerminalRuleCall_2_0() { return cMax_depthINTTerminalRuleCall_2_0; }
+		public RuleCall getMax_depthINTTerminalRuleCall_2_1_0() { return cMax_depthINTTerminalRuleCall_2_1_0; }
+		
+		//(criterionSpecified?='criterion=' criterion=DTCriterion)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//criterionSpecified?='criterion='
+		public Assignment getCriterionSpecifiedAssignment_3_0() { return cCriterionSpecifiedAssignment_3_0; }
+		
+		//'criterion='
+		public Keyword getCriterionSpecifiedCriterionKeyword_3_0_0() { return cCriterionSpecifiedCriterionKeyword_3_0_0; }
+		
+		//criterion=DTCriterion
+		public Assignment getCriterionAssignment_3_1() { return cCriterionAssignment_3_1; }
+		
+		//DTCriterion
+		public RuleCall getCriterionDTCriterionEnumRuleCall_3_1_0() { return cCriterionDTCriterionEnumRuleCall_3_1_0; }
 	}
 	public class RandomForestElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.RandomForest");
@@ -335,14 +362,29 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final Keyword cRandomForestKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
 		private final Keyword cRFKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cNestimSpecifiedAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final Keyword cNestimSpecifiedN_estimatorsKeyword_2_0_0 = (Keyword)cNestimSpecifiedAssignment_2_0.eContents().get(0);
+		private final Assignment cN_estimatorsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cN_estimatorsINTTerminalRuleCall_2_1_0 = (RuleCall)cN_estimatorsAssignment_2_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cMaxdepthSpecifiedAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final Keyword cMaxdepthSpecifiedMax_depthKeyword_3_0_0 = (Keyword)cMaxdepthSpecifiedAssignment_3_0.eContents().get(0);
+		private final Assignment cMax_depthAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cMax_depthINTTerminalRuleCall_3_1_0 = (RuleCall)cMax_depthAssignment_3_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Assignment cCriterionSpecifiedAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final Keyword cCriterionSpecifiedCriterionKeyword_4_0_0 = (Keyword)cCriterionSpecifiedAssignment_4_0.eContents().get(0);
+		private final Assignment cCriterionAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cCriterionDTCriterionEnumRuleCall_4_1_0 = (RuleCall)cCriterionAssignment_4_1.eContents().get(0);
 		
-		//// TODO: additional hyperparameters
-		//// note: R-package CART: class or anova is out of the scope since we're only targeted classification problem
 		//RandomForest:
-		//	{RandomForest} ('RandomForest' | 'RF');
+		//	{RandomForest} ('RandomForest' | 'RF') (nestimSpecified?='n_estimators=' n_estimators=INT)?
+		//	(maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion=' criterion=DTCriterion)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{RandomForest} ('RandomForest' | 'RF')
+		//{RandomForest} ('RandomForest' | 'RF') (nestimSpecified?='n_estimators=' n_estimators=INT)?
+		//(maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion=' criterion=DTCriterion)?
 		public Group getGroup() { return cGroup; }
 		
 		//{RandomForest}
@@ -356,20 +398,81 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'RF'
 		public Keyword getRFKeyword_1_1() { return cRFKeyword_1_1; }
+		
+		//(nestimSpecified?='n_estimators=' n_estimators=INT)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//nestimSpecified?='n_estimators='
+		public Assignment getNestimSpecifiedAssignment_2_0() { return cNestimSpecifiedAssignment_2_0; }
+		
+		//'n_estimators='
+		public Keyword getNestimSpecifiedN_estimatorsKeyword_2_0_0() { return cNestimSpecifiedN_estimatorsKeyword_2_0_0; }
+		
+		//n_estimators=INT
+		public Assignment getN_estimatorsAssignment_2_1() { return cN_estimatorsAssignment_2_1; }
+		
+		//INT
+		public RuleCall getN_estimatorsINTTerminalRuleCall_2_1_0() { return cN_estimatorsINTTerminalRuleCall_2_1_0; }
+		
+		//(maxdepthSpecified?='max_depth=' max_depth=INT)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//maxdepthSpecified?='max_depth='
+		public Assignment getMaxdepthSpecifiedAssignment_3_0() { return cMaxdepthSpecifiedAssignment_3_0; }
+		
+		//'max_depth='
+		public Keyword getMaxdepthSpecifiedMax_depthKeyword_3_0_0() { return cMaxdepthSpecifiedMax_depthKeyword_3_0_0; }
+		
+		//max_depth=INT
+		public Assignment getMax_depthAssignment_3_1() { return cMax_depthAssignment_3_1; }
+		
+		//INT
+		public RuleCall getMax_depthINTTerminalRuleCall_3_1_0() { return cMax_depthINTTerminalRuleCall_3_1_0; }
+		
+		//(criterionSpecified?='criterion=' criterion=DTCriterion)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//criterionSpecified?='criterion='
+		public Assignment getCriterionSpecifiedAssignment_4_0() { return cCriterionSpecifiedAssignment_4_0; }
+		
+		//'criterion='
+		public Keyword getCriterionSpecifiedCriterionKeyword_4_0_0() { return cCriterionSpecifiedCriterionKeyword_4_0_0; }
+		
+		//criterion=DTCriterion
+		public Assignment getCriterionAssignment_4_1() { return cCriterionAssignment_4_1; }
+		
+		//DTCriterion
+		public RuleCall getCriterionDTCriterionEnumRuleCall_4_1_0() { return cCriterionDTCriterionEnumRuleCall_4_1_0; }
 	}
 	public class LogisticRegressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.LogisticRegression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cLogisticRegressionAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cLogisticRegressionKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cPenaltySpecifiedAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final Keyword cPenaltySpecifiedPenaltyKeyword_2_0_0 = (Keyword)cPenaltySpecifiedAssignment_2_0.eContents().get(0);
+		private final Assignment cPenaltyAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cPenaltyRegPenaltyEnumRuleCall_2_1_0 = (RuleCall)cPenaltyAssignment_2_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cTolSpecifiedAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final Keyword cTolSpecifiedTolKeyword_3_0_0 = (Keyword)cTolSpecifiedAssignment_3_0.eContents().get(0);
+		private final Assignment cTolAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cTolFLOATParserRuleCall_3_1_0 = (RuleCall)cTolAssignment_3_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Assignment cCSpecifiedAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final Keyword cCSpecifiedCKeyword_4_0_0 = (Keyword)cCSpecifiedAssignment_4_0.eContents().get(0);
+		private final Assignment cCAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cCFLOATParserRuleCall_4_1_0 = (RuleCall)cCAssignment_4_1.eContents().get(0);
 		
-		//// TODO: hyperparameters?
 		//LogisticRegression:
 		//	{LogisticRegression}
-		//	'LogisticRegression';
+		//	'LogisticRegression' (penaltySpecified?='penalty=' penalty=regPenalty)? (tolSpecified?='tol=' tol=FLOAT)?
+		//	(CSpecified?='C=' C=FLOAT)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{LogisticRegression} 'LogisticRegression'
+		//{LogisticRegression} 'LogisticRegression' (penaltySpecified?='penalty=' penalty=regPenalty)? (tolSpecified?='tol='
+		//tol=FLOAT)? (CSpecified?='C=' C=FLOAT)?
 		public Group getGroup() { return cGroup; }
 		
 		//{LogisticRegression}
@@ -377,6 +480,51 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'LogisticRegression'
 		public Keyword getLogisticRegressionKeyword_1() { return cLogisticRegressionKeyword_1; }
+		
+		//(penaltySpecified?='penalty=' penalty=regPenalty)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//penaltySpecified?='penalty='
+		public Assignment getPenaltySpecifiedAssignment_2_0() { return cPenaltySpecifiedAssignment_2_0; }
+		
+		//'penalty='
+		public Keyword getPenaltySpecifiedPenaltyKeyword_2_0_0() { return cPenaltySpecifiedPenaltyKeyword_2_0_0; }
+		
+		//penalty=regPenalty
+		public Assignment getPenaltyAssignment_2_1() { return cPenaltyAssignment_2_1; }
+		
+		//regPenalty
+		public RuleCall getPenaltyRegPenaltyEnumRuleCall_2_1_0() { return cPenaltyRegPenaltyEnumRuleCall_2_1_0; }
+		
+		//(tolSpecified?='tol=' tol=FLOAT)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//tolSpecified?='tol='
+		public Assignment getTolSpecifiedAssignment_3_0() { return cTolSpecifiedAssignment_3_0; }
+		
+		//'tol='
+		public Keyword getTolSpecifiedTolKeyword_3_0_0() { return cTolSpecifiedTolKeyword_3_0_0; }
+		
+		//tol=FLOAT
+		public Assignment getTolAssignment_3_1() { return cTolAssignment_3_1; }
+		
+		//FLOAT
+		public RuleCall getTolFLOATParserRuleCall_3_1_0() { return cTolFLOATParserRuleCall_3_1_0; }
+		
+		//(CSpecified?='C=' C=FLOAT)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//CSpecified?='C='
+		public Assignment getCSpecifiedAssignment_4_0() { return cCSpecifiedAssignment_4_0; }
+		
+		//'C='
+		public Keyword getCSpecifiedCKeyword_4_0_0() { return cCSpecifiedCKeyword_4_0_0; }
+		
+		//C=FLOAT
+		public Assignment getCAssignment_4_1() { return cCAssignment_4_1; }
+		
+		//FLOAT
+		public RuleCall getCFLOATParserRuleCall_4_1_0() { return cCFLOATParserRuleCall_4_1_0; }
 	}
 	public class FLOATElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.FLOAT");
@@ -385,7 +533,6 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//// TODO: hyperparameters?
 		//FLOAT:
 		//	INT '.' INT;
 		@Override public ParserRule getRule() { return rule; }
@@ -740,72 +887,115 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 	public class SVMKernelElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.SVMKernel");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cLinearEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cLinearLinearKeyword_0_0 = (Keyword)cLinearEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cPolyEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cPolyPolynomialKeyword_1_0 = (Keyword)cPolyEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cRadialEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cRadialRadialKeyword_2_0 = (Keyword)cRadialEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cRbfEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cRbfRbfKeyword_0_0 = (Keyword)cRbfEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cLinearEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cLinearLinearKeyword_1_0 = (Keyword)cLinearEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cPolyEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cPolyPolyKeyword_2_0 = (Keyword)cPolyEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cSigmoidEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cSigmoidSigmoidKeyword_3_0 = (Keyword)cSigmoidEnumLiteralDeclaration_3.eContents().get(0);
 		
 		//enum SVMKernel:
-		//	linear | poly='polynomial' | radial;
+		//	rbf | linear | poly | sigmoid;
 		public EnumRule getRule() { return rule; }
 		
-		//linear | poly='polynomial' | radial
+		//rbf | linear | poly | sigmoid
 		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//rbf
+		public EnumLiteralDeclaration getRbfEnumLiteralDeclaration_0() { return cRbfEnumLiteralDeclaration_0; }
+		
+		//'rbf'
+		public Keyword getRbfRbfKeyword_0_0() { return cRbfRbfKeyword_0_0; }
 		
 		//linear
-		public EnumLiteralDeclaration getLinearEnumLiteralDeclaration_0() { return cLinearEnumLiteralDeclaration_0; }
+		public EnumLiteralDeclaration getLinearEnumLiteralDeclaration_1() { return cLinearEnumLiteralDeclaration_1; }
 		
 		//'linear'
-		public Keyword getLinearLinearKeyword_0_0() { return cLinearLinearKeyword_0_0; }
+		public Keyword getLinearLinearKeyword_1_0() { return cLinearLinearKeyword_1_0; }
 		
-		//poly='polynomial'
-		public EnumLiteralDeclaration getPolyEnumLiteralDeclaration_1() { return cPolyEnumLiteralDeclaration_1; }
+		//poly
+		public EnumLiteralDeclaration getPolyEnumLiteralDeclaration_2() { return cPolyEnumLiteralDeclaration_2; }
 		
-		//'polynomial'
-		public Keyword getPolyPolynomialKeyword_1_0() { return cPolyPolynomialKeyword_1_0; }
+		//'poly'
+		public Keyword getPolyPolyKeyword_2_0() { return cPolyPolyKeyword_2_0; }
 		
-		//radial
-		public EnumLiteralDeclaration getRadialEnumLiteralDeclaration_2() { return cRadialEnumLiteralDeclaration_2; }
+		//sigmoid
+		public EnumLiteralDeclaration getSigmoidEnumLiteralDeclaration_3() { return cSigmoidEnumLiteralDeclaration_3; }
 		
-		//'radial'
-		public Keyword getRadialRadialKeyword_2_0() { return cRadialRadialKeyword_2_0; }
+		//'sigmoid'
+		public Keyword getSigmoidSigmoidKeyword_3_0() { return cSigmoidSigmoidKeyword_3_0; }
 	}
-	public class SVMClassificationElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.SVMClassification");
+	public class DTCriterionElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.DTCriterion");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cCClassEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cCClassCClassificationKeyword_0_0 = (Keyword)cCClassEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cNuClassEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cNuClassNuClassificationKeyword_1_0 = (Keyword)cNuClassEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cOneClassEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cOneClassOneClassificationKeyword_2_0 = (Keyword)cOneClassEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cGiniEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cGiniGiniKeyword_0_0 = (Keyword)cGiniEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cEntropyEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cEntropyEntropyKeyword_1_0 = (Keyword)cEntropyEnumLiteralDeclaration_1.eContents().get(0);
 		
-		//enum SVMClassification:
-		//	cClass="C-classification" | nuClass="nu-classification" | oneClass="one-classification";
+		//enum DTCriterion:
+		//	gini | entropy;
 		public EnumRule getRule() { return rule; }
 		
-		//cClass="C-classification" | nuClass="nu-classification" | oneClass="one-classification"
+		//gini | entropy
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//cClass="C-classification"
-		public EnumLiteralDeclaration getCClassEnumLiteralDeclaration_0() { return cCClassEnumLiteralDeclaration_0; }
+		//gini
+		public EnumLiteralDeclaration getGiniEnumLiteralDeclaration_0() { return cGiniEnumLiteralDeclaration_0; }
 		
-		//"C-classification"
-		public Keyword getCClassCClassificationKeyword_0_0() { return cCClassCClassificationKeyword_0_0; }
+		//"gini"
+		public Keyword getGiniGiniKeyword_0_0() { return cGiniGiniKeyword_0_0; }
 		
-		//nuClass="nu-classification"
-		public EnumLiteralDeclaration getNuClassEnumLiteralDeclaration_1() { return cNuClassEnumLiteralDeclaration_1; }
+		//entropy
+		public EnumLiteralDeclaration getEntropyEnumLiteralDeclaration_1() { return cEntropyEnumLiteralDeclaration_1; }
 		
-		//"nu-classification"
-		public Keyword getNuClassNuClassificationKeyword_1_0() { return cNuClassNuClassificationKeyword_1_0; }
+		//"entropy"
+		public Keyword getEntropyEntropyKeyword_1_0() { return cEntropyEntropyKeyword_1_0; }
+	}
+	public class RegPenaltyElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.regPenalty");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cL2EnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cL2L2Keyword_0_0 = (Keyword)cL2EnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cL1EnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cL1L1Keyword_1_0 = (Keyword)cL1EnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cElasticnetEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cElasticnetElasticnetKeyword_2_0 = (Keyword)cElasticnetEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cNoneEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cNoneNoneKeyword_3_0 = (Keyword)cNoneEnumLiteralDeclaration_3.eContents().get(0);
 		
-		//oneClass="one-classification"
-		public EnumLiteralDeclaration getOneClassEnumLiteralDeclaration_2() { return cOneClassEnumLiteralDeclaration_2; }
+		//enum regPenalty:
+		//	l2 | l1 | elasticnet | none;
+		public EnumRule getRule() { return rule; }
 		
-		//"one-classification"
-		public Keyword getOneClassOneClassificationKeyword_2_0() { return cOneClassOneClassificationKeyword_2_0; }
+		//l2 | l1 | elasticnet | none
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//l2
+		public EnumLiteralDeclaration getL2EnumLiteralDeclaration_0() { return cL2EnumLiteralDeclaration_0; }
+		
+		//"l2"
+		public Keyword getL2L2Keyword_0_0() { return cL2L2Keyword_0_0; }
+		
+		//l1
+		public EnumLiteralDeclaration getL1EnumLiteralDeclaration_1() { return cL1EnumLiteralDeclaration_1; }
+		
+		//"l1"
+		public Keyword getL1L1Keyword_1_0() { return cL1L1Keyword_1_0; }
+		
+		//elasticnet
+		public EnumLiteralDeclaration getElasticnetEnumLiteralDeclaration_2() { return cElasticnetEnumLiteralDeclaration_2; }
+		
+		//"elasticnet"
+		public Keyword getElasticnetElasticnetKeyword_2_0() { return cElasticnetElasticnetKeyword_2_0; }
+		
+		//none
+		public EnumLiteralDeclaration getNoneEnumLiteralDeclaration_3() { return cNoneEnumLiteralDeclaration_3; }
+		
+		//"none"
+		public Keyword getNoneNoneKeyword_3_0() { return cNoneNoneKeyword_3_0; }
 	}
 	public class ValidationMetricElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.ValidationMetric");
@@ -903,10 +1093,11 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 	private final MLAlgorithmElements pMLAlgorithm;
 	private final SVMElements pSVM;
 	private final SVMKernelElements eSVMKernel;
-	private final SVMClassificationElements eSVMClassification;
 	private final DTElements pDT;
+	private final DTCriterionElements eDTCriterion;
 	private final RandomForestElements pRandomForest;
 	private final LogisticRegressionElements pLogisticRegression;
+	private final RegPenaltyElements eRegPenalty;
 	private final FLOATElements pFLOAT;
 	private final RFormulaElements pRFormula;
 	private final XFormulaElements pXFormula;
@@ -937,10 +1128,11 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		this.pMLAlgorithm = new MLAlgorithmElements();
 		this.pSVM = new SVMElements();
 		this.eSVMKernel = new SVMKernelElements();
-		this.eSVMClassification = new SVMClassificationElements();
 		this.pDT = new DTElements();
+		this.eDTCriterion = new DTCriterionElements();
 		this.pRandomForest = new RandomForestElements();
 		this.pLogisticRegression = new LogisticRegressionElements();
+		this.eRegPenalty = new RegPenaltyElements();
 		this.pFLOAT = new FLOATElements();
 		this.pRFormula = new RFormulaElements();
 		this.pXFormula = new XFormulaElements();
@@ -1065,8 +1257,10 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//SVM:
-	//	{SVM} 'SVM' ('gamma=' gamma=FLOAT)? ('C=' C=FLOAT)? (kernelSpecified?='kernel=' kernel=SVMKernel)?
-	//	(classificationSpecified?='classification' svmclassification=SVMClassification)?;
+	//	{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=FLOAT)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel='
+	//	kernel=SVMKernel)?
+	//	//(classificationSpecified?='classification' svmclassification = SVMClassification)?
+	//;
 	public SVMElements getSVMAccess() {
 		return pSVM;
 	}
@@ -1076,7 +1270,7 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum SVMKernel:
-	//	linear | poly='polynomial' | radial;
+	//	rbf | linear | poly | sigmoid;
 	public SVMKernelElements getSVMKernelAccess() {
 		return eSVMKernel;
 	}
@@ -1085,18 +1279,12 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		return getSVMKernelAccess().getRule();
 	}
 	
-	//enum SVMClassification:
-	//	cClass="C-classification" | nuClass="nu-classification" | oneClass="one-classification";
-	public SVMClassificationElements getSVMClassificationAccess() {
-		return eSVMClassification;
-	}
-	
-	public EnumRule getSVMClassificationRule() {
-		return getSVMClassificationAccess().getRule();
-	}
-	
+	////enum SVMClassification:
+	////cClass= "C-classification" | nuClass ="nu-classification" | oneClass="one-classification"
+	////;
 	//DT:
-	//	{DT} ('DT' | 'DecisionTree') max_depth=INT?;
+	//	{DT} ('DT' | 'DecisionTree') (maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion='
+	//	criterion=DTCriterion)?;
 	public DTElements getDTAccess() {
 		return pDT;
 	}
@@ -1105,10 +1293,19 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		return getDTAccess().getRule();
 	}
 	
-	//// TODO: additional hyperparameters
-	//// note: R-package CART: class or anova is out of the scope since we're only targeted classification problem
+	//enum DTCriterion:
+	//	gini | entropy;
+	public DTCriterionElements getDTCriterionAccess() {
+		return eDTCriterion;
+	}
+	
+	public EnumRule getDTCriterionRule() {
+		return getDTCriterionAccess().getRule();
+	}
+	
 	//RandomForest:
-	//	{RandomForest} ('RandomForest' | 'RF');
+	//	{RandomForest} ('RandomForest' | 'RF') (nestimSpecified?='n_estimators=' n_estimators=INT)?
+	//	(maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion=' criterion=DTCriterion)?;
 	public RandomForestElements getRandomForestAccess() {
 		return pRandomForest;
 	}
@@ -1117,10 +1314,10 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		return getRandomForestAccess().getRule();
 	}
 	
-	//// TODO: hyperparameters?
 	//LogisticRegression:
 	//	{LogisticRegression}
-	//	'LogisticRegression';
+	//	'LogisticRegression' (penaltySpecified?='penalty=' penalty=regPenalty)? (tolSpecified?='tol=' tol=FLOAT)?
+	//	(CSpecified?='C=' C=FLOAT)?;
 	public LogisticRegressionElements getLogisticRegressionAccess() {
 		return pLogisticRegression;
 	}
@@ -1129,7 +1326,16 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		return getLogisticRegressionAccess().getRule();
 	}
 	
-	//// TODO: hyperparameters?
+	//enum regPenalty:
+	//	l2 | l1 | elasticnet | none;
+	public RegPenaltyElements getRegPenaltyAccess() {
+		return eRegPenalty;
+	}
+	
+	public EnumRule getRegPenaltyRule() {
+		return getRegPenaltyAccess().getRule();
+	}
+	
 	//FLOAT:
 	//	INT '.' INT;
 	public FLOATElements getFLOATAccess() {

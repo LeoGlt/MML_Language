@@ -105,8 +105,10 @@ public class MmlFactoryImpl extends EFactoryImpl implements MmlFactory
         return createFrameworkLangFromString(eDataType, initialValue);
       case MmlPackage.SVM_KERNEL:
         return createSVMKernelFromString(eDataType, initialValue);
-      case MmlPackage.SVM_CLASSIFICATION:
-        return createSVMClassificationFromString(eDataType, initialValue);
+      case MmlPackage.DT_CRITERION:
+        return createDTCriterionFromString(eDataType, initialValue);
+      case MmlPackage.REG_PENALTY:
+        return createregPenaltyFromString(eDataType, initialValue);
       case MmlPackage.VALIDATION_METRIC:
         return createValidationMetricFromString(eDataType, initialValue);
       default:
@@ -130,8 +132,10 @@ public class MmlFactoryImpl extends EFactoryImpl implements MmlFactory
         return convertFrameworkLangToString(eDataType, instanceValue);
       case MmlPackage.SVM_KERNEL:
         return convertSVMKernelToString(eDataType, instanceValue);
-      case MmlPackage.SVM_CLASSIFICATION:
-        return convertSVMClassificationToString(eDataType, instanceValue);
+      case MmlPackage.DT_CRITERION:
+        return convertDTCriterionToString(eDataType, instanceValue);
+      case MmlPackage.REG_PENALTY:
+        return convertregPenaltyToString(eDataType, instanceValue);
       case MmlPackage.VALIDATION_METRIC:
         return convertValidationMetricToString(eDataType, instanceValue);
       default:
@@ -426,9 +430,9 @@ public class MmlFactoryImpl extends EFactoryImpl implements MmlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public SVMClassification createSVMClassificationFromString(EDataType eDataType, String initialValue)
+  public DTCriterion createDTCriterionFromString(EDataType eDataType, String initialValue)
   {
-    SVMClassification result = SVMClassification.get(initialValue);
+    DTCriterion result = DTCriterion.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -438,7 +442,29 @@ public class MmlFactoryImpl extends EFactoryImpl implements MmlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertSVMClassificationToString(EDataType eDataType, Object instanceValue)
+  public String convertDTCriterionToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public regPenalty createregPenaltyFromString(EDataType eDataType, String initialValue)
+  {
+    regPenalty result = regPenalty.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertregPenaltyToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

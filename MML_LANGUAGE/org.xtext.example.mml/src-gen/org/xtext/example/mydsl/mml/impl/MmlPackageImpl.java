@@ -15,6 +15,7 @@ import org.xtext.example.mydsl.mml.AllVariables;
 import org.xtext.example.mydsl.mml.CSVParsingConfiguration;
 import org.xtext.example.mydsl.mml.CSVSeparator;
 import org.xtext.example.mydsl.mml.CrossValidation;
+import org.xtext.example.mydsl.mml.DTCriterion;
 import org.xtext.example.mydsl.mml.DataInput;
 import org.xtext.example.mydsl.mml.FormulaItem;
 import org.xtext.example.mydsl.mml.FrameworkLang;
@@ -27,13 +28,13 @@ import org.xtext.example.mydsl.mml.MmlPackage;
 import org.xtext.example.mydsl.mml.PredictorVariables;
 import org.xtext.example.mydsl.mml.RFormula;
 import org.xtext.example.mydsl.mml.RandomForest;
-import org.xtext.example.mydsl.mml.SVMClassification;
 import org.xtext.example.mydsl.mml.SVMKernel;
 import org.xtext.example.mydsl.mml.StratificationMethod;
 import org.xtext.example.mydsl.mml.TrainingTest;
 import org.xtext.example.mydsl.mml.Validation;
 import org.xtext.example.mydsl.mml.ValidationMetric;
 import org.xtext.example.mydsl.mml.XFormula;
+import org.xtext.example.mydsl.mml.regPenalty;
 
 /**
  * <!-- begin-user-doc -->
@@ -195,7 +196,14 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EEnum svmClassificationEEnum = null;
+  private EEnum dtCriterionEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum regPenaltyEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -438,7 +446,7 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   @Override
-  public EAttribute getSVM_Gamma()
+  public EAttribute getSVM_GammaSpecified()
   {
     return (EAttribute)svmEClass.getEStructuralFeatures().get(0);
   }
@@ -449,7 +457,7 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   @Override
-  public EAttribute getSVM_C()
+  public EAttribute getSVM_Gamma()
   {
     return (EAttribute)svmEClass.getEStructuralFeatures().get(1);
   }
@@ -460,7 +468,7 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   @Override
-  public EAttribute getSVM_KernelSpecified()
+  public EAttribute getSVM_CSpecified()
   {
     return (EAttribute)svmEClass.getEStructuralFeatures().get(2);
   }
@@ -471,7 +479,7 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   @Override
-  public EAttribute getSVM_Kernel()
+  public EAttribute getSVM_C()
   {
     return (EAttribute)svmEClass.getEStructuralFeatures().get(3);
   }
@@ -482,7 +490,7 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   @Override
-  public EAttribute getSVM_ClassificationSpecified()
+  public EAttribute getSVM_KernelSpecified()
   {
     return (EAttribute)svmEClass.getEStructuralFeatures().get(4);
   }
@@ -493,7 +501,7 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   @Override
-  public EAttribute getSVM_Svmclassification()
+  public EAttribute getSVM_Kernel()
   {
     return (EAttribute)svmEClass.getEStructuralFeatures().get(5);
   }
@@ -515,9 +523,42 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   @Override
-  public EAttribute getDT_Max_depth()
+  public EAttribute getDT_MaxdepthSpecified()
   {
     return (EAttribute)dtEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDT_Max_depth()
+  {
+    return (EAttribute)dtEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDT_CriterionSpecified()
+  {
+    return (EAttribute)dtEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDT_Criterion()
+  {
+    return (EAttribute)dtEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -537,9 +578,141 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   @Override
+  public EAttribute getRandomForest_NestimSpecified()
+  {
+    return (EAttribute)randomForestEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRandomForest_N_estimators()
+  {
+    return (EAttribute)randomForestEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRandomForest_MaxdepthSpecified()
+  {
+    return (EAttribute)randomForestEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRandomForest_Max_depth()
+  {
+    return (EAttribute)randomForestEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRandomForest_CriterionSpecified()
+  {
+    return (EAttribute)randomForestEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRandomForest_Criterion()
+  {
+    return (EAttribute)randomForestEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getLogisticRegression()
   {
     return logisticRegressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLogisticRegression_PenaltySpecified()
+  {
+    return (EAttribute)logisticRegressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLogisticRegression_Penalty()
+  {
+    return (EAttribute)logisticRegressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLogisticRegression_TolSpecified()
+  {
+    return (EAttribute)logisticRegressionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLogisticRegression_Tol()
+  {
+    return (EAttribute)logisticRegressionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLogisticRegression_CSpecified()
+  {
+    return (EAttribute)logisticRegressionEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLogisticRegression_C()
+  {
+    return (EAttribute)logisticRegressionEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -779,9 +952,20 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   @Override
-  public EEnum getSVMClassification()
+  public EEnum getDTCriterion()
   {
-    return svmClassificationEEnum;
+    return dtCriterionEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getregPenalty()
+  {
+    return regPenaltyEEnum;
   }
 
   /**
@@ -846,19 +1030,34 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
     mlAlgorithmEClass = createEClass(ML_ALGORITHM);
 
     svmEClass = createEClass(SVM);
+    createEAttribute(svmEClass, SVM__GAMMA_SPECIFIED);
     createEAttribute(svmEClass, SVM__GAMMA);
+    createEAttribute(svmEClass, SVM__CSPECIFIED);
     createEAttribute(svmEClass, SVM__C);
     createEAttribute(svmEClass, SVM__KERNEL_SPECIFIED);
     createEAttribute(svmEClass, SVM__KERNEL);
-    createEAttribute(svmEClass, SVM__CLASSIFICATION_SPECIFIED);
-    createEAttribute(svmEClass, SVM__SVMCLASSIFICATION);
 
     dtEClass = createEClass(DT);
+    createEAttribute(dtEClass, DT__MAXDEPTH_SPECIFIED);
     createEAttribute(dtEClass, DT__MAX_DEPTH);
+    createEAttribute(dtEClass, DT__CRITERION_SPECIFIED);
+    createEAttribute(dtEClass, DT__CRITERION);
 
     randomForestEClass = createEClass(RANDOM_FOREST);
+    createEAttribute(randomForestEClass, RANDOM_FOREST__NESTIM_SPECIFIED);
+    createEAttribute(randomForestEClass, RANDOM_FOREST__NESTIMATORS);
+    createEAttribute(randomForestEClass, RANDOM_FOREST__MAXDEPTH_SPECIFIED);
+    createEAttribute(randomForestEClass, RANDOM_FOREST__MAX_DEPTH);
+    createEAttribute(randomForestEClass, RANDOM_FOREST__CRITERION_SPECIFIED);
+    createEAttribute(randomForestEClass, RANDOM_FOREST__CRITERION);
 
     logisticRegressionEClass = createEClass(LOGISTIC_REGRESSION);
+    createEAttribute(logisticRegressionEClass, LOGISTIC_REGRESSION__PENALTY_SPECIFIED);
+    createEAttribute(logisticRegressionEClass, LOGISTIC_REGRESSION__PENALTY);
+    createEAttribute(logisticRegressionEClass, LOGISTIC_REGRESSION__TOL_SPECIFIED);
+    createEAttribute(logisticRegressionEClass, LOGISTIC_REGRESSION__TOL);
+    createEAttribute(logisticRegressionEClass, LOGISTIC_REGRESSION__CSPECIFIED);
+    createEAttribute(logisticRegressionEClass, LOGISTIC_REGRESSION__C);
 
     rFormulaEClass = createEClass(RFORMULA);
     createEReference(rFormulaEClass, RFORMULA__PREDICTIVE);
@@ -891,7 +1090,8 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
     csvSeparatorEEnum = createEEnum(CSV_SEPARATOR);
     frameworkLangEEnum = createEEnum(FRAMEWORK_LANG);
     svmKernelEEnum = createEEnum(SVM_KERNEL);
-    svmClassificationEEnum = createEEnum(SVM_CLASSIFICATION);
+    dtCriterionEEnum = createEEnum(DT_CRITERION);
+    regPenaltyEEnum = createEEnum(REG_PENALTY);
     validationMetricEEnum = createEEnum(VALIDATION_METRIC);
   }
 
@@ -954,19 +1154,34 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
     initEClass(mlAlgorithmEClass, MLAlgorithm.class, "MLAlgorithm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(svmEClass, org.xtext.example.mydsl.mml.SVM.class, "SVM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSVM_GammaSpecified(), ecorePackage.getEBoolean(), "gammaSpecified", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSVM_Gamma(), ecorePackage.getEString(), "gamma", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSVM_CSpecified(), ecorePackage.getEBoolean(), "CSpecified", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSVM_C(), ecorePackage.getEString(), "C", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSVM_KernelSpecified(), ecorePackage.getEBoolean(), "kernelSpecified", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSVM_Kernel(), this.getSVMKernel(), "kernel", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSVM_ClassificationSpecified(), ecorePackage.getEBoolean(), "classificationSpecified", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSVM_Svmclassification(), this.getSVMClassification(), "svmclassification", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dtEClass, org.xtext.example.mydsl.mml.DT.class, "DT", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDT_MaxdepthSpecified(), ecorePackage.getEBoolean(), "maxdepthSpecified", null, 0, 1, org.xtext.example.mydsl.mml.DT.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDT_Max_depth(), ecorePackage.getEInt(), "max_depth", null, 0, 1, org.xtext.example.mydsl.mml.DT.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDT_CriterionSpecified(), ecorePackage.getEBoolean(), "criterionSpecified", null, 0, 1, org.xtext.example.mydsl.mml.DT.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDT_Criterion(), this.getDTCriterion(), "criterion", null, 0, 1, org.xtext.example.mydsl.mml.DT.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(randomForestEClass, RandomForest.class, "RandomForest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRandomForest_NestimSpecified(), ecorePackage.getEBoolean(), "nestimSpecified", null, 0, 1, RandomForest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRandomForest_N_estimators(), ecorePackage.getEInt(), "n_estimators", null, 0, 1, RandomForest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRandomForest_MaxdepthSpecified(), ecorePackage.getEBoolean(), "maxdepthSpecified", null, 0, 1, RandomForest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRandomForest_Max_depth(), ecorePackage.getEInt(), "max_depth", null, 0, 1, RandomForest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRandomForest_CriterionSpecified(), ecorePackage.getEBoolean(), "criterionSpecified", null, 0, 1, RandomForest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRandomForest_Criterion(), this.getDTCriterion(), "criterion", null, 0, 1, RandomForest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(logisticRegressionEClass, LogisticRegression.class, "LogisticRegression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLogisticRegression_PenaltySpecified(), ecorePackage.getEBoolean(), "penaltySpecified", null, 0, 1, LogisticRegression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLogisticRegression_Penalty(), this.getregPenalty(), "penalty", null, 0, 1, LogisticRegression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLogisticRegression_TolSpecified(), ecorePackage.getEBoolean(), "tolSpecified", null, 0, 1, LogisticRegression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLogisticRegression_Tol(), ecorePackage.getEString(), "tol", null, 0, 1, LogisticRegression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLogisticRegression_CSpecified(), ecorePackage.getEBoolean(), "CSpecified", null, 0, 1, LogisticRegression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLogisticRegression_C(), ecorePackage.getEString(), "C", null, 0, 1, LogisticRegression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rFormulaEClass, RFormula.class, "RFormula", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRFormula_Predictive(), this.getFormulaItem(), null, "predictive", null, 0, 1, RFormula.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1007,14 +1222,20 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
     addEEnumLiteral(frameworkLangEEnum, FrameworkLang.XG_BOOST);
 
     initEEnum(svmKernelEEnum, SVMKernel.class, "SVMKernel");
+    addEEnumLiteral(svmKernelEEnum, SVMKernel.RBF);
     addEEnumLiteral(svmKernelEEnum, SVMKernel.LINEAR);
     addEEnumLiteral(svmKernelEEnum, SVMKernel.POLY);
-    addEEnumLiteral(svmKernelEEnum, SVMKernel.RADIAL);
+    addEEnumLiteral(svmKernelEEnum, SVMKernel.SIGMOID);
 
-    initEEnum(svmClassificationEEnum, SVMClassification.class, "SVMClassification");
-    addEEnumLiteral(svmClassificationEEnum, SVMClassification.CCLASS);
-    addEEnumLiteral(svmClassificationEEnum, SVMClassification.NU_CLASS);
-    addEEnumLiteral(svmClassificationEEnum, SVMClassification.ONE_CLASS);
+    initEEnum(dtCriterionEEnum, DTCriterion.class, "DTCriterion");
+    addEEnumLiteral(dtCriterionEEnum, DTCriterion.GINI);
+    addEEnumLiteral(dtCriterionEEnum, DTCriterion.ENTROPY);
+
+    initEEnum(regPenaltyEEnum, regPenalty.class, "regPenalty");
+    addEEnumLiteral(regPenaltyEEnum, regPenalty.L2);
+    addEEnumLiteral(regPenaltyEEnum, regPenalty.L1);
+    addEEnumLiteral(regPenaltyEEnum, regPenalty.ELASTICNET);
+    addEEnumLiteral(regPenaltyEEnum, regPenalty.NONE);
 
     initEEnum(validationMetricEEnum, ValidationMetric.class, "ValidationMetric");
     addEEnumLiteral(validationMetricEEnum, ValidationMetric.BALANCED_ACCURACY);

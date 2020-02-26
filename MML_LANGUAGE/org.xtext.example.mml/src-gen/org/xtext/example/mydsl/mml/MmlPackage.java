@@ -245,13 +245,31 @@ public interface MmlPackage extends EPackage
   int SVM = 5;
 
   /**
+   * The feature id for the '<em><b>Gamma Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SVM__GAMMA_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Gamma</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SVM__GAMMA = ML_ALGORITHM_FEATURE_COUNT + 0;
+  int SVM__GAMMA = ML_ALGORITHM_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>CSpecified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SVM__CSPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>C</b></em>' attribute.
@@ -260,7 +278,7 @@ public interface MmlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SVM__C = ML_ALGORITHM_FEATURE_COUNT + 1;
+  int SVM__C = ML_ALGORITHM_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Kernel Specified</b></em>' attribute.
@@ -269,7 +287,7 @@ public interface MmlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SVM__KERNEL_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 2;
+  int SVM__KERNEL_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>Kernel</b></em>' attribute.
@@ -278,25 +296,7 @@ public interface MmlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SVM__KERNEL = ML_ALGORITHM_FEATURE_COUNT + 3;
-
-  /**
-   * The feature id for the '<em><b>Classification Specified</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SVM__CLASSIFICATION_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 4;
-
-  /**
-   * The feature id for the '<em><b>Svmclassification</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SVM__SVMCLASSIFICATION = ML_ALGORITHM_FEATURE_COUNT + 5;
+  int SVM__KERNEL = ML_ALGORITHM_FEATURE_COUNT + 5;
 
   /**
    * The number of structural features of the '<em>SVM</em>' class.
@@ -318,13 +318,40 @@ public interface MmlPackage extends EPackage
   int DT = 6;
 
   /**
+   * The feature id for the '<em><b>Maxdepth Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DT__MAXDEPTH_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Max depth</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DT__MAX_DEPTH = ML_ALGORITHM_FEATURE_COUNT + 0;
+  int DT__MAX_DEPTH = ML_ALGORITHM_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Criterion Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DT__CRITERION_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Criterion</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DT__CRITERION = ML_ALGORITHM_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>DT</em>' class.
@@ -333,7 +360,7 @@ public interface MmlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DT_FEATURE_COUNT = ML_ALGORITHM_FEATURE_COUNT + 1;
+  int DT_FEATURE_COUNT = ML_ALGORITHM_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.mml.impl.RandomForestImpl <em>Random Forest</em>}' class.
@@ -346,13 +373,67 @@ public interface MmlPackage extends EPackage
   int RANDOM_FOREST = 7;
 
   /**
+   * The feature id for the '<em><b>Nestim Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RANDOM_FOREST__NESTIM_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Nestimators</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RANDOM_FOREST__NESTIMATORS = ML_ALGORITHM_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Maxdepth Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RANDOM_FOREST__MAXDEPTH_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Max depth</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RANDOM_FOREST__MAX_DEPTH = ML_ALGORITHM_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>Criterion Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RANDOM_FOREST__CRITERION_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 4;
+
+  /**
+   * The feature id for the '<em><b>Criterion</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RANDOM_FOREST__CRITERION = ML_ALGORITHM_FEATURE_COUNT + 5;
+
+  /**
    * The number of structural features of the '<em>Random Forest</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RANDOM_FOREST_FEATURE_COUNT = ML_ALGORITHM_FEATURE_COUNT + 0;
+  int RANDOM_FOREST_FEATURE_COUNT = ML_ALGORITHM_FEATURE_COUNT + 6;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.mml.impl.LogisticRegressionImpl <em>Logistic Regression</em>}' class.
@@ -365,13 +446,67 @@ public interface MmlPackage extends EPackage
   int LOGISTIC_REGRESSION = 8;
 
   /**
+   * The feature id for the '<em><b>Penalty Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOGISTIC_REGRESSION__PENALTY_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Penalty</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOGISTIC_REGRESSION__PENALTY = ML_ALGORITHM_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Tol Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOGISTIC_REGRESSION__TOL_SPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Tol</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOGISTIC_REGRESSION__TOL = ML_ALGORITHM_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>CSpecified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOGISTIC_REGRESSION__CSPECIFIED = ML_ALGORITHM_FEATURE_COUNT + 4;
+
+  /**
+   * The feature id for the '<em><b>C</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOGISTIC_REGRESSION__C = ML_ALGORITHM_FEATURE_COUNT + 5;
+
+  /**
    * The number of structural features of the '<em>Logistic Regression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LOGISTIC_REGRESSION_FEATURE_COUNT = ML_ALGORITHM_FEATURE_COUNT + 0;
+  int LOGISTIC_REGRESSION_FEATURE_COUNT = ML_ALGORITHM_FEATURE_COUNT + 6;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.mml.impl.RFormulaImpl <em>RFormula</em>}' class.
@@ -674,14 +809,24 @@ public interface MmlPackage extends EPackage
   int SVM_KERNEL = 20;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.mml.SVMClassification <em>SVM Classification</em>}' enum.
+   * The meta object id for the '{@link org.xtext.example.mydsl.mml.DTCriterion <em>DT Criterion</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.mml.SVMClassification
-   * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getSVMClassification()
+   * @see org.xtext.example.mydsl.mml.DTCriterion
+   * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getDTCriterion()
    * @generated
    */
-  int SVM_CLASSIFICATION = 21;
+  int DT_CRITERION = 21;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.mml.regPenalty <em>reg Penalty</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.mml.regPenalty
+   * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getregPenalty()
+   * @generated
+   */
+  int REG_PENALTY = 22;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.mml.ValidationMetric <em>Validation Metric</em>}' enum.
@@ -691,7 +836,7 @@ public interface MmlPackage extends EPackage
    * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getValidationMetric()
    * @generated
    */
-  int VALIDATION_METRIC = 22;
+  int VALIDATION_METRIC = 23;
 
 
   /**
@@ -854,6 +999,17 @@ public interface MmlPackage extends EPackage
   EClass getSVM();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.SVM#isGammaSpecified <em>Gamma Specified</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Gamma Specified</em>'.
+   * @see org.xtext.example.mydsl.mml.SVM#isGammaSpecified()
+   * @see #getSVM()
+   * @generated
+   */
+  EAttribute getSVM_GammaSpecified();
+
+  /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.SVM#getGamma <em>Gamma</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -863,6 +1019,17 @@ public interface MmlPackage extends EPackage
    * @generated
    */
   EAttribute getSVM_Gamma();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.SVM#isCSpecified <em>CSpecified</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>CSpecified</em>'.
+   * @see org.xtext.example.mydsl.mml.SVM#isCSpecified()
+   * @see #getSVM()
+   * @generated
+   */
+  EAttribute getSVM_CSpecified();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.SVM#getC <em>C</em>}'.
@@ -898,28 +1065,6 @@ public interface MmlPackage extends EPackage
   EAttribute getSVM_Kernel();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.SVM#isClassificationSpecified <em>Classification Specified</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Classification Specified</em>'.
-   * @see org.xtext.example.mydsl.mml.SVM#isClassificationSpecified()
-   * @see #getSVM()
-   * @generated
-   */
-  EAttribute getSVM_ClassificationSpecified();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.SVM#getSvmclassification <em>Svmclassification</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Svmclassification</em>'.
-   * @see org.xtext.example.mydsl.mml.SVM#getSvmclassification()
-   * @see #getSVM()
-   * @generated
-   */
-  EAttribute getSVM_Svmclassification();
-
-  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.mml.DT <em>DT</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -928,6 +1073,17 @@ public interface MmlPackage extends EPackage
    * @generated
    */
   EClass getDT();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.DT#isMaxdepthSpecified <em>Maxdepth Specified</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Maxdepth Specified</em>'.
+   * @see org.xtext.example.mydsl.mml.DT#isMaxdepthSpecified()
+   * @see #getDT()
+   * @generated
+   */
+  EAttribute getDT_MaxdepthSpecified();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.DT#getMax_depth <em>Max depth</em>}'.
@@ -941,6 +1097,28 @@ public interface MmlPackage extends EPackage
   EAttribute getDT_Max_depth();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.DT#isCriterionSpecified <em>Criterion Specified</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Criterion Specified</em>'.
+   * @see org.xtext.example.mydsl.mml.DT#isCriterionSpecified()
+   * @see #getDT()
+   * @generated
+   */
+  EAttribute getDT_CriterionSpecified();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.DT#getCriterion <em>Criterion</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Criterion</em>'.
+   * @see org.xtext.example.mydsl.mml.DT#getCriterion()
+   * @see #getDT()
+   * @generated
+   */
+  EAttribute getDT_Criterion();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.mml.RandomForest <em>Random Forest</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -951,6 +1129,72 @@ public interface MmlPackage extends EPackage
   EClass getRandomForest();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.RandomForest#isNestimSpecified <em>Nestim Specified</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nestim Specified</em>'.
+   * @see org.xtext.example.mydsl.mml.RandomForest#isNestimSpecified()
+   * @see #getRandomForest()
+   * @generated
+   */
+  EAttribute getRandomForest_NestimSpecified();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.RandomForest#getN_estimators <em>Nestimators</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nestimators</em>'.
+   * @see org.xtext.example.mydsl.mml.RandomForest#getN_estimators()
+   * @see #getRandomForest()
+   * @generated
+   */
+  EAttribute getRandomForest_N_estimators();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.RandomForest#isMaxdepthSpecified <em>Maxdepth Specified</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Maxdepth Specified</em>'.
+   * @see org.xtext.example.mydsl.mml.RandomForest#isMaxdepthSpecified()
+   * @see #getRandomForest()
+   * @generated
+   */
+  EAttribute getRandomForest_MaxdepthSpecified();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.RandomForest#getMax_depth <em>Max depth</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Max depth</em>'.
+   * @see org.xtext.example.mydsl.mml.RandomForest#getMax_depth()
+   * @see #getRandomForest()
+   * @generated
+   */
+  EAttribute getRandomForest_Max_depth();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.RandomForest#isCriterionSpecified <em>Criterion Specified</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Criterion Specified</em>'.
+   * @see org.xtext.example.mydsl.mml.RandomForest#isCriterionSpecified()
+   * @see #getRandomForest()
+   * @generated
+   */
+  EAttribute getRandomForest_CriterionSpecified();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.RandomForest#getCriterion <em>Criterion</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Criterion</em>'.
+   * @see org.xtext.example.mydsl.mml.RandomForest#getCriterion()
+   * @see #getRandomForest()
+   * @generated
+   */
+  EAttribute getRandomForest_Criterion();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.mml.LogisticRegression <em>Logistic Regression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -959,6 +1203,72 @@ public interface MmlPackage extends EPackage
    * @generated
    */
   EClass getLogisticRegression();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.LogisticRegression#isPenaltySpecified <em>Penalty Specified</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Penalty Specified</em>'.
+   * @see org.xtext.example.mydsl.mml.LogisticRegression#isPenaltySpecified()
+   * @see #getLogisticRegression()
+   * @generated
+   */
+  EAttribute getLogisticRegression_PenaltySpecified();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.LogisticRegression#getPenalty <em>Penalty</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Penalty</em>'.
+   * @see org.xtext.example.mydsl.mml.LogisticRegression#getPenalty()
+   * @see #getLogisticRegression()
+   * @generated
+   */
+  EAttribute getLogisticRegression_Penalty();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.LogisticRegression#isTolSpecified <em>Tol Specified</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Tol Specified</em>'.
+   * @see org.xtext.example.mydsl.mml.LogisticRegression#isTolSpecified()
+   * @see #getLogisticRegression()
+   * @generated
+   */
+  EAttribute getLogisticRegression_TolSpecified();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.LogisticRegression#getTol <em>Tol</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Tol</em>'.
+   * @see org.xtext.example.mydsl.mml.LogisticRegression#getTol()
+   * @see #getLogisticRegression()
+   * @generated
+   */
+  EAttribute getLogisticRegression_Tol();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.LogisticRegression#isCSpecified <em>CSpecified</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>CSpecified</em>'.
+   * @see org.xtext.example.mydsl.mml.LogisticRegression#isCSpecified()
+   * @see #getLogisticRegression()
+   * @generated
+   */
+  EAttribute getLogisticRegression_CSpecified();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.mml.LogisticRegression#getC <em>C</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>C</em>'.
+   * @see org.xtext.example.mydsl.mml.LogisticRegression#getC()
+   * @see #getLogisticRegression()
+   * @generated
+   */
+  EAttribute getLogisticRegression_C();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.mml.RFormula <em>RFormula</em>}'.
@@ -1180,14 +1490,24 @@ public interface MmlPackage extends EPackage
   EEnum getSVMKernel();
 
   /**
-   * Returns the meta object for enum '{@link org.xtext.example.mydsl.mml.SVMClassification <em>SVM Classification</em>}'.
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.mml.DTCriterion <em>DT Criterion</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>SVM Classification</em>'.
-   * @see org.xtext.example.mydsl.mml.SVMClassification
+   * @return the meta object for enum '<em>DT Criterion</em>'.
+   * @see org.xtext.example.mydsl.mml.DTCriterion
    * @generated
    */
-  EEnum getSVMClassification();
+  EEnum getDTCriterion();
+
+  /**
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.mml.regPenalty <em>reg Penalty</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>reg Penalty</em>'.
+   * @see org.xtext.example.mydsl.mml.regPenalty
+   * @generated
+   */
+  EEnum getregPenalty();
 
   /**
    * Returns the meta object for enum '{@link org.xtext.example.mydsl.mml.ValidationMetric <em>Validation Metric</em>}'.
@@ -1355,12 +1675,28 @@ public interface MmlPackage extends EPackage
     EClass SVM = eINSTANCE.getSVM();
 
     /**
+     * The meta object literal for the '<em><b>Gamma Specified</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SVM__GAMMA_SPECIFIED = eINSTANCE.getSVM_GammaSpecified();
+
+    /**
      * The meta object literal for the '<em><b>Gamma</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute SVM__GAMMA = eINSTANCE.getSVM_Gamma();
+
+    /**
+     * The meta object literal for the '<em><b>CSpecified</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SVM__CSPECIFIED = eINSTANCE.getSVM_CSpecified();
 
     /**
      * The meta object literal for the '<em><b>C</b></em>' attribute feature.
@@ -1387,22 +1723,6 @@ public interface MmlPackage extends EPackage
     EAttribute SVM__KERNEL = eINSTANCE.getSVM_Kernel();
 
     /**
-     * The meta object literal for the '<em><b>Classification Specified</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SVM__CLASSIFICATION_SPECIFIED = eINSTANCE.getSVM_ClassificationSpecified();
-
-    /**
-     * The meta object literal for the '<em><b>Svmclassification</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SVM__SVMCLASSIFICATION = eINSTANCE.getSVM_Svmclassification();
-
-    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.mml.impl.DTImpl <em>DT</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1413,12 +1733,36 @@ public interface MmlPackage extends EPackage
     EClass DT = eINSTANCE.getDT();
 
     /**
+     * The meta object literal for the '<em><b>Maxdepth Specified</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DT__MAXDEPTH_SPECIFIED = eINSTANCE.getDT_MaxdepthSpecified();
+
+    /**
      * The meta object literal for the '<em><b>Max depth</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute DT__MAX_DEPTH = eINSTANCE.getDT_Max_depth();
+
+    /**
+     * The meta object literal for the '<em><b>Criterion Specified</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DT__CRITERION_SPECIFIED = eINSTANCE.getDT_CriterionSpecified();
+
+    /**
+     * The meta object literal for the '<em><b>Criterion</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DT__CRITERION = eINSTANCE.getDT_Criterion();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.mml.impl.RandomForestImpl <em>Random Forest</em>}' class.
@@ -1431,6 +1775,54 @@ public interface MmlPackage extends EPackage
     EClass RANDOM_FOREST = eINSTANCE.getRandomForest();
 
     /**
+     * The meta object literal for the '<em><b>Nestim Specified</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RANDOM_FOREST__NESTIM_SPECIFIED = eINSTANCE.getRandomForest_NestimSpecified();
+
+    /**
+     * The meta object literal for the '<em><b>Nestimators</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RANDOM_FOREST__NESTIMATORS = eINSTANCE.getRandomForest_N_estimators();
+
+    /**
+     * The meta object literal for the '<em><b>Maxdepth Specified</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RANDOM_FOREST__MAXDEPTH_SPECIFIED = eINSTANCE.getRandomForest_MaxdepthSpecified();
+
+    /**
+     * The meta object literal for the '<em><b>Max depth</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RANDOM_FOREST__MAX_DEPTH = eINSTANCE.getRandomForest_Max_depth();
+
+    /**
+     * The meta object literal for the '<em><b>Criterion Specified</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RANDOM_FOREST__CRITERION_SPECIFIED = eINSTANCE.getRandomForest_CriterionSpecified();
+
+    /**
+     * The meta object literal for the '<em><b>Criterion</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RANDOM_FOREST__CRITERION = eINSTANCE.getRandomForest_Criterion();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.mml.impl.LogisticRegressionImpl <em>Logistic Regression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1439,6 +1831,54 @@ public interface MmlPackage extends EPackage
      * @generated
      */
     EClass LOGISTIC_REGRESSION = eINSTANCE.getLogisticRegression();
+
+    /**
+     * The meta object literal for the '<em><b>Penalty Specified</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOGISTIC_REGRESSION__PENALTY_SPECIFIED = eINSTANCE.getLogisticRegression_PenaltySpecified();
+
+    /**
+     * The meta object literal for the '<em><b>Penalty</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOGISTIC_REGRESSION__PENALTY = eINSTANCE.getLogisticRegression_Penalty();
+
+    /**
+     * The meta object literal for the '<em><b>Tol Specified</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOGISTIC_REGRESSION__TOL_SPECIFIED = eINSTANCE.getLogisticRegression_TolSpecified();
+
+    /**
+     * The meta object literal for the '<em><b>Tol</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOGISTIC_REGRESSION__TOL = eINSTANCE.getLogisticRegression_Tol();
+
+    /**
+     * The meta object literal for the '<em><b>CSpecified</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOGISTIC_REGRESSION__CSPECIFIED = eINSTANCE.getLogisticRegression_CSpecified();
+
+    /**
+     * The meta object literal for the '<em><b>C</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOGISTIC_REGRESSION__C = eINSTANCE.getLogisticRegression_C();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.mml.impl.RFormulaImpl <em>RFormula</em>}' class.
@@ -1633,14 +2073,24 @@ public interface MmlPackage extends EPackage
     EEnum SVM_KERNEL = eINSTANCE.getSVMKernel();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.mml.SVMClassification <em>SVM Classification</em>}' enum.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.mml.DTCriterion <em>DT Criterion</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.mml.SVMClassification
-     * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getSVMClassification()
+     * @see org.xtext.example.mydsl.mml.DTCriterion
+     * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getDTCriterion()
      * @generated
      */
-    EEnum SVM_CLASSIFICATION = eINSTANCE.getSVMClassification();
+    EEnum DT_CRITERION = eINSTANCE.getDTCriterion();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.mml.regPenalty <em>reg Penalty</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.mml.regPenalty
+     * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getregPenalty()
+     * @generated
+     */
+    EEnum REG_PENALTY = eINSTANCE.getregPenalty();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.mml.ValidationMetric <em>Validation Metric</em>}' enum.

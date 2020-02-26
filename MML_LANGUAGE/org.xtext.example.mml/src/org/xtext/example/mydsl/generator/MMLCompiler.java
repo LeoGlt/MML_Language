@@ -1,13 +1,9 @@
 package org.xtext.example.mydsl.generator;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import org.eclipse.emf.common.util.EList;
 import org.xtext.example.mydsl.mml.CSVParsingConfiguration;
 import org.xtext.example.mydsl.mml.DT;
+import org.xtext.example.mydsl.mml.DTCriterion;
 import org.xtext.example.mydsl.mml.DataInput;
 import org.xtext.example.mydsl.mml.FormulaItem;
 import org.xtext.example.mydsl.mml.FrameworkLang;
@@ -18,14 +14,12 @@ import org.xtext.example.mydsl.mml.MMLModel;
 import org.xtext.example.mydsl.mml.RFormula;
 import org.xtext.example.mydsl.mml.RandomForest;
 import org.xtext.example.mydsl.mml.SVM;
-import org.xtext.example.mydsl.mml.SVMClassification;
 import org.xtext.example.mydsl.mml.SVMKernel;
 import org.xtext.example.mydsl.mml.StratificationMethod;
 import org.xtext.example.mydsl.mml.TrainingTest;
 import org.xtext.example.mydsl.mml.Validation;
 import org.xtext.example.mydsl.mml.ValidationMetric;
-
-import com.google.common.io.Files;
+import org.xtext.example.mydsl.mml.regPenalty;
 
 public class MMLCompiler {
 	MMLModel mml;
@@ -111,18 +105,43 @@ public class MMLCompiler {
 				System.out.println("Scikit-learn is targeted");
 				if (mlalgo instanceof DT) {
 					DT dt = (DT) mlalgo;
+					int maxDepth = dt.getMax_depth();
+					DTCriterion criterion = dt.getCriterion();
+	
 					pythonImport+= "from sklearn import tree\n";
-					String algoTraining = "clf = tree.DecisionTreeClassifier()\n" + 
-											"clf = clf.fit(X_train, y_train)\n" +
-											"y_pred = clf.predict(X_test)\n";
-					pandasCode += algoTraining;
+					
+					
+					if (dt.isMaxdepthSpecified()) {
+						String algoTraining = "clf = tree.DecisionTreeClassifier(criterion = \"" 
+								+ criterion + "\", max_depth = " + maxDepth +")\n" + 
+								"clf = clf.fit(X_train, y_train)\n" +
+								"y_pred = clf.predict(X_test)\n";
+						pandasCode += algoTraining;
+					}
+					else {
+						String algoTraining = "clf = tree.DecisionTreeClassifier(criterion = \"" 
+								+ criterion + "\")\n" + 
+								"clf = clf.fit(X_train, y_train)\n" +
+								"y_pred = clf.predict(X_test)\n";
+						pandasCode += algoTraining;
+					}
+					
+					
 				}
 				if (mlalgo instanceof SVM) {
 					pythonImport+= "from sklearn.svm import SVC\n";
 					SVM svm = (SVM) mlalgo;
 					SVMKernel kernel = svm.getKernel();
-					SVMClassification classification = svm.getSvmclassification();
-					String algoTraining = "clf = SVC(gamma='auto')\n" + 
+					//SVMClassification classification = svm.getSvmclassification();
+					String codeC = "1.0";
+					if (svm.isCSpecified()) {
+						codeC = svm.getC();  
+					}
+					String codeGamma = "'auto'";
+					if (svm.isGammaSpecified()) {
+						codeGamma = svm.getGamma();
+					}
+					String algoTraining = "clf = SVC(gamma=" + codeGamma +",C=" +codeC + ", kernel = \""+ kernel +"\")\n" + 
 							"clf.fit(X_train, y_train)\n" +
 							"y_pred=clf.predict(X_test)\n";
 					pandasCode += algoTraining;
@@ -130,15 +149,48 @@ public class MMLCompiler {
 				if (mlalgo instanceof RandomForest) {
 					RandomForest randomforest = (RandomForest) mlalgo;
 					pythonImport+= "from sklearn.ensemble import RandomForestClassifier\n";
-					String algoTraining = "clf = RandomForestClassifier(n_estimators = 1000, random_state = 42)\n"
-							+ "clf.fit(X_train,y_train)\n" +
-							"y_pred=clf.predict(X_test)\n";
-					pandasCode += algoTraining;
+					int Nestim = 100;
+					if (randomforest.isNestimSpecified()) {
+						Nestim = randomforest.getN_estimators();
+					}
+					
+					int maxDepth = randomforest.getMax_depth();
+					DTCriterion criterion = randomforest.getCriterion();
+					System.out.println(criterion);
+					if (randomforest.isMaxdepthSpecified()) {
+						String algoTraining = "clf = RandomForestClassifier(criterion = \"" + criterion +"\", n_estimators = "
+								+ Nestim+",max_depth="+ maxDepth + " ,random_state = 42)\n"
+								+ "clf.fit(X_train,y_train)\n" +
+								"y_pred=clf.predict(X_test)\n";
+						pandasCode += algoTraining;
+					}
+					else {
+						String algoTraining = "clf = RandomForestClassifier(criterion = \"" + criterion +"\", n_estimators = "
+								+ Nestim+",random_state = 42)\n"
+								+ "clf.fit(X_train,y_train)\n" +
+								"y_pred=clf.predict(X_test)\n";
+						pandasCode += algoTraining;
+					}
+					
 				}
 				if (mlalgo instanceof LogisticRegression) {
 					pythonImport += "from sklearn.linear_model import LogisticRegression\n";
 					LogisticRegression logisticregression = (LogisticRegression) mlalgo;
-					String algoTraining = "clf = LogisticRegression(random_state=0, multi_class='auto', solver='lbfgs')\n"
+					String tol = "0.0001";
+					if (logisticregression.isTolSpecified()) {
+						tol = logisticregression.getTol();
+					}
+					String C = "1.0";
+					if (logisticregression.isCSpecified()) {
+						C = logisticregression.getC();
+					}
+					regPenalty penalty = logisticregression.getPenalty();
+					
+					String algoTraining = "clf = LogisticRegression(penalty=\""+ penalty +
+							", tol=" + tol +
+							", C=" + C +
+							
+							",random_state=0, multi_class='auto')\n"
 							+ "clf.fit(X_train, y_train)\n"
 							+ "y_pred=clf.predict(X_test)\n";
 					pandasCode+= algoTraining;

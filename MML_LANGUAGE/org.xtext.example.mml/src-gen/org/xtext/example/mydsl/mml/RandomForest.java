@@ -9,6 +9,17 @@ package org.xtext.example.mydsl.mml;
  * A representation of the model object '<em><b>Random Forest</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.xtext.example.mydsl.mml.RandomForest#isNestimSpecified <em>Nestim Specified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.RandomForest#getN_estimators <em>Nestimators</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.RandomForest#isMaxdepthSpecified <em>Maxdepth Specified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.RandomForest#getMax_depth <em>Max depth</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.RandomForest#isCriterionSpecified <em>Criterion Specified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.RandomForest#getCriterion <em>Criterion</em>}</li>
+ * </ul>
  *
  * @see org.xtext.example.mydsl.mml.MmlPackage#getRandomForest()
  * @model
@@ -16,4 +27,139 @@ package org.xtext.example.mydsl.mml;
  */
 public interface RandomForest extends MLAlgorithm
 {
+  /**
+   * Returns the value of the '<em><b>Nestim Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Nestim Specified</em>' attribute.
+   * @see #setNestimSpecified(boolean)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getRandomForest_NestimSpecified()
+   * @model
+   * @generated
+   */
+  boolean isNestimSpecified();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.RandomForest#isNestimSpecified <em>Nestim Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Nestim Specified</em>' attribute.
+   * @see #isNestimSpecified()
+   * @generated
+   */
+  void setNestimSpecified(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Nestimators</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Nestimators</em>' attribute.
+   * @see #setN_estimators(int)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getRandomForest_N_estimators()
+   * @model
+   * @generated
+   */
+  int getN_estimators();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.RandomForest#getN_estimators <em>Nestimators</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Nestimators</em>' attribute.
+   * @see #getN_estimators()
+   * @generated
+   */
+  void setN_estimators(int value);
+
+  /**
+   * Returns the value of the '<em><b>Maxdepth Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Maxdepth Specified</em>' attribute.
+   * @see #setMaxdepthSpecified(boolean)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getRandomForest_MaxdepthSpecified()
+   * @model
+   * @generated
+   */
+  boolean isMaxdepthSpecified();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.RandomForest#isMaxdepthSpecified <em>Maxdepth Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Maxdepth Specified</em>' attribute.
+   * @see #isMaxdepthSpecified()
+   * @generated
+   */
+  void setMaxdepthSpecified(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Max depth</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Max depth</em>' attribute.
+   * @see #setMax_depth(int)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getRandomForest_Max_depth()
+   * @model
+   * @generated
+   */
+  int getMax_depth();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.RandomForest#getMax_depth <em>Max depth</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Max depth</em>' attribute.
+   * @see #getMax_depth()
+   * @generated
+   */
+  void setMax_depth(int value);
+
+  /**
+   * Returns the value of the '<em><b>Criterion Specified</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Criterion Specified</em>' attribute.
+   * @see #setCriterionSpecified(boolean)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getRandomForest_CriterionSpecified()
+   * @model
+   * @generated
+   */
+  boolean isCriterionSpecified();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.RandomForest#isCriterionSpecified <em>Criterion Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Criterion Specified</em>' attribute.
+   * @see #isCriterionSpecified()
+   * @generated
+   */
+  void setCriterionSpecified(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Criterion</b></em>' attribute.
+   * The literals are from the enumeration {@link org.xtext.example.mydsl.mml.DTCriterion}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Criterion</em>' attribute.
+   * @see org.xtext.example.mydsl.mml.DTCriterion
+   * @see #setCriterion(DTCriterion)
+   * @see org.xtext.example.mydsl.mml.MmlPackage#getRandomForest_Criterion()
+   * @model
+   * @generated
+   */
+  DTCriterion getCriterion();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.mml.RandomForest#getCriterion <em>Criterion</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Criterion</em>' attribute.
+   * @see org.xtext.example.mydsl.mml.DTCriterion
+   * @see #getCriterion()
+   * @generated
+   */
+  void setCriterion(DTCriterion value);
+
 } // RandomForest

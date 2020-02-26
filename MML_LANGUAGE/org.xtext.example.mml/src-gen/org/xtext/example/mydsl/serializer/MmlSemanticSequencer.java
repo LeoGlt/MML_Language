@@ -158,7 +158,7 @@ public class MmlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DT returns DT
 	 *
 	 * Constraint:
-	 *     max_depth=INT?
+	 *     ((maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion=' criterion=DTCriterion)?)
 	 */
 	protected void sequence_DT(ISerializationContext context, DT semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -195,7 +195,7 @@ public class MmlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     LogisticRegression returns LogisticRegression
 	 *
 	 * Constraint:
-	 *     {LogisticRegression}
+	 *     ((penaltySpecified?='penalty=' penalty=regPenalty)? (tolSpecified?='tol=' tol=FLOAT)? (CSpecified?='C=' C=FLOAT)?)
 	 */
 	protected void sequence_LogisticRegression(ISerializationContext context, LogisticRegression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -266,7 +266,11 @@ public class MmlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     RandomForest returns RandomForest
 	 *
 	 * Constraint:
-	 *     {RandomForest}
+	 *     (
+	 *         (nestimSpecified?='n_estimators=' n_estimators=INT)? 
+	 *         (maxdepthSpecified?='max_depth=' max_depth=INT)? 
+	 *         (criterionSpecified?='criterion=' criterion=DTCriterion)?
+	 *     )
 	 */
 	protected void sequence_RandomForest(ISerializationContext context, RandomForest semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -279,12 +283,7 @@ public class MmlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     SVM returns SVM
 	 *
 	 * Constraint:
-	 *     (
-	 *         gamma=FLOAT? 
-	 *         C=FLOAT? 
-	 *         (kernelSpecified?='kernel=' kernel=SVMKernel)? 
-	 *         (classificationSpecified?='classification' svmclassification=SVMClassification)?
-	 *     )
+	 *     ((gammaSpecified?='gamma=' gamma=FLOAT)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel=' kernel=SVMKernel)?)
 	 */
 	protected void sequence_SVM(ISerializationContext context, SVM semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -17,14 +17,20 @@
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//FrameworkLang/XGBoost"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mml.ecore#//SVMKernel">
+      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//SVMKernel/rbf"/>
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//SVMKernel/linear"/>
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//SVMKernel/poly"/>
-      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//SVMKernel/radial"/>
+      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//SVMKernel/sigmoid"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mml.ecore#//SVMClassification">
-      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//SVMClassification/cClass"/>
-      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//SVMClassification/nuClass"/>
-      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//SVMClassification/oneClass"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mml.ecore#//DTCriterion">
+      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//DTCriterion/gini"/>
+      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//DTCriterion/entropy"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mml.ecore#//regPenalty">
+      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//regPenalty/l2"/>
+      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//regPenalty/l1"/>
+      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//regPenalty/elasticnet"/>
+      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//regPenalty/none"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mml.ecore#//ValidationMetric">
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//ValidationMetric/BALANCED_ACCURACY"/>
@@ -56,18 +62,35 @@
     </genClasses>
     <genClasses ecoreClass="Mml.ecore#//MLAlgorithm"/>
     <genClasses ecoreClass="Mml.ecore#//SVM">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//SVM/gammaSpecified"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//SVM/gamma"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//SVM/CSpecified"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//SVM/C"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//SVM/kernelSpecified"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//SVM/kernel"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//SVM/classificationSpecified"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//SVM/svmclassification"/>
     </genClasses>
     <genClasses ecoreClass="Mml.ecore#//DT">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//DT/maxdepthSpecified"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//DT/max_depth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//DT/criterionSpecified"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//DT/criterion"/>
     </genClasses>
-    <genClasses ecoreClass="Mml.ecore#//RandomForest"/>
-    <genClasses ecoreClass="Mml.ecore#//LogisticRegression"/>
+    <genClasses ecoreClass="Mml.ecore#//RandomForest">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//RandomForest/nestimSpecified"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//RandomForest/n_estimators"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//RandomForest/maxdepthSpecified"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//RandomForest/max_depth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//RandomForest/criterionSpecified"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//RandomForest/criterion"/>
+    </genClasses>
+    <genClasses ecoreClass="Mml.ecore#//LogisticRegression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//LogisticRegression/penaltySpecified"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//LogisticRegression/penalty"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//LogisticRegression/tolSpecified"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//LogisticRegression/tol"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//LogisticRegression/CSpecified"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mml.ecore#//LogisticRegression/C"/>
+    </genClasses>
     <genClasses ecoreClass="Mml.ecore#//RFormula">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mml.ecore#//RFormula/predictive"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mml.ecore#//RFormula/predictors"/>

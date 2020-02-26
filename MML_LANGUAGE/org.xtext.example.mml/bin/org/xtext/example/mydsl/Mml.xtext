@@ -48,31 +48,41 @@ MLAlgorithm : (SVM|DT|RandomForest|LogisticRegression) ;
 
 
 SVM: 
-	{SVM} 'SVM' ('gamma=' gamma=FLOAT)? ('C=' C=FLOAT)? (kernelSpecified?='kernel=' kernel=SVMKernel)?
-	(classificationSpecified?='classification' svmclassification = SVMClassification)?
+	{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=FLOAT)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel=' kernel=SVMKernel)?
+	//(classificationSpecified?='classification' svmclassification = SVMClassification)?
 	;
 
 enum SVMKernel:
-	linear='linear'|poly='polynomial'|radial='radial'
+	rbf = 'rbf' | linear='linear'|poly='poly'|sigmoid='sigmoid'
 ;
 
-enum SVMClassification:
-	cClass= "C-classification" | nuClass ="nu-classification" | oneClass="one-classification"
-;
+//enum SVMClassification:
+	//cClass= "C-classification" | nuClass ="nu-classification" | oneClass="one-classification"
+//;
 
 DT:
-	{DT} ('DT'|'DecisionTree') (max_depth=INT)? ; // TODO: additional hyperparameters
+	{DT} ('DT'|'DecisionTree') (maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion=' criterion= DTCriterion)? ; // TODO: additional hyperparameters
 	// note: R-package CART: class or anova is out of the scope since we're only targeted classification problem
 
+enum DTCriterion:
+	gini="gini" | entropy="entropy"
+;
 
 RandomForest: {RandomForest}
-	('RandomForest'|'RF')
-; // TODO: hyperparameters?
+	('RandomForest'|'RF') (nestimSpecified?='n_estimators=' n_estimators=INT)? 
+	(maxdepthSpecified?='max_depth=' max_depth=INT)?
+	(criterionSpecified?='criterion=' criterion= DTCriterion)?
+	;
+
 
 LogisticRegression: {LogisticRegression}
-	'LogisticRegression'
-; // TODO: hyperparameters?
-
+	'LogisticRegression' (penaltySpecified?='penalty=' penalty= regPenalty)?
+	(tolSpecified?='tol=' tol=FLOAT)?
+	(CSpecified?='C=' C=FLOAT)?
+; 
+enum regPenalty:
+	l2="l2" | l1="l1" | elasticnet="elasticnet" | none="none"
+;
 
 
 FLOAT: INT '.' INT;	

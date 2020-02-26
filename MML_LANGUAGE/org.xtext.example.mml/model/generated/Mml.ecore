@@ -36,29 +36,51 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MLAlgorithm"/>
   <eClassifiers xsi:type="ecore:EClass" name="SVM" eSuperTypes="#//MLAlgorithm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gammaSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="gamma" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="C" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kernelSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kernel" eType="#//SVMKernel"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classificationSpecified"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="svmclassification" eType="#//SVMClassification"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SVMKernel">
-    <eLiterals name="linear" literal="linear"/>
-    <eLiterals name="poly" value="1" literal="polynomial"/>
-    <eLiterals name="radial" value="2" literal="radial"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="SVMClassification">
-    <eLiterals name="cClass" literal="C-classification"/>
-    <eLiterals name="nuClass" value="1" literal="nu-classification"/>
-    <eLiterals name="oneClass" value="2" literal="one-classification"/>
+    <eLiterals name="rbf" literal="rbf"/>
+    <eLiterals name="linear" value="1" literal="linear"/>
+    <eLiterals name="poly" value="2" literal="poly"/>
+    <eLiterals name="sigmoid" value="3" literal="sigmoid"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DT" eSuperTypes="#//MLAlgorithm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxdepthSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="max_depth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criterionSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criterion" eType="#//DTCriterion"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RandomForest" eSuperTypes="#//MLAlgorithm"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LogisticRegression" eSuperTypes="#//MLAlgorithm"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="DTCriterion">
+    <eLiterals name="gini" literal="gini"/>
+    <eLiterals name="entropy" value="1" literal="entropy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RandomForest" eSuperTypes="#//MLAlgorithm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nestimSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="n_estimators" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxdepthSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max_depth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criterionSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criterion" eType="#//DTCriterion"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LogisticRegression" eSuperTypes="#//MLAlgorithm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="penaltySpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="penalty" eType="#//regPenalty"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tolSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="C" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="regPenalty">
+    <eLiterals name="l2" literal="l2"/>
+    <eLiterals name="l1" value="1" literal="l1"/>
+    <eLiterals name="elasticnet" value="2" literal="elasticnet"/>
+    <eLiterals name="none" value="3" literal="none"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RFormula">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predictive" eType="#//FormulaItem"
         containment="true"/>

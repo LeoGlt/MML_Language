@@ -3,20 +3,156 @@
  */
 package org.xtext.example.mydsl.mml.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.example.mydsl.mml.LogisticRegression;
 import org.xtext.example.mydsl.mml.MmlPackage;
+import org.xtext.example.mydsl.mml.regPenalty;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Logistic Regression</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.LogisticRegressionImpl#isPenaltySpecified <em>Penalty Specified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.LogisticRegressionImpl#getPenalty <em>Penalty</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.LogisticRegressionImpl#isTolSpecified <em>Tol Specified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.LogisticRegressionImpl#getTol <em>Tol</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.LogisticRegressionImpl#isCSpecified <em>CSpecified</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.LogisticRegressionImpl#getC <em>C</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class LogisticRegressionImpl extends MLAlgorithmImpl implements LogisticRegression
 {
+  /**
+   * The default value of the '{@link #isPenaltySpecified() <em>Penalty Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isPenaltySpecified()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean PENALTY_SPECIFIED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isPenaltySpecified() <em>Penalty Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isPenaltySpecified()
+   * @generated
+   * @ordered
+   */
+  protected boolean penaltySpecified = PENALTY_SPECIFIED_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getPenalty() <em>Penalty</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPenalty()
+   * @generated
+   * @ordered
+   */
+  protected static final regPenalty PENALTY_EDEFAULT = regPenalty.L2;
+
+  /**
+   * The cached value of the '{@link #getPenalty() <em>Penalty</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPenalty()
+   * @generated
+   * @ordered
+   */
+  protected regPenalty penalty = PENALTY_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isTolSpecified() <em>Tol Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isTolSpecified()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean TOL_SPECIFIED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isTolSpecified() <em>Tol Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isTolSpecified()
+   * @generated
+   * @ordered
+   */
+  protected boolean tolSpecified = TOL_SPECIFIED_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getTol() <em>Tol</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTol()
+   * @generated
+   * @ordered
+   */
+  protected static final String TOL_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getTol() <em>Tol</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTol()
+   * @generated
+   * @ordered
+   */
+  protected String tol = TOL_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isCSpecified() <em>CSpecified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isCSpecified()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean CSPECIFIED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isCSpecified() <em>CSpecified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isCSpecified()
+   * @generated
+   * @ordered
+   */
+  protected boolean cSpecified = CSPECIFIED_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getC() <em>C</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getC()
+   * @generated
+   * @ordered
+   */
+  protected static final String C_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getC() <em>C</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getC()
+   * @generated
+   * @ordered
+   */
+  protected String c = C_EDEFAULT;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -36,6 +172,299 @@ public class LogisticRegressionImpl extends MLAlgorithmImpl implements LogisticR
   protected EClass eStaticClass()
   {
     return MmlPackage.Literals.LOGISTIC_REGRESSION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isPenaltySpecified()
+  {
+    return penaltySpecified;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setPenaltySpecified(boolean newPenaltySpecified)
+  {
+    boolean oldPenaltySpecified = penaltySpecified;
+    penaltySpecified = newPenaltySpecified;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.LOGISTIC_REGRESSION__PENALTY_SPECIFIED, oldPenaltySpecified, penaltySpecified));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public regPenalty getPenalty()
+  {
+    return penalty;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setPenalty(regPenalty newPenalty)
+  {
+    regPenalty oldPenalty = penalty;
+    penalty = newPenalty == null ? PENALTY_EDEFAULT : newPenalty;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.LOGISTIC_REGRESSION__PENALTY, oldPenalty, penalty));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isTolSpecified()
+  {
+    return tolSpecified;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTolSpecified(boolean newTolSpecified)
+  {
+    boolean oldTolSpecified = tolSpecified;
+    tolSpecified = newTolSpecified;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.LOGISTIC_REGRESSION__TOL_SPECIFIED, oldTolSpecified, tolSpecified));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getTol()
+  {
+    return tol;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTol(String newTol)
+  {
+    String oldTol = tol;
+    tol = newTol;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.LOGISTIC_REGRESSION__TOL, oldTol, tol));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isCSpecified()
+  {
+    return cSpecified;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setCSpecified(boolean newCSpecified)
+  {
+    boolean oldCSpecified = cSpecified;
+    cSpecified = newCSpecified;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.LOGISTIC_REGRESSION__CSPECIFIED, oldCSpecified, cSpecified));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getC()
+  {
+    return c;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setC(String newC)
+  {
+    String oldC = c;
+    c = newC;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.LOGISTIC_REGRESSION__C, oldC, c));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case MmlPackage.LOGISTIC_REGRESSION__PENALTY_SPECIFIED:
+        return isPenaltySpecified();
+      case MmlPackage.LOGISTIC_REGRESSION__PENALTY:
+        return getPenalty();
+      case MmlPackage.LOGISTIC_REGRESSION__TOL_SPECIFIED:
+        return isTolSpecified();
+      case MmlPackage.LOGISTIC_REGRESSION__TOL:
+        return getTol();
+      case MmlPackage.LOGISTIC_REGRESSION__CSPECIFIED:
+        return isCSpecified();
+      case MmlPackage.LOGISTIC_REGRESSION__C:
+        return getC();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
+    switch (featureID)
+    {
+      case MmlPackage.LOGISTIC_REGRESSION__PENALTY_SPECIFIED:
+        setPenaltySpecified((Boolean)newValue);
+        return;
+      case MmlPackage.LOGISTIC_REGRESSION__PENALTY:
+        setPenalty((regPenalty)newValue);
+        return;
+      case MmlPackage.LOGISTIC_REGRESSION__TOL_SPECIFIED:
+        setTolSpecified((Boolean)newValue);
+        return;
+      case MmlPackage.LOGISTIC_REGRESSION__TOL:
+        setTol((String)newValue);
+        return;
+      case MmlPackage.LOGISTIC_REGRESSION__CSPECIFIED:
+        setCSpecified((Boolean)newValue);
+        return;
+      case MmlPackage.LOGISTIC_REGRESSION__C:
+        setC((String)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID)
+  {
+    switch (featureID)
+    {
+      case MmlPackage.LOGISTIC_REGRESSION__PENALTY_SPECIFIED:
+        setPenaltySpecified(PENALTY_SPECIFIED_EDEFAULT);
+        return;
+      case MmlPackage.LOGISTIC_REGRESSION__PENALTY:
+        setPenalty(PENALTY_EDEFAULT);
+        return;
+      case MmlPackage.LOGISTIC_REGRESSION__TOL_SPECIFIED:
+        setTolSpecified(TOL_SPECIFIED_EDEFAULT);
+        return;
+      case MmlPackage.LOGISTIC_REGRESSION__TOL:
+        setTol(TOL_EDEFAULT);
+        return;
+      case MmlPackage.LOGISTIC_REGRESSION__CSPECIFIED:
+        setCSpecified(CSPECIFIED_EDEFAULT);
+        return;
+      case MmlPackage.LOGISTIC_REGRESSION__C:
+        setC(C_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID)
+  {
+    switch (featureID)
+    {
+      case MmlPackage.LOGISTIC_REGRESSION__PENALTY_SPECIFIED:
+        return penaltySpecified != PENALTY_SPECIFIED_EDEFAULT;
+      case MmlPackage.LOGISTIC_REGRESSION__PENALTY:
+        return penalty != PENALTY_EDEFAULT;
+      case MmlPackage.LOGISTIC_REGRESSION__TOL_SPECIFIED:
+        return tolSpecified != TOL_SPECIFIED_EDEFAULT;
+      case MmlPackage.LOGISTIC_REGRESSION__TOL:
+        return TOL_EDEFAULT == null ? tol != null : !TOL_EDEFAULT.equals(tol);
+      case MmlPackage.LOGISTIC_REGRESSION__CSPECIFIED:
+        return cSpecified != CSPECIFIED_EDEFAULT;
+      case MmlPackage.LOGISTIC_REGRESSION__C:
+        return C_EDEFAULT == null ? c != null : !C_EDEFAULT.equals(c);
+    }
+    return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (penaltySpecified: ");
+    result.append(penaltySpecified);
+    result.append(", penalty: ");
+    result.append(penalty);
+    result.append(", tolSpecified: ");
+    result.append(tolSpecified);
+    result.append(", tol: ");
+    result.append(tol);
+    result.append(", CSpecified: ");
+    result.append(cSpecified);
+    result.append(", C: ");
+    result.append(c);
+    result.append(')');
+    return result.toString();
   }
 
 } //LogisticRegressionImpl

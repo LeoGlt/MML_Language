@@ -21,6 +21,16 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum SVMKernel implements Enumerator
 {
   /**
+   * The '<em><b>Rbf</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #RBF_VALUE
+   * @generated
+   * @ordered
+   */
+  RBF(0, "rbf", "rbf"),
+
+  /**
    * The '<em><b>Linear</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -28,7 +38,7 @@ public enum SVMKernel implements Enumerator
    * @generated
    * @ordered
    */
-  LINEAR(0, "linear", "linear"),
+  LINEAR(1, "linear", "linear"),
 
   /**
    * The '<em><b>Poly</b></em>' literal object.
@@ -38,17 +48,28 @@ public enum SVMKernel implements Enumerator
    * @generated
    * @ordered
    */
-  POLY(1, "poly", "polynomial"),
+  POLY(2, "poly", "poly"),
 
   /**
-   * The '<em><b>Radial</b></em>' literal object.
+   * The '<em><b>Sigmoid</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #RADIAL_VALUE
+   * @see #SIGMOID_VALUE
    * @generated
    * @ordered
    */
-  RADIAL(2, "radial", "radial");
+  SIGMOID(3, "sigmoid", "sigmoid");
+
+  /**
+   * The '<em><b>Rbf</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #RBF
+   * @model name="rbf"
+   * @generated
+   * @ordered
+   */
+  public static final int RBF_VALUE = 0;
 
   /**
    * The '<em><b>Linear</b></em>' literal value.
@@ -59,29 +80,29 @@ public enum SVMKernel implements Enumerator
    * @generated
    * @ordered
    */
-  public static final int LINEAR_VALUE = 0;
+  public static final int LINEAR_VALUE = 1;
 
   /**
    * The '<em><b>Poly</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #POLY
-   * @model name="poly" literal="polynomial"
+   * @model name="poly"
    * @generated
    * @ordered
    */
-  public static final int POLY_VALUE = 1;
+  public static final int POLY_VALUE = 2;
 
   /**
-   * The '<em><b>Radial</b></em>' literal value.
+   * The '<em><b>Sigmoid</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #RADIAL
-   * @model name="radial"
+   * @see #SIGMOID
+   * @model name="sigmoid"
    * @generated
    * @ordered
    */
-  public static final int RADIAL_VALUE = 2;
+  public static final int SIGMOID_VALUE = 3;
 
   /**
    * An array of all the '<em><b>SVM Kernel</b></em>' enumerators.
@@ -92,9 +113,10 @@ public enum SVMKernel implements Enumerator
   private static final SVMKernel[] VALUES_ARRAY =
     new SVMKernel[]
     {
+      RBF,
       LINEAR,
       POLY,
-      RADIAL,
+      SIGMOID,
     };
 
   /**
@@ -159,9 +181,10 @@ public enum SVMKernel implements Enumerator
   {
     switch (value)
     {
+      case RBF_VALUE: return RBF;
       case LINEAR_VALUE: return LINEAR;
       case POLY_VALUE: return POLY;
-      case RADIAL_VALUE: return RADIAL;
+      case SIGMOID_VALUE: return SIGMOID;
     }
     return null;
   }

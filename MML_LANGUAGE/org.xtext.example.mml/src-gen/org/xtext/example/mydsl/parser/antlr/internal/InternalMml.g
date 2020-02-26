@@ -405,10 +405,20 @@ ruleSVM returns [EObject current=null]
 			newLeafNode(otherlv_1, grammarAccess.getSVMAccess().getSVMKeyword_1());
 		}
 		(
-			otherlv_2='gamma='
-			{
-				newLeafNode(otherlv_2, grammarAccess.getSVMAccess().getGammaKeyword_2_0());
-			}
+			(
+				(
+					lv_gammaSpecified_2_0='gamma='
+					{
+						newLeafNode(lv_gammaSpecified_2_0, grammarAccess.getSVMAccess().getGammaSpecifiedGammaKeyword_2_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getSVMRule());
+						}
+						setWithLastConsumed($current, "gammaSpecified", true, "gamma=");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -430,10 +440,20 @@ ruleSVM returns [EObject current=null]
 			)
 		)?
 		(
-			otherlv_4='C='
-			{
-				newLeafNode(otherlv_4, grammarAccess.getSVMAccess().getCKeyword_3_0());
-			}
+			(
+				(
+					lv_CSpecified_4_0='C='
+					{
+						newLeafNode(lv_CSpecified_4_0, grammarAccess.getSVMAccess().getCSpecifiedCKeyword_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getSVMRule());
+						}
+						setWithLastConsumed($current, "CSpecified", true, "C=");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -489,41 +509,6 @@ ruleSVM returns [EObject current=null]
 				)
 			)
 		)?
-		(
-			(
-				(
-					lv_classificationSpecified_8_0='classification'
-					{
-						newLeafNode(lv_classificationSpecified_8_0, grammarAccess.getSVMAccess().getClassificationSpecifiedClassificationKeyword_5_0_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getSVMRule());
-						}
-						setWithLastConsumed($current, "classificationSpecified", true, "classification");
-					}
-				)
-			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getSVMAccess().getSvmclassificationSVMClassificationEnumRuleCall_5_1_0());
-					}
-					lv_svmclassification_9_0=ruleSVMClassification
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSVMRule());
-						}
-						set(
-							$current,
-							"svmclassification",
-							lv_svmclassification_9_0,
-							"org.xtext.example.mydsl.Mml.SVMClassification");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
 	)
 ;
 
@@ -563,20 +548,71 @@ ruleDT returns [EObject current=null]
 		)
 		(
 			(
-				lv_max_depth_3_0=RULE_INT
-				{
-					newLeafNode(lv_max_depth_3_0, grammarAccess.getDTAccess().getMax_depthINTTerminalRuleCall_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getDTRule());
+				(
+					lv_maxdepthSpecified_3_0='max_depth='
+					{
+						newLeafNode(lv_maxdepthSpecified_3_0, grammarAccess.getDTAccess().getMaxdepthSpecifiedMax_depthKeyword_2_0_0());
 					}
-					setWithLastConsumed(
-						$current,
-						"max_depth",
-						lv_max_depth_3_0,
-						"org.eclipse.xtext.common.Terminals.INT");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getDTRule());
+						}
+						setWithLastConsumed($current, "maxdepthSpecified", true, "max_depth=");
+					}
+				)
+			)
+			(
+				(
+					lv_max_depth_4_0=RULE_INT
+					{
+						newLeafNode(lv_max_depth_4_0, grammarAccess.getDTAccess().getMax_depthINTTerminalRuleCall_2_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getDTRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"max_depth",
+							lv_max_depth_4_0,
+							"org.eclipse.xtext.common.Terminals.INT");
+					}
+				)
+			)
+		)?
+		(
+			(
+				(
+					lv_criterionSpecified_5_0='criterion='
+					{
+						newLeafNode(lv_criterionSpecified_5_0, grammarAccess.getDTAccess().getCriterionSpecifiedCriterionKeyword_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getDTRule());
+						}
+						setWithLastConsumed($current, "criterionSpecified", true, "criterion=");
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getDTAccess().getCriterionDTCriterionEnumRuleCall_3_1_0());
+					}
+					lv_criterion_6_0=ruleDTCriterion
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDTRule());
+						}
+						set(
+							$current,
+							"criterion",
+							lv_criterion_6_0,
+							"org.xtext.example.mydsl.Mml.DTCriterion");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
 		)?
 	)
@@ -616,6 +652,109 @@ ruleRandomForest returns [EObject current=null]
 				newLeafNode(otherlv_2, grammarAccess.getRandomForestAccess().getRFKeyword_1_1());
 			}
 		)
+		(
+			(
+				(
+					lv_nestimSpecified_3_0='n_estimators='
+					{
+						newLeafNode(lv_nestimSpecified_3_0, grammarAccess.getRandomForestAccess().getNestimSpecifiedN_estimatorsKeyword_2_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRandomForestRule());
+						}
+						setWithLastConsumed($current, "nestimSpecified", true, "n_estimators=");
+					}
+				)
+			)
+			(
+				(
+					lv_n_estimators_4_0=RULE_INT
+					{
+						newLeafNode(lv_n_estimators_4_0, grammarAccess.getRandomForestAccess().getN_estimatorsINTTerminalRuleCall_2_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRandomForestRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"n_estimators",
+							lv_n_estimators_4_0,
+							"org.eclipse.xtext.common.Terminals.INT");
+					}
+				)
+			)
+		)?
+		(
+			(
+				(
+					lv_maxdepthSpecified_5_0='max_depth='
+					{
+						newLeafNode(lv_maxdepthSpecified_5_0, grammarAccess.getRandomForestAccess().getMaxdepthSpecifiedMax_depthKeyword_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRandomForestRule());
+						}
+						setWithLastConsumed($current, "maxdepthSpecified", true, "max_depth=");
+					}
+				)
+			)
+			(
+				(
+					lv_max_depth_6_0=RULE_INT
+					{
+						newLeafNode(lv_max_depth_6_0, grammarAccess.getRandomForestAccess().getMax_depthINTTerminalRuleCall_3_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRandomForestRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"max_depth",
+							lv_max_depth_6_0,
+							"org.eclipse.xtext.common.Terminals.INT");
+					}
+				)
+			)
+		)?
+		(
+			(
+				(
+					lv_criterionSpecified_7_0='criterion='
+					{
+						newLeafNode(lv_criterionSpecified_7_0, grammarAccess.getRandomForestAccess().getCriterionSpecifiedCriterionKeyword_4_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRandomForestRule());
+						}
+						setWithLastConsumed($current, "criterionSpecified", true, "criterion=");
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getRandomForestAccess().getCriterionDTCriterionEnumRuleCall_4_1_0());
+					}
+					lv_criterion_8_0=ruleDTCriterion
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getRandomForestRule());
+						}
+						set(
+							$current,
+							"criterion",
+							lv_criterion_8_0,
+							"org.xtext.example.mydsl.Mml.DTCriterion");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
 	)
 ;
 
@@ -646,6 +785,111 @@ ruleLogisticRegression returns [EObject current=null]
 		{
 			newLeafNode(otherlv_1, grammarAccess.getLogisticRegressionAccess().getLogisticRegressionKeyword_1());
 		}
+		(
+			(
+				(
+					lv_penaltySpecified_2_0='penalty='
+					{
+						newLeafNode(lv_penaltySpecified_2_0, grammarAccess.getLogisticRegressionAccess().getPenaltySpecifiedPenaltyKeyword_2_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getLogisticRegressionRule());
+						}
+						setWithLastConsumed($current, "penaltySpecified", true, "penalty=");
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getLogisticRegressionAccess().getPenaltyRegPenaltyEnumRuleCall_2_1_0());
+					}
+					lv_penalty_3_0=ruleregPenalty
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getLogisticRegressionRule());
+						}
+						set(
+							$current,
+							"penalty",
+							lv_penalty_3_0,
+							"org.xtext.example.mydsl.Mml.regPenalty");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			(
+				(
+					lv_tolSpecified_4_0='tol='
+					{
+						newLeafNode(lv_tolSpecified_4_0, grammarAccess.getLogisticRegressionAccess().getTolSpecifiedTolKeyword_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getLogisticRegressionRule());
+						}
+						setWithLastConsumed($current, "tolSpecified", true, "tol=");
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getLogisticRegressionAccess().getTolFLOATParserRuleCall_3_1_0());
+					}
+					lv_tol_5_0=ruleFLOAT
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getLogisticRegressionRule());
+						}
+						set(
+							$current,
+							"tol",
+							lv_tol_5_0,
+							"org.xtext.example.mydsl.Mml.FLOAT");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			(
+				(
+					lv_CSpecified_6_0='C='
+					{
+						newLeafNode(lv_CSpecified_6_0, grammarAccess.getLogisticRegressionAccess().getCSpecifiedCKeyword_4_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getLogisticRegressionRule());
+						}
+						setWithLastConsumed($current, "CSpecified", true, "C=");
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getLogisticRegressionAccess().getCFLOATParserRuleCall_4_1_0());
+					}
+					lv_C_7_0=ruleFLOAT
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getLogisticRegressionRule());
+						}
+						set(
+							$current,
+							"C",
+							lv_C_7_0,
+							"org.xtext.example.mydsl.Mml.FLOAT");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
 	)
 ;
 
@@ -1219,33 +1463,41 @@ ruleSVMKernel returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='linear'
+			enumLiteral_0='rbf'
 			{
-				$current = grammarAccess.getSVMKernelAccess().getLinearEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getSVMKernelAccess().getLinearEnumLiteralDeclaration_0());
+				$current = grammarAccess.getSVMKernelAccess().getRbfEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getSVMKernelAccess().getRbfEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
-			enumLiteral_1='polynomial'
+			enumLiteral_1='linear'
 			{
-				$current = grammarAccess.getSVMKernelAccess().getPolyEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getSVMKernelAccess().getPolyEnumLiteralDeclaration_1());
+				$current = grammarAccess.getSVMKernelAccess().getLinearEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getSVMKernelAccess().getLinearEnumLiteralDeclaration_1());
 			}
 		)
 		    |
 		(
-			enumLiteral_2='radial'
+			enumLiteral_2='poly'
 			{
-				$current = grammarAccess.getSVMKernelAccess().getRadialEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getSVMKernelAccess().getRadialEnumLiteralDeclaration_2());
+				$current = grammarAccess.getSVMKernelAccess().getPolyEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getSVMKernelAccess().getPolyEnumLiteralDeclaration_2());
+			}
+		)
+		    |
+		(
+			enumLiteral_3='sigmoid'
+			{
+				$current = grammarAccess.getSVMKernelAccess().getSigmoidEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getSVMKernelAccess().getSigmoidEnumLiteralDeclaration_3());
 			}
 		)
 	)
 ;
 
-// Rule SVMClassification
-ruleSVMClassification returns [Enumerator current=null]
+// Rule DTCriterion
+ruleDTCriterion returns [Enumerator current=null]
 @init {
 	enterRule();
 }
@@ -1254,26 +1506,61 @@ ruleSVMClassification returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='C-classification'
+			enumLiteral_0='gini'
 			{
-				$current = grammarAccess.getSVMClassificationAccess().getCClassEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getSVMClassificationAccess().getCClassEnumLiteralDeclaration_0());
+				$current = grammarAccess.getDTCriterionAccess().getGiniEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getDTCriterionAccess().getGiniEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
-			enumLiteral_1='nu-classification'
+			enumLiteral_1='entropy'
 			{
-				$current = grammarAccess.getSVMClassificationAccess().getNuClassEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getSVMClassificationAccess().getNuClassEnumLiteralDeclaration_1());
+				$current = grammarAccess.getDTCriterionAccess().getEntropyEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getDTCriterionAccess().getEntropyEnumLiteralDeclaration_1());
+			}
+		)
+	)
+;
+
+// Rule regPenalty
+ruleregPenalty returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0='l2'
+			{
+				$current = grammarAccess.getRegPenaltyAccess().getL2EnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getRegPenaltyAccess().getL2EnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
-			enumLiteral_2='one-classification'
+			enumLiteral_1='l1'
 			{
-				$current = grammarAccess.getSVMClassificationAccess().getOneClassEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getSVMClassificationAccess().getOneClassEnumLiteralDeclaration_2());
+				$current = grammarAccess.getRegPenaltyAccess().getL1EnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getRegPenaltyAccess().getL1EnumLiteralDeclaration_1());
+			}
+		)
+		    |
+		(
+			enumLiteral_2='elasticnet'
+			{
+				$current = grammarAccess.getRegPenaltyAccess().getElasticnetEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getRegPenaltyAccess().getElasticnetEnumLiteralDeclaration_2());
+			}
+		)
+		    |
+		(
+			enumLiteral_3='none'
+			{
+				$current = grammarAccess.getRegPenaltyAccess().getNoneEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getRegPenaltyAccess().getNoneEnumLiteralDeclaration_3());
 			}
 		)
 	)

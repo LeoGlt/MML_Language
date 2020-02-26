@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.example.mydsl.mml.MmlPackage;
 import org.xtext.example.mydsl.mml.SVM;
-import org.xtext.example.mydsl.mml.SVMClassification;
 import org.xtext.example.mydsl.mml.SVMKernel;
 
 /**
@@ -22,18 +21,38 @@ import org.xtext.example.mydsl.mml.SVMKernel;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.SVMImpl#isGammaSpecified <em>Gamma Specified</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.mml.impl.SVMImpl#getGamma <em>Gamma</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.mml.impl.SVMImpl#isCSpecified <em>CSpecified</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.mml.impl.SVMImpl#getC <em>C</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.mml.impl.SVMImpl#isKernelSpecified <em>Kernel Specified</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.mml.impl.SVMImpl#getKernel <em>Kernel</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.mml.impl.SVMImpl#isClassificationSpecified <em>Classification Specified</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.mml.impl.SVMImpl#getSvmclassification <em>Svmclassification</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SVMImpl extends MLAlgorithmImpl implements SVM
 {
+  /**
+   * The default value of the '{@link #isGammaSpecified() <em>Gamma Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isGammaSpecified()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean GAMMA_SPECIFIED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isGammaSpecified() <em>Gamma Specified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isGammaSpecified()
+   * @generated
+   * @ordered
+   */
+  protected boolean gammaSpecified = GAMMA_SPECIFIED_EDEFAULT;
+
   /**
    * The default value of the '{@link #getGamma() <em>Gamma</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -53,6 +72,26 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
    * @ordered
    */
   protected String gamma = GAMMA_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isCSpecified() <em>CSpecified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isCSpecified()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean CSPECIFIED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isCSpecified() <em>CSpecified</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isCSpecified()
+   * @generated
+   * @ordered
+   */
+  protected boolean cSpecified = CSPECIFIED_EDEFAULT;
 
   /**
    * The default value of the '{@link #getC() <em>C</em>}' attribute.
@@ -102,7 +141,7 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
    * @generated
    * @ordered
    */
-  protected static final SVMKernel KERNEL_EDEFAULT = SVMKernel.LINEAR;
+  protected static final SVMKernel KERNEL_EDEFAULT = SVMKernel.RBF;
 
   /**
    * The cached value of the '{@link #getKernel() <em>Kernel</em>}' attribute.
@@ -113,46 +152,6 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
    * @ordered
    */
   protected SVMKernel kernel = KERNEL_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isClassificationSpecified() <em>Classification Specified</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isClassificationSpecified()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean CLASSIFICATION_SPECIFIED_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isClassificationSpecified() <em>Classification Specified</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isClassificationSpecified()
-   * @generated
-   * @ordered
-   */
-  protected boolean classificationSpecified = CLASSIFICATION_SPECIFIED_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getSvmclassification() <em>Svmclassification</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSvmclassification()
-   * @generated
-   * @ordered
-   */
-  protected static final SVMClassification SVMCLASSIFICATION_EDEFAULT = SVMClassification.CCLASS;
-
-  /**
-   * The cached value of the '{@link #getSvmclassification() <em>Svmclassification</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSvmclassification()
-   * @generated
-   * @ordered
-   */
-  protected SVMClassification svmclassification = SVMCLASSIFICATION_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -181,6 +180,31 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
    * @generated
    */
   @Override
+  public boolean isGammaSpecified()
+  {
+    return gammaSpecified;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setGammaSpecified(boolean newGammaSpecified)
+  {
+    boolean oldGammaSpecified = gammaSpecified;
+    gammaSpecified = newGammaSpecified;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.SVM__GAMMA_SPECIFIED, oldGammaSpecified, gammaSpecified));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String getGamma()
   {
     return gamma;
@@ -198,6 +222,31 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
     gamma = newGamma;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.SVM__GAMMA, oldGamma, gamma));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isCSpecified()
+  {
+    return cSpecified;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setCSpecified(boolean newCSpecified)
+  {
+    boolean oldCSpecified = cSpecified;
+    cSpecified = newCSpecified;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.SVM__CSPECIFIED, oldCSpecified, cSpecified));
   }
 
   /**
@@ -281,72 +330,22 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
    * @generated
    */
   @Override
-  public boolean isClassificationSpecified()
-  {
-    return classificationSpecified;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setClassificationSpecified(boolean newClassificationSpecified)
-  {
-    boolean oldClassificationSpecified = classificationSpecified;
-    classificationSpecified = newClassificationSpecified;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.SVM__CLASSIFICATION_SPECIFIED, oldClassificationSpecified, classificationSpecified));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public SVMClassification getSvmclassification()
-  {
-    return svmclassification;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setSvmclassification(SVMClassification newSvmclassification)
-  {
-    SVMClassification oldSvmclassification = svmclassification;
-    svmclassification = newSvmclassification == null ? SVMCLASSIFICATION_EDEFAULT : newSvmclassification;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.SVM__SVMCLASSIFICATION, oldSvmclassification, svmclassification));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
+      case MmlPackage.SVM__GAMMA_SPECIFIED:
+        return isGammaSpecified();
       case MmlPackage.SVM__GAMMA:
         return getGamma();
+      case MmlPackage.SVM__CSPECIFIED:
+        return isCSpecified();
       case MmlPackage.SVM__C:
         return getC();
       case MmlPackage.SVM__KERNEL_SPECIFIED:
         return isKernelSpecified();
       case MmlPackage.SVM__KERNEL:
         return getKernel();
-      case MmlPackage.SVM__CLASSIFICATION_SPECIFIED:
-        return isClassificationSpecified();
-      case MmlPackage.SVM__SVMCLASSIFICATION:
-        return getSvmclassification();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -361,8 +360,14 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
   {
     switch (featureID)
     {
+      case MmlPackage.SVM__GAMMA_SPECIFIED:
+        setGammaSpecified((Boolean)newValue);
+        return;
       case MmlPackage.SVM__GAMMA:
         setGamma((String)newValue);
+        return;
+      case MmlPackage.SVM__CSPECIFIED:
+        setCSpecified((Boolean)newValue);
         return;
       case MmlPackage.SVM__C:
         setC((String)newValue);
@@ -372,12 +377,6 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
         return;
       case MmlPackage.SVM__KERNEL:
         setKernel((SVMKernel)newValue);
-        return;
-      case MmlPackage.SVM__CLASSIFICATION_SPECIFIED:
-        setClassificationSpecified((Boolean)newValue);
-        return;
-      case MmlPackage.SVM__SVMCLASSIFICATION:
-        setSvmclassification((SVMClassification)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -393,8 +392,14 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
   {
     switch (featureID)
     {
+      case MmlPackage.SVM__GAMMA_SPECIFIED:
+        setGammaSpecified(GAMMA_SPECIFIED_EDEFAULT);
+        return;
       case MmlPackage.SVM__GAMMA:
         setGamma(GAMMA_EDEFAULT);
+        return;
+      case MmlPackage.SVM__CSPECIFIED:
+        setCSpecified(CSPECIFIED_EDEFAULT);
         return;
       case MmlPackage.SVM__C:
         setC(C_EDEFAULT);
@@ -404,12 +409,6 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
         return;
       case MmlPackage.SVM__KERNEL:
         setKernel(KERNEL_EDEFAULT);
-        return;
-      case MmlPackage.SVM__CLASSIFICATION_SPECIFIED:
-        setClassificationSpecified(CLASSIFICATION_SPECIFIED_EDEFAULT);
-        return;
-      case MmlPackage.SVM__SVMCLASSIFICATION:
-        setSvmclassification(SVMCLASSIFICATION_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -425,18 +424,18 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
   {
     switch (featureID)
     {
+      case MmlPackage.SVM__GAMMA_SPECIFIED:
+        return gammaSpecified != GAMMA_SPECIFIED_EDEFAULT;
       case MmlPackage.SVM__GAMMA:
         return GAMMA_EDEFAULT == null ? gamma != null : !GAMMA_EDEFAULT.equals(gamma);
+      case MmlPackage.SVM__CSPECIFIED:
+        return cSpecified != CSPECIFIED_EDEFAULT;
       case MmlPackage.SVM__C:
         return C_EDEFAULT == null ? c != null : !C_EDEFAULT.equals(c);
       case MmlPackage.SVM__KERNEL_SPECIFIED:
         return kernelSpecified != KERNEL_SPECIFIED_EDEFAULT;
       case MmlPackage.SVM__KERNEL:
         return kernel != KERNEL_EDEFAULT;
-      case MmlPackage.SVM__CLASSIFICATION_SPECIFIED:
-        return classificationSpecified != CLASSIFICATION_SPECIFIED_EDEFAULT;
-      case MmlPackage.SVM__SVMCLASSIFICATION:
-        return svmclassification != SVMCLASSIFICATION_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -452,18 +451,18 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (gamma: ");
+    result.append(" (gammaSpecified: ");
+    result.append(gammaSpecified);
+    result.append(", gamma: ");
     result.append(gamma);
+    result.append(", CSpecified: ");
+    result.append(cSpecified);
     result.append(", C: ");
     result.append(c);
     result.append(", kernelSpecified: ");
     result.append(kernelSpecified);
     result.append(", kernel: ");
     result.append(kernel);
-    result.append(", classificationSpecified: ");
-    result.append(classificationSpecified);
-    result.append(", svmclassification: ");
-    result.append(svmclassification);
     result.append(')');
     return result.toString();
   }
