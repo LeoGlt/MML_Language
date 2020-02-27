@@ -30,12 +30,12 @@ function MakeDThtml(nb_algo){
   let t = '<div> <input type="radio" id="DT' + String(nb_algo) + '" name="algorithm' + String(nb_algo) + '" value="DT' + String(nb_algo) + '" onclick="chooseAlgo(this);">';
   t += '<label for="DT' + String(nb_algo) + '">Decision Tree</label> <div id ="DT_param' + String(nb_algo) + '">';
 
-  t += '<div id="Criterion' + String(nb_algo) + '" style="margin-left : 40px;">Criterion :';
-  t += '<input type="radio" id="gini' + String(nb_algo) + '" name="criterion' + String(nb_algo) + '" value="gini" checked> <label for="gini' + String(nb_algo) + '">Gini</label>';
-  t += '<input type="radio" id="entropy' + String(nb_algo) + '" name="criterion' + String(nb_algo) + '" value="entropy"> <label for="etropy' + String(nb_algo) + '">Entropy</label> </div>'; 
+  t += '<div id="DT_Criterion' + String(nb_algo) + '" style="margin-left : 40px;">Criterion :';
+  t += '<input type="radio" id="DT_gini' + String(nb_algo) + '" name="DT_criterion' + String(nb_algo) + '" value="gini" checked> <label for="DT_gini' + String(nb_algo) + '">Gini</label>';
+  t += '<input type="radio" id="DT_entropy' + String(nb_algo) + '" name="DT_criterion' + String(nb_algo) + '" value="entropy"> <label for="DT_etropy' + String(nb_algo) + '">Entropy</label> </div>'; 
 
-  t += '<div id ="max_depth' + String(nb_algo) + '" style="margin-left : 40px;">Max depth :';
-  t += '<form name="maxdepth' + String(nb_algo) + '" id="DT_maxdepth' + String(nb_algo) + '"> <textarea name="DT_maxdepht' + String(nb_algo) + '" rows="1" cols="10"></textarea> </form> </div>'
+  t += '<div id ="DT_max_depth' + String(nb_algo) + '" style="margin-left : 40px;">Max depth :';
+  t += '<form name="DT_maxdepth' + String(nb_algo) + '" id="DT_maxdepth' + String(nb_algo) + '"> <textarea name="DTmaxdepht' + String(nb_algo) + '" rows="1" cols="10"></textarea> </form> </div>'
   
   t += ' </div>';
   return(t)
@@ -56,8 +56,8 @@ function MakeSVMhtml(nb_algo){
   t += '<input type="radio" id="scale' + String(nb_algo) + '" name="gamma_svm' + String(nb_algo) + '" value="scale"> <label for="scale' + String(nb_algo) + '">scale</label> </div>';
 
   t += '<div id="SVM_C' + String(nb_algo) + '" style = "margin-left:40px;"> C : ';
-  t += '<input type="number" id="C_float' + String(nb_algo) + '" name="C_float' + String(nb_algo) + '" min="0" max="100.0" step="0.1">';
-  t += '<label for="C_float' + String(nb_algo) + '">Pourcentage retenu : <span class="output">50 </div>';
+  t += '<input type="number" id="C_float' + String(nb_algo) + '" name="C_float' + String(nb_algo) + '" min="0" max="100.0" step="0.1" value="1.0">';
+
   t += '</div> </div>';
 
   return(t)
@@ -67,7 +67,21 @@ function MakeSVMhtml(nb_algo){
 
 function MakeLRhtml(nb_algo){
   let t = '<div> <input type="radio" id="LR' + String(nb_algo) + '" name="algorithm' + String(nb_algo) + '" value="LR' + String(nb_algo) + '" onclick="chooseAlgo(this);"> ';
-  t += '<label for="LR' + String(nb_algo) + '">Logistic Regression</label> '
+  t += '<label for="LR' + String(nb_algo) + '">Logistic Regression</label> ';
+  t += '<div id="LR_param' + String(nb_algo) + '">';
+
+  t+= '<div id="LR_penalty' + String(nb_algo) + '" style = "margin-left:40px;"> Penalty :';
+  t += '<input type="radio" id="l2' + String(nb_algo) + '"  name="penalty_lr' + String(nb_algo) + '" value="l2" checked> <label for="l2' + String(nb_algo) + '">L2</label>';
+  t += '<input type="radio" id="l1' + String(nb_algo) + '" name="penalty_lr' + String(nb_algo) + '" value="l1"> <label for="l1' + String(nb_algo) + '">L1</label>';
+  t += '<input type="radio" id="elasticnet' + String(nb_algo) + '"  name="penalty_lr' + String(nb_algo) + '" value="elasticnet"> <label for="elasticnet' + String(nb_algo) + '">elasticnet</label>';
+  t += '<input type="radio" id="none' + String(nb_algo) + '" name="penalty_lr' + String(nb_algo) + '" value="none"> <label for="none' + String(nb_algo) + '">none</label> </div>';  
+
+  t += '<div id="LR_C' + String(nb_algo) + '" style = "margin-left:40px;"> C : ';
+  t += '<input type="number" id="C_LR' + String(nb_algo) + '" name="C_LR' + String(nb_algo) + '" min="0" max="100.0" step="0.1" value="1.0"> </div>';
+
+  t += '<div id="LR_tol' + String(nb_algo) + '" style = "margin-left:40px;"> Tolerance : ';
+  t += '<input type="number" id="tol_LR' + String(nb_algo) + '" name="tol_LR' + String(nb_algo) + '" min="0" max="10" step="0.0001" value="0.0001"> </div>';
+
   t += '</div>';
 
   return(t)
@@ -76,6 +90,15 @@ function MakeLRhtml(nb_algo){
 function MakeRFhtml(nb_algo){
   let t = '<div> <input type="radio" id="RF' + String(nb_algo) + '" name="algorithm' + String(nb_algo) + '" value="RF' + String(nb_algo) + '" onclick="chooseAlgo(this);">';
   t += '<label for="RF' + String(nb_algo) + '">Random Forest</label>';
+  t +=  '<div id="RF_param' + String(nb_algo) + '">'
+
+  t += '<div id="RF_Criterion' + String(nb_algo) + '" style="margin-left : 40px;">Criterion :';
+  t += '<input type="radio" id="RF_gini' + String(nb_algo) + '" name="RF_criterion' + String(nb_algo) + '" value="RF_gini" checked> <label for="gini' + String(nb_algo) + '">Gini</label>';
+  t += '<input type="radio" id="RF_entropy' + String(nb_algo) + '" name="RF_criterion' + String(nb_algo) + '" value="RF_entropy"> <label for="etropy' + String(nb_algo) + '">Entropy</label> </div>'; 
+
+  t += '<div id ="RF_max_depth' + String(nb_algo) + '" style="margin-left : 40px;">Max depth :';
+  t += '<form name="RF_maxdepth' + String(nb_algo) + '" id="RF_maxdepth' + String(nb_algo) + '"> <textarea name="RFmaxdepht' + String(nb_algo) + '" rows="1" cols="10"></textarea> </form> </div>'
+  
   t += '</div>';
 
   return(t)
@@ -94,21 +117,11 @@ ADD.addEventListener('click', GenerateAlgoHTML);
 
 //Les algos
 
-/*function checkedAlgo(){
-  var radios = document.getElementsByName('algorithm');
-  var valeur;
-  for(var i = 0; i < radios.length; i++){
-    if(radios[i].checked){
-      id = boutons[i].id;
-      console.log(id);
-      return document.getElementById(id);
-    };
-    };
-  };*/
-
 function undisplayAll(nb){
   document.getElementById("DT_param"+nb).style.display = "none";
   document.getElementById("SVM_param"+nb).style.display = "none";
+  document.getElementById("LR_param"+nb).style.display = "none";
+  document.getElementById("RF_param"+nb).style.display = "none";
 };
 
 function chooseAlgo(algo){
@@ -122,6 +135,12 @@ function chooseAlgo(algo){
   }
   else if(algo.id.substr(0,3) == "SVM"){
     document.getElementById("SVM_param"+nb).style.display = "block";
+  }
+  else if(algo.id.substr(0,2) == "LR"){
+    document.getElementById("LR_param"+nb).style.display = "block";
+  }
+  else{
+    document.getElementById("RF_param"+nb).style.display = "block";
   };
   
 };
