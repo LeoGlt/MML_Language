@@ -34,7 +34,7 @@ public class MMLCompiler {
 	
 		
 		String pythonImport = "import pandas as pd\n"; 
-		String RImport = "library(utils)\n";
+		String RImport = "library(utils)\nlibrary(dplyr)";
 		
 		String DEFAULT_COLUMN_SEPARATOR = ","; // by default
 		String csv_separator = DEFAULT_COLUMN_SEPARATOR;
@@ -59,6 +59,10 @@ public class MMLCompiler {
 							 "X =  mml_data.drop(['"+ var_Y +"'], axis=1)\n";
 			pandasCode += var_code;
 			//Formula for R
+			String var_codeR = "y <- data %>% select('"+var_Y+"')\n" +
+							 "X <- data %>% select(-'"+var_Y+"')";
+			Rcode += var_codeR;
+			
 		}
 		else {
 			//Formula for Python
@@ -66,6 +70,9 @@ public class MMLCompiler {
 							 "X =  mml_data.drop(mml_data.columns[len(mml_data.columns)-1], axis=1)\n";
 			pandasCode += var_code;
 			//Formula for R
+			String var_codeR = "y <- data[,ncol(data)]\n" +
+							  "X <- data[,c(1:ncol(data)-1)]\n";
+			Rcode += var_codeR;
 		}
 		
 		
@@ -80,7 +87,11 @@ public class MMLCompiler {
 			String CodeValidation = "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=" + Float.toString(1-prop_train) + ", random_state=0)\n";
 			pandasCode += CodeValidation;
 			//Train test with R
-			
+			//RImport+= "from sklearn.model_selection import train_test_split\n";
+			String CodeValidationR = "set <- sample(1:nrow(X),floor("+prop_train+"*nrow(X)))\n"+
+									"X_train <- X[set,]\nX_test <- X[-set,]"+
+									"y_train <- y[set]\ny_test = y[-set]\n";
+			Rcode += CodeValidationR;
 			
 			
 		}
@@ -199,27 +210,68 @@ public class MMLCompiler {
 			}
 			if (framework == FrameworkLang.R) {
 				System.out.println("R is targeted");
+				String modelData = "dataTrain = dataframe(X_train,y_train)\n"+
+								  "dataTest = dataframe(X_test,y_test)\n";
 				if (mlalgo instanceof DT) {
 					DT dt = (DT) mlalgo;
-					RImport += "\n";
-					Rcode += "\n";
+					int maxDepth = dt.getMax_depth();
+					DTCriterion criterion = dt.getCriterion(); // criterion = information si pas gini
+					RImport += "library(rpart)\n";
+					// pas sûre pour "criterion"
+					if (dt.isMaxdepthSpecified()) {
+						String algoTraining = "clf = rpart(formula = y_train~.," +
+								"data = dataTrain, method = \"class\"," + 
+								"control = (\"maxdepth = " + maxDepth +")," +
+								"parms = list(split =\""+ criterion + "\"))\n" + 
+								"y_pred = predict(clf, dataTest)\n";
+						Rcode += algoTraining;
+					}
+					else {
+						String algoTraining = "clf = rpart(formula = y_train~.," +
+								"data = dataTrain, method = \"class\"," + 
+								"parms = list(split =\""+ criterion + "\"))\n" + 
+								"y_pred = predict(clf, dataTest)\n";
+						Rcode += algoTraining;
+
+					
 				}
 				if (mlalgo instanceof SVM) {
+					RImport+= "library(SVM)";
 					SVM svm = (SVM) mlalgo;
-					RImport += "\n";
-					Rcode += "\n";
+					SVMKernel kernel = svm.getKernel();
+					//SVMClassification classification = svm.getSvmclassification();
+					String codeC = "1.0";
+					if (svm.isCSpecified()) {
+						codeC = svm.getC();  
+					}
+					String codeGamma = "'auto'";
+					if (svm.isGammaSpecified()) {
+						codeGamma = svm.getGamma();
+					}
+					String algoTraining = "clf = svm(gamma=" + codeGamma +",C=" +codeC + ", kernel = \""+ kernel +"\", data = dataTrain)\n" + 
+							"y_pred=predict(clf,dataTest)\n";
+					pandasCode += algoTraining;
 					
 				}
 				if (mlalgo instanceof RandomForest) {
 					RandomForest randomforest = (RandomForest) mlalgo;
-					RImport += "\n";
-					Rcode += "\n";
+					RImport += "library(randomForest)\n";
+					int Nestim = 100;
+					if (randomforest.isNestimSpecified()) {
+						Nestim = randomforest.getN_estimators();
+					}
+										
+					String algoTraining = "clf = randomForest(y_train~., data = dataTrain, ntree = "+Nestim+")\n" + 
+							"y_pred=predict(clf,dataTest)\n";
+					Rcode += algoTraining;
 					
 				}
 				if (mlalgo instanceof LogisticRegression) {
 					LogisticRegression logisticregression = (LogisticRegression) mlalgo;
-					RImport += "\n";
-					Rcode += "\n";
+					RImport += "library(questionr)";
+					String algoTraining = "clf = glm(y_train~., data = dataTrain, family = binomial(logit))\n" + 
+							"y_pred=predict(clf,type = \"response\", newdata = dataTest)\n";
+					Rcode += algoTraining;
 							
 				}
 
@@ -235,6 +287,10 @@ public class MMLCompiler {
 		EList<ValidationMetric> metrics = validation.getMetric();
 		
 		for (ValidationMetric metric:metrics) {
+			// R confusion table
+			Rcode += "mat_conf <- table(y_pred,y_test)\n";
+			RImport += "library(caret)";
+
 			if (metric == ValidationMetric.RECALL) {
 				// Recall for Python
 				pythonImport+="from sklearn.metrics import recall_score\n";
@@ -242,6 +298,9 @@ public class MMLCompiler {
 									"print(recall)\n";
 				pandasCode+= validationCode;
 				// Recall for R
+				String validationCodeR = "recall = recall(mat_conf, reference = y_test, relevant = \"Relevant\")\n";
+				Rcode += validationCodeR;
+				
 
 			}
 			if (metric == ValidationMetric.ACCURACY) {
@@ -252,17 +311,26 @@ public class MMLCompiler {
 									"print(accuracy)\n";
 				pandasCode+= validationCode;
 				// Accuracy for R
+				String validationCodeR = "accuracy = precision(mat_conf, reference = y_test, relevant = \"Relevant\")\n";
+				Rcode += validationCodeR;
+				
 
 			}
 			if (metric == ValidationMetric.BALANCED_ACCURACY) {
 				//BALANCED_ACCURACY for Python
 				
 				//BALANCED_ACCURACY for R
+				String validationCodeR = " first_row = mat_conf[1,1] / (mat_conf[1,1] + mat_conf[1,2])  \n" + 
+						" second_row <- mat_conf[2,2] / (mat_conf[2,1] + mat_conf[2,2])  \n" + 
+						" balanced_accuracy = (first_row + second_row)/2";
+				Rcode += validationCodeR;
 			}
 			if (metric == ValidationMetric.F1) {
 				//F1 score for Python
 				
 				//F1 score for R
+				String validationCodeR = "F1 = F_meas(mat_conf, reference = y_test, relevant = \"Relevant\", beta = 1)\n";
+				Rcode += validationCodeR;
 			}
 		}
 		
@@ -273,6 +341,7 @@ public class MMLCompiler {
 		Rcode = RImport + Rcode;
 		
 		return pandasCode + Rcode;
+		}
 	}
 	
 	private String mkValueInSingleQuote(String val) {
@@ -280,3 +349,4 @@ public class MMLCompiler {
 	}
 	
 }
+
