@@ -1,5 +1,6 @@
 //bouton add
 let ADD = document.getElementById("Add_algo");
+let REM = document.getElementById("Remove_algo");
 
 let NB_algo = 0;
 
@@ -9,7 +10,10 @@ function GenerateAlgoHTML(){
   let new_algo = document.createElement('div');
   NB_algo += 1;
   ADD.value = 'Add another one';
-  
+  if(REM.style.display == "none"){
+    REM.style.display = "block"
+  }
+    
   console.log(NB_algo);
   
   let head_html = '<div id = "Algo' + String(NB_algo) + '"> <h3>Algorithm n°' + String(NB_algo) + '</h3> <p>Choose an algorithm</p>';
@@ -112,9 +116,18 @@ function MakeFrameworkhtml(nb_algo){
   return(t)
 };
 
+function RemoveAlgo(){
+  algo = document.getElementById("Algo" + String(NB_algo))
+  algo.parentNode.removeChild(algo)
+  NB_algo -= 1
+  if(NB_algo == 0){
+    ADD.value = 'Add';
+    REM.style.display = "none"
+  }
+}
 
 ADD.addEventListener('click', GenerateAlgoHTML);
-
+REM.addEventListener('click', RemoveAlgo);
 //Les algos
 
 function undisplayAll(nb){
