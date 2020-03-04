@@ -66,7 +66,7 @@ function MakeSVMhtml(nb_algo){
 
   return(t)
 
-}
+};
 
 
 function MakeLRhtml(nb_algo){
@@ -89,7 +89,7 @@ function MakeLRhtml(nb_algo){
   t += '</div>';
 
   return(t)
-}
+};
 
 function MakeRFhtml(nb_algo){
   let t = '<div> <input type="radio" id="RF' + String(nb_algo) + '" name="algorithm' + String(nb_algo) + '" value="RF' + String(nb_algo) + '" onclick="chooseAlgo(this);">';
@@ -106,7 +106,7 @@ function MakeRFhtml(nb_algo){
   t += '</div>';
 
   return(t)
-}
+};
 
 function MakeFrameworkhtml(nb_algo){
   let t = '<div> <h4>Framework</h4> <p>Choose a framework to implement your algorithm</p>';
@@ -124,7 +124,7 @@ function RemoveAlgo(){
     ADD.value = 'Add';
     REM.style.display = "none"
   }
-}
+};
 
 ADD.addEventListener('click', GenerateAlgoHTML);
 REM.addEventListener('click', RemoveAlgo);
