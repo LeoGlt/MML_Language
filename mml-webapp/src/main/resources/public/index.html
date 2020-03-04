@@ -1,72 +1,91 @@
 <!doctype html>
 <html lang="fr">
 
+<head>
+  <h1>Multi Machine Learning Language</h1>
+</head>
 
-  <body>
-    <h1>Multi Machine Learning Language</h1>
-    <div>
+<body>
+  <div class=questionnaire>
+    <h2>Questionnaire</h2>
+    <div class=selection>
       <h2>Data</h2>
-      <p>Déposez ici un fichier CSV</p>
-      <input type="file">
+      <p>Déposez ici un fichier CSV ou XLSX</p>
+      <input id="fileSelect" value="Choisir votre jeu de données" type="file" accept=".csv, .xlsx" />
+      <p>Selectionner un séparateur si besoin :</p>
+      <form name="Sep" id="sep" style=>
+        <textarea name="sep" rows="1" cols="10">
+        </textarea>
+      </form>
     </div>
-    
-    <div id="Algo">
+
+    <div id="Algo" class=selection>
       <h2>Algorithms</h2>
-      <div id = 'Add_algo_button'>
+      <div id='Add_algo_button'>
         <input type="button" value="Add" id="Add_algo">
       </div>
 
-      <div id = 'Remove_algo_button'>
-        <input type="button" value="Remove" id="Remove_algo" style = "display:none">
+      <div id='Remove_algo_button'>
+        <input type="button" value="Remove" id="Remove_algo" style="display:none">
       </div>
 
     </div>
-    
-    <div>
+
+    <div class=selection>
       <h2>Méthode de validation</h2>
       <p>Choisissez une méthode de validation de vos résultats</p>
       <div>
         <input type="radio" id="split" name="validation" value="split" checked>
         <label for="split">Séparation en deux échantillons</label>
       </div>
-  
+
       <div>
         <input type="radio" id="crossval" name="validation" value="crossval">
         <label for="split">Validation croisée</label>
       </div>
     </div>
-  
-        <div>
-          <h2>Pourcentage de données de validation</h2>
-          <p>Sélectionnez le pourcentage de données qui serviront pour la validation du modèle</p>
-          <div>
-            <input type="range" id="start" name="volume" min="0" max="100">
-            <label for="Select pourcentage">Pourcentage retenu : <span class="output">50
-          </div>
-        </div>
+
+    <div class=selection>
+      <h2>Pourcentage de données de validation</h2>
+      <p>Sélectionnez le pourcentage de données qui serviront pour l'entrainement du modèle</p>
+      <div>
+        <input type="range" id="start" name="volume" min="0" max="100" step="5" value="80">
+        <label for="Select pourcentage">Pourcentage retenu : <span class="output">80
+      </div>
+    </div>
 
 
-    <div>
+    <div class=selection>
       <h2>Sorties souhaitées</h2>
       <p>Veuillez selectionner les sorties souhaitées</p>
       <div>
         <input type="checkbox" id="acctest" name="model" value="acctest" checked>
         <label for="acctest">Test de la précision</label>
       </div>
-  
+
       <div>
         <input type="checkbox" id="graph" name="model" value="graph" checked>
         <label for="acctest">Graphiques</label>
       </div>
-  
+
       <div>
-        <input type="checkbox" id="graph" name="model" value="graph" checked>
-        <label for="acctest">ChaiPasTrop</label>
+        <input type="checkbox" id="graph" name="model" value="graph">
+        <label for="acctest">Je souhaite obtenir les .R et .py qui sont utilisés</label>
       </div>
+    </div>
+
+    <div class=selection>
+      <h2>Avez vous terminé ?</h2>
+      <input type="button" value="Lancer traitements" id="Compile">
+    </div>
   </div>
-  </body>
-  
-  </html>
+
+  <div class=results>
+    <h2>Résultats</h2>
+  </div>
+</body>
+
+</html>
 
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
