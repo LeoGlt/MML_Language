@@ -39,7 +39,7 @@ function MakeDThtml(nb_algo){
   t += '<input type="radio" id="DT_entropy' + String(nb_algo) + '" name="DT_criterion' + String(nb_algo) + '" value="entropy"> <label for="DT_etropy' + String(nb_algo) + '">Entropy</label> </div>'; 
 
   t += '<div id ="DT_max_depth' + String(nb_algo) + '" style="margin-left : 40px;">Max depth :';
-  t += '<form name="DT_maxdepth' + String(nb_algo) + '" id="DT_maxdepth' + String(nb_algo) + '"> <textarea name="DTmaxdepht' + String(nb_algo) + '" rows="1" cols="10"></textarea> </form> </div>'
+  t += '<form name="DT_maxdepth' + String(nb_algo) + '" id="DT_maxdepth' + String(nb_algo) + '"> <textarea name="DTmaxdepth' + String(nb_algo) + '" rows="1" cols="10"></textarea> </form> </div>'
   
   t += ' </div>';
   return(t)
@@ -53,20 +53,30 @@ function MakeSVMhtml(nb_algo){
   
   t += '<div id="SVM_kernel' + String(nb_algo) + '" style = "margin-left:40px;"> Kernel :';
   t += '<input type="radio" id="linear' + String(nb_algo) + '"  name="kernel_svm' + String(nb_algo) + '" value="linear"> <label for="linear' + String(nb_algo) + '">linear</label>';
-  t += '<input type="radio" id="radial' + String(nb_algo) + '" name="kernel_svm' + String(nb_algo) + '" value="radial" checked> <label for="radial' + String(nb_algo) + '">radial</label> </div>';
+  t += '<input type="radio" id="radial' + String(nb_algo) + '" name="kernel_svm' + String(nb_algo) + '" value="radial" checked> <label for="radial' + String(nb_algo) + '">radial</label>';
+  t += '<input type="radio" id="polynomial' + String(nb_algo) + '" name="polynomial_svm' + String(nb_algo) + '" value="polynomial" checked> <label for="polynomial' + String(nb_algo) + '">polynomial</label> </div>';
   
+
   t += '<div id="SVM_gamma' + String(nb_algo) + '" style = "margin-left:40px;"> Gamma : ';
-  t += '<input type="radio" id="auto' + String(nb_algo) + '" name="gamma_svm' + String(nb_algo) + '" value="linear" checked> <label for="auto' + String(nb_algo) + '">auto</label>';
+  t += '<input type="radio" id="auto' + String(nb_algo) + '" name="gamma_svm' + String(nb_algo) + '" value="auto" checked> <label for="auto' + String(nb_algo) + '">auto</label>';
   t += '<input type="radio" id="scale' + String(nb_algo) + '" name="gamma_svm' + String(nb_algo) + '" value="scale"> <label for="scale' + String(nb_algo) + '">scale</label> </div>';
 
+
   t += '<div id="SVM_C' + String(nb_algo) + '" style = "margin-left:40px;"> C : ';
-  t += '<input type="number" id="C_float' + String(nb_algo) + '" name="C_float' + String(nb_algo) + '" min="0" max="100.0" step="0.1" value="1.0">';
+  t += '<input type="number" id="C_float' + String(nb_algo) + '" name="C_float' + String(nb_algo) + '" min="0" max="100.0" step="0.1" value="1.0"></div>';
+
+  t += '<div id="SVM_classif' + String(nb_algo) + '" style = "margin-left:40px;"> Classification : ';
+  t += '<input type="radio" id="C_classif' + String(nb_algo) + '" name="classif_svm' + String(nb_algo) + '" value="C_classif" checked> <label for="C_classif' + String(nb_algo) + '">C classification</label>';
+  t += '<input type="radio" id="nu_classif' + String(nb_algo) + '" name="classif_svm' + String(nb_algo) + '" value="nu_classif"> <label for="nu_classif' + String(nb_algo) + '">Nu classification</label>';
+  t += '<input type="radio" id="one_classif' + String(nb_algo) + '" name="classif_svm' + String(nb_algo) + '" value="one_classif"> <label for="one_classif' + String(nb_algo) + '">One classification</label> </div>';
+
+
 
   t += '</div> </div>';
 
   return(t)
 
-};
+}
 
 
 function MakeLRhtml(nb_algo){
@@ -89,7 +99,7 @@ function MakeLRhtml(nb_algo){
   t += '</div>';
 
   return(t)
-};
+}
 
 function MakeRFhtml(nb_algo){
   let t = '<div> <input type="radio" id="RF' + String(nb_algo) + '" name="algorithm' + String(nb_algo) + '" value="RF' + String(nb_algo) + '" onclick="chooseAlgo(this);">';
@@ -101,12 +111,12 @@ function MakeRFhtml(nb_algo){
   t += '<input type="radio" id="RF_entropy' + String(nb_algo) + '" name="RF_criterion' + String(nb_algo) + '" value="RF_entropy"> <label for="etropy' + String(nb_algo) + '">Entropy</label> </div>'; 
 
   t += '<div id ="RF_max_depth' + String(nb_algo) + '" style="margin-left : 40px;">Max depth :';
-  t += '<form name="RF_maxdepth' + String(nb_algo) + '" id="RF_maxdepth' + String(nb_algo) + '"> <textarea name="RFmaxdepht' + String(nb_algo) + '" rows="1" cols="10"></textarea> </form> </div>'
+  t += '<form name="RF_maxdepth' + String(nb_algo) + '" id="RF_maxdepth' + String(nb_algo) + '"> <textarea name="RFmaxdepth' + String(nb_algo) + '" rows="1" cols="10"></textarea> </form> </div>'
   
   t += '</div>';
 
   return(t)
-};
+}
 
 function MakeFrameworkhtml(nb_algo){
   let t = '<div> <h4>Framework</h4> <p>Choose a framework to implement your algorithm</p>';
@@ -124,7 +134,7 @@ function RemoveAlgo(){
     ADD.value = 'Add';
     REM.style.display = "none"
   }
-};
+}
 
 ADD.addEventListener('click', GenerateAlgoHTML);
 REM.addEventListener('click', RemoveAlgo);
@@ -160,8 +170,6 @@ function chooseAlgo(algo){
 
 
 
-  
-  
 var sizePicker = document.querySelector('input[type="range"]');
 
 sizePicker.oninput = function() {
@@ -169,3 +177,66 @@ sizePicker.oninput = function() {
 };
 
 var output = document.querySelector('.output');
+
+
+//Compiler de la page
+let COMP = document.getElementById("Compile");
+
+/*function GenerateCompiler(){
+  var fileSystem=new ActiveXObject("Scripting.FileSystemObject");
+  
+  //partie write
+  var monfichier=fileSystem.OpenTextFile("./tutorielsenfolie.txt", 2 ,true);
+  //1:lecture ; 2:écriture ; 8:écriture à la fin du fichier;
+  monfichier.WriteLine("tutoriels en folie");
+  
+  //partie read
+  monfichier=fileSystem.OpenTextFile("./tutorielsenfolie.txt", 1 ,true);
+  alert(monfichier.ReadAll()); // imprime: "tutoriels en folie"
+  monFichier.Close();
+  
+  fileSystem.DeleteFile("./tutorielsenfolie.txt");
+};*/
+
+
+
+
+
+function GenerateCompiler(){
+  var mymml = "";
+  
+  var SepValue = document.querySelector('input[name=Sep]:checked').value;
+  mymml += "datainput "+ String(fileSent) + " separator " + SepValue +"\n";
+  
+  for(let i=1;i<=NB_algo;i++){
+    var FrameworkValue = document.querySelector('input[name=implementation'+ String(i) + ']:checked').value;
+    
+    mymml += "mlframework " + FrameworkValue + "\n";
+    
+    var PickedAlgo = document.querySelector('input[name=algorithm'+ String(i) + ']:checked');
+    
+    mymml += "algorithm ";
+    if(PickedAlgo.value.substr(0,3) == "SVM"){
+      var gamma = document.querySelector("input[name = gamma_svm"+String(i)+"]:checked").value
+      var C = document.querySelector("input[name = C_float"+String(i)+"]").value
+      var kernel = document.querySelector("input[name = kernel_svm"+String(i)+"]").value
+      
+      mymml += "SVM gamma="+gamma + " C="+C + "kernel="+kernel;
+    }
+    
+  }
+  
+  console.log(mymml);
+  
+  
+}
+
+COMP.addEventListener('click', GenerateCompiler);
+
+
+var fileSent = document.getElementById("fileSelect");
+fileSent.addEventListener('change', GetFile);
+function GetFile(){
+  console.log(this.files[0]);
+  return(this.files[0]);
+};
