@@ -13,10 +13,8 @@
       <p>Déposez ici un fichier CSV ou XLSX</p>
       <input id="fileSelect" value="Choisir votre jeu de données" type="file" accept=".csv, .xlsx" />
       <p>Selectionner un séparateur si besoin :</p>
-      <form name="Sep" id="sep" style=>
-        <textarea name="sep" rows="1" cols="10">
-        </textarea>
-      </form>
+      <input type="radio" name="Sep" id="sepcol" value="," checked>,</input>
+      <input type="radio" name="Sep" id="sepsemicol" value=";">;</input>
     </div>
 
     <div id="Algo" class=selection>
@@ -88,4 +86,7 @@
 </html>
 
 <link rel="stylesheet" href="style.css">
+
 <script src="script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+ 
