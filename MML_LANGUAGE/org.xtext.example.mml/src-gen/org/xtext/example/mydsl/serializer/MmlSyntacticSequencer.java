@@ -22,12 +22,14 @@ public class MmlSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected MmlGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_DT_DTKeyword_1_0_or_DecisionTreeKeyword_1_1;
+	protected AbstractElementAlias match_LogisticRegression_LRKeyword_1_1_or_LogisticRegressionKeyword_1_0;
 	protected AbstractElementAlias match_RandomForest_RFKeyword_1_1_or_RandomForestKeyword_1_0;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (MmlGrammarAccess) access;
 		match_DT_DTKeyword_1_0_or_DecisionTreeKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getDTAccess().getDTKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getDTAccess().getDecisionTreeKeyword_1_1()));
+		match_LogisticRegression_LRKeyword_1_1_or_LogisticRegressionKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getLogisticRegressionAccess().getLRKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getLogisticRegressionAccess().getLogisticRegressionKeyword_1_0()));
 		match_RandomForest_RFKeyword_1_1_or_RandomForestKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRandomForestAccess().getRFKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getRandomForestAccess().getRandomForestKeyword_1_0()));
 	}
 	
@@ -45,6 +47,8 @@ public class MmlSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_DT_DTKeyword_1_0_or_DecisionTreeKeyword_1_1.equals(syntax))
 				emit_DT_DTKeyword_1_0_or_DecisionTreeKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_LogisticRegression_LRKeyword_1_1_or_LogisticRegressionKeyword_1_0.equals(syntax))
+				emit_LogisticRegression_LRKeyword_1_1_or_LogisticRegressionKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RandomForest_RFKeyword_1_1_or_RandomForestKeyword_1_0.equals(syntax))
 				emit_RandomForest_RFKeyword_1_1_or_RandomForestKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -61,6 +65,20 @@ public class MmlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) maxdepthSpecified?='max_depth='
 	 */
 	protected void emit_DT_DTKeyword_1_0_or_DecisionTreeKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'LogisticRegression' | 'LR'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 *     (rule start) (ambiguity) CSpecified?='C='
+	 *     (rule start) (ambiguity) penaltySpecified?='penalty='
+	 *     (rule start) (ambiguity) tolSpecified?='tol='
+	 */
+	protected void emit_LogisticRegression_LRKeyword_1_1_or_LogisticRegressionKeyword_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

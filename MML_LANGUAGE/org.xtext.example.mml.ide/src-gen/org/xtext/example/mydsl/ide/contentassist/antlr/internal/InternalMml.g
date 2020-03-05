@@ -695,6 +695,27 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__LogisticRegression__Alternatives_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getLogisticRegressionAccess().getLogisticRegressionKeyword_1_0()); }
+		'LogisticRegression'
+		{ after(grammarAccess.getLogisticRegressionAccess().getLogisticRegressionKeyword_1_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getLogisticRegressionAccess().getLRKeyword_1_1()); }
+		'LR'
+		{ after(grammarAccess.getLogisticRegressionAccess().getLRKeyword_1_1()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__XFormula__Alternatives
 	@init {
 		int stackSize = keepStackSize();
@@ -2175,9 +2196,9 @@ rule__LogisticRegression__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getLogisticRegressionAccess().getLogisticRegressionKeyword_1()); }
-	'LogisticRegression'
-	{ after(grammarAccess.getLogisticRegressionAccess().getLogisticRegressionKeyword_1()); }
+	{ before(grammarAccess.getLogisticRegressionAccess().getAlternatives_1()); }
+	(rule__LogisticRegression__Alternatives_1)
+	{ after(grammarAccess.getLogisticRegressionAccess().getAlternatives_1()); }
 )
 ;
 finally {

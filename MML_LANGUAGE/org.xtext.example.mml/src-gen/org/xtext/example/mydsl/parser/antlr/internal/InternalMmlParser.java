@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalMmlParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'datainput'", "'separator'", "'mlframework'", "'algorithm'", "'SVM'", "'gamma='", "'C='", "'kernel='", "'DT'", "'DecisionTree'", "'max_depth='", "'criterion='", "'RandomForest'", "'RF'", "'n_estimators='", "'LogisticRegression'", "'penalty='", "'tol='", "'.'", "'formula'", "'~'", "'+'", "'CrossValidation'", "'{'", "'numRepetitionCross'", "'}'", "'TrainingTest'", "'percentageTraining'", "','", "';'", "'scikit-learn'", "'R'", "'Weka'", "'xgboost'", "'rbf'", "'linear'", "'poly'", "'sigmoid'", "'gini'", "'entropy'", "'l2'", "'l1'", "'elasticnet'", "'none'", "'balanced_accuracy'", "'recall'", "'precision'", "'F1'", "'accuracy'", "'macro_recall'", "'macro_precision'", "'macro_F1'", "'macro_accuracy'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'datainput'", "'separator'", "'mlframework'", "'algorithm'", "'SVM'", "'gamma='", "'C='", "'kernel='", "'DT'", "'DecisionTree'", "'max_depth='", "'criterion='", "'RandomForest'", "'RF'", "'n_estimators='", "'LogisticRegression'", "'LR'", "'penalty='", "'tol='", "'.'", "'formula'", "'~'", "'+'", "'CrossValidation'", "'{'", "'numRepetitionCross'", "'}'", "'TrainingTest'", "'percentageTraining'", "','", "';'", "'scikit-learn'", "'R'", "'Weka'", "'xgboost'", "'rbf'", "'linear'", "'poly'", "'sigmoid'", "'gini'", "'entropy'", "'l2'", "'l1'", "'elasticnet'", "'none'", "'balanced_accuracy'", "'recall'", "'precision'", "'F1'", "'accuracy'", "'macro_recall'", "'macro_precision'", "'macro_F1'", "'macro_accuracy'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -59,6 +59,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
     public static final int T__62=62;
     public static final int T__63=63;
     public static final int T__20=20;
+    public static final int T__64=64;
     public static final int T__21=21;
     public static final int RULE_STRING=4;
     public static final int RULE_SL_COMMENT=8;
@@ -274,7 +275,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==30) ) {
+            if ( (LA2_0==31) ) {
                 alt2=1;
             }
             switch (alt2) {
@@ -855,6 +856,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                 }
                 break;
             case 26:
+            case 27:
                 {
                 alt4=4;
                 }
@@ -1908,30 +1910,31 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLogisticRegression"
-    // InternalMml.g:769:1: ruleLogisticRegression returns [EObject current=null] : ( () otherlv_1= 'LogisticRegression' ( ( (lv_penaltySpecified_2_0= 'penalty=' ) ) ( (lv_penalty_3_0= ruleregPenalty ) ) )? ( ( (lv_tolSpecified_4_0= 'tol=' ) ) ( (lv_tol_5_0= ruleFLOAT ) ) )? ( ( (lv_CSpecified_6_0= 'C=' ) ) ( (lv_C_7_0= ruleFLOAT ) ) )? ) ;
+    // InternalMml.g:769:1: ruleLogisticRegression returns [EObject current=null] : ( () (otherlv_1= 'LogisticRegression' | otherlv_2= 'LR' ) ( ( (lv_penaltySpecified_3_0= 'penalty=' ) ) ( (lv_penalty_4_0= ruleregPenalty ) ) )? ( ( (lv_tolSpecified_5_0= 'tol=' ) ) ( (lv_tol_6_0= ruleFLOAT ) ) )? ( ( (lv_CSpecified_7_0= 'C=' ) ) ( (lv_C_8_0= ruleFLOAT ) ) )? ) ;
     public final EObject ruleLogisticRegression() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
-        Token lv_penaltySpecified_2_0=null;
-        Token lv_tolSpecified_4_0=null;
-        Token lv_CSpecified_6_0=null;
-        Enumerator lv_penalty_3_0 = null;
+        Token otherlv_2=null;
+        Token lv_penaltySpecified_3_0=null;
+        Token lv_tolSpecified_5_0=null;
+        Token lv_CSpecified_7_0=null;
+        Enumerator lv_penalty_4_0 = null;
 
-        AntlrDatatypeRuleToken lv_tol_5_0 = null;
+        AntlrDatatypeRuleToken lv_tol_6_0 = null;
 
-        AntlrDatatypeRuleToken lv_C_7_0 = null;
+        AntlrDatatypeRuleToken lv_C_8_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalMml.g:775:2: ( ( () otherlv_1= 'LogisticRegression' ( ( (lv_penaltySpecified_2_0= 'penalty=' ) ) ( (lv_penalty_3_0= ruleregPenalty ) ) )? ( ( (lv_tolSpecified_4_0= 'tol=' ) ) ( (lv_tol_5_0= ruleFLOAT ) ) )? ( ( (lv_CSpecified_6_0= 'C=' ) ) ( (lv_C_7_0= ruleFLOAT ) ) )? ) )
-            // InternalMml.g:776:2: ( () otherlv_1= 'LogisticRegression' ( ( (lv_penaltySpecified_2_0= 'penalty=' ) ) ( (lv_penalty_3_0= ruleregPenalty ) ) )? ( ( (lv_tolSpecified_4_0= 'tol=' ) ) ( (lv_tol_5_0= ruleFLOAT ) ) )? ( ( (lv_CSpecified_6_0= 'C=' ) ) ( (lv_C_7_0= ruleFLOAT ) ) )? )
+            // InternalMml.g:775:2: ( ( () (otherlv_1= 'LogisticRegression' | otherlv_2= 'LR' ) ( ( (lv_penaltySpecified_3_0= 'penalty=' ) ) ( (lv_penalty_4_0= ruleregPenalty ) ) )? ( ( (lv_tolSpecified_5_0= 'tol=' ) ) ( (lv_tol_6_0= ruleFLOAT ) ) )? ( ( (lv_CSpecified_7_0= 'C=' ) ) ( (lv_C_8_0= ruleFLOAT ) ) )? ) )
+            // InternalMml.g:776:2: ( () (otherlv_1= 'LogisticRegression' | otherlv_2= 'LR' ) ( ( (lv_penaltySpecified_3_0= 'penalty=' ) ) ( (lv_penalty_4_0= ruleregPenalty ) ) )? ( ( (lv_tolSpecified_5_0= 'tol=' ) ) ( (lv_tol_6_0= ruleFLOAT ) ) )? ( ( (lv_CSpecified_7_0= 'C=' ) ) ( (lv_C_8_0= ruleFLOAT ) ) )? )
             {
-            // InternalMml.g:776:2: ( () otherlv_1= 'LogisticRegression' ( ( (lv_penaltySpecified_2_0= 'penalty=' ) ) ( (lv_penalty_3_0= ruleregPenalty ) ) )? ( ( (lv_tolSpecified_4_0= 'tol=' ) ) ( (lv_tol_5_0= ruleFLOAT ) ) )? ( ( (lv_CSpecified_6_0= 'C=' ) ) ( (lv_C_7_0= ruleFLOAT ) ) )? )
-            // InternalMml.g:777:3: () otherlv_1= 'LogisticRegression' ( ( (lv_penaltySpecified_2_0= 'penalty=' ) ) ( (lv_penalty_3_0= ruleregPenalty ) ) )? ( ( (lv_tolSpecified_4_0= 'tol=' ) ) ( (lv_tol_5_0= ruleFLOAT ) ) )? ( ( (lv_CSpecified_6_0= 'C=' ) ) ( (lv_C_7_0= ruleFLOAT ) ) )?
+            // InternalMml.g:776:2: ( () (otherlv_1= 'LogisticRegression' | otherlv_2= 'LR' ) ( ( (lv_penaltySpecified_3_0= 'penalty=' ) ) ( (lv_penalty_4_0= ruleregPenalty ) ) )? ( ( (lv_tolSpecified_5_0= 'tol=' ) ) ( (lv_tol_6_0= ruleFLOAT ) ) )? ( ( (lv_CSpecified_7_0= 'C=' ) ) ( (lv_C_8_0= ruleFLOAT ) ) )? )
+            // InternalMml.g:777:3: () (otherlv_1= 'LogisticRegression' | otherlv_2= 'LR' ) ( ( (lv_penaltySpecified_3_0= 'penalty=' ) ) ( (lv_penalty_4_0= ruleregPenalty ) ) )? ( ( (lv_tolSpecified_5_0= 'tol=' ) ) ( (lv_tol_6_0= ruleFLOAT ) ) )? ( ( (lv_CSpecified_7_0= 'C=' ) ) ( (lv_C_8_0= ruleFLOAT ) ) )?
             {
             // InternalMml.g:777:3: ()
             // InternalMml.g:778:4: 
@@ -1944,30 +1947,66 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,26,FOLLOW_21); 
-
-            			newLeafNode(otherlv_1, grammarAccess.getLogisticRegressionAccess().getLogisticRegressionKeyword_1());
-            		
-            // InternalMml.g:788:3: ( ( (lv_penaltySpecified_2_0= 'penalty=' ) ) ( (lv_penalty_3_0= ruleregPenalty ) ) )?
+            // InternalMml.g:784:3: (otherlv_1= 'LogisticRegression' | otherlv_2= 'LR' )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
-            if ( (LA15_0==27) ) {
+            if ( (LA15_0==26) ) {
                 alt15=1;
+            }
+            else if ( (LA15_0==27) ) {
+                alt15=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 15, 0, input);
+
+                throw nvae;
             }
             switch (alt15) {
                 case 1 :
-                    // InternalMml.g:789:4: ( (lv_penaltySpecified_2_0= 'penalty=' ) ) ( (lv_penalty_3_0= ruleregPenalty ) )
+                    // InternalMml.g:785:4: otherlv_1= 'LogisticRegression'
                     {
-                    // InternalMml.g:789:4: ( (lv_penaltySpecified_2_0= 'penalty=' ) )
-                    // InternalMml.g:790:5: (lv_penaltySpecified_2_0= 'penalty=' )
-                    {
-                    // InternalMml.g:790:5: (lv_penaltySpecified_2_0= 'penalty=' )
-                    // InternalMml.g:791:6: lv_penaltySpecified_2_0= 'penalty='
-                    {
-                    lv_penaltySpecified_2_0=(Token)match(input,27,FOLLOW_22); 
+                    otherlv_1=(Token)match(input,26,FOLLOW_21); 
 
-                    						newLeafNode(lv_penaltySpecified_2_0, grammarAccess.getLogisticRegressionAccess().getPenaltySpecifiedPenaltyKeyword_2_0_0());
+                    				newLeafNode(otherlv_1, grammarAccess.getLogisticRegressionAccess().getLogisticRegressionKeyword_1_0());
+                    			
+
+                    }
+                    break;
+                case 2 :
+                    // InternalMml.g:790:4: otherlv_2= 'LR'
+                    {
+                    otherlv_2=(Token)match(input,27,FOLLOW_21); 
+
+                    				newLeafNode(otherlv_2, grammarAccess.getLogisticRegressionAccess().getLRKeyword_1_1());
+                    			
+
+                    }
+                    break;
+
+            }
+
+            // InternalMml.g:795:3: ( ( (lv_penaltySpecified_3_0= 'penalty=' ) ) ( (lv_penalty_4_0= ruleregPenalty ) ) )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
+
+            if ( (LA16_0==28) ) {
+                alt16=1;
+            }
+            switch (alt16) {
+                case 1 :
+                    // InternalMml.g:796:4: ( (lv_penaltySpecified_3_0= 'penalty=' ) ) ( (lv_penalty_4_0= ruleregPenalty ) )
+                    {
+                    // InternalMml.g:796:4: ( (lv_penaltySpecified_3_0= 'penalty=' ) )
+                    // InternalMml.g:797:5: (lv_penaltySpecified_3_0= 'penalty=' )
+                    {
+                    // InternalMml.g:797:5: (lv_penaltySpecified_3_0= 'penalty=' )
+                    // InternalMml.g:798:6: lv_penaltySpecified_3_0= 'penalty='
+                    {
+                    lv_penaltySpecified_3_0=(Token)match(input,28,FOLLOW_22); 
+
+                    						newLeafNode(lv_penaltySpecified_3_0, grammarAccess.getLogisticRegressionAccess().getPenaltySpecifiedPenaltyKeyword_2_0_0());
                     					
 
                     						if (current==null) {
@@ -1981,17 +2020,17 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalMml.g:803:4: ( (lv_penalty_3_0= ruleregPenalty ) )
-                    // InternalMml.g:804:5: (lv_penalty_3_0= ruleregPenalty )
+                    // InternalMml.g:810:4: ( (lv_penalty_4_0= ruleregPenalty ) )
+                    // InternalMml.g:811:5: (lv_penalty_4_0= ruleregPenalty )
                     {
-                    // InternalMml.g:804:5: (lv_penalty_3_0= ruleregPenalty )
-                    // InternalMml.g:805:6: lv_penalty_3_0= ruleregPenalty
+                    // InternalMml.g:811:5: (lv_penalty_4_0= ruleregPenalty )
+                    // InternalMml.g:812:6: lv_penalty_4_0= ruleregPenalty
                     {
 
                     						newCompositeNode(grammarAccess.getLogisticRegressionAccess().getPenaltyRegPenaltyEnumRuleCall_2_1_0());
                     					
                     pushFollow(FOLLOW_23);
-                    lv_penalty_3_0=ruleregPenalty();
+                    lv_penalty_4_0=ruleregPenalty();
 
                     state._fsp--;
 
@@ -2002,7 +2041,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     						set(
                     							current,
                     							"penalty",
-                    							lv_penalty_3_0,
+                    							lv_penalty_4_0,
                     							"org.xtext.example.mydsl.Mml.regPenalty");
                     						afterParserOrEnumRuleCall();
                     					
@@ -2018,26 +2057,26 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMml.g:823:3: ( ( (lv_tolSpecified_4_0= 'tol=' ) ) ( (lv_tol_5_0= ruleFLOAT ) ) )?
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            // InternalMml.g:830:3: ( ( (lv_tolSpecified_5_0= 'tol=' ) ) ( (lv_tol_6_0= ruleFLOAT ) ) )?
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            if ( (LA16_0==28) ) {
-                alt16=1;
+            if ( (LA17_0==29) ) {
+                alt17=1;
             }
-            switch (alt16) {
+            switch (alt17) {
                 case 1 :
-                    // InternalMml.g:824:4: ( (lv_tolSpecified_4_0= 'tol=' ) ) ( (lv_tol_5_0= ruleFLOAT ) )
+                    // InternalMml.g:831:4: ( (lv_tolSpecified_5_0= 'tol=' ) ) ( (lv_tol_6_0= ruleFLOAT ) )
                     {
-                    // InternalMml.g:824:4: ( (lv_tolSpecified_4_0= 'tol=' ) )
-                    // InternalMml.g:825:5: (lv_tolSpecified_4_0= 'tol=' )
+                    // InternalMml.g:831:4: ( (lv_tolSpecified_5_0= 'tol=' ) )
+                    // InternalMml.g:832:5: (lv_tolSpecified_5_0= 'tol=' )
                     {
-                    // InternalMml.g:825:5: (lv_tolSpecified_4_0= 'tol=' )
-                    // InternalMml.g:826:6: lv_tolSpecified_4_0= 'tol='
+                    // InternalMml.g:832:5: (lv_tolSpecified_5_0= 'tol=' )
+                    // InternalMml.g:833:6: lv_tolSpecified_5_0= 'tol='
                     {
-                    lv_tolSpecified_4_0=(Token)match(input,28,FOLLOW_13); 
+                    lv_tolSpecified_5_0=(Token)match(input,29,FOLLOW_13); 
 
-                    						newLeafNode(lv_tolSpecified_4_0, grammarAccess.getLogisticRegressionAccess().getTolSpecifiedTolKeyword_3_0_0());
+                    						newLeafNode(lv_tolSpecified_5_0, grammarAccess.getLogisticRegressionAccess().getTolSpecifiedTolKeyword_3_0_0());
                     					
 
                     						if (current==null) {
@@ -2051,17 +2090,17 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalMml.g:838:4: ( (lv_tol_5_0= ruleFLOAT ) )
-                    // InternalMml.g:839:5: (lv_tol_5_0= ruleFLOAT )
+                    // InternalMml.g:845:4: ( (lv_tol_6_0= ruleFLOAT ) )
+                    // InternalMml.g:846:5: (lv_tol_6_0= ruleFLOAT )
                     {
-                    // InternalMml.g:839:5: (lv_tol_5_0= ruleFLOAT )
-                    // InternalMml.g:840:6: lv_tol_5_0= ruleFLOAT
+                    // InternalMml.g:846:5: (lv_tol_6_0= ruleFLOAT )
+                    // InternalMml.g:847:6: lv_tol_6_0= ruleFLOAT
                     {
 
                     						newCompositeNode(grammarAccess.getLogisticRegressionAccess().getTolFLOATParserRuleCall_3_1_0());
                     					
                     pushFollow(FOLLOW_24);
-                    lv_tol_5_0=ruleFLOAT();
+                    lv_tol_6_0=ruleFLOAT();
 
                     state._fsp--;
 
@@ -2072,7 +2111,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     						set(
                     							current,
                     							"tol",
-                    							lv_tol_5_0,
+                    							lv_tol_6_0,
                     							"org.xtext.example.mydsl.Mml.FLOAT");
                     						afterParserOrEnumRuleCall();
                     					
@@ -2088,26 +2127,26 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMml.g:858:3: ( ( (lv_CSpecified_6_0= 'C=' ) ) ( (lv_C_7_0= ruleFLOAT ) ) )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // InternalMml.g:865:3: ( ( (lv_CSpecified_7_0= 'C=' ) ) ( (lv_C_8_0= ruleFLOAT ) ) )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA17_0==17) ) {
-                alt17=1;
+            if ( (LA18_0==17) ) {
+                alt18=1;
             }
-            switch (alt17) {
+            switch (alt18) {
                 case 1 :
-                    // InternalMml.g:859:4: ( (lv_CSpecified_6_0= 'C=' ) ) ( (lv_C_7_0= ruleFLOAT ) )
+                    // InternalMml.g:866:4: ( (lv_CSpecified_7_0= 'C=' ) ) ( (lv_C_8_0= ruleFLOAT ) )
                     {
-                    // InternalMml.g:859:4: ( (lv_CSpecified_6_0= 'C=' ) )
-                    // InternalMml.g:860:5: (lv_CSpecified_6_0= 'C=' )
+                    // InternalMml.g:866:4: ( (lv_CSpecified_7_0= 'C=' ) )
+                    // InternalMml.g:867:5: (lv_CSpecified_7_0= 'C=' )
                     {
-                    // InternalMml.g:860:5: (lv_CSpecified_6_0= 'C=' )
-                    // InternalMml.g:861:6: lv_CSpecified_6_0= 'C='
+                    // InternalMml.g:867:5: (lv_CSpecified_7_0= 'C=' )
+                    // InternalMml.g:868:6: lv_CSpecified_7_0= 'C='
                     {
-                    lv_CSpecified_6_0=(Token)match(input,17,FOLLOW_13); 
+                    lv_CSpecified_7_0=(Token)match(input,17,FOLLOW_13); 
 
-                    						newLeafNode(lv_CSpecified_6_0, grammarAccess.getLogisticRegressionAccess().getCSpecifiedCKeyword_4_0_0());
+                    						newLeafNode(lv_CSpecified_7_0, grammarAccess.getLogisticRegressionAccess().getCSpecifiedCKeyword_4_0_0());
                     					
 
                     						if (current==null) {
@@ -2121,17 +2160,17 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalMml.g:873:4: ( (lv_C_7_0= ruleFLOAT ) )
-                    // InternalMml.g:874:5: (lv_C_7_0= ruleFLOAT )
+                    // InternalMml.g:880:4: ( (lv_C_8_0= ruleFLOAT ) )
+                    // InternalMml.g:881:5: (lv_C_8_0= ruleFLOAT )
                     {
-                    // InternalMml.g:874:5: (lv_C_7_0= ruleFLOAT )
-                    // InternalMml.g:875:6: lv_C_7_0= ruleFLOAT
+                    // InternalMml.g:881:5: (lv_C_8_0= ruleFLOAT )
+                    // InternalMml.g:882:6: lv_C_8_0= ruleFLOAT
                     {
 
                     						newCompositeNode(grammarAccess.getLogisticRegressionAccess().getCFLOATParserRuleCall_4_1_0());
                     					
                     pushFollow(FOLLOW_2);
-                    lv_C_7_0=ruleFLOAT();
+                    lv_C_8_0=ruleFLOAT();
 
                     state._fsp--;
 
@@ -2142,7 +2181,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     						set(
                     							current,
                     							"C",
-                    							lv_C_7_0,
+                    							lv_C_8_0,
                     							"org.xtext.example.mydsl.Mml.FLOAT");
                     						afterParserOrEnumRuleCall();
                     					
@@ -2181,7 +2220,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFLOAT"
-    // InternalMml.g:897:1: entryRuleFLOAT returns [String current=null] : iv_ruleFLOAT= ruleFLOAT EOF ;
+    // InternalMml.g:904:1: entryRuleFLOAT returns [String current=null] : iv_ruleFLOAT= ruleFLOAT EOF ;
     public final String entryRuleFLOAT() throws RecognitionException {
         String current = null;
 
@@ -2189,8 +2228,8 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMml.g:897:45: (iv_ruleFLOAT= ruleFLOAT EOF )
-            // InternalMml.g:898:2: iv_ruleFLOAT= ruleFLOAT EOF
+            // InternalMml.g:904:45: (iv_ruleFLOAT= ruleFLOAT EOF )
+            // InternalMml.g:905:2: iv_ruleFLOAT= ruleFLOAT EOF
             {
              newCompositeNode(grammarAccess.getFLOATRule()); 
             pushFollow(FOLLOW_1);
@@ -2217,7 +2256,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFLOAT"
-    // InternalMml.g:904:1: ruleFLOAT returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) ;
+    // InternalMml.g:911:1: ruleFLOAT returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) ;
     public final AntlrDatatypeRuleToken ruleFLOAT() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2229,11 +2268,11 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:910:2: ( (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) )
-            // InternalMml.g:911:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
+            // InternalMml.g:917:2: ( (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) )
+            // InternalMml.g:918:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
             {
-            // InternalMml.g:911:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
-            // InternalMml.g:912:3: this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT
+            // InternalMml.g:918:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
+            // InternalMml.g:919:3: this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT
             {
             this_INT_0=(Token)match(input,RULE_INT,FOLLOW_25); 
 
@@ -2242,7 +2281,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(this_INT_0, grammarAccess.getFLOATAccess().getINTTerminalRuleCall_0());
             		
-            kw=(Token)match(input,29,FOLLOW_13); 
+            kw=(Token)match(input,30,FOLLOW_13); 
 
             			current.merge(kw);
             			newLeafNode(kw, grammarAccess.getFLOATAccess().getFullStopKeyword_1());
@@ -2277,7 +2316,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRFormula"
-    // InternalMml.g:935:1: entryRuleRFormula returns [EObject current=null] : iv_ruleRFormula= ruleRFormula EOF ;
+    // InternalMml.g:942:1: entryRuleRFormula returns [EObject current=null] : iv_ruleRFormula= ruleRFormula EOF ;
     public final EObject entryRuleRFormula() throws RecognitionException {
         EObject current = null;
 
@@ -2285,8 +2324,8 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMml.g:935:49: (iv_ruleRFormula= ruleRFormula EOF )
-            // InternalMml.g:936:2: iv_ruleRFormula= ruleRFormula EOF
+            // InternalMml.g:942:49: (iv_ruleRFormula= ruleRFormula EOF )
+            // InternalMml.g:943:2: iv_ruleRFormula= ruleRFormula EOF
             {
              newCompositeNode(grammarAccess.getRFormulaRule()); 
             pushFollow(FOLLOW_1);
@@ -2313,7 +2352,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRFormula"
-    // InternalMml.g:942:1: ruleRFormula returns [EObject current=null] : (otherlv_0= 'formula' ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )? ( (lv_predictors_3_0= ruleXFormula ) ) ) ;
+    // InternalMml.g:949:1: ruleRFormula returns [EObject current=null] : (otherlv_0= 'formula' ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )? ( (lv_predictors_3_0= ruleXFormula ) ) ) ;
     public final EObject ruleRFormula() throws RecognitionException {
         EObject current = null;
 
@@ -2328,43 +2367,43 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:948:2: ( (otherlv_0= 'formula' ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )? ( (lv_predictors_3_0= ruleXFormula ) ) ) )
-            // InternalMml.g:949:2: (otherlv_0= 'formula' ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )? ( (lv_predictors_3_0= ruleXFormula ) ) )
+            // InternalMml.g:955:2: ( (otherlv_0= 'formula' ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )? ( (lv_predictors_3_0= ruleXFormula ) ) ) )
+            // InternalMml.g:956:2: (otherlv_0= 'formula' ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )? ( (lv_predictors_3_0= ruleXFormula ) ) )
             {
-            // InternalMml.g:949:2: (otherlv_0= 'formula' ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )? ( (lv_predictors_3_0= ruleXFormula ) ) )
-            // InternalMml.g:950:3: otherlv_0= 'formula' ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )? ( (lv_predictors_3_0= ruleXFormula ) )
+            // InternalMml.g:956:2: (otherlv_0= 'formula' ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )? ( (lv_predictors_3_0= ruleXFormula ) ) )
+            // InternalMml.g:957:3: otherlv_0= 'formula' ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )? ( (lv_predictors_3_0= ruleXFormula ) )
             {
-            otherlv_0=(Token)match(input,30,FOLLOW_26); 
+            otherlv_0=(Token)match(input,31,FOLLOW_26); 
 
             			newLeafNode(otherlv_0, grammarAccess.getRFormulaAccess().getFormulaKeyword_0());
             		
-            // InternalMml.g:954:3: ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )?
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+            // InternalMml.g:961:3: ( ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~' )?
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-            if ( (LA18_0==RULE_INT) ) {
-                int LA18_1 = input.LA(2);
+            if ( (LA19_0==RULE_INT) ) {
+                int LA19_1 = input.LA(2);
 
-                if ( (LA18_1==31) ) {
-                    alt18=1;
+                if ( (LA19_1==32) ) {
+                    alt19=1;
                 }
             }
-            else if ( (LA18_0==RULE_STRING) ) {
-                int LA18_2 = input.LA(2);
+            else if ( (LA19_0==RULE_STRING) ) {
+                int LA19_2 = input.LA(2);
 
-                if ( (LA18_2==31) ) {
-                    alt18=1;
+                if ( (LA19_2==32) ) {
+                    alt19=1;
                 }
             }
-            switch (alt18) {
+            switch (alt19) {
                 case 1 :
-                    // InternalMml.g:955:4: ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~'
+                    // InternalMml.g:962:4: ( (lv_predictive_1_0= ruleFormulaItem ) ) otherlv_2= '~'
                     {
-                    // InternalMml.g:955:4: ( (lv_predictive_1_0= ruleFormulaItem ) )
-                    // InternalMml.g:956:5: (lv_predictive_1_0= ruleFormulaItem )
+                    // InternalMml.g:962:4: ( (lv_predictive_1_0= ruleFormulaItem ) )
+                    // InternalMml.g:963:5: (lv_predictive_1_0= ruleFormulaItem )
                     {
-                    // InternalMml.g:956:5: (lv_predictive_1_0= ruleFormulaItem )
-                    // InternalMml.g:957:6: lv_predictive_1_0= ruleFormulaItem
+                    // InternalMml.g:963:5: (lv_predictive_1_0= ruleFormulaItem )
+                    // InternalMml.g:964:6: lv_predictive_1_0= ruleFormulaItem
                     {
 
                     						newCompositeNode(grammarAccess.getRFormulaAccess().getPredictiveFormulaItemParserRuleCall_1_0_0());
@@ -2391,7 +2430,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_2=(Token)match(input,31,FOLLOW_26); 
+                    otherlv_2=(Token)match(input,32,FOLLOW_26); 
 
                     				newLeafNode(otherlv_2, grammarAccess.getRFormulaAccess().getTildeKeyword_1_1());
                     			
@@ -2401,11 +2440,11 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMml.g:979:3: ( (lv_predictors_3_0= ruleXFormula ) )
-            // InternalMml.g:980:4: (lv_predictors_3_0= ruleXFormula )
+            // InternalMml.g:986:3: ( (lv_predictors_3_0= ruleXFormula ) )
+            // InternalMml.g:987:4: (lv_predictors_3_0= ruleXFormula )
             {
-            // InternalMml.g:980:4: (lv_predictors_3_0= ruleXFormula )
-            // InternalMml.g:981:5: lv_predictors_3_0= ruleXFormula
+            // InternalMml.g:987:4: (lv_predictors_3_0= ruleXFormula )
+            // InternalMml.g:988:5: lv_predictors_3_0= ruleXFormula
             {
 
             					newCompositeNode(grammarAccess.getRFormulaAccess().getPredictorsXFormulaParserRuleCall_2_0());
@@ -2455,7 +2494,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleXFormula"
-    // InternalMml.g:1002:1: entryRuleXFormula returns [EObject current=null] : iv_ruleXFormula= ruleXFormula EOF ;
+    // InternalMml.g:1009:1: entryRuleXFormula returns [EObject current=null] : iv_ruleXFormula= ruleXFormula EOF ;
     public final EObject entryRuleXFormula() throws RecognitionException {
         EObject current = null;
 
@@ -2463,8 +2502,8 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMml.g:1002:49: (iv_ruleXFormula= ruleXFormula EOF )
-            // InternalMml.g:1003:2: iv_ruleXFormula= ruleXFormula EOF
+            // InternalMml.g:1009:49: (iv_ruleXFormula= ruleXFormula EOF )
+            // InternalMml.g:1010:2: iv_ruleXFormula= ruleXFormula EOF
             {
              newCompositeNode(grammarAccess.getXFormulaRule()); 
             pushFollow(FOLLOW_1);
@@ -2491,7 +2530,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleXFormula"
-    // InternalMml.g:1009:1: ruleXFormula returns [EObject current=null] : (this_AllVariables_0= ruleAllVariables | this_PredictorVariables_1= rulePredictorVariables ) ;
+    // InternalMml.g:1016:1: ruleXFormula returns [EObject current=null] : (this_AllVariables_0= ruleAllVariables | this_PredictorVariables_1= rulePredictorVariables ) ;
     public final EObject ruleXFormula() throws RecognitionException {
         EObject current = null;
 
@@ -2504,28 +2543,28 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1015:2: ( (this_AllVariables_0= ruleAllVariables | this_PredictorVariables_1= rulePredictorVariables ) )
-            // InternalMml.g:1016:2: (this_AllVariables_0= ruleAllVariables | this_PredictorVariables_1= rulePredictorVariables )
+            // InternalMml.g:1022:2: ( (this_AllVariables_0= ruleAllVariables | this_PredictorVariables_1= rulePredictorVariables ) )
+            // InternalMml.g:1023:2: (this_AllVariables_0= ruleAllVariables | this_PredictorVariables_1= rulePredictorVariables )
             {
-            // InternalMml.g:1016:2: (this_AllVariables_0= ruleAllVariables | this_PredictorVariables_1= rulePredictorVariables )
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            // InternalMml.g:1023:2: (this_AllVariables_0= ruleAllVariables | this_PredictorVariables_1= rulePredictorVariables )
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA19_0==29) ) {
-                alt19=1;
+            if ( (LA20_0==30) ) {
+                alt20=1;
             }
-            else if ( ((LA19_0>=RULE_STRING && LA19_0<=RULE_INT)) ) {
-                alt19=2;
+            else if ( ((LA20_0>=RULE_STRING && LA20_0<=RULE_INT)) ) {
+                alt20=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 19, 0, input);
+                    new NoViableAltException("", 20, 0, input);
 
                 throw nvae;
             }
-            switch (alt19) {
+            switch (alt20) {
                 case 1 :
-                    // InternalMml.g:1017:3: this_AllVariables_0= ruleAllVariables
+                    // InternalMml.g:1024:3: this_AllVariables_0= ruleAllVariables
                     {
 
                     			newCompositeNode(grammarAccess.getXFormulaAccess().getAllVariablesParserRuleCall_0());
@@ -2543,7 +2582,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMml.g:1026:3: this_PredictorVariables_1= rulePredictorVariables
+                    // InternalMml.g:1033:3: this_PredictorVariables_1= rulePredictorVariables
                     {
 
                     			newCompositeNode(grammarAccess.getXFormulaAccess().getPredictorVariablesParserRuleCall_1());
@@ -2583,7 +2622,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAllVariables"
-    // InternalMml.g:1038:1: entryRuleAllVariables returns [EObject current=null] : iv_ruleAllVariables= ruleAllVariables EOF ;
+    // InternalMml.g:1045:1: entryRuleAllVariables returns [EObject current=null] : iv_ruleAllVariables= ruleAllVariables EOF ;
     public final EObject entryRuleAllVariables() throws RecognitionException {
         EObject current = null;
 
@@ -2591,8 +2630,8 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMml.g:1038:53: (iv_ruleAllVariables= ruleAllVariables EOF )
-            // InternalMml.g:1039:2: iv_ruleAllVariables= ruleAllVariables EOF
+            // InternalMml.g:1045:53: (iv_ruleAllVariables= ruleAllVariables EOF )
+            // InternalMml.g:1046:2: iv_ruleAllVariables= ruleAllVariables EOF
             {
              newCompositeNode(grammarAccess.getAllVariablesRule()); 
             pushFollow(FOLLOW_1);
@@ -2619,7 +2658,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAllVariables"
-    // InternalMml.g:1045:1: ruleAllVariables returns [EObject current=null] : ( (lv_all_0_0= '.' ) ) ;
+    // InternalMml.g:1052:1: ruleAllVariables returns [EObject current=null] : ( (lv_all_0_0= '.' ) ) ;
     public final EObject ruleAllVariables() throws RecognitionException {
         EObject current = null;
 
@@ -2629,16 +2668,16 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1051:2: ( ( (lv_all_0_0= '.' ) ) )
-            // InternalMml.g:1052:2: ( (lv_all_0_0= '.' ) )
+            // InternalMml.g:1058:2: ( ( (lv_all_0_0= '.' ) ) )
+            // InternalMml.g:1059:2: ( (lv_all_0_0= '.' ) )
             {
-            // InternalMml.g:1052:2: ( (lv_all_0_0= '.' ) )
-            // InternalMml.g:1053:3: (lv_all_0_0= '.' )
+            // InternalMml.g:1059:2: ( (lv_all_0_0= '.' ) )
+            // InternalMml.g:1060:3: (lv_all_0_0= '.' )
             {
-            // InternalMml.g:1053:3: (lv_all_0_0= '.' )
-            // InternalMml.g:1054:4: lv_all_0_0= '.'
+            // InternalMml.g:1060:3: (lv_all_0_0= '.' )
+            // InternalMml.g:1061:4: lv_all_0_0= '.'
             {
-            lv_all_0_0=(Token)match(input,29,FOLLOW_2); 
+            lv_all_0_0=(Token)match(input,30,FOLLOW_2); 
 
             				newLeafNode(lv_all_0_0, grammarAccess.getAllVariablesAccess().getAllFullStopKeyword_0());
             			
@@ -2674,7 +2713,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePredictorVariables"
-    // InternalMml.g:1069:1: entryRulePredictorVariables returns [EObject current=null] : iv_rulePredictorVariables= rulePredictorVariables EOF ;
+    // InternalMml.g:1076:1: entryRulePredictorVariables returns [EObject current=null] : iv_rulePredictorVariables= rulePredictorVariables EOF ;
     public final EObject entryRulePredictorVariables() throws RecognitionException {
         EObject current = null;
 
@@ -2682,8 +2721,8 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMml.g:1069:59: (iv_rulePredictorVariables= rulePredictorVariables EOF )
-            // InternalMml.g:1070:2: iv_rulePredictorVariables= rulePredictorVariables EOF
+            // InternalMml.g:1076:59: (iv_rulePredictorVariables= rulePredictorVariables EOF )
+            // InternalMml.g:1077:2: iv_rulePredictorVariables= rulePredictorVariables EOF
             {
              newCompositeNode(grammarAccess.getPredictorVariablesRule()); 
             pushFollow(FOLLOW_1);
@@ -2710,7 +2749,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePredictorVariables"
-    // InternalMml.g:1076:1: rulePredictorVariables returns [EObject current=null] : ( ( (lv_vars_0_0= ruleFormulaItem ) ) (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )* ) ;
+    // InternalMml.g:1083:1: rulePredictorVariables returns [EObject current=null] : ( ( (lv_vars_0_0= ruleFormulaItem ) ) (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )* ) ;
     public final EObject rulePredictorVariables() throws RecognitionException {
         EObject current = null;
 
@@ -2724,17 +2763,17 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1082:2: ( ( ( (lv_vars_0_0= ruleFormulaItem ) ) (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )* ) )
-            // InternalMml.g:1083:2: ( ( (lv_vars_0_0= ruleFormulaItem ) ) (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )* )
+            // InternalMml.g:1089:2: ( ( ( (lv_vars_0_0= ruleFormulaItem ) ) (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )* ) )
+            // InternalMml.g:1090:2: ( ( (lv_vars_0_0= ruleFormulaItem ) ) (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )* )
             {
-            // InternalMml.g:1083:2: ( ( (lv_vars_0_0= ruleFormulaItem ) ) (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )* )
-            // InternalMml.g:1084:3: ( (lv_vars_0_0= ruleFormulaItem ) ) (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )*
+            // InternalMml.g:1090:2: ( ( (lv_vars_0_0= ruleFormulaItem ) ) (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )* )
+            // InternalMml.g:1091:3: ( (lv_vars_0_0= ruleFormulaItem ) ) (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )*
             {
-            // InternalMml.g:1084:3: ( (lv_vars_0_0= ruleFormulaItem ) )
-            // InternalMml.g:1085:4: (lv_vars_0_0= ruleFormulaItem )
+            // InternalMml.g:1091:3: ( (lv_vars_0_0= ruleFormulaItem ) )
+            // InternalMml.g:1092:4: (lv_vars_0_0= ruleFormulaItem )
             {
-            // InternalMml.g:1085:4: (lv_vars_0_0= ruleFormulaItem )
-            // InternalMml.g:1086:5: lv_vars_0_0= ruleFormulaItem
+            // InternalMml.g:1092:4: (lv_vars_0_0= ruleFormulaItem )
+            // InternalMml.g:1093:5: lv_vars_0_0= ruleFormulaItem
             {
 
             					newCompositeNode(grammarAccess.getPredictorVariablesAccess().getVarsFormulaItemParserRuleCall_0_0());
@@ -2761,30 +2800,30 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMml.g:1103:3: (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )*
-            loop20:
+            // InternalMml.g:1110:3: (otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) ) )*
+            loop21:
             do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
+                int alt21=2;
+                int LA21_0 = input.LA(1);
 
-                if ( (LA20_0==32) ) {
-                    alt20=1;
+                if ( (LA21_0==33) ) {
+                    alt21=1;
                 }
 
 
-                switch (alt20) {
+                switch (alt21) {
             	case 1 :
-            	    // InternalMml.g:1104:4: otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) )
+            	    // InternalMml.g:1111:4: otherlv_1= '+' ( (lv_vars_2_0= ruleFormulaItem ) )
             	    {
-            	    otherlv_1=(Token)match(input,32,FOLLOW_29); 
+            	    otherlv_1=(Token)match(input,33,FOLLOW_29); 
 
             	    				newLeafNode(otherlv_1, grammarAccess.getPredictorVariablesAccess().getPlusSignKeyword_1_0());
             	    			
-            	    // InternalMml.g:1108:4: ( (lv_vars_2_0= ruleFormulaItem ) )
-            	    // InternalMml.g:1109:5: (lv_vars_2_0= ruleFormulaItem )
+            	    // InternalMml.g:1115:4: ( (lv_vars_2_0= ruleFormulaItem ) )
+            	    // InternalMml.g:1116:5: (lv_vars_2_0= ruleFormulaItem )
             	    {
-            	    // InternalMml.g:1109:5: (lv_vars_2_0= ruleFormulaItem )
-            	    // InternalMml.g:1110:6: lv_vars_2_0= ruleFormulaItem
+            	    // InternalMml.g:1116:5: (lv_vars_2_0= ruleFormulaItem )
+            	    // InternalMml.g:1117:6: lv_vars_2_0= ruleFormulaItem
             	    {
 
             	    						newCompositeNode(grammarAccess.getPredictorVariablesAccess().getVarsFormulaItemParserRuleCall_1_1_0());
@@ -2816,7 +2855,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop20;
+            	    break loop21;
                 }
             } while (true);
 
@@ -2843,7 +2882,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFormulaItem"
-    // InternalMml.g:1132:1: entryRuleFormulaItem returns [EObject current=null] : iv_ruleFormulaItem= ruleFormulaItem EOF ;
+    // InternalMml.g:1139:1: entryRuleFormulaItem returns [EObject current=null] : iv_ruleFormulaItem= ruleFormulaItem EOF ;
     public final EObject entryRuleFormulaItem() throws RecognitionException {
         EObject current = null;
 
@@ -2851,8 +2890,8 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMml.g:1132:52: (iv_ruleFormulaItem= ruleFormulaItem EOF )
-            // InternalMml.g:1133:2: iv_ruleFormulaItem= ruleFormulaItem EOF
+            // InternalMml.g:1139:52: (iv_ruleFormulaItem= ruleFormulaItem EOF )
+            // InternalMml.g:1140:2: iv_ruleFormulaItem= ruleFormulaItem EOF
             {
              newCompositeNode(grammarAccess.getFormulaItemRule()); 
             pushFollow(FOLLOW_1);
@@ -2879,7 +2918,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFormulaItem"
-    // InternalMml.g:1139:1: ruleFormulaItem returns [EObject current=null] : ( ( (lv_column_0_0= RULE_INT ) ) | ( (lv_colName_1_0= RULE_STRING ) ) ) ;
+    // InternalMml.g:1146:1: ruleFormulaItem returns [EObject current=null] : ( ( (lv_column_0_0= RULE_INT ) ) | ( (lv_colName_1_0= RULE_STRING ) ) ) ;
     public final EObject ruleFormulaItem() throws RecognitionException {
         EObject current = null;
 
@@ -2890,34 +2929,34 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1145:2: ( ( ( (lv_column_0_0= RULE_INT ) ) | ( (lv_colName_1_0= RULE_STRING ) ) ) )
-            // InternalMml.g:1146:2: ( ( (lv_column_0_0= RULE_INT ) ) | ( (lv_colName_1_0= RULE_STRING ) ) )
+            // InternalMml.g:1152:2: ( ( ( (lv_column_0_0= RULE_INT ) ) | ( (lv_colName_1_0= RULE_STRING ) ) ) )
+            // InternalMml.g:1153:2: ( ( (lv_column_0_0= RULE_INT ) ) | ( (lv_colName_1_0= RULE_STRING ) ) )
             {
-            // InternalMml.g:1146:2: ( ( (lv_column_0_0= RULE_INT ) ) | ( (lv_colName_1_0= RULE_STRING ) ) )
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            // InternalMml.g:1153:2: ( ( (lv_column_0_0= RULE_INT ) ) | ( (lv_colName_1_0= RULE_STRING ) ) )
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA21_0==RULE_INT) ) {
-                alt21=1;
+            if ( (LA22_0==RULE_INT) ) {
+                alt22=1;
             }
-            else if ( (LA21_0==RULE_STRING) ) {
-                alt21=2;
+            else if ( (LA22_0==RULE_STRING) ) {
+                alt22=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 21, 0, input);
+                    new NoViableAltException("", 22, 0, input);
 
                 throw nvae;
             }
-            switch (alt21) {
+            switch (alt22) {
                 case 1 :
-                    // InternalMml.g:1147:3: ( (lv_column_0_0= RULE_INT ) )
+                    // InternalMml.g:1154:3: ( (lv_column_0_0= RULE_INT ) )
                     {
-                    // InternalMml.g:1147:3: ( (lv_column_0_0= RULE_INT ) )
-                    // InternalMml.g:1148:4: (lv_column_0_0= RULE_INT )
+                    // InternalMml.g:1154:3: ( (lv_column_0_0= RULE_INT ) )
+                    // InternalMml.g:1155:4: (lv_column_0_0= RULE_INT )
                     {
-                    // InternalMml.g:1148:4: (lv_column_0_0= RULE_INT )
-                    // InternalMml.g:1149:5: lv_column_0_0= RULE_INT
+                    // InternalMml.g:1155:4: (lv_column_0_0= RULE_INT )
+                    // InternalMml.g:1156:5: lv_column_0_0= RULE_INT
                     {
                     lv_column_0_0=(Token)match(input,RULE_INT,FOLLOW_2); 
 
@@ -2943,13 +2982,13 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMml.g:1166:3: ( (lv_colName_1_0= RULE_STRING ) )
+                    // InternalMml.g:1173:3: ( (lv_colName_1_0= RULE_STRING ) )
                     {
-                    // InternalMml.g:1166:3: ( (lv_colName_1_0= RULE_STRING ) )
-                    // InternalMml.g:1167:4: (lv_colName_1_0= RULE_STRING )
+                    // InternalMml.g:1173:3: ( (lv_colName_1_0= RULE_STRING ) )
+                    // InternalMml.g:1174:4: (lv_colName_1_0= RULE_STRING )
                     {
-                    // InternalMml.g:1167:4: (lv_colName_1_0= RULE_STRING )
-                    // InternalMml.g:1168:5: lv_colName_1_0= RULE_STRING
+                    // InternalMml.g:1174:4: (lv_colName_1_0= RULE_STRING )
+                    // InternalMml.g:1175:5: lv_colName_1_0= RULE_STRING
                     {
                     lv_colName_1_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
 
@@ -2997,7 +3036,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleValidation"
-    // InternalMml.g:1188:1: entryRuleValidation returns [EObject current=null] : iv_ruleValidation= ruleValidation EOF ;
+    // InternalMml.g:1195:1: entryRuleValidation returns [EObject current=null] : iv_ruleValidation= ruleValidation EOF ;
     public final EObject entryRuleValidation() throws RecognitionException {
         EObject current = null;
 
@@ -3005,8 +3044,8 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMml.g:1188:51: (iv_ruleValidation= ruleValidation EOF )
-            // InternalMml.g:1189:2: iv_ruleValidation= ruleValidation EOF
+            // InternalMml.g:1195:51: (iv_ruleValidation= ruleValidation EOF )
+            // InternalMml.g:1196:2: iv_ruleValidation= ruleValidation EOF
             {
              newCompositeNode(grammarAccess.getValidationRule()); 
             pushFollow(FOLLOW_1);
@@ -3033,7 +3072,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValidation"
-    // InternalMml.g:1195:1: ruleValidation returns [EObject current=null] : ( ( (lv_stratification_0_0= ruleStratificationMethod ) ) ( (lv_metric_1_0= ruleValidationMetric ) )+ ) ;
+    // InternalMml.g:1202:1: ruleValidation returns [EObject current=null] : ( ( (lv_stratification_0_0= ruleStratificationMethod ) ) ( (lv_metric_1_0= ruleValidationMetric ) )+ ) ;
     public final EObject ruleValidation() throws RecognitionException {
         EObject current = null;
 
@@ -3046,17 +3085,17 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1201:2: ( ( ( (lv_stratification_0_0= ruleStratificationMethod ) ) ( (lv_metric_1_0= ruleValidationMetric ) )+ ) )
-            // InternalMml.g:1202:2: ( ( (lv_stratification_0_0= ruleStratificationMethod ) ) ( (lv_metric_1_0= ruleValidationMetric ) )+ )
+            // InternalMml.g:1208:2: ( ( ( (lv_stratification_0_0= ruleStratificationMethod ) ) ( (lv_metric_1_0= ruleValidationMetric ) )+ ) )
+            // InternalMml.g:1209:2: ( ( (lv_stratification_0_0= ruleStratificationMethod ) ) ( (lv_metric_1_0= ruleValidationMetric ) )+ )
             {
-            // InternalMml.g:1202:2: ( ( (lv_stratification_0_0= ruleStratificationMethod ) ) ( (lv_metric_1_0= ruleValidationMetric ) )+ )
-            // InternalMml.g:1203:3: ( (lv_stratification_0_0= ruleStratificationMethod ) ) ( (lv_metric_1_0= ruleValidationMetric ) )+
+            // InternalMml.g:1209:2: ( ( (lv_stratification_0_0= ruleStratificationMethod ) ) ( (lv_metric_1_0= ruleValidationMetric ) )+ )
+            // InternalMml.g:1210:3: ( (lv_stratification_0_0= ruleStratificationMethod ) ) ( (lv_metric_1_0= ruleValidationMetric ) )+
             {
-            // InternalMml.g:1203:3: ( (lv_stratification_0_0= ruleStratificationMethod ) )
-            // InternalMml.g:1204:4: (lv_stratification_0_0= ruleStratificationMethod )
+            // InternalMml.g:1210:3: ( (lv_stratification_0_0= ruleStratificationMethod ) )
+            // InternalMml.g:1211:4: (lv_stratification_0_0= ruleStratificationMethod )
             {
-            // InternalMml.g:1204:4: (lv_stratification_0_0= ruleStratificationMethod )
-            // InternalMml.g:1205:5: lv_stratification_0_0= ruleStratificationMethod
+            // InternalMml.g:1211:4: (lv_stratification_0_0= ruleStratificationMethod )
+            // InternalMml.g:1212:5: lv_stratification_0_0= ruleStratificationMethod
             {
 
             					newCompositeNode(grammarAccess.getValidationAccess().getStratificationStratificationMethodParserRuleCall_0_0());
@@ -3083,24 +3122,24 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMml.g:1222:3: ( (lv_metric_1_0= ruleValidationMetric ) )+
-            int cnt22=0;
-            loop22:
+            // InternalMml.g:1229:3: ( (lv_metric_1_0= ruleValidationMetric ) )+
+            int cnt23=0;
+            loop23:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( ((LA22_0>=55 && LA22_0<=63)) ) {
-                    alt22=1;
+                if ( ((LA23_0>=56 && LA23_0<=64)) ) {
+                    alt23=1;
                 }
 
 
-                switch (alt22) {
+                switch (alt23) {
             	case 1 :
-            	    // InternalMml.g:1223:4: (lv_metric_1_0= ruleValidationMetric )
+            	    // InternalMml.g:1230:4: (lv_metric_1_0= ruleValidationMetric )
             	    {
-            	    // InternalMml.g:1223:4: (lv_metric_1_0= ruleValidationMetric )
-            	    // InternalMml.g:1224:5: lv_metric_1_0= ruleValidationMetric
+            	    // InternalMml.g:1230:4: (lv_metric_1_0= ruleValidationMetric )
+            	    // InternalMml.g:1231:5: lv_metric_1_0= ruleValidationMetric
             	    {
 
             	    					newCompositeNode(grammarAccess.getValidationAccess().getMetricValidationMetricEnumRuleCall_1_0());
@@ -3129,12 +3168,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt22 >= 1 ) break loop22;
+            	    if ( cnt23 >= 1 ) break loop23;
                         EarlyExitException eee =
-                            new EarlyExitException(22, input);
+                            new EarlyExitException(23, input);
                         throw eee;
                 }
-                cnt22++;
+                cnt23++;
             } while (true);
 
 
@@ -3160,7 +3199,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStratificationMethod"
-    // InternalMml.g:1245:1: entryRuleStratificationMethod returns [EObject current=null] : iv_ruleStratificationMethod= ruleStratificationMethod EOF ;
+    // InternalMml.g:1252:1: entryRuleStratificationMethod returns [EObject current=null] : iv_ruleStratificationMethod= ruleStratificationMethod EOF ;
     public final EObject entryRuleStratificationMethod() throws RecognitionException {
         EObject current = null;
 
@@ -3168,8 +3207,8 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMml.g:1245:61: (iv_ruleStratificationMethod= ruleStratificationMethod EOF )
-            // InternalMml.g:1246:2: iv_ruleStratificationMethod= ruleStratificationMethod EOF
+            // InternalMml.g:1252:61: (iv_ruleStratificationMethod= ruleStratificationMethod EOF )
+            // InternalMml.g:1253:2: iv_ruleStratificationMethod= ruleStratificationMethod EOF
             {
              newCompositeNode(grammarAccess.getStratificationMethodRule()); 
             pushFollow(FOLLOW_1);
@@ -3196,7 +3235,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStratificationMethod"
-    // InternalMml.g:1252:1: ruleStratificationMethod returns [EObject current=null] : (this_CrossValidation_0= ruleCrossValidation | this_TrainingTest_1= ruleTrainingTest ) ;
+    // InternalMml.g:1259:1: ruleStratificationMethod returns [EObject current=null] : (this_CrossValidation_0= ruleCrossValidation | this_TrainingTest_1= ruleTrainingTest ) ;
     public final EObject ruleStratificationMethod() throws RecognitionException {
         EObject current = null;
 
@@ -3209,28 +3248,28 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1258:2: ( (this_CrossValidation_0= ruleCrossValidation | this_TrainingTest_1= ruleTrainingTest ) )
-            // InternalMml.g:1259:2: (this_CrossValidation_0= ruleCrossValidation | this_TrainingTest_1= ruleTrainingTest )
+            // InternalMml.g:1265:2: ( (this_CrossValidation_0= ruleCrossValidation | this_TrainingTest_1= ruleTrainingTest ) )
+            // InternalMml.g:1266:2: (this_CrossValidation_0= ruleCrossValidation | this_TrainingTest_1= ruleTrainingTest )
             {
-            // InternalMml.g:1259:2: (this_CrossValidation_0= ruleCrossValidation | this_TrainingTest_1= ruleTrainingTest )
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            // InternalMml.g:1266:2: (this_CrossValidation_0= ruleCrossValidation | this_TrainingTest_1= ruleTrainingTest )
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA23_0==33) ) {
-                alt23=1;
+            if ( (LA24_0==34) ) {
+                alt24=1;
             }
-            else if ( (LA23_0==37) ) {
-                alt23=2;
+            else if ( (LA24_0==38) ) {
+                alt24=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 23, 0, input);
+                    new NoViableAltException("", 24, 0, input);
 
                 throw nvae;
             }
-            switch (alt23) {
+            switch (alt24) {
                 case 1 :
-                    // InternalMml.g:1260:3: this_CrossValidation_0= ruleCrossValidation
+                    // InternalMml.g:1267:3: this_CrossValidation_0= ruleCrossValidation
                     {
 
                     			newCompositeNode(grammarAccess.getStratificationMethodAccess().getCrossValidationParserRuleCall_0());
@@ -3248,7 +3287,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMml.g:1269:3: this_TrainingTest_1= ruleTrainingTest
+                    // InternalMml.g:1276:3: this_TrainingTest_1= ruleTrainingTest
                     {
 
                     			newCompositeNode(grammarAccess.getStratificationMethodAccess().getTrainingTestParserRuleCall_1());
@@ -3288,7 +3327,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCrossValidation"
-    // InternalMml.g:1281:1: entryRuleCrossValidation returns [EObject current=null] : iv_ruleCrossValidation= ruleCrossValidation EOF ;
+    // InternalMml.g:1288:1: entryRuleCrossValidation returns [EObject current=null] : iv_ruleCrossValidation= ruleCrossValidation EOF ;
     public final EObject entryRuleCrossValidation() throws RecognitionException {
         EObject current = null;
 
@@ -3296,8 +3335,8 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMml.g:1281:56: (iv_ruleCrossValidation= ruleCrossValidation EOF )
-            // InternalMml.g:1282:2: iv_ruleCrossValidation= ruleCrossValidation EOF
+            // InternalMml.g:1288:56: (iv_ruleCrossValidation= ruleCrossValidation EOF )
+            // InternalMml.g:1289:2: iv_ruleCrossValidation= ruleCrossValidation EOF
             {
              newCompositeNode(grammarAccess.getCrossValidationRule()); 
             pushFollow(FOLLOW_1);
@@ -3324,7 +3363,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCrossValidation"
-    // InternalMml.g:1288:1: ruleCrossValidation returns [EObject current=null] : (otherlv_0= 'CrossValidation' otherlv_1= '{' otherlv_2= 'numRepetitionCross' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' ) ;
+    // InternalMml.g:1295:1: ruleCrossValidation returns [EObject current=null] : (otherlv_0= 'CrossValidation' otherlv_1= '{' otherlv_2= 'numRepetitionCross' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' ) ;
     public final EObject ruleCrossValidation() throws RecognitionException {
         EObject current = null;
 
@@ -3338,29 +3377,29 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1294:2: ( (otherlv_0= 'CrossValidation' otherlv_1= '{' otherlv_2= 'numRepetitionCross' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' ) )
-            // InternalMml.g:1295:2: (otherlv_0= 'CrossValidation' otherlv_1= '{' otherlv_2= 'numRepetitionCross' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' )
+            // InternalMml.g:1301:2: ( (otherlv_0= 'CrossValidation' otherlv_1= '{' otherlv_2= 'numRepetitionCross' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' ) )
+            // InternalMml.g:1302:2: (otherlv_0= 'CrossValidation' otherlv_1= '{' otherlv_2= 'numRepetitionCross' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' )
             {
-            // InternalMml.g:1295:2: (otherlv_0= 'CrossValidation' otherlv_1= '{' otherlv_2= 'numRepetitionCross' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' )
-            // InternalMml.g:1296:3: otherlv_0= 'CrossValidation' otherlv_1= '{' otherlv_2= 'numRepetitionCross' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}'
+            // InternalMml.g:1302:2: (otherlv_0= 'CrossValidation' otherlv_1= '{' otherlv_2= 'numRepetitionCross' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' )
+            // InternalMml.g:1303:3: otherlv_0= 'CrossValidation' otherlv_1= '{' otherlv_2= 'numRepetitionCross' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}'
             {
-            otherlv_0=(Token)match(input,33,FOLLOW_32); 
+            otherlv_0=(Token)match(input,34,FOLLOW_32); 
 
             			newLeafNode(otherlv_0, grammarAccess.getCrossValidationAccess().getCrossValidationKeyword_0());
             		
-            otherlv_1=(Token)match(input,34,FOLLOW_33); 
+            otherlv_1=(Token)match(input,35,FOLLOW_33); 
 
             			newLeafNode(otherlv_1, grammarAccess.getCrossValidationAccess().getLeftCurlyBracketKeyword_1());
             		
-            otherlv_2=(Token)match(input,35,FOLLOW_13); 
+            otherlv_2=(Token)match(input,36,FOLLOW_13); 
 
             			newLeafNode(otherlv_2, grammarAccess.getCrossValidationAccess().getNumRepetitionCrossKeyword_2());
             		
-            // InternalMml.g:1308:3: ( (lv_number_3_0= RULE_INT ) )
-            // InternalMml.g:1309:4: (lv_number_3_0= RULE_INT )
+            // InternalMml.g:1315:3: ( (lv_number_3_0= RULE_INT ) )
+            // InternalMml.g:1316:4: (lv_number_3_0= RULE_INT )
             {
-            // InternalMml.g:1309:4: (lv_number_3_0= RULE_INT )
-            // InternalMml.g:1310:5: lv_number_3_0= RULE_INT
+            // InternalMml.g:1316:4: (lv_number_3_0= RULE_INT )
+            // InternalMml.g:1317:5: lv_number_3_0= RULE_INT
             {
             lv_number_3_0=(Token)match(input,RULE_INT,FOLLOW_34); 
 
@@ -3382,7 +3421,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,36,FOLLOW_2); 
+            otherlv_4=(Token)match(input,37,FOLLOW_2); 
 
             			newLeafNode(otherlv_4, grammarAccess.getCrossValidationAccess().getRightCurlyBracketKeyword_4());
             		
@@ -3409,7 +3448,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTrainingTest"
-    // InternalMml.g:1334:1: entryRuleTrainingTest returns [EObject current=null] : iv_ruleTrainingTest= ruleTrainingTest EOF ;
+    // InternalMml.g:1341:1: entryRuleTrainingTest returns [EObject current=null] : iv_ruleTrainingTest= ruleTrainingTest EOF ;
     public final EObject entryRuleTrainingTest() throws RecognitionException {
         EObject current = null;
 
@@ -3417,8 +3456,8 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMml.g:1334:53: (iv_ruleTrainingTest= ruleTrainingTest EOF )
-            // InternalMml.g:1335:2: iv_ruleTrainingTest= ruleTrainingTest EOF
+            // InternalMml.g:1341:53: (iv_ruleTrainingTest= ruleTrainingTest EOF )
+            // InternalMml.g:1342:2: iv_ruleTrainingTest= ruleTrainingTest EOF
             {
              newCompositeNode(grammarAccess.getTrainingTestRule()); 
             pushFollow(FOLLOW_1);
@@ -3445,7 +3484,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTrainingTest"
-    // InternalMml.g:1341:1: ruleTrainingTest returns [EObject current=null] : (otherlv_0= 'TrainingTest' otherlv_1= '{' otherlv_2= 'percentageTraining' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' ) ;
+    // InternalMml.g:1348:1: ruleTrainingTest returns [EObject current=null] : (otherlv_0= 'TrainingTest' otherlv_1= '{' otherlv_2= 'percentageTraining' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' ) ;
     public final EObject ruleTrainingTest() throws RecognitionException {
         EObject current = null;
 
@@ -3459,29 +3498,29 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1347:2: ( (otherlv_0= 'TrainingTest' otherlv_1= '{' otherlv_2= 'percentageTraining' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' ) )
-            // InternalMml.g:1348:2: (otherlv_0= 'TrainingTest' otherlv_1= '{' otherlv_2= 'percentageTraining' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' )
+            // InternalMml.g:1354:2: ( (otherlv_0= 'TrainingTest' otherlv_1= '{' otherlv_2= 'percentageTraining' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' ) )
+            // InternalMml.g:1355:2: (otherlv_0= 'TrainingTest' otherlv_1= '{' otherlv_2= 'percentageTraining' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' )
             {
-            // InternalMml.g:1348:2: (otherlv_0= 'TrainingTest' otherlv_1= '{' otherlv_2= 'percentageTraining' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' )
-            // InternalMml.g:1349:3: otherlv_0= 'TrainingTest' otherlv_1= '{' otherlv_2= 'percentageTraining' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}'
+            // InternalMml.g:1355:2: (otherlv_0= 'TrainingTest' otherlv_1= '{' otherlv_2= 'percentageTraining' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}' )
+            // InternalMml.g:1356:3: otherlv_0= 'TrainingTest' otherlv_1= '{' otherlv_2= 'percentageTraining' ( (lv_number_3_0= RULE_INT ) ) otherlv_4= '}'
             {
-            otherlv_0=(Token)match(input,37,FOLLOW_32); 
+            otherlv_0=(Token)match(input,38,FOLLOW_32); 
 
             			newLeafNode(otherlv_0, grammarAccess.getTrainingTestAccess().getTrainingTestKeyword_0());
             		
-            otherlv_1=(Token)match(input,34,FOLLOW_35); 
+            otherlv_1=(Token)match(input,35,FOLLOW_35); 
 
             			newLeafNode(otherlv_1, grammarAccess.getTrainingTestAccess().getLeftCurlyBracketKeyword_1());
             		
-            otherlv_2=(Token)match(input,38,FOLLOW_13); 
+            otherlv_2=(Token)match(input,39,FOLLOW_13); 
 
             			newLeafNode(otherlv_2, grammarAccess.getTrainingTestAccess().getPercentageTrainingKeyword_2());
             		
-            // InternalMml.g:1361:3: ( (lv_number_3_0= RULE_INT ) )
-            // InternalMml.g:1362:4: (lv_number_3_0= RULE_INT )
+            // InternalMml.g:1368:3: ( (lv_number_3_0= RULE_INT ) )
+            // InternalMml.g:1369:4: (lv_number_3_0= RULE_INT )
             {
-            // InternalMml.g:1362:4: (lv_number_3_0= RULE_INT )
-            // InternalMml.g:1363:5: lv_number_3_0= RULE_INT
+            // InternalMml.g:1369:4: (lv_number_3_0= RULE_INT )
+            // InternalMml.g:1370:5: lv_number_3_0= RULE_INT
             {
             lv_number_3_0=(Token)match(input,RULE_INT,FOLLOW_34); 
 
@@ -3503,7 +3542,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,36,FOLLOW_2); 
+            otherlv_4=(Token)match(input,37,FOLLOW_2); 
 
             			newLeafNode(otherlv_4, grammarAccess.getTrainingTestAccess().getRightCurlyBracketKeyword_4());
             		
@@ -3530,7 +3569,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCSVSeparator"
-    // InternalMml.g:1387:1: ruleCSVSeparator returns [Enumerator current=null] : ( (enumLiteral_0= ',' ) | (enumLiteral_1= ';' ) ) ;
+    // InternalMml.g:1394:1: ruleCSVSeparator returns [Enumerator current=null] : ( (enumLiteral_0= ',' ) | (enumLiteral_1= ';' ) ) ;
     public final Enumerator ruleCSVSeparator() throws RecognitionException {
         Enumerator current = null;
 
@@ -3541,33 +3580,33 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1393:2: ( ( (enumLiteral_0= ',' ) | (enumLiteral_1= ';' ) ) )
-            // InternalMml.g:1394:2: ( (enumLiteral_0= ',' ) | (enumLiteral_1= ';' ) )
+            // InternalMml.g:1400:2: ( ( (enumLiteral_0= ',' ) | (enumLiteral_1= ';' ) ) )
+            // InternalMml.g:1401:2: ( (enumLiteral_0= ',' ) | (enumLiteral_1= ';' ) )
             {
-            // InternalMml.g:1394:2: ( (enumLiteral_0= ',' ) | (enumLiteral_1= ';' ) )
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // InternalMml.g:1401:2: ( (enumLiteral_0= ',' ) | (enumLiteral_1= ';' ) )
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA24_0==39) ) {
-                alt24=1;
+            if ( (LA25_0==40) ) {
+                alt25=1;
             }
-            else if ( (LA24_0==40) ) {
-                alt24=2;
+            else if ( (LA25_0==41) ) {
+                alt25=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 24, 0, input);
+                    new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
             }
-            switch (alt24) {
+            switch (alt25) {
                 case 1 :
-                    // InternalMml.g:1395:3: (enumLiteral_0= ',' )
+                    // InternalMml.g:1402:3: (enumLiteral_0= ',' )
                     {
-                    // InternalMml.g:1395:3: (enumLiteral_0= ',' )
-                    // InternalMml.g:1396:4: enumLiteral_0= ','
+                    // InternalMml.g:1402:3: (enumLiteral_0= ',' )
+                    // InternalMml.g:1403:4: enumLiteral_0= ','
                     {
-                    enumLiteral_0=(Token)match(input,39,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,40,FOLLOW_2); 
 
                     				current = grammarAccess.getCSVSeparatorAccess().getCOMMAEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getCSVSeparatorAccess().getCOMMAEnumLiteralDeclaration_0());
@@ -3579,12 +3618,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMml.g:1403:3: (enumLiteral_1= ';' )
+                    // InternalMml.g:1410:3: (enumLiteral_1= ';' )
                     {
-                    // InternalMml.g:1403:3: (enumLiteral_1= ';' )
-                    // InternalMml.g:1404:4: enumLiteral_1= ';'
+                    // InternalMml.g:1410:3: (enumLiteral_1= ';' )
+                    // InternalMml.g:1411:4: enumLiteral_1= ';'
                     {
-                    enumLiteral_1=(Token)match(input,40,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,41,FOLLOW_2); 
 
                     				current = grammarAccess.getCSVSeparatorAccess().getSEMI_COLONEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getCSVSeparatorAccess().getSEMI_COLONEnumLiteralDeclaration_1());
@@ -3618,7 +3657,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFrameworkLang"
-    // InternalMml.g:1414:1: ruleFrameworkLang returns [Enumerator current=null] : ( (enumLiteral_0= 'scikit-learn' ) | (enumLiteral_1= 'R' ) | (enumLiteral_2= 'Weka' ) | (enumLiteral_3= 'xgboost' ) ) ;
+    // InternalMml.g:1421:1: ruleFrameworkLang returns [Enumerator current=null] : ( (enumLiteral_0= 'scikit-learn' ) | (enumLiteral_1= 'R' ) | (enumLiteral_2= 'Weka' ) | (enumLiteral_3= 'xgboost' ) ) ;
     public final Enumerator ruleFrameworkLang() throws RecognitionException {
         Enumerator current = null;
 
@@ -3631,47 +3670,47 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1420:2: ( ( (enumLiteral_0= 'scikit-learn' ) | (enumLiteral_1= 'R' ) | (enumLiteral_2= 'Weka' ) | (enumLiteral_3= 'xgboost' ) ) )
-            // InternalMml.g:1421:2: ( (enumLiteral_0= 'scikit-learn' ) | (enumLiteral_1= 'R' ) | (enumLiteral_2= 'Weka' ) | (enumLiteral_3= 'xgboost' ) )
+            // InternalMml.g:1427:2: ( ( (enumLiteral_0= 'scikit-learn' ) | (enumLiteral_1= 'R' ) | (enumLiteral_2= 'Weka' ) | (enumLiteral_3= 'xgboost' ) ) )
+            // InternalMml.g:1428:2: ( (enumLiteral_0= 'scikit-learn' ) | (enumLiteral_1= 'R' ) | (enumLiteral_2= 'Weka' ) | (enumLiteral_3= 'xgboost' ) )
             {
-            // InternalMml.g:1421:2: ( (enumLiteral_0= 'scikit-learn' ) | (enumLiteral_1= 'R' ) | (enumLiteral_2= 'Weka' ) | (enumLiteral_3= 'xgboost' ) )
-            int alt25=4;
+            // InternalMml.g:1428:2: ( (enumLiteral_0= 'scikit-learn' ) | (enumLiteral_1= 'R' ) | (enumLiteral_2= 'Weka' ) | (enumLiteral_3= 'xgboost' ) )
+            int alt26=4;
             switch ( input.LA(1) ) {
-            case 41:
-                {
-                alt25=1;
-                }
-                break;
             case 42:
                 {
-                alt25=2;
+                alt26=1;
                 }
                 break;
             case 43:
                 {
-                alt25=3;
+                alt26=2;
                 }
                 break;
             case 44:
                 {
-                alt25=4;
+                alt26=3;
+                }
+                break;
+            case 45:
+                {
+                alt26=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 25, 0, input);
+                    new NoViableAltException("", 26, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt25) {
+            switch (alt26) {
                 case 1 :
-                    // InternalMml.g:1422:3: (enumLiteral_0= 'scikit-learn' )
+                    // InternalMml.g:1429:3: (enumLiteral_0= 'scikit-learn' )
                     {
-                    // InternalMml.g:1422:3: (enumLiteral_0= 'scikit-learn' )
-                    // InternalMml.g:1423:4: enumLiteral_0= 'scikit-learn'
+                    // InternalMml.g:1429:3: (enumLiteral_0= 'scikit-learn' )
+                    // InternalMml.g:1430:4: enumLiteral_0= 'scikit-learn'
                     {
-                    enumLiteral_0=(Token)match(input,41,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,42,FOLLOW_2); 
 
                     				current = grammarAccess.getFrameworkLangAccess().getSCIKITEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getFrameworkLangAccess().getSCIKITEnumLiteralDeclaration_0());
@@ -3683,12 +3722,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMml.g:1430:3: (enumLiteral_1= 'R' )
+                    // InternalMml.g:1437:3: (enumLiteral_1= 'R' )
                     {
-                    // InternalMml.g:1430:3: (enumLiteral_1= 'R' )
-                    // InternalMml.g:1431:4: enumLiteral_1= 'R'
+                    // InternalMml.g:1437:3: (enumLiteral_1= 'R' )
+                    // InternalMml.g:1438:4: enumLiteral_1= 'R'
                     {
-                    enumLiteral_1=(Token)match(input,42,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,43,FOLLOW_2); 
 
                     				current = grammarAccess.getFrameworkLangAccess().getREnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getFrameworkLangAccess().getREnumLiteralDeclaration_1());
@@ -3700,12 +3739,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalMml.g:1438:3: (enumLiteral_2= 'Weka' )
+                    // InternalMml.g:1445:3: (enumLiteral_2= 'Weka' )
                     {
-                    // InternalMml.g:1438:3: (enumLiteral_2= 'Weka' )
-                    // InternalMml.g:1439:4: enumLiteral_2= 'Weka'
+                    // InternalMml.g:1445:3: (enumLiteral_2= 'Weka' )
+                    // InternalMml.g:1446:4: enumLiteral_2= 'Weka'
                     {
-                    enumLiteral_2=(Token)match(input,43,FOLLOW_2); 
+                    enumLiteral_2=(Token)match(input,44,FOLLOW_2); 
 
                     				current = grammarAccess.getFrameworkLangAccess().getJavaWekaEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_2, grammarAccess.getFrameworkLangAccess().getJavaWekaEnumLiteralDeclaration_2());
@@ -3717,12 +3756,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalMml.g:1446:3: (enumLiteral_3= 'xgboost' )
+                    // InternalMml.g:1453:3: (enumLiteral_3= 'xgboost' )
                     {
-                    // InternalMml.g:1446:3: (enumLiteral_3= 'xgboost' )
-                    // InternalMml.g:1447:4: enumLiteral_3= 'xgboost'
+                    // InternalMml.g:1453:3: (enumLiteral_3= 'xgboost' )
+                    // InternalMml.g:1454:4: enumLiteral_3= 'xgboost'
                     {
-                    enumLiteral_3=(Token)match(input,44,FOLLOW_2); 
+                    enumLiteral_3=(Token)match(input,45,FOLLOW_2); 
 
                     				current = grammarAccess.getFrameworkLangAccess().getXGBoostEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_3, grammarAccess.getFrameworkLangAccess().getXGBoostEnumLiteralDeclaration_3());
@@ -3756,7 +3795,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSVMKernel"
-    // InternalMml.g:1457:1: ruleSVMKernel returns [Enumerator current=null] : ( (enumLiteral_0= 'rbf' ) | (enumLiteral_1= 'linear' ) | (enumLiteral_2= 'poly' ) | (enumLiteral_3= 'sigmoid' ) ) ;
+    // InternalMml.g:1464:1: ruleSVMKernel returns [Enumerator current=null] : ( (enumLiteral_0= 'rbf' ) | (enumLiteral_1= 'linear' ) | (enumLiteral_2= 'poly' ) | (enumLiteral_3= 'sigmoid' ) ) ;
     public final Enumerator ruleSVMKernel() throws RecognitionException {
         Enumerator current = null;
 
@@ -3769,47 +3808,47 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1463:2: ( ( (enumLiteral_0= 'rbf' ) | (enumLiteral_1= 'linear' ) | (enumLiteral_2= 'poly' ) | (enumLiteral_3= 'sigmoid' ) ) )
-            // InternalMml.g:1464:2: ( (enumLiteral_0= 'rbf' ) | (enumLiteral_1= 'linear' ) | (enumLiteral_2= 'poly' ) | (enumLiteral_3= 'sigmoid' ) )
+            // InternalMml.g:1470:2: ( ( (enumLiteral_0= 'rbf' ) | (enumLiteral_1= 'linear' ) | (enumLiteral_2= 'poly' ) | (enumLiteral_3= 'sigmoid' ) ) )
+            // InternalMml.g:1471:2: ( (enumLiteral_0= 'rbf' ) | (enumLiteral_1= 'linear' ) | (enumLiteral_2= 'poly' ) | (enumLiteral_3= 'sigmoid' ) )
             {
-            // InternalMml.g:1464:2: ( (enumLiteral_0= 'rbf' ) | (enumLiteral_1= 'linear' ) | (enumLiteral_2= 'poly' ) | (enumLiteral_3= 'sigmoid' ) )
-            int alt26=4;
+            // InternalMml.g:1471:2: ( (enumLiteral_0= 'rbf' ) | (enumLiteral_1= 'linear' ) | (enumLiteral_2= 'poly' ) | (enumLiteral_3= 'sigmoid' ) )
+            int alt27=4;
             switch ( input.LA(1) ) {
-            case 45:
-                {
-                alt26=1;
-                }
-                break;
             case 46:
                 {
-                alt26=2;
+                alt27=1;
                 }
                 break;
             case 47:
                 {
-                alt26=3;
+                alt27=2;
                 }
                 break;
             case 48:
                 {
-                alt26=4;
+                alt27=3;
+                }
+                break;
+            case 49:
+                {
+                alt27=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 26, 0, input);
+                    new NoViableAltException("", 27, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt26) {
+            switch (alt27) {
                 case 1 :
-                    // InternalMml.g:1465:3: (enumLiteral_0= 'rbf' )
+                    // InternalMml.g:1472:3: (enumLiteral_0= 'rbf' )
                     {
-                    // InternalMml.g:1465:3: (enumLiteral_0= 'rbf' )
-                    // InternalMml.g:1466:4: enumLiteral_0= 'rbf'
+                    // InternalMml.g:1472:3: (enumLiteral_0= 'rbf' )
+                    // InternalMml.g:1473:4: enumLiteral_0= 'rbf'
                     {
-                    enumLiteral_0=(Token)match(input,45,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,46,FOLLOW_2); 
 
                     				current = grammarAccess.getSVMKernelAccess().getRbfEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getSVMKernelAccess().getRbfEnumLiteralDeclaration_0());
@@ -3821,12 +3860,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMml.g:1473:3: (enumLiteral_1= 'linear' )
+                    // InternalMml.g:1480:3: (enumLiteral_1= 'linear' )
                     {
-                    // InternalMml.g:1473:3: (enumLiteral_1= 'linear' )
-                    // InternalMml.g:1474:4: enumLiteral_1= 'linear'
+                    // InternalMml.g:1480:3: (enumLiteral_1= 'linear' )
+                    // InternalMml.g:1481:4: enumLiteral_1= 'linear'
                     {
-                    enumLiteral_1=(Token)match(input,46,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,47,FOLLOW_2); 
 
                     				current = grammarAccess.getSVMKernelAccess().getLinearEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getSVMKernelAccess().getLinearEnumLiteralDeclaration_1());
@@ -3838,12 +3877,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalMml.g:1481:3: (enumLiteral_2= 'poly' )
+                    // InternalMml.g:1488:3: (enumLiteral_2= 'poly' )
                     {
-                    // InternalMml.g:1481:3: (enumLiteral_2= 'poly' )
-                    // InternalMml.g:1482:4: enumLiteral_2= 'poly'
+                    // InternalMml.g:1488:3: (enumLiteral_2= 'poly' )
+                    // InternalMml.g:1489:4: enumLiteral_2= 'poly'
                     {
-                    enumLiteral_2=(Token)match(input,47,FOLLOW_2); 
+                    enumLiteral_2=(Token)match(input,48,FOLLOW_2); 
 
                     				current = grammarAccess.getSVMKernelAccess().getPolyEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_2, grammarAccess.getSVMKernelAccess().getPolyEnumLiteralDeclaration_2());
@@ -3855,12 +3894,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalMml.g:1489:3: (enumLiteral_3= 'sigmoid' )
+                    // InternalMml.g:1496:3: (enumLiteral_3= 'sigmoid' )
                     {
-                    // InternalMml.g:1489:3: (enumLiteral_3= 'sigmoid' )
-                    // InternalMml.g:1490:4: enumLiteral_3= 'sigmoid'
+                    // InternalMml.g:1496:3: (enumLiteral_3= 'sigmoid' )
+                    // InternalMml.g:1497:4: enumLiteral_3= 'sigmoid'
                     {
-                    enumLiteral_3=(Token)match(input,48,FOLLOW_2); 
+                    enumLiteral_3=(Token)match(input,49,FOLLOW_2); 
 
                     				current = grammarAccess.getSVMKernelAccess().getSigmoidEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_3, grammarAccess.getSVMKernelAccess().getSigmoidEnumLiteralDeclaration_3());
@@ -3894,7 +3933,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDTCriterion"
-    // InternalMml.g:1500:1: ruleDTCriterion returns [Enumerator current=null] : ( (enumLiteral_0= 'gini' ) | (enumLiteral_1= 'entropy' ) ) ;
+    // InternalMml.g:1507:1: ruleDTCriterion returns [Enumerator current=null] : ( (enumLiteral_0= 'gini' ) | (enumLiteral_1= 'entropy' ) ) ;
     public final Enumerator ruleDTCriterion() throws RecognitionException {
         Enumerator current = null;
 
@@ -3905,33 +3944,33 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1506:2: ( ( (enumLiteral_0= 'gini' ) | (enumLiteral_1= 'entropy' ) ) )
-            // InternalMml.g:1507:2: ( (enumLiteral_0= 'gini' ) | (enumLiteral_1= 'entropy' ) )
+            // InternalMml.g:1513:2: ( ( (enumLiteral_0= 'gini' ) | (enumLiteral_1= 'entropy' ) ) )
+            // InternalMml.g:1514:2: ( (enumLiteral_0= 'gini' ) | (enumLiteral_1= 'entropy' ) )
             {
-            // InternalMml.g:1507:2: ( (enumLiteral_0= 'gini' ) | (enumLiteral_1= 'entropy' ) )
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            // InternalMml.g:1514:2: ( (enumLiteral_0= 'gini' ) | (enumLiteral_1= 'entropy' ) )
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA27_0==49) ) {
-                alt27=1;
+            if ( (LA28_0==50) ) {
+                alt28=1;
             }
-            else if ( (LA27_0==50) ) {
-                alt27=2;
+            else if ( (LA28_0==51) ) {
+                alt28=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 27, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
             }
-            switch (alt27) {
+            switch (alt28) {
                 case 1 :
-                    // InternalMml.g:1508:3: (enumLiteral_0= 'gini' )
+                    // InternalMml.g:1515:3: (enumLiteral_0= 'gini' )
                     {
-                    // InternalMml.g:1508:3: (enumLiteral_0= 'gini' )
-                    // InternalMml.g:1509:4: enumLiteral_0= 'gini'
+                    // InternalMml.g:1515:3: (enumLiteral_0= 'gini' )
+                    // InternalMml.g:1516:4: enumLiteral_0= 'gini'
                     {
-                    enumLiteral_0=(Token)match(input,49,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,50,FOLLOW_2); 
 
                     				current = grammarAccess.getDTCriterionAccess().getGiniEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getDTCriterionAccess().getGiniEnumLiteralDeclaration_0());
@@ -3943,12 +3982,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMml.g:1516:3: (enumLiteral_1= 'entropy' )
+                    // InternalMml.g:1523:3: (enumLiteral_1= 'entropy' )
                     {
-                    // InternalMml.g:1516:3: (enumLiteral_1= 'entropy' )
-                    // InternalMml.g:1517:4: enumLiteral_1= 'entropy'
+                    // InternalMml.g:1523:3: (enumLiteral_1= 'entropy' )
+                    // InternalMml.g:1524:4: enumLiteral_1= 'entropy'
                     {
-                    enumLiteral_1=(Token)match(input,50,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,51,FOLLOW_2); 
 
                     				current = grammarAccess.getDTCriterionAccess().getEntropyEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getDTCriterionAccess().getEntropyEnumLiteralDeclaration_1());
@@ -3982,7 +4021,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleregPenalty"
-    // InternalMml.g:1527:1: ruleregPenalty returns [Enumerator current=null] : ( (enumLiteral_0= 'l2' ) | (enumLiteral_1= 'l1' ) | (enumLiteral_2= 'elasticnet' ) | (enumLiteral_3= 'none' ) ) ;
+    // InternalMml.g:1534:1: ruleregPenalty returns [Enumerator current=null] : ( (enumLiteral_0= 'l2' ) | (enumLiteral_1= 'l1' ) | (enumLiteral_2= 'elasticnet' ) | (enumLiteral_3= 'none' ) ) ;
     public final Enumerator ruleregPenalty() throws RecognitionException {
         Enumerator current = null;
 
@@ -3995,47 +4034,47 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1533:2: ( ( (enumLiteral_0= 'l2' ) | (enumLiteral_1= 'l1' ) | (enumLiteral_2= 'elasticnet' ) | (enumLiteral_3= 'none' ) ) )
-            // InternalMml.g:1534:2: ( (enumLiteral_0= 'l2' ) | (enumLiteral_1= 'l1' ) | (enumLiteral_2= 'elasticnet' ) | (enumLiteral_3= 'none' ) )
+            // InternalMml.g:1540:2: ( ( (enumLiteral_0= 'l2' ) | (enumLiteral_1= 'l1' ) | (enumLiteral_2= 'elasticnet' ) | (enumLiteral_3= 'none' ) ) )
+            // InternalMml.g:1541:2: ( (enumLiteral_0= 'l2' ) | (enumLiteral_1= 'l1' ) | (enumLiteral_2= 'elasticnet' ) | (enumLiteral_3= 'none' ) )
             {
-            // InternalMml.g:1534:2: ( (enumLiteral_0= 'l2' ) | (enumLiteral_1= 'l1' ) | (enumLiteral_2= 'elasticnet' ) | (enumLiteral_3= 'none' ) )
-            int alt28=4;
+            // InternalMml.g:1541:2: ( (enumLiteral_0= 'l2' ) | (enumLiteral_1= 'l1' ) | (enumLiteral_2= 'elasticnet' ) | (enumLiteral_3= 'none' ) )
+            int alt29=4;
             switch ( input.LA(1) ) {
-            case 51:
-                {
-                alt28=1;
-                }
-                break;
             case 52:
                 {
-                alt28=2;
+                alt29=1;
                 }
                 break;
             case 53:
                 {
-                alt28=3;
+                alt29=2;
                 }
                 break;
             case 54:
                 {
-                alt28=4;
+                alt29=3;
+                }
+                break;
+            case 55:
+                {
+                alt29=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 28, 0, input);
+                    new NoViableAltException("", 29, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt28) {
+            switch (alt29) {
                 case 1 :
-                    // InternalMml.g:1535:3: (enumLiteral_0= 'l2' )
+                    // InternalMml.g:1542:3: (enumLiteral_0= 'l2' )
                     {
-                    // InternalMml.g:1535:3: (enumLiteral_0= 'l2' )
-                    // InternalMml.g:1536:4: enumLiteral_0= 'l2'
+                    // InternalMml.g:1542:3: (enumLiteral_0= 'l2' )
+                    // InternalMml.g:1543:4: enumLiteral_0= 'l2'
                     {
-                    enumLiteral_0=(Token)match(input,51,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,52,FOLLOW_2); 
 
                     				current = grammarAccess.getRegPenaltyAccess().getL2EnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getRegPenaltyAccess().getL2EnumLiteralDeclaration_0());
@@ -4047,12 +4086,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMml.g:1543:3: (enumLiteral_1= 'l1' )
+                    // InternalMml.g:1550:3: (enumLiteral_1= 'l1' )
                     {
-                    // InternalMml.g:1543:3: (enumLiteral_1= 'l1' )
-                    // InternalMml.g:1544:4: enumLiteral_1= 'l1'
+                    // InternalMml.g:1550:3: (enumLiteral_1= 'l1' )
+                    // InternalMml.g:1551:4: enumLiteral_1= 'l1'
                     {
-                    enumLiteral_1=(Token)match(input,52,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,53,FOLLOW_2); 
 
                     				current = grammarAccess.getRegPenaltyAccess().getL1EnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getRegPenaltyAccess().getL1EnumLiteralDeclaration_1());
@@ -4064,12 +4103,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalMml.g:1551:3: (enumLiteral_2= 'elasticnet' )
+                    // InternalMml.g:1558:3: (enumLiteral_2= 'elasticnet' )
                     {
-                    // InternalMml.g:1551:3: (enumLiteral_2= 'elasticnet' )
-                    // InternalMml.g:1552:4: enumLiteral_2= 'elasticnet'
+                    // InternalMml.g:1558:3: (enumLiteral_2= 'elasticnet' )
+                    // InternalMml.g:1559:4: enumLiteral_2= 'elasticnet'
                     {
-                    enumLiteral_2=(Token)match(input,53,FOLLOW_2); 
+                    enumLiteral_2=(Token)match(input,54,FOLLOW_2); 
 
                     				current = grammarAccess.getRegPenaltyAccess().getElasticnetEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_2, grammarAccess.getRegPenaltyAccess().getElasticnetEnumLiteralDeclaration_2());
@@ -4081,12 +4120,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalMml.g:1559:3: (enumLiteral_3= 'none' )
+                    // InternalMml.g:1566:3: (enumLiteral_3= 'none' )
                     {
-                    // InternalMml.g:1559:3: (enumLiteral_3= 'none' )
-                    // InternalMml.g:1560:4: enumLiteral_3= 'none'
+                    // InternalMml.g:1566:3: (enumLiteral_3= 'none' )
+                    // InternalMml.g:1567:4: enumLiteral_3= 'none'
                     {
-                    enumLiteral_3=(Token)match(input,54,FOLLOW_2); 
+                    enumLiteral_3=(Token)match(input,55,FOLLOW_2); 
 
                     				current = grammarAccess.getRegPenaltyAccess().getNoneEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_3, grammarAccess.getRegPenaltyAccess().getNoneEnumLiteralDeclaration_3());
@@ -4120,7 +4159,7 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValidationMetric"
-    // InternalMml.g:1570:1: ruleValidationMetric returns [Enumerator current=null] : ( (enumLiteral_0= 'balanced_accuracy' ) | (enumLiteral_1= 'recall' ) | (enumLiteral_2= 'precision' ) | (enumLiteral_3= 'F1' ) | (enumLiteral_4= 'accuracy' ) | (enumLiteral_5= 'macro_recall' ) | (enumLiteral_6= 'macro_precision' ) | (enumLiteral_7= 'macro_F1' ) | (enumLiteral_8= 'macro_accuracy' ) ) ;
+    // InternalMml.g:1577:1: ruleValidationMetric returns [Enumerator current=null] : ( (enumLiteral_0= 'balanced_accuracy' ) | (enumLiteral_1= 'recall' ) | (enumLiteral_2= 'precision' ) | (enumLiteral_3= 'F1' ) | (enumLiteral_4= 'accuracy' ) | (enumLiteral_5= 'macro_recall' ) | (enumLiteral_6= 'macro_precision' ) | (enumLiteral_7= 'macro_F1' ) | (enumLiteral_8= 'macro_accuracy' ) ) ;
     public final Enumerator ruleValidationMetric() throws RecognitionException {
         Enumerator current = null;
 
@@ -4138,72 +4177,72 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMml.g:1576:2: ( ( (enumLiteral_0= 'balanced_accuracy' ) | (enumLiteral_1= 'recall' ) | (enumLiteral_2= 'precision' ) | (enumLiteral_3= 'F1' ) | (enumLiteral_4= 'accuracy' ) | (enumLiteral_5= 'macro_recall' ) | (enumLiteral_6= 'macro_precision' ) | (enumLiteral_7= 'macro_F1' ) | (enumLiteral_8= 'macro_accuracy' ) ) )
-            // InternalMml.g:1577:2: ( (enumLiteral_0= 'balanced_accuracy' ) | (enumLiteral_1= 'recall' ) | (enumLiteral_2= 'precision' ) | (enumLiteral_3= 'F1' ) | (enumLiteral_4= 'accuracy' ) | (enumLiteral_5= 'macro_recall' ) | (enumLiteral_6= 'macro_precision' ) | (enumLiteral_7= 'macro_F1' ) | (enumLiteral_8= 'macro_accuracy' ) )
+            // InternalMml.g:1583:2: ( ( (enumLiteral_0= 'balanced_accuracy' ) | (enumLiteral_1= 'recall' ) | (enumLiteral_2= 'precision' ) | (enumLiteral_3= 'F1' ) | (enumLiteral_4= 'accuracy' ) | (enumLiteral_5= 'macro_recall' ) | (enumLiteral_6= 'macro_precision' ) | (enumLiteral_7= 'macro_F1' ) | (enumLiteral_8= 'macro_accuracy' ) ) )
+            // InternalMml.g:1584:2: ( (enumLiteral_0= 'balanced_accuracy' ) | (enumLiteral_1= 'recall' ) | (enumLiteral_2= 'precision' ) | (enumLiteral_3= 'F1' ) | (enumLiteral_4= 'accuracy' ) | (enumLiteral_5= 'macro_recall' ) | (enumLiteral_6= 'macro_precision' ) | (enumLiteral_7= 'macro_F1' ) | (enumLiteral_8= 'macro_accuracy' ) )
             {
-            // InternalMml.g:1577:2: ( (enumLiteral_0= 'balanced_accuracy' ) | (enumLiteral_1= 'recall' ) | (enumLiteral_2= 'precision' ) | (enumLiteral_3= 'F1' ) | (enumLiteral_4= 'accuracy' ) | (enumLiteral_5= 'macro_recall' ) | (enumLiteral_6= 'macro_precision' ) | (enumLiteral_7= 'macro_F1' ) | (enumLiteral_8= 'macro_accuracy' ) )
-            int alt29=9;
+            // InternalMml.g:1584:2: ( (enumLiteral_0= 'balanced_accuracy' ) | (enumLiteral_1= 'recall' ) | (enumLiteral_2= 'precision' ) | (enumLiteral_3= 'F1' ) | (enumLiteral_4= 'accuracy' ) | (enumLiteral_5= 'macro_recall' ) | (enumLiteral_6= 'macro_precision' ) | (enumLiteral_7= 'macro_F1' ) | (enumLiteral_8= 'macro_accuracy' ) )
+            int alt30=9;
             switch ( input.LA(1) ) {
-            case 55:
-                {
-                alt29=1;
-                }
-                break;
             case 56:
                 {
-                alt29=2;
+                alt30=1;
                 }
                 break;
             case 57:
                 {
-                alt29=3;
+                alt30=2;
                 }
                 break;
             case 58:
                 {
-                alt29=4;
+                alt30=3;
                 }
                 break;
             case 59:
                 {
-                alt29=5;
+                alt30=4;
                 }
                 break;
             case 60:
                 {
-                alt29=6;
+                alt30=5;
                 }
                 break;
             case 61:
                 {
-                alt29=7;
+                alt30=6;
                 }
                 break;
             case 62:
                 {
-                alt29=8;
+                alt30=7;
                 }
                 break;
             case 63:
                 {
-                alt29=9;
+                alt30=8;
+                }
+                break;
+            case 64:
+                {
+                alt30=9;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 29, 0, input);
+                    new NoViableAltException("", 30, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt29) {
+            switch (alt30) {
                 case 1 :
-                    // InternalMml.g:1578:3: (enumLiteral_0= 'balanced_accuracy' )
+                    // InternalMml.g:1585:3: (enumLiteral_0= 'balanced_accuracy' )
                     {
-                    // InternalMml.g:1578:3: (enumLiteral_0= 'balanced_accuracy' )
-                    // InternalMml.g:1579:4: enumLiteral_0= 'balanced_accuracy'
+                    // InternalMml.g:1585:3: (enumLiteral_0= 'balanced_accuracy' )
+                    // InternalMml.g:1586:4: enumLiteral_0= 'balanced_accuracy'
                     {
-                    enumLiteral_0=(Token)match(input,55,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,56,FOLLOW_2); 
 
                     				current = grammarAccess.getValidationMetricAccess().getBALANCED_ACCURACYEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getValidationMetricAccess().getBALANCED_ACCURACYEnumLiteralDeclaration_0());
@@ -4215,12 +4254,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMml.g:1586:3: (enumLiteral_1= 'recall' )
+                    // InternalMml.g:1593:3: (enumLiteral_1= 'recall' )
                     {
-                    // InternalMml.g:1586:3: (enumLiteral_1= 'recall' )
-                    // InternalMml.g:1587:4: enumLiteral_1= 'recall'
+                    // InternalMml.g:1593:3: (enumLiteral_1= 'recall' )
+                    // InternalMml.g:1594:4: enumLiteral_1= 'recall'
                     {
-                    enumLiteral_1=(Token)match(input,56,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,57,FOLLOW_2); 
 
                     				current = grammarAccess.getValidationMetricAccess().getRECALLEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getValidationMetricAccess().getRECALLEnumLiteralDeclaration_1());
@@ -4232,12 +4271,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalMml.g:1594:3: (enumLiteral_2= 'precision' )
+                    // InternalMml.g:1601:3: (enumLiteral_2= 'precision' )
                     {
-                    // InternalMml.g:1594:3: (enumLiteral_2= 'precision' )
-                    // InternalMml.g:1595:4: enumLiteral_2= 'precision'
+                    // InternalMml.g:1601:3: (enumLiteral_2= 'precision' )
+                    // InternalMml.g:1602:4: enumLiteral_2= 'precision'
                     {
-                    enumLiteral_2=(Token)match(input,57,FOLLOW_2); 
+                    enumLiteral_2=(Token)match(input,58,FOLLOW_2); 
 
                     				current = grammarAccess.getValidationMetricAccess().getPRECISIONEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_2, grammarAccess.getValidationMetricAccess().getPRECISIONEnumLiteralDeclaration_2());
@@ -4249,12 +4288,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalMml.g:1602:3: (enumLiteral_3= 'F1' )
+                    // InternalMml.g:1609:3: (enumLiteral_3= 'F1' )
                     {
-                    // InternalMml.g:1602:3: (enumLiteral_3= 'F1' )
-                    // InternalMml.g:1603:4: enumLiteral_3= 'F1'
+                    // InternalMml.g:1609:3: (enumLiteral_3= 'F1' )
+                    // InternalMml.g:1610:4: enumLiteral_3= 'F1'
                     {
-                    enumLiteral_3=(Token)match(input,58,FOLLOW_2); 
+                    enumLiteral_3=(Token)match(input,59,FOLLOW_2); 
 
                     				current = grammarAccess.getValidationMetricAccess().getF1EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_3, grammarAccess.getValidationMetricAccess().getF1EnumLiteralDeclaration_3());
@@ -4266,12 +4305,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalMml.g:1610:3: (enumLiteral_4= 'accuracy' )
+                    // InternalMml.g:1617:3: (enumLiteral_4= 'accuracy' )
                     {
-                    // InternalMml.g:1610:3: (enumLiteral_4= 'accuracy' )
-                    // InternalMml.g:1611:4: enumLiteral_4= 'accuracy'
+                    // InternalMml.g:1617:3: (enumLiteral_4= 'accuracy' )
+                    // InternalMml.g:1618:4: enumLiteral_4= 'accuracy'
                     {
-                    enumLiteral_4=(Token)match(input,59,FOLLOW_2); 
+                    enumLiteral_4=(Token)match(input,60,FOLLOW_2); 
 
                     				current = grammarAccess.getValidationMetricAccess().getACCURACYEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_4, grammarAccess.getValidationMetricAccess().getACCURACYEnumLiteralDeclaration_4());
@@ -4283,12 +4322,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalMml.g:1618:3: (enumLiteral_5= 'macro_recall' )
+                    // InternalMml.g:1625:3: (enumLiteral_5= 'macro_recall' )
                     {
-                    // InternalMml.g:1618:3: (enumLiteral_5= 'macro_recall' )
-                    // InternalMml.g:1619:4: enumLiteral_5= 'macro_recall'
+                    // InternalMml.g:1625:3: (enumLiteral_5= 'macro_recall' )
+                    // InternalMml.g:1626:4: enumLiteral_5= 'macro_recall'
                     {
-                    enumLiteral_5=(Token)match(input,60,FOLLOW_2); 
+                    enumLiteral_5=(Token)match(input,61,FOLLOW_2); 
 
                     				current = grammarAccess.getValidationMetricAccess().getMACRO_RECALLEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_5, grammarAccess.getValidationMetricAccess().getMACRO_RECALLEnumLiteralDeclaration_5());
@@ -4300,12 +4339,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // InternalMml.g:1626:3: (enumLiteral_6= 'macro_precision' )
+                    // InternalMml.g:1633:3: (enumLiteral_6= 'macro_precision' )
                     {
-                    // InternalMml.g:1626:3: (enumLiteral_6= 'macro_precision' )
-                    // InternalMml.g:1627:4: enumLiteral_6= 'macro_precision'
+                    // InternalMml.g:1633:3: (enumLiteral_6= 'macro_precision' )
+                    // InternalMml.g:1634:4: enumLiteral_6= 'macro_precision'
                     {
-                    enumLiteral_6=(Token)match(input,61,FOLLOW_2); 
+                    enumLiteral_6=(Token)match(input,62,FOLLOW_2); 
 
                     				current = grammarAccess.getValidationMetricAccess().getMACRO_PRECISIONEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_6, grammarAccess.getValidationMetricAccess().getMACRO_PRECISIONEnumLiteralDeclaration_6());
@@ -4317,12 +4356,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // InternalMml.g:1634:3: (enumLiteral_7= 'macro_F1' )
+                    // InternalMml.g:1641:3: (enumLiteral_7= 'macro_F1' )
                     {
-                    // InternalMml.g:1634:3: (enumLiteral_7= 'macro_F1' )
-                    // InternalMml.g:1635:4: enumLiteral_7= 'macro_F1'
+                    // InternalMml.g:1641:3: (enumLiteral_7= 'macro_F1' )
+                    // InternalMml.g:1642:4: enumLiteral_7= 'macro_F1'
                     {
-                    enumLiteral_7=(Token)match(input,62,FOLLOW_2); 
+                    enumLiteral_7=(Token)match(input,63,FOLLOW_2); 
 
                     				current = grammarAccess.getValidationMetricAccess().getMACRO_F1EnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_7, grammarAccess.getValidationMetricAccess().getMACRO_F1EnumLiteralDeclaration_7());
@@ -4334,12 +4373,12 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // InternalMml.g:1642:3: (enumLiteral_8= 'macro_accuracy' )
+                    // InternalMml.g:1649:3: (enumLiteral_8= 'macro_accuracy' )
                     {
-                    // InternalMml.g:1642:3: (enumLiteral_8= 'macro_accuracy' )
-                    // InternalMml.g:1643:4: enumLiteral_8= 'macro_accuracy'
+                    // InternalMml.g:1649:3: (enumLiteral_8= 'macro_accuracy' )
+                    // InternalMml.g:1650:4: enumLiteral_8= 'macro_accuracy'
                     {
-                    enumLiteral_8=(Token)match(input,63,FOLLOW_2); 
+                    enumLiteral_8=(Token)match(input,64,FOLLOW_2); 
 
                     				current = grammarAccess.getValidationMetricAccess().getMACRO_ACCURACYEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_8, grammarAccess.getValidationMetricAccess().getMACRO_ACCURACYEnumLiteralDeclaration_8());
@@ -4379,37 +4418,37 @@ public class InternalMmlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000002240002000L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000002240000000L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000004480002000L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000004480000000L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000018000000000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x00001E0000000000L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000030000000000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x00003C0000000000L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000005988000L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x000000000D988000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000070002L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000060002L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0001E00000000000L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0003C00000000000L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000600002L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000400002L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0006000000000000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x000C000000000000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000002600002L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000018020002L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0078000000000000L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000010020002L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000030020002L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x00F0000000000000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000020020002L});
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000020000030L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000040000030L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000200000002L});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0xFF80000000000000L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0xFF80000000000002L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0xFF00000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0xFF00000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000008000000000L});
 
 }

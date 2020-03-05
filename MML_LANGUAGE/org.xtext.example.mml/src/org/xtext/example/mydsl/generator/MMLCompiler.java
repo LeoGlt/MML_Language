@@ -96,10 +96,10 @@ public class MMLCompiler {
 			
 		}
 		else{
-			//Crossval with Python
 			int nb_fold = validation_method.getNumber();
-			String CodeValidation = "";
-			pandasCode += CodeValidation;
+			//Crossval with Python
+			pythonImport+="from sklearn.model_selection import cross_val_score\n"+
+						"import numpy as np\n";
 			//Crossval with R
 			
 		}
@@ -124,16 +124,12 @@ public class MMLCompiler {
 					
 					if (dt.isMaxdepthSpecified()) {
 						String algoTraining = "clf = tree.DecisionTreeClassifier(criterion = \"" 
-								+ criterion + "\", max_depth = " + maxDepth +")\n" + 
-								"clf = clf.fit(X_train, y_train)\n" +
-								"y_pred = clf.predict(X_test)\n";
+								+ criterion + "\", max_depth = " + maxDepth +")\n";
 						pandasCode += algoTraining;
 					}
 					else {
 						String algoTraining = "clf = tree.DecisionTreeClassifier(criterion = \"" 
-								+ criterion + "\")\n" + 
-								"clf = clf.fit(X_train, y_train)\n" +
-								"y_pred = clf.predict(X_test)\n";
+								+ criterion + "\")\n";
 						pandasCode += algoTraining;
 					}
 					
@@ -152,9 +148,7 @@ public class MMLCompiler {
 					if (svm.isGammaSpecified()) {
 						codeGamma = svm.getGamma();
 					}
-					String algoTraining = "clf = SVC(gamma=" + codeGamma +",C=" +codeC + ", kernel = \""+ kernel +"\")\n" + 
-							"clf.fit(X_train, y_train)\n" +
-							"y_pred=clf.predict(X_test)\n";
+					String algoTraining = "clf = SVC(gamma=" + codeGamma +",C=" +codeC + ", kernel = \""+ kernel +"\")\n";
 					pandasCode += algoTraining;
 				}
 				if (mlalgo instanceof RandomForest) {
@@ -170,16 +164,12 @@ public class MMLCompiler {
 					System.out.println(criterion);
 					if (randomforest.isMaxdepthSpecified()) {
 						String algoTraining = "clf = RandomForestClassifier(criterion = \"" + criterion +"\", n_estimators = "
-								+ Nestim+",max_depth="+ maxDepth + " ,random_state = 42)\n"
-								+ "clf.fit(X_train,y_train)\n" +
-								"y_pred=clf.predict(X_test)\n";
+								+ Nestim+",max_depth="+ maxDepth + " ,random_state = 42)\n";
 						pandasCode += algoTraining;
 					}
 					else {
 						String algoTraining = "clf = RandomForestClassifier(criterion = \"" + criterion +"\", n_estimators = "
-								+ Nestim+",random_state = 42)\n"
-								+ "clf.fit(X_train,y_train)\n" +
-								"y_pred=clf.predict(X_test)\n";
+								+ Nestim+",random_state = 42)\n";
 						pandasCode += algoTraining;
 					}
 					
@@ -201,12 +191,16 @@ public class MMLCompiler {
 							", tol=" + tol +
 							", C=" + C +
 							
-							",random_state=0, multi_class='auto')\n"
-							+ "clf.fit(X_train, y_train)\n"
-							+ "y_pred=clf.predict(X_test)\n";
+							",random_state=0, multi_class='auto')\n";
 					pandasCode+= algoTraining;
 							
 				}
+				if (validation_method instanceof TrainingTest) {
+					pandasCode+="clf.fit(X_train, y_train)\n" 
+							+"y_pred=clf.predict(X_test)\n";
+				}
+				
+				
 			}
 			if (framework == FrameworkLang.R) {
 				System.out.println("R is targeted");
@@ -293,10 +287,18 @@ public class MMLCompiler {
 
 			if (metric == ValidationMetric.RECALL) {
 				// Recall for Python
-				pythonImport+="from sklearn.metrics import recall_score\n";
-				String validationCode = "recall = recall_score(y_test, y_pred, average = None)\n"+
-									"print(recall)\n";
-				pandasCode+= validationCode;
+				if (validation_method instanceof TrainingTest) {
+					pythonImport+="from sklearn.metrics import recall_score\n";
+					String validationCode = "recall = recall_score(y_test, y_pred, average = None)\n"+
+										"print(recall)\n";
+					pandasCode+= validationCode;
+				}
+				else {
+					String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall')"+
+											"print(recall)";
+					pandasCode+=validationCode;
+
+				}
 				// Recall for R
 				String validationCodeR = "recall = recall(mat_conf, reference = y_test, relevant = \"Relevant\")\n";
 				Rcode += validationCodeR;
@@ -340,8 +342,9 @@ public class MMLCompiler {
 		//Final R Code
 		Rcode = RImport + Rcode;
 		
-		return pandasCode + Rcode;
+		
 		}
+		return pandasCode + Rcode;
 	}
 	
 	private String mkValueInSingleQuote(String val) {

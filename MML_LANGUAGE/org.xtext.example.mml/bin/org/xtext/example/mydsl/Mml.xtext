@@ -76,7 +76,7 @@ RandomForest: {RandomForest}
 
 
 LogisticRegression: {LogisticRegression}
-	'LogisticRegression' (penaltySpecified?='penalty=' penalty= regPenalty)?
+	('LogisticRegression'|'LR') (penaltySpecified?='penalty=' penalty= regPenalty)?
 	(tolSpecified?='tol=' tol=FLOAT)?
 	(CSpecified?='C=' C=FLOAT)?
 ; 

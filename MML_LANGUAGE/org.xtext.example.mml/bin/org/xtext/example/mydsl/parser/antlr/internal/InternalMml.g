@@ -781,16 +781,23 @@ ruleLogisticRegression returns [EObject current=null]
 					$current);
 			}
 		)
-		otherlv_1='LogisticRegression'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getLogisticRegressionAccess().getLogisticRegressionKeyword_1());
-		}
+		(
+			otherlv_1='LogisticRegression'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getLogisticRegressionAccess().getLogisticRegressionKeyword_1_0());
+			}
+			    |
+			otherlv_2='LR'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getLogisticRegressionAccess().getLRKeyword_1_1());
+			}
+		)
 		(
 			(
 				(
-					lv_penaltySpecified_2_0='penalty='
+					lv_penaltySpecified_3_0='penalty='
 					{
-						newLeafNode(lv_penaltySpecified_2_0, grammarAccess.getLogisticRegressionAccess().getPenaltySpecifiedPenaltyKeyword_2_0_0());
+						newLeafNode(lv_penaltySpecified_3_0, grammarAccess.getLogisticRegressionAccess().getPenaltySpecifiedPenaltyKeyword_2_0_0());
 					}
 					{
 						if ($current==null) {
@@ -805,7 +812,7 @@ ruleLogisticRegression returns [EObject current=null]
 					{
 						newCompositeNode(grammarAccess.getLogisticRegressionAccess().getPenaltyRegPenaltyEnumRuleCall_2_1_0());
 					}
-					lv_penalty_3_0=ruleregPenalty
+					lv_penalty_4_0=ruleregPenalty
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLogisticRegressionRule());
@@ -813,7 +820,7 @@ ruleLogisticRegression returns [EObject current=null]
 						set(
 							$current,
 							"penalty",
-							lv_penalty_3_0,
+							lv_penalty_4_0,
 							"org.xtext.example.mydsl.Mml.regPenalty");
 						afterParserOrEnumRuleCall();
 					}
@@ -823,9 +830,9 @@ ruleLogisticRegression returns [EObject current=null]
 		(
 			(
 				(
-					lv_tolSpecified_4_0='tol='
+					lv_tolSpecified_5_0='tol='
 					{
-						newLeafNode(lv_tolSpecified_4_0, grammarAccess.getLogisticRegressionAccess().getTolSpecifiedTolKeyword_3_0_0());
+						newLeafNode(lv_tolSpecified_5_0, grammarAccess.getLogisticRegressionAccess().getTolSpecifiedTolKeyword_3_0_0());
 					}
 					{
 						if ($current==null) {
@@ -840,7 +847,7 @@ ruleLogisticRegression returns [EObject current=null]
 					{
 						newCompositeNode(grammarAccess.getLogisticRegressionAccess().getTolFLOATParserRuleCall_3_1_0());
 					}
-					lv_tol_5_0=ruleFLOAT
+					lv_tol_6_0=ruleFLOAT
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLogisticRegressionRule());
@@ -848,7 +855,7 @@ ruleLogisticRegression returns [EObject current=null]
 						set(
 							$current,
 							"tol",
-							lv_tol_5_0,
+							lv_tol_6_0,
 							"org.xtext.example.mydsl.Mml.FLOAT");
 						afterParserOrEnumRuleCall();
 					}
@@ -858,9 +865,9 @@ ruleLogisticRegression returns [EObject current=null]
 		(
 			(
 				(
-					lv_CSpecified_6_0='C='
+					lv_CSpecified_7_0='C='
 					{
-						newLeafNode(lv_CSpecified_6_0, grammarAccess.getLogisticRegressionAccess().getCSpecifiedCKeyword_4_0_0());
+						newLeafNode(lv_CSpecified_7_0, grammarAccess.getLogisticRegressionAccess().getCSpecifiedCKeyword_4_0_0());
 					}
 					{
 						if ($current==null) {
@@ -875,7 +882,7 @@ ruleLogisticRegression returns [EObject current=null]
 					{
 						newCompositeNode(grammarAccess.getLogisticRegressionAccess().getCFLOATParserRuleCall_4_1_0());
 					}
-					lv_C_7_0=ruleFLOAT
+					lv_C_8_0=ruleFLOAT
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLogisticRegressionRule());
@@ -883,7 +890,7 @@ ruleLogisticRegression returns [EObject current=null]
 						set(
 							$current,
 							"C",
-							lv_C_7_0,
+							lv_C_8_0,
 							"org.xtext.example.mydsl.Mml.FLOAT");
 						afterParserOrEnumRuleCall();
 					}

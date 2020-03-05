@@ -34,6 +34,7 @@ public class MmlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMLAlgorithmAccess().getAlternatives(), "rule__MLAlgorithm__Alternatives");
 			builder.put(grammarAccess.getDTAccess().getAlternatives_1(), "rule__DT__Alternatives_1");
 			builder.put(grammarAccess.getRandomForestAccess().getAlternatives_1(), "rule__RandomForest__Alternatives_1");
+			builder.put(grammarAccess.getLogisticRegressionAccess().getAlternatives_1(), "rule__LogisticRegression__Alternatives_1");
 			builder.put(grammarAccess.getXFormulaAccess().getAlternatives(), "rule__XFormula__Alternatives");
 			builder.put(grammarAccess.getFormulaItemAccess().getAlternatives(), "rule__FormulaItem__Alternatives");
 			builder.put(grammarAccess.getStratificationMethodAccess().getAlternatives(), "rule__StratificationMethod__Alternatives");

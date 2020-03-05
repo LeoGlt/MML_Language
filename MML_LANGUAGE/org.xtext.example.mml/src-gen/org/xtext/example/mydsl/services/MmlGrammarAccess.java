@@ -448,7 +448,9 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.LogisticRegression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cLogisticRegressionAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cLogisticRegressionKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Keyword cLogisticRegressionKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
+		private final Keyword cLRKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Assignment cPenaltySpecifiedAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
 		private final Keyword cPenaltySpecifiedPenaltyKeyword_2_0_0 = (Keyword)cPenaltySpecifiedAssignment_2_0.eContents().get(0);
@@ -466,20 +468,25 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCFLOATParserRuleCall_4_1_0 = (RuleCall)cCAssignment_4_1.eContents().get(0);
 		
 		//LogisticRegression:
-		//	{LogisticRegression}
-		//	'LogisticRegression' (penaltySpecified?='penalty=' penalty=regPenalty)? (tolSpecified?='tol=' tol=FLOAT)?
-		//	(CSpecified?='C=' C=FLOAT)?;
+		//	{LogisticRegression} ('LogisticRegression' | 'LR') (penaltySpecified?='penalty=' penalty=regPenalty)?
+		//	(tolSpecified?='tol=' tol=FLOAT)? (CSpecified?='C=' C=FLOAT)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{LogisticRegression} 'LogisticRegression' (penaltySpecified?='penalty=' penalty=regPenalty)? (tolSpecified?='tol='
-		//tol=FLOAT)? (CSpecified?='C=' C=FLOAT)?
+		//{LogisticRegression} ('LogisticRegression' | 'LR') (penaltySpecified?='penalty=' penalty=regPenalty)?
+		//(tolSpecified?='tol=' tol=FLOAT)? (CSpecified?='C=' C=FLOAT)?
 		public Group getGroup() { return cGroup; }
 		
 		//{LogisticRegression}
 		public Action getLogisticRegressionAction_0() { return cLogisticRegressionAction_0; }
 		
+		//('LogisticRegression' | 'LR')
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
 		//'LogisticRegression'
-		public Keyword getLogisticRegressionKeyword_1() { return cLogisticRegressionKeyword_1; }
+		public Keyword getLogisticRegressionKeyword_1_0() { return cLogisticRegressionKeyword_1_0; }
+		
+		//'LR'
+		public Keyword getLRKeyword_1_1() { return cLRKeyword_1_1; }
 		
 		//(penaltySpecified?='penalty=' penalty=regPenalty)?
 		public Group getGroup_2() { return cGroup_2; }
@@ -1315,9 +1322,8 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//LogisticRegression:
-	//	{LogisticRegression}
-	//	'LogisticRegression' (penaltySpecified?='penalty=' penalty=regPenalty)? (tolSpecified?='tol=' tol=FLOAT)?
-	//	(CSpecified?='C=' C=FLOAT)?;
+	//	{LogisticRegression} ('LogisticRegression' | 'LR') (penaltySpecified?='penalty=' penalty=regPenalty)?
+	//	(tolSpecified?='tol=' tol=FLOAT)? (CSpecified?='C=' C=FLOAT)?;
 	public LogisticRegressionElements getLogisticRegressionAccess() {
 		return pLogisticRegression;
 	}
