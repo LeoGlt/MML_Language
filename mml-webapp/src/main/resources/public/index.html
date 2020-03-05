@@ -33,23 +33,32 @@
       <h2>Méthode de validation</h2>
       <p>Choisissez une méthode de validation de vos résultats</p>
       <div>
-        <input type="radio" id="split" name="validation" value="split" checked>
+        <input type="radio" id="split" name="validation" value="split" checked onclick="chooseValidation(this);">
         <label for="split">Séparation en deux échantillons</label>
       </div>
 
       <div>
-        <input type="radio" id="crossval" name="validation" value="crossval">
+        <input type="radio" id="crossval" name="validation" value="crossval" onclick="chooseValidation(this);">
         <label for="split">Validation croisée</label>
       </div>
-    </div>
 
-    <div class=selection>
-      <h2>Pourcentage de données de validation</h2>
-      <p>Sélectionnez le pourcentage de données qui serviront pour l'entrainement du modèle</p>
-      <div>
-        <input type="range" id="start" name="volume" min="0" max="100" step="5" value="80">
-        <label for="Select pourcentage">Pourcentage retenu : <span class="output">80
+      <div id="Split_val" style = "display:block">
+        <h2>Pourcentage de données de validation</h2>
+        <p>Sélectionnez le pourcentage de données qui serviront pour l'entrainement du modèle</p>
+        <div>
+          <input type="range" id="split_val" name="split_val" min="0" max="100" step="5" value="80">
+          <label for="Select pourcentage">Pourcentage retenu : <span class="output">80
+        </div>
       </div>
+
+      <div id="Cross_val" style = "display:none">
+        <h2>Number of folds</h2>
+        <p>Select the number of folds for the cross-validation</p>
+        <div>
+          <form name="folds_val" id="folds"> <textarea name="folds" rows="1" cols="10"></textarea></form>
+        </div>
+      </div>
+
     </div>
 
 

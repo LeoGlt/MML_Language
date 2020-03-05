@@ -26,7 +26,7 @@ function GenerateAlgoHTML(){
   
   new_algo.innerHTML += head_html + DT_html + SVM_html + LR_html + RF_html + framework_html + end_html;
   algo_div.insertBefore(new_algo,document.getElementById("Add_algo_button"));
-  undisplayAll(NB_algo)
+  undisplayAlgos(NB_algo)
 };
 
 
@@ -137,7 +137,7 @@ ADD.addEventListener('click', GenerateAlgoHTML);
 REM.addEventListener('click', RemoveAlgo);
 //Les algos
 
-function undisplayAll(nb){
+function undisplayAlgos(nb){
   document.getElementById("DT_param"+nb).style.display = "none";
   document.getElementById("SVM_param"+nb).style.display = "none";
   document.getElementById("LR_param"+nb).style.display = "none";
@@ -147,7 +147,7 @@ function undisplayAll(nb){
 function chooseAlgo(algo){
   
   let nb = algo.id.charAt(algo.id.length-1);
-  undisplayAll(nb);
+  undisplayAlgos(nb);
   console.log(algo.id);
   if(algo.id.substr(0,2) == "DT"){
     
@@ -164,6 +164,19 @@ function chooseAlgo(algo){
   };
   
 };
+
+function chooseValidation(method){
+
+  if(method.value == "crossval"){
+    document.getElementById("Split_val").style.display = "none";
+    document.getElementById("Cross_val").style.display = "block";
+  }
+  else{
+    document.getElementById("Split_val").style.display = "block";
+    document.getElementById("Cross_val").style.display = "none";
+  }
+
+}
 
 
 
@@ -194,9 +207,6 @@ let COMP = document.getElementById("Compile");
   
   fileSystem.DeleteFile("./tutorielsenfolie.txt");
 };*/
-
-
-
 
 
 function GenerateCompiler(){
