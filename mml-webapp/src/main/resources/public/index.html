@@ -12,7 +12,7 @@
       <h2>Data</h2>
       <p>Upload a CSV ou XLSX file</p>
       <input id="fileSelect" value="Choisir votre jeu de données" type="file" accept=".csv, .xlsx" />
-      <p>Choose a separator if needed :</p>
+      <p>Choose a separator if need be :</p>
       <input type="radio" name="Sep" id="sepcol" value="," checked>,</input>
       <input type="radio" name="Sep" id="sepsemicol" value=";">;</input>
     </div>
@@ -41,16 +41,16 @@
         <input type="radio" id="crossval" name="validation" value="crossval" onclick="chooseValidation(this);">
         <label for="split">Cross-validation</label>
       </div>
-      <div id="Split_val" style = "display:block">
+      <div id="Split_val" style="display:block">
         <h2>Training data</h2>
-      <p>Choose the percentage of data used for the training set</p>
+        <p>Choose the percentage of data used for the training set</p>
         <div>
           <input type="range" id="split_val" name="split_val" min="0" max="100" step="5" value="80">
           <label for="Select pourcentage">Pourcentage retenu : <span class="output">80
         </div>
       </div>
 
-      <div id="Cross_val" style = "display:none">
+      <div id="Cross_val" style="display:none">
         <h2>Number of folds</h2>
         <p>Select the number of folds for the cross-validation</p>
         <div>
@@ -65,17 +65,50 @@
       <h2>Desired outputs</h2>
       <p>Choose the desired outputs</p>
       <div>
-        <input type="checkbox" id="acctest" name="model" value="acctest" checked>
-        <label for="acctest">Accuracy test</label>
+        <input type="checkbox" id="metrics" name="output" value="metrics" onclick="chooseMetric(this);">
+        <label for="metrics">Metrics</label>
+        <div id= "metric_choice" style="display:none;margin-left:1em;">
+          <input type="checkbox" id="balanced_accuracy" name="metric" value="balanced_accuracy">
+          <label for="balanced_accuracy">Balanced accuracy</label>
+
+          <input type="checkbox" id="recall" name="metric" value="recall">
+          <label for="recall">Recall</label>
+
+          <input type="checkbox" id="precision" name="metric" value="precision">
+          <label for="precision">Precision</label>
+
+          <input type="checkbox" id="F1" name="metric" value="F1">
+          <label for="F1">F1</label>
+
+          <input type="checkbox" id="accuracy" name="metric" value="accuracy">
+          <label for="accuracy">Accuracy</label>
+
+          <input type="checkbox" id="macro_recall" name="metric" value="macro_recall">
+          <label for="macro_recall">Macro recall</label>
+
+          <input type="checkbox" id="macro_precision" name="metric" value="macro_precision">
+          <label for="macro_precision">Macro precision</label>
+
+          <input type="checkbox" id="macro_F1" name="metric" value="macro_F1">
+          <label for="macro_F1">Macro F1</label>
+
+          <input type="checkbox" id="macro_accuracy" name="metric" value="macro_accuracy">
+          <label for="macro_accuracy">Macro accuracy</label>
+
+        </div>
+
+
       </div>
 
+
+
       <div>
-        <input type="checkbox" id="graph" name="model" value="graph" checked>
+        <input type="checkbox" id="graph" name="output" value="graph" checked>
         <label for="acctest">Plots</label>
       </div>
 
       <div>
-        <input type="checkbox" id="graph" name="model" value="graph">
+        <input type="checkbox" id="graph" name="output" value="graph">
         <label for="acctest">.R and .py files</label>
       </div>
     </div>
@@ -96,5 +129,6 @@
 <link rel="stylesheet" href="style.css">
 
 <script src="script.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="CompileMML.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> >
  
