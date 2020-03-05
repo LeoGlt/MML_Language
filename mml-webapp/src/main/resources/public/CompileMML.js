@@ -104,7 +104,7 @@ function ValidationMML(){
     //metrics
     
     if(document.getElementById("metrics").checked){
-        
+
         var Metrics = document.getElementsByName("metric");
         for (var i = 0; i < Metrics.length; i++) {
             var met = Metrics[i];
@@ -121,9 +121,3 @@ function ValidationMML(){
 let COMP = document.getElementById("Compile");
 COMP.addEventListener('click', GenerateCompiler);
 
-var fileSent = document.getElementById("fileSelect");
-fileSent.addEventListener('change', GetFile);
-function GetFile() {
-  console.log(this.files[0]);
-  return (this.files[0]);
-};

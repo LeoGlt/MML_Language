@@ -6,15 +6,18 @@
 </head>
 
 <body>
-  <div class=questionnaire>
+  <div id = questionnaire class=questionnaire>
     <h2>Questionnaire</h2>
-    <div class=selection>
+    <div id = data class=selection>
       <h2>Data</h2>
       <p>Upload a CSV ou XLSX file</p>
       <input id="fileSelect" value="Choisir votre jeu de données" type="file" accept=".csv, .xlsx" />
       <p>Choose a separator if need be :</p>
       <input type="radio" name="Sep" id="sepcol" value="," checked>,</input>
       <input type="radio" name="Sep" id="sepsemicol" value=";">;</input>
+      
+      <div id='zone_insert'></div>
+
     </div>
 
     <div id="Algo" class=selection>
@@ -46,7 +49,7 @@
         <p>Choose the percentage of data used for the training set</p>
         <div>
           <input type="range" id="split_val" name="split_val" min="0" max="100" step="5" value="80">
-          <label for="Select pourcentage">Pourcentage retenu : <span class="output">80
+          <label for="Select pourcentage">Chosen pourcentage : <span class="output">80
         </div>
       </div>
 
@@ -67,7 +70,7 @@
       <div>
         <input type="checkbox" id="metrics" name="output" value="metrics" onclick="chooseMetric(this);">
         <label for="metrics">Metrics</label>
-        <div id= "metric_choice" style="display:none;margin-left:1em;">
+        <div id="metric_choice" style="display:none;margin-left:1em;">
           <input type="checkbox" id="balanced_accuracy" name="metric" value="balanced_accuracy">
           <label for="balanced_accuracy">Balanced accuracy</label>
 
@@ -130,5 +133,7 @@
 
 <script src="script.js"></script>
 <script src="CompileMML.js"></script>
+<script src="./papaparse.min.js"></script>
+<script src="csvFile.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> >
  

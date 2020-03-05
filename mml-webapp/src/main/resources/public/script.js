@@ -191,12 +191,9 @@ function chooseMetric(metrics) {
 
 }
 
-
-
-var sizePicker = document.querySelector('input[type="range"]');
-
-sizePicker.oninput = function () {
-  output.textContent = sizePicker.value;
+var SplitValidationSlider = document.querySelector('input[name="split_val"]');
+SplitValidationSlider.oninput = function () {
+  output.textContent = SplitValidationSlider.value;
 };
 
 var output = document.querySelector('.output');
