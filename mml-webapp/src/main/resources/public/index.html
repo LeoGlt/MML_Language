@@ -10,9 +10,9 @@
     <h2>Questionnaire</h2>
     <div class=selection>
       <h2>Data</h2>
-      <p>Déposez ici un fichier CSV ou XLSX</p>
+      <p>Upload a CSV ou XLSX file</p>
       <input id="fileSelect" value="Choisir votre jeu de données" type="file" accept=".csv, .xlsx" />
-      <p>Selectionner un séparateur si besoin :</p>
+      <p>Choose a separator if needed :</p>
       <input type="radio" name="Sep" id="sepcol" value="," checked>,</input>
       <input type="radio" name="Sep" id="sepsemicol" value=";">;</input>
     </div>
@@ -30,56 +30,56 @@
     </div>
 
     <div class=selection>
-      <h2>Méthode de validation</h2>
-      <p>Choisissez une méthode de validation de vos résultats</p>
+      <h2>Validation method</h2>
+      <p>Choose a validation method for your results</p>
       <div>
         <input type="radio" id="split" name="validation" value="split" checked>
-        <label for="split">Séparation en deux échantillons</label>
+        <label for="split">Split into two sets</label>
       </div>
 
       <div>
         <input type="radio" id="crossval" name="validation" value="crossval">
-        <label for="split">Validation croisée</label>
+        <label for="split">Cross-validation</label>
       </div>
     </div>
 
     <div class=selection>
-      <h2>Pourcentage de données de validation</h2>
-      <p>Sélectionnez le pourcentage de données qui serviront pour l'entrainement du modèle</p>
+      <h2>Training data</h2>
+      <p>Choose the percentage of data used for the training set</p>
       <div>
         <input type="range" id="start" name="volume" min="0" max="100" step="5" value="80">
-        <label for="Select pourcentage">Pourcentage retenu : <span class="output">80
+        <label for="Select pourcentage">Select percentage : <span class="output">80
       </div>
     </div>
 
 
     <div class=selection>
-      <h2>Sorties souhaitées</h2>
-      <p>Veuillez selectionner les sorties souhaitées</p>
+      <h2>Desired outputs</h2>
+      <p>Choose the desired outputs</p>
       <div>
         <input type="checkbox" id="acctest" name="model" value="acctest" checked>
-        <label for="acctest">Test de la précision</label>
+        <label for="acctest">Accuracy test</label>
       </div>
 
       <div>
         <input type="checkbox" id="graph" name="model" value="graph" checked>
-        <label for="acctest">Graphiques</label>
+        <label for="acctest">Plots</label>
       </div>
 
       <div>
         <input type="checkbox" id="graph" name="model" value="graph">
-        <label for="acctest">Je souhaite obtenir les .R et .py qui sont utilisés</label>
+        <label for="acctest">.R and .py files</label>
       </div>
     </div>
 
     <div class=selection>
-      <h2>Avez vous terminé ?</h2>
-      <input type="button" value="Lancer traitements" id="Compile">
+      <h2>Begin data processing?</h2>
+      <input type="button" value="Go" id="Compile">
     </div>
   </div>
 
   <div class=results>
-    <h2>Résultats</h2>
+    <h2>Results</h2>
   </div>
 </body>
 
