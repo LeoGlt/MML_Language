@@ -142,6 +142,6 @@ TrainingTest:
  * 
  */
 enum ValidationMetric:
-	BALANCED_ACCURACY='balanced_accuracy' | RECALL='recall' | PRECISION='precision' | F1='F1' | ACCURACY='accuracy' | MACRO_RECALL='macro_recall' | MACRO_PRECISION='macro_precision' | MACRO_F1='macro_F1' | MACRO_ACCURACY='macro_accuracy'
+	BALANCED_ACCURACY='balanced_accuracy' | RECALL='recall' | PRECISION='precision' | F1='F1' | ACCURACY='accuracy'
 ; // TODO: can certainly be extended
 

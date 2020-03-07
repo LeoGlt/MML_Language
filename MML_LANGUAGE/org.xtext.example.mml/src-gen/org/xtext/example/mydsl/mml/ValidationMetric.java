@@ -68,47 +68,7 @@ public enum ValidationMetric implements Enumerator
    * @generated
    * @ordered
    */
-  ACCURACY(4, "ACCURACY", "accuracy"),
-
-  /**
-   * The '<em><b>MACRO RECALL</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #MACRO_RECALL_VALUE
-   * @generated
-   * @ordered
-   */
-  MACRO_RECALL(5, "MACRO_RECALL", "macro_recall"),
-
-  /**
-   * The '<em><b>MACRO PRECISION</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #MACRO_PRECISION_VALUE
-   * @generated
-   * @ordered
-   */
-  MACRO_PRECISION(6, "MACRO_PRECISION", "macro_precision"),
-
-  /**
-   * The '<em><b>MACRO F1</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #MACRO_F1_VALUE
-   * @generated
-   * @ordered
-   */
-  MACRO_F1(7, "MACRO_F1", "macro_F1"),
-
-  /**
-   * The '<em><b>MACRO ACCURACY</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #MACRO_ACCURACY_VALUE
-   * @generated
-   * @ordered
-   */
-  MACRO_ACCURACY(8, "MACRO_ACCURACY", "macro_accuracy");
+  ACCURACY(4, "ACCURACY", "accuracy");
 
   /**
    * The '<em><b>BALANCED ACCURACY</b></em>' literal value.
@@ -166,50 +126,6 @@ public enum ValidationMetric implements Enumerator
   public static final int ACCURACY_VALUE = 4;
 
   /**
-   * The '<em><b>MACRO RECALL</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #MACRO_RECALL
-   * @model literal="macro_recall"
-   * @generated
-   * @ordered
-   */
-  public static final int MACRO_RECALL_VALUE = 5;
-
-  /**
-   * The '<em><b>MACRO PRECISION</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #MACRO_PRECISION
-   * @model literal="macro_precision"
-   * @generated
-   * @ordered
-   */
-  public static final int MACRO_PRECISION_VALUE = 6;
-
-  /**
-   * The '<em><b>MACRO F1</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #MACRO_F1
-   * @model literal="macro_F1"
-   * @generated
-   * @ordered
-   */
-  public static final int MACRO_F1_VALUE = 7;
-
-  /**
-   * The '<em><b>MACRO ACCURACY</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #MACRO_ACCURACY
-   * @model literal="macro_accuracy"
-   * @generated
-   * @ordered
-   */
-  public static final int MACRO_ACCURACY_VALUE = 8;
-
-  /**
    * An array of all the '<em><b>Validation Metric</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -223,10 +139,6 @@ public enum ValidationMetric implements Enumerator
       PRECISION,
       F1,
       ACCURACY,
-      MACRO_RECALL,
-      MACRO_PRECISION,
-      MACRO_F1,
-      MACRO_ACCURACY,
     };
 
   /**
@@ -296,10 +208,6 @@ public enum ValidationMetric implements Enumerator
       case PRECISION_VALUE: return PRECISION;
       case F1_VALUE: return F1;
       case ACCURACY_VALUE: return ACCURACY;
-      case MACRO_RECALL_VALUE: return MACRO_RECALL;
-      case MACRO_PRECISION_VALUE: return MACRO_PRECISION;
-      case MACRO_F1_VALUE: return MACRO_F1;
-      case MACRO_ACCURACY_VALUE: return MACRO_ACCURACY;
     }
     return null;
   }

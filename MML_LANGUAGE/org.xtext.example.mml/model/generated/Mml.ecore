@@ -116,9 +116,5 @@
     <eLiterals name="PRECISION" value="2" literal="precision"/>
     <eLiterals name="F1" value="3" literal="F1"/>
     <eLiterals name="ACCURACY" value="4" literal="accuracy"/>
-    <eLiterals name="MACRO_RECALL" value="5" literal="macro_recall"/>
-    <eLiterals name="MACRO_PRECISION" value="6" literal="macro_precision"/>
-    <eLiterals name="MACRO_F1" value="7" literal="macro_F1"/>
-    <eLiterals name="MACRO_ACCURACY" value="8" literal="macro_accuracy"/>
   </eClassifiers>
 </ecore:EPackage>

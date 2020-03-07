@@ -29,10 +29,6 @@
 'l1'=53
 'l2'=52
 'linear'=47
-'macro_F1'=63
-'macro_accuracy'=64
-'macro_precision'=62
-'macro_recall'=61
 'max_depth='=21
 'mlframework'=13
 'n_estimators='=25
@@ -109,7 +105,3 @@ T__57=57
 T__58=58
 T__59=59
 T__60=60
-T__61=61
-T__62=62
-T__63=63
-T__64=64

@@ -38,10 +38,6 @@
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//ValidationMetric/PRECISION"/>
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//ValidationMetric/F1"/>
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//ValidationMetric/ACCURACY"/>
-      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//ValidationMetric/MACRO_RECALL"/>
-      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//ValidationMetric/MACRO_PRECISION"/>
-      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//ValidationMetric/MACRO_F1"/>
-      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//ValidationMetric/MACRO_ACCURACY"/>
     </genEnums>
     <genClasses ecoreClass="Mml.ecore#//MMLModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mml.ecore#//MMLModel/input"/>

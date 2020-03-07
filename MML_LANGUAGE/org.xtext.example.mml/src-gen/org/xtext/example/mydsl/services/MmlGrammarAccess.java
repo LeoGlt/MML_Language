@@ -1017,23 +1017,12 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cF1F1Keyword_3_0 = (Keyword)cF1EnumLiteralDeclaration_3.eContents().get(0);
 		private final EnumLiteralDeclaration cACCURACYEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
 		private final Keyword cACCURACYAccuracyKeyword_4_0 = (Keyword)cACCURACYEnumLiteralDeclaration_4.eContents().get(0);
-		private final EnumLiteralDeclaration cMACRO_RECALLEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
-		private final Keyword cMACRO_RECALLMacro_recallKeyword_5_0 = (Keyword)cMACRO_RECALLEnumLiteralDeclaration_5.eContents().get(0);
-		private final EnumLiteralDeclaration cMACRO_PRECISIONEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
-		private final Keyword cMACRO_PRECISIONMacro_precisionKeyword_6_0 = (Keyword)cMACRO_PRECISIONEnumLiteralDeclaration_6.eContents().get(0);
-		private final EnumLiteralDeclaration cMACRO_F1EnumLiteralDeclaration_7 = (EnumLiteralDeclaration)cAlternatives.eContents().get(7);
-		private final Keyword cMACRO_F1Macro_F1Keyword_7_0 = (Keyword)cMACRO_F1EnumLiteralDeclaration_7.eContents().get(0);
-		private final EnumLiteralDeclaration cMACRO_ACCURACYEnumLiteralDeclaration_8 = (EnumLiteralDeclaration)cAlternatives.eContents().get(8);
-		private final Keyword cMACRO_ACCURACYMacro_accuracyKeyword_8_0 = (Keyword)cMACRO_ACCURACYEnumLiteralDeclaration_8.eContents().get(0);
 		
 		//enum ValidationMetric:
-		//	BALANCED_ACCURACY='balanced_accuracy' | RECALL='recall' | PRECISION='precision' | F1 | ACCURACY='accuracy' |
-		//	MACRO_RECALL='macro_recall' | MACRO_PRECISION='macro_precision' | MACRO_F1='macro_F1' |
-		//	MACRO_ACCURACY='macro_accuracy';
+		//	BALANCED_ACCURACY='balanced_accuracy' | RECALL='recall' | PRECISION='precision' | F1 | ACCURACY='accuracy';
 		public EnumRule getRule() { return rule; }
 		
-		//BALANCED_ACCURACY='balanced_accuracy' | RECALL='recall' | PRECISION='precision' | F1 | ACCURACY='accuracy' |
-		//MACRO_RECALL='macro_recall' | MACRO_PRECISION='macro_precision' | MACRO_F1='macro_F1' | MACRO_ACCURACY='macro_accuracy'
+		//BALANCED_ACCURACY='balanced_accuracy' | RECALL='recall' | PRECISION='precision' | F1 | ACCURACY='accuracy'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//BALANCED_ACCURACY='balanced_accuracy'
@@ -1065,30 +1054,6 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'accuracy'
 		public Keyword getACCURACYAccuracyKeyword_4_0() { return cACCURACYAccuracyKeyword_4_0; }
-		
-		//MACRO_RECALL='macro_recall'
-		public EnumLiteralDeclaration getMACRO_RECALLEnumLiteralDeclaration_5() { return cMACRO_RECALLEnumLiteralDeclaration_5; }
-		
-		//'macro_recall'
-		public Keyword getMACRO_RECALLMacro_recallKeyword_5_0() { return cMACRO_RECALLMacro_recallKeyword_5_0; }
-		
-		//MACRO_PRECISION='macro_precision'
-		public EnumLiteralDeclaration getMACRO_PRECISIONEnumLiteralDeclaration_6() { return cMACRO_PRECISIONEnumLiteralDeclaration_6; }
-		
-		//'macro_precision'
-		public Keyword getMACRO_PRECISIONMacro_precisionKeyword_6_0() { return cMACRO_PRECISIONMacro_precisionKeyword_6_0; }
-		
-		//MACRO_F1='macro_F1'
-		public EnumLiteralDeclaration getMACRO_F1EnumLiteralDeclaration_7() { return cMACRO_F1EnumLiteralDeclaration_7; }
-		
-		//'macro_F1'
-		public Keyword getMACRO_F1Macro_F1Keyword_7_0() { return cMACRO_F1Macro_F1Keyword_7_0; }
-		
-		//MACRO_ACCURACY='macro_accuracy'
-		public EnumLiteralDeclaration getMACRO_ACCURACYEnumLiteralDeclaration_8() { return cMACRO_ACCURACYEnumLiteralDeclaration_8; }
-		
-		//'macro_accuracy'
-		public Keyword getMACRO_ACCURACYMacro_accuracyKeyword_8_0() { return cMACRO_ACCURACYMacro_accuracyKeyword_8_0; }
 	}
 	
 	private final MMLModelElements pMMLModel;
@@ -1456,9 +1421,7 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum ValidationMetric:
-	//	BALANCED_ACCURACY='balanced_accuracy' | RECALL='recall' | PRECISION='precision' | F1 | ACCURACY='accuracy' |
-	//	MACRO_RECALL='macro_recall' | MACRO_PRECISION='macro_precision' | MACRO_F1='macro_F1' |
-	//	MACRO_ACCURACY='macro_accuracy';
+	//	BALANCED_ACCURACY='balanced_accuracy' | RECALL='recall' | PRECISION='precision' | F1 | ACCURACY='accuracy';
 	public ValidationMetricElements getValidationMetricAccess() {
 		return eValidationMetric;
 	}
