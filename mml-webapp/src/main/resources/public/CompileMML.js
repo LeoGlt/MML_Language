@@ -6,6 +6,9 @@ function GenerateCompiler() {
     
     //algorithms
     mymml += AlgoMML();
+
+    //formula
+    mymml += FormulaMML();
     
     //validation et metrics
     mymml += ValidationMML();
@@ -84,6 +87,13 @@ function AlgoMML(){
 };
 
 function FormulaMML(){
+
+  var formulamml = "";
+  var selection = document.getElementById('variable_selection');
+  var targetvariable = selection.options[selection.selectedIndex].value;
+
+  formulamml += 'formula ' + targetvariable + ' ~ . \n';
+  return(formulamml)
 
 };
 

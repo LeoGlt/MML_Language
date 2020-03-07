@@ -4,11 +4,10 @@ fileSent.addEventListener('change', GetFile);
 
 
 function GetFile() {
-    //GetVariables(this.files[0])
+    
     var csvfile = this.files[0]
 
     Papa.parse(csvfile, {
-        delimiter: ";",
         header: true,
         complete: function(results) {
             console.log("Fields",results.meta.fields)
@@ -21,7 +20,6 @@ function GetFile() {
 };
 
 
-
 function CompleteVariableSelectMenu(fields){
 
     let var_div = document.getElementById("data");
@@ -30,10 +28,11 @@ function CompleteVariableSelectMenu(fields){
         let var_choice = document.createElement('div');
         var_choice.id = 'variable_cible'
 
-        var start = "<p>Choose the variable to predict :</p>  <select name='variable_cible'>";
+        var start = "<p>Choose the variable to predict :</p>  <select name='variable_cible' id='variable_selection'>";
         var opt = "";
         for(var i=0; i < fields.length; i++){
-            opt += GenerateFieldHTML(fields[i],i);
+            opt += GenerateFieldHTML(fields[i],i, toselect = (i == (fields.length - 1)));
+
         };
 
         var end = "</select>";
@@ -47,10 +46,16 @@ function CompleteVariableSelectMenu(fields){
     
 };
 
-function GenerateFieldHTML(variable,i){
+function GenerateFieldHTML(variable,i,toselect = false){
 
     var t = "";
-    t+= "<option id =" + String(i) + " value=" + variable + ">" + variable + "</option>";
+    if(toselect){
+        t+= "<option id =" + String(i) + " value=" + variable + " selected>" + variable + "</option>";
+    }
+    else{
+        t+= "<option id =" + String(i) + " value=" + variable + ">" + variable + "</option>";
+    }
+    
     return(t)
 
 }
