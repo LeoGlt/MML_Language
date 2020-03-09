@@ -54,8 +54,8 @@ function MakeSVMhtml(nb_algo) {
   t += '<div id="SVM_kernel' + String(nb_algo) + '" style = "margin-left:1em;"> Kernel :';
   t += '<input type="radio" id="linear' + String(nb_algo) + '"  name="kernel_svm' + String(nb_algo) + '" value="linear"> <label for="linear' + String(nb_algo) + '">linear</label>';
   t += '<input type="radio" id="rbf' + String(nb_algo) + '" name="kernel_svm' + String(nb_algo) + '" value="rbf" checked> <label for="rbf' + String(nb_algo) + '">rbf</label>';
-  t += '<input type="radio" id="polynomial' + String(nb_algo) + '" name="polynomial_svm' + String(nb_algo) + '" value="poly"> <label for="polynomial' + String(nb_algo) + '">polynomial</label>';
-  t += '<input type="radio" id="sigmoid' + String(nb_algo) + '" name="sigmoid_svm' + String(nb_algo) + '" value="sigmoid"> <label for="sigmoid' + String(nb_algo) + '">sigmoid</label> </div>';
+  t += '<input type="radio" id="polynomial' + String(nb_algo) + '" name="kernel_svm' + String(nb_algo) + '" value="poly"> <label for="polynomial' + String(nb_algo) + '">polynomial</label>';
+  t += '<input type="radio" id="sigmoid' + String(nb_algo) + '" name="kernel_svm' + String(nb_algo) + '" value="sigmoid"> <label for="sigmoid' + String(nb_algo) + '">sigmoid</label> </div>';
 
 
   t += '<div id="SVM_gamma' + String(nb_algo) + '" style = "margin-left:1em;"> Gamma : ';

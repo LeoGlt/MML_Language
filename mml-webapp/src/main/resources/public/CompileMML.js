@@ -92,7 +92,33 @@ function FormulaMML(){
   var selection = document.getElementById('variable_selection');
   var targetvariable = selection.options[selection.selectedIndex].value;
 
-  formulamml += 'formula ' + targetvariable + ' ~ . \n';
+  formulamml += 'formula ' + targetvariable + ' ~ ';
+
+  var predictive_variables = document.getElementsByName('predict_variables');
+  var all = true;
+  var predictors = "";
+
+  for(var i = 0; i < predictive_variables.length;i++){    
+    var v = predictive_variables[i];
+    console.log(v.value)
+    if(v.checked){
+      if(i > 0 && predictors != ""){
+        predictors += " + "
+      };
+      predictors += v.value;
+    }
+    else if(v.value != targetvariable){
+      var all = false;
+    };
+  };
+  
+  if(all){
+    formulamml += " . \n"
+  }
+  else{
+    formulamml += predictors + " \n"
+  }
+   
   return(formulamml)
 
 };
