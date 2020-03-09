@@ -104,7 +104,76 @@ public class MMLCompiler {
 			
 		}
 		
-		
+		EList<ValidationMetric> metrics = validation.getMetric();
+		for (ValidationMetric metric:metrics) {
+			// R confusion table
+
+			if (metric == ValidationMetric.RECALL) {
+				// Recall for Python
+				if (validation_method instanceof TrainingTest) {
+					pythonImport+="from sklearn.metrics import recall_score\n";
+					
+				}
+				else {
+					
+
+				}
+				// Recall for R
+				
+				
+
+			}
+			if (metric == ValidationMetric.ACCURACY) {
+				// Accuracy for Python
+				if (validation_method instanceof TrainingTest) {
+					pythonImport+="from sklearn.metrics import accuracy_score\n";
+					
+				}
+				else {
+					
+				}
+				// Accuracy for R
+				
+				
+
+			}
+			if (metric == ValidationMetric.BALANCED_ACCURACY) {
+				//BALANCED_ACCURACY for Python
+				if (validation_method instanceof TrainingTest) {
+					pythonImport+="from sklearn.metrics import balanced_accuracy_score\n";
+					
+				}
+				else {
+					
+				}
+				
+				//BALANCED_ACCURACY for R
+				
+			}
+			if (metric == ValidationMetric.F1) {
+				//F1 score for Python
+				if (validation_method instanceof TrainingTest) {
+					pythonImport+="from sklearn.metrics import f1_score\n";
+					
+				}
+				else {
+					
+				}
+				//F1 score for R
+				
+			}
+			if (metric == ValidationMetric.PRECISION) {
+				//Precision for Python
+				if (validation_method instanceof TrainingTest) {
+					pythonImport+="from sklearn.metrics import precision_score\n";
+					
+				}
+				else {
+					
+				}
+				//Precision for R
+			}
+		}
 		
 		
 		EList<MLChoiceAlgorithm> algos = mml.getAlgorithms();
@@ -268,73 +337,105 @@ public class MMLCompiler {
 					Rcode += algoTraining;
 							
 				}
-
+				
 			}
 			
 			else {
 				System.out.println("FRAMEWORK NOR SUPPORTED");
 			}
+			
+			}
+			
+			for (ValidationMetric metric:metrics) {
+				// R confusion table
+				Rcode += "mat_conf <- table(y_pred,y_test)\n";
+				RImport += "library(caret)";
+
+				if (metric == ValidationMetric.RECALL) {
+					// Recall for Python
+					if (validation_method instanceof TrainingTest) {
+						String validationCode = "recall = recall_score(y_test, y_pred, average = 'weighted')\n"+
+											"print(\"Recall : \" +  str(recall))\n";
+						pandasCode+= validationCode;
+					}
+					else {
+						String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall')"+
+												"print(recall)";
+						pandasCode+=validationCode;
+
+					}
+					// Recall for R
+					String validationCodeR = "recall = recall(mat_conf, reference = y_test, relevant = \"Relevant\")\n";
+					Rcode += validationCodeR;
+					
+
+				}
+				if (metric == ValidationMetric.ACCURACY) {
+					// Accuracy for Python
+					if (validation_method instanceof TrainingTest) {
+						String validationCode = "accuracy = accuracy_score(y_test, y_pred)\n"+
+											"print(\"Accuracy : \" + str(accuracy))";
+						pandasCode+= validationCode;
+					}
+					else {
+						String validationCode = "accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +")"+
+								"print(\"Accuracy : \" + str(np.mean(accuracy)))\n";
+						pandasCode+=validationCode;
+					}
+					// Accuracy for R
+					String validationCodeR = "accuracy = precision(mat_conf, reference = y_test, relevant = \"Relevant\")\n";
+					Rcode += validationCodeR;
+					
+
+				}
+				if (metric == ValidationMetric.BALANCED_ACCURACY) {
+					//BALANCED_ACCURACY for Python
+					if (validation_method instanceof TrainingTest) {
+						String validationCode = "balanced_accuracy = balanced_accuracy_score(y_test, y_pred) \n" + 
+								"print(\"Balanced_accuracy : \" +  str(balanced_accuracy))";
+						pandasCode+=validationCode;
+					}
+					else {
+						
+					}
+					
+					//BALANCED_ACCURACY for R
+					String validationCodeR = " first_row = mat_conf[1,1] / (mat_conf[1,1] + mat_conf[1,2])  \n" + 
+							" second_row <- mat_conf[2,2] / (mat_conf[2,1] + mat_conf[2,2])  \n" + 
+							" balanced_accuracy = (first_row + second_row)/2";
+					Rcode += validationCodeR;
+				}
+				if (metric == ValidationMetric.F1) {
+					//F1 score for Python
+					if (validation_method instanceof TrainingTest) {
+						String validationCode = "f1_score = f1_score(y_test, y_pred, average='weighted')\n" + 
+								"print(\"f1_score : \" + str(f1_score))";
+						pandasCode+=validationCode;
+					}
+					else {
+						
+					}
+					//F1 score for R
+					String validationCodeR = "F1 = F_meas(mat_conf, reference = y_test, relevant = \"Relevant\", beta = 1)\n";
+					Rcode += validationCodeR;
+				}
+				if (metric == ValidationMetric.PRECISION) {
+					//Precision for Python
+					if (validation_method instanceof TrainingTest) {
+						String validationCode = "precision_score = precision_score(y_test, y_pred, average='weighted')\n" + 
+								"print(\"precision_score : \" + str(precision_score))";
+						pandasCode+=validationCode;
+					}
+					else {
+						
+					}
+					//Precision for R
+				}
+			}
 		}
 		
 		
 		
-		EList<ValidationMetric> metrics = validation.getMetric();
-		
-		for (ValidationMetric metric:metrics) {
-			// R confusion table
-			Rcode += "mat_conf <- table(y_pred,y_test)\n";
-			RImport += "library(caret)";
-
-			if (metric == ValidationMetric.RECALL) {
-				// Recall for Python
-				if (validation_method instanceof TrainingTest) {
-					pythonImport+="from sklearn.metrics import recall_score\n";
-					String validationCode = "recall = recall_score(y_test, y_pred, average = None)\n"+
-										"print(recall)\n";
-					pandasCode+= validationCode;
-				}
-				else {
-					String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall')"+
-											"print(recall)";
-					pandasCode+=validationCode;
-
-				}
-				// Recall for R
-				String validationCodeR = "recall = recall(mat_conf, reference = y_test, relevant = \"Relevant\")\n";
-				Rcode += validationCodeR;
-				
-
-			}
-			if (metric == ValidationMetric.ACCURACY) {
-				// Accuracy for Python
-
-				pythonImport+="from sklearn.metrics import accuracy_score\n";
-				String validationCode = "accuracy = accuracy_score(y_test, y_pred)\n"+
-									"print(accuracy)\n";
-				pandasCode+= validationCode;
-				// Accuracy for R
-				String validationCodeR = "accuracy = precision(mat_conf, reference = y_test, relevant = \"Relevant\")\n";
-				Rcode += validationCodeR;
-				
-
-			}
-			if (metric == ValidationMetric.BALANCED_ACCURACY) {
-				//BALANCED_ACCURACY for Python
-				
-				//BALANCED_ACCURACY for R
-				String validationCodeR = " first_row = mat_conf[1,1] / (mat_conf[1,1] + mat_conf[1,2])  \n" + 
-						" second_row <- mat_conf[2,2] / (mat_conf[2,1] + mat_conf[2,2])  \n" + 
-						" balanced_accuracy = (first_row + second_row)/2";
-				Rcode += validationCodeR;
-			}
-			if (metric == ValidationMetric.F1) {
-				//F1 score for Python
-				
-				//F1 score for R
-				String validationCodeR = "F1 = F_meas(mat_conf, reference = y_test, relevant = \"Relevant\", beta = 1)\n";
-				Rcode += validationCodeR;
-			}
-		}
 		
 		//Final Python Code
 		pandasCode = pythonImport + pandasCode;
@@ -343,8 +444,8 @@ public class MMLCompiler {
 		Rcode = RImport + Rcode;
 		
 		
-		}
-		return pandasCode + Rcode;
+		
+		return pandasCode;
 	}
 	
 	private String mkValueInSingleQuote(String val) {

@@ -1621,38 +1621,6 @@ ruleValidationMetric returns [Enumerator current=null]
 				newLeafNode(enumLiteral_4, grammarAccess.getValidationMetricAccess().getACCURACYEnumLiteralDeclaration_4());
 			}
 		)
-		    |
-		(
-			enumLiteral_5='macro_recall'
-			{
-				$current = grammarAccess.getValidationMetricAccess().getMACRO_RECALLEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_5, grammarAccess.getValidationMetricAccess().getMACRO_RECALLEnumLiteralDeclaration_5());
-			}
-		)
-		    |
-		(
-			enumLiteral_6='macro_precision'
-			{
-				$current = grammarAccess.getValidationMetricAccess().getMACRO_PRECISIONEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_6, grammarAccess.getValidationMetricAccess().getMACRO_PRECISIONEnumLiteralDeclaration_6());
-			}
-		)
-		    |
-		(
-			enumLiteral_7='macro_F1'
-			{
-				$current = grammarAccess.getValidationMetricAccess().getMACRO_F1EnumLiteralDeclaration_7().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_7, grammarAccess.getValidationMetricAccess().getMACRO_F1EnumLiteralDeclaration_7());
-			}
-		)
-		    |
-		(
-			enumLiteral_8='macro_accuracy'
-			{
-				$current = grammarAccess.getValidationMetricAccess().getMACRO_ACCURACYEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_8, grammarAccess.getValidationMetricAccess().getMACRO_ACCURACYEnumLiteralDeclaration_8());
-			}
-		)
 	)
 ;
 

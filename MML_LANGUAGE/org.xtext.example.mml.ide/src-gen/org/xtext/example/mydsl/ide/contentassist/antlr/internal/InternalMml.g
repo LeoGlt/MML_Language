@@ -954,30 +954,6 @@ rule__ValidationMetric__Alternatives
 		('accuracy')
 		{ after(grammarAccess.getValidationMetricAccess().getACCURACYEnumLiteralDeclaration_4()); }
 	)
-	|
-	(
-		{ before(grammarAccess.getValidationMetricAccess().getMACRO_RECALLEnumLiteralDeclaration_5()); }
-		('macro_recall')
-		{ after(grammarAccess.getValidationMetricAccess().getMACRO_RECALLEnumLiteralDeclaration_5()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getValidationMetricAccess().getMACRO_PRECISIONEnumLiteralDeclaration_6()); }
-		('macro_precision')
-		{ after(grammarAccess.getValidationMetricAccess().getMACRO_PRECISIONEnumLiteralDeclaration_6()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getValidationMetricAccess().getMACRO_F1EnumLiteralDeclaration_7()); }
-		('macro_F1')
-		{ after(grammarAccess.getValidationMetricAccess().getMACRO_F1EnumLiteralDeclaration_7()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getValidationMetricAccess().getMACRO_ACCURACYEnumLiteralDeclaration_8()); }
-		('macro_accuracy')
-		{ after(grammarAccess.getValidationMetricAccess().getMACRO_ACCURACYEnumLiteralDeclaration_8()); }
-	)
 ;
 finally {
 	restoreStackSize(stackSize);

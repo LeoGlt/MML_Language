@@ -1243,10 +1243,6 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
     addEEnumLiteral(validationMetricEEnum, ValidationMetric.PRECISION);
     addEEnumLiteral(validationMetricEEnum, ValidationMetric.F1);
     addEEnumLiteral(validationMetricEEnum, ValidationMetric.ACCURACY);
-    addEEnumLiteral(validationMetricEEnum, ValidationMetric.MACRO_RECALL);
-    addEEnumLiteral(validationMetricEEnum, ValidationMetric.MACRO_PRECISION);
-    addEEnumLiteral(validationMetricEEnum, ValidationMetric.MACRO_F1);
-    addEEnumLiteral(validationMetricEEnum, ValidationMetric.MACRO_ACCURACY);
 
     // Create resource
     createResource(eNS_URI);
