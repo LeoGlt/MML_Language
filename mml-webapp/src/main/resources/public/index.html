@@ -2,19 +2,26 @@
 <html lang="fr">
 
 <head>
-  <h1>Multi Machine Learning Language</h1>
+  <div style='margin-top: 1em;font-family: "sans-serif"'>
+    <center><h1>Multi Machine Learning Language</h1></center>
+  </div>
+  
 </head>
 
 <body>
   <div id = questionnaire class=questionnaire>
-    <h2>Questionnaire</h2>
+      <center><h2>Questionnaire</h2></center>
     <div id = data class=selection>
       <h2>Data</h2>
-      <p>Upload a CSV file</p>
-      <input id="fileSelect" value="Choisir votre jeu de données" type="file" accept=".csv, .xlsx" />
-      <p>Choose a separator if need be :</p>
-      <input type="radio" name="Sep" id="sepcol" value="," checked>,</input>
-      <input type="radio" name="Sep" id="sepsemicol" value=";">;</input>
+      
+      <label class = "button_upload"><input id="fileSelect" type="file" accept=".csv"/> Upload a CSV file</label>
+
+      <div id= "separator">
+        <p>Choose a separator if need be :</p>
+        <input type="radio" name="Sep" id="sepcol" value="," checked>,</input>
+        <input type="radio" name="Sep" id="sepsemicol" value=";">;</input>
+      </div>
+      
       
       <div id='zone_insert'></div>
 
@@ -23,11 +30,11 @@
     <div id="Algo" class=selection>
       <h2>Algorithms</h2>
       <div id='Add_algo_button'>
-        <input type="button" value="Add" id="Add_algo">
+        <input type="button" value="Add" id="Add_algo" class="button_algo">
       </div>
 
       <div id='Remove_algo_button'>
-        <input type="button" value="Remove" id="Remove_algo" style="display:none">
+        <input type="button" value="Remove" id="Remove_algo" style="display:none" class="button_algo">
       </div>
 
     </div>
@@ -49,6 +56,7 @@
         <p>Choose the percentage of data used for the training set</p>
         <div>
           <input type="range" id="split_val" name="split_val" min="0" max="100" step="5" value="80">
+          <br> <br>
           <label for="Select pourcentage">Chosen pourcentage : <span class="output">80
         </div>
       </div>
@@ -117,18 +125,22 @@
     </div>
 
     <div class=selection>
-      <h2>Begin data processing?</h2>
-      <input type="button" value="Go" id="Compile">
+      <h2>Begin data processing</h2>
+      <button class="button_sub" id="Compile"><span>Compile</span></button>
     </div>
   </div>
 
   <div class=results>
-    <h2>MML code</h2>
-    <form method="post" action="/generate">
-	    <textarea name="mml" rows="20" cols="100" id ="mmlcode"></textarea>
-	    <br />
-	    <button>Submit</button>
-    </form>
+    
+    <div class=mmlstyle>
+        <center><h2>MML code</h2></center>
+        <form method="post" action="/generate">
+          <textarea name="mml" id ="mmlcode" rows = 10 style = 'width: 100%;'></textarea>
+          <br>
+          <button class = "button_sub"><span>Submit</span></button>
+        </form>
+    </div>
+    
   </div>
 </body>
 

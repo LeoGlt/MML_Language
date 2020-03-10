@@ -17,9 +17,29 @@ function GetFile() {
         }
       });
     
+    ViewFileName();
+       
+    
     return (this.files[0]);
 
 };
+
+function ViewFileName(){
+
+    var var_div = document.getElementById("data");
+
+    if(document.getElementById("file_name")==null){
+        let file_name = document.createElement('div');
+        file_name.id = 'file_name';
+        file_name.innerHTML = "<br> Uploaded file : <u>" + String(fileSent.value).substr(12) + "</u>";
+        var_div.insertBefore(file_name, document.getElementById("separator"));
+    }
+    else{
+        var_div.removeChild(document.getElementById('file_name'));
+        ViewFileName();
+    }
+
+}
 
 function CompleteVariableSelectMenu(fields){
 

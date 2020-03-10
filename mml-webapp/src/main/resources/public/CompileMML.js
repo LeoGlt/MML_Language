@@ -15,6 +15,8 @@ function GenerateCompiler() {
 
     console.log(mymml);
     document.getElementById('mmlcode').value = mymml;
+    
+    document.body.scrollTop = 0;
     return (mymml);
   };
 
