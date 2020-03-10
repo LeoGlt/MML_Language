@@ -21,6 +21,9 @@ import org.xtext.example.mydsl.mml.Validation;
 import org.xtext.example.mydsl.mml.ValidationMetric;
 import org.xtext.example.mydsl.mml.regPenalty;
 
+import org.python.util.PythonInterpreter;
+import org.python.core.PyObject;
+
 public class MMLCompiler {
 	MMLModel mml;
 	public MMLCompiler(MMLModel mml) {
@@ -28,6 +31,8 @@ public class MMLCompiler {
 	}
 	
 	public String generate_code() {
+		
+		
 		
 		DataInput dataInput = mml.getInput();
 		String fileLocation = dataInput.getFilelocation();
@@ -359,7 +364,7 @@ public class MMLCompiler {
 						pandasCode+= validationCode;
 					}
 					else {
-						String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall')"+
+						String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall_weighted')"+
 												"print(recall)";
 						pandasCode+=validationCode;
 
@@ -396,7 +401,9 @@ public class MMLCompiler {
 						pandasCode+=validationCode;
 					}
 					else {
-						
+						String validationCode = "balanced_accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='balanced_accuracy')"+
+								"print(\"Balanced accuracy : \" + str(np.mean(balanced_accuracy)))";
+						pandasCode+=validationCode;
 					}
 					
 					//BALANCED_ACCURACY for R
@@ -414,6 +421,9 @@ public class MMLCompiler {
 					}
 					else {
 						
+						String validationCode = "f1_score = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='f1_weighted')"+ 
+						"print(\"F1 score : \" + str(np.mean(f1_score)))";
+						
 					}
 					//F1 score for R
 					String validationCodeR = "F1 = F_meas(mat_conf, reference = y_test, relevant = \"Relevant\", beta = 1)\n";
@@ -427,6 +437,9 @@ public class MMLCompiler {
 						pandasCode+=validationCode;
 					}
 					else {
+						String validationCode = "precision = cross_val_score(clf, X, y, cv=10, scoring='precision_weighted')\n" + 
+								"print(\"Precision : \" + str(np.mean(precision)))";
+						pandasCode+=validationCode;
 						
 					}
 					//Precision for R
@@ -444,6 +457,7 @@ public class MMLCompiler {
 		Rcode = RImport + Rcode;
 		
 		
+		// execute a function that takes a string and returns a string
 		
 		return pandasCode;
 	}
