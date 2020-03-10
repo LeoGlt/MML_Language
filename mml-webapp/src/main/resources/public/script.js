@@ -32,7 +32,7 @@ function GenerateAlgoHTML() {
 
 function MakeDThtml(nb_algo) {
   let t = '<div> <input type="radio" id="DT' + String(nb_algo) + '" name="algorithm' + String(nb_algo) + '" value="DT' + String(nb_algo) + '" onclick="chooseAlgo(this);">';
-  t += '<label for="DT' + String(nb_algo) + '">Decision Tree</label> <div id ="DT_param' + String(nb_algo) + '">';
+  t += '<label for="DT' + String(nb_algo) + '"> Decision Tree</label> <div id ="DT_param' + String(nb_algo) + '">';
 
   t += '<div id="DT_Criterion' + String(nb_algo) + '" style="margin-left : 1em;">Criterion :';
   t += '<input type="radio" id="DT_gini' + String(nb_algo) + '" name="DT_criterion' + String(nb_algo) + '" value="gini" checked> <label for="DT_gini' + String(nb_algo) + '">Gini</label>';
@@ -48,7 +48,7 @@ function MakeDThtml(nb_algo) {
 
 function MakeSVMhtml(nb_algo) {
   let t = '<div> <input type="radio" id="SVM' + String(nb_algo) + '" name="algorithm' + String(nb_algo) + '" value="SVM' + String(nb_algo) + '" onclick="chooseAlgo(this);">';
-  t += '<label for="SVM' + String(nb_algo) + '">SVM</label>';
+  t += '<label for="SVM' + String(nb_algo) + '"> SVM</label>';
   t += '<div id="SVM_param' + String(nb_algo) + '">'
 
   t += '<div id="SVM_kernel' + String(nb_algo) + '" style = "margin-left:1em;"> Kernel :';
@@ -74,7 +74,7 @@ function MakeSVMhtml(nb_algo) {
 
 function MakeLRhtml(nb_algo) {
   let t = '<div> <input type="radio" id="LR' + String(nb_algo) + '" name="algorithm' + String(nb_algo) + '" value="LR' + String(nb_algo) + '" onclick="chooseAlgo(this);"> ';
-  t += '<label for="LR' + String(nb_algo) + '">Logistic Regression</label> ';
+  t += '<label for="LR' + String(nb_algo) + '"> Logistic Regression</label> ';
   t += '<div id="LR_param' + String(nb_algo) + '">';
 
   t += '<div id="LR_penalty' + String(nb_algo) + '" style = "margin-left:1em;"> Penalty :';
@@ -96,7 +96,7 @@ function MakeLRhtml(nb_algo) {
 
 function MakeRFhtml(nb_algo) {
   let t = '<div> <input type="radio" id="RF' + String(nb_algo) + '" name="algorithm' + String(nb_algo) + '" value="RF' + String(nb_algo) + '" onclick="chooseAlgo(this);">';
-  t += '<label for="RF' + String(nb_algo) + '">Random Forest</label>';
+  t += '<label for="RF' + String(nb_algo) + '"> Random Forest</label>';
   t += '<div id="RF_param' + String(nb_algo) + '">'
 
   t += '<div id ="RF_nestimators' + String(nb_algo) + '" style="margin-left : 1em;">Number of trees :';

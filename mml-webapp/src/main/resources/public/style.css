@@ -22,7 +22,8 @@ input[type="range"] {
 }
 
 .questionnaire {
-   width: 30%;
+  font-family: "sans-serif";
+  width: 30%;
   margin-left: 1em;
   float: left;
   background-color: rgb(240,240,240);
@@ -37,4 +38,13 @@ input[type="range"] {
   margin-left: 34%;
   width: 64%;
   background-color: rgb(240,240,240);
+}
+
+.cb_expl_style1 {
+  float: left;
+  width: 48%;
+}
+
+.cb_expl_style2 {
+  margin-left: 52%;
 }

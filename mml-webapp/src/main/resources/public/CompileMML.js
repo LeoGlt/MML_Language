@@ -100,7 +100,6 @@ function FormulaMML(){
 
   for(var i = 0; i < predictive_variables.length;i++){    
     var v = predictive_variables[i];
-    console.log(v.value)
     if(v.checked){
       if(i > 0 && predictors != ""){
         predictors += " + "

@@ -58,11 +58,23 @@ function CompletePredictorsCheckbox(fields){
 
         var start = "<p>Choose the predictive variables :</p>";
         var opt = "";
-        for(var i=0; i < fields.length; i++){
-            opt += GenerateFieldHTML(fields[i], toselect = (i == (fields.length - 1)), call = "predictive");
+        opt += "<div class = cb_expl_style1>"
 
+        for(var i=0; i < fields.length/2; i++){
+              
+            opt += GenerateFieldHTML(fields[i], toselect = (i == (fields.length - 1)), call = "predictive");
+        
         };
 
+        opt += "</div>"
+        opt += "<div class = cb_expl_style2>"
+
+        for(var i=Math.ceil(fields.length/2); i < fields.length; i++){
+            opt += GenerateFieldHTML(fields[i], toselect = (i == (fields.length - 1)), call = "predictive");
+        
+        };
+
+        opt+= "</div> <br> <br> <br>";
         var end = "</select>";
         var_choice.innerHTML = start + opt + end;
         var_div.insertBefore(var_choice, document.getElementById("zone_insert"));
@@ -74,8 +86,7 @@ function CompletePredictorsCheckbox(fields){
 
     targ_var = document.getElementById('variable_selection');
     targ_var.addEventListener("change",SwitchPredictiveDisplay)
-    //checkboxes pour les variables prédictives
-    //doit changer dynamiquement quand la variable à prédire change
+    
 }
 
 function GenerateFieldHTML(variable,toselect = false,call = "target"){
@@ -92,10 +103,12 @@ function GenerateFieldHTML(variable,toselect = false,call = "target"){
     else{
         var t = "";
         if(!toselect){
-            t+= "<input type='checkbox' id= pred_" + variable + "  name = 'predict_variables' value=" + variable + " checked style = 'display:inline-block'>" + variable + "</input>";
-        }
+            t+= "<div id = cb_expl" + variable + " style='display:block'> <input type='checkbox' id= pred_" + variable + "  name = 'predict_variables' value=" + variable + " checked style = 'display:inline-block'>";
+            t+= "<label for=pred_" + variable + ">" + variable + "</label> </div>";
+            }
         else{
-            t+= "<input type='checkbox' id= pred_" + variable + "  name = 'predict_variables' value=" + variable + " checked style = 'display:none'>" + variable + "</input>";
+            t+= "<div id = cb_expl" + variable + " style='display:none'> <input type='checkbox' id= pred_" + variable + "  name = 'predict_variables' value=" + variable + " checked style = 'display:inline-block'>";
+            t+= "<label for=pred_" + variable + ">" + variable + "</label> </div>";
         }
     }
     
@@ -105,15 +118,14 @@ function GenerateFieldHTML(variable,toselect = false,call = "target"){
 function SwitchPredictiveDisplay(){
 
     var vars = document.getElementsByName("predict_variables");
-    console.log(this)
     for (var i = 0; i < vars.length; i++) {
         var v = vars[i];
-            
-        if (v.style.display == 'none') {
-            v.style.display = 'inline-block'
+        var div_v = document.getElementById("cb_expl"+v.value)
+        if ( div_v.style.display == 'none') {
+            div_v.style.display = 'block'
         }
         if (v.value == this.options[this.selectedIndex].value) {
-            v.style.display = 'none'
+            div_v.style.display = 'none'
         }
     }
 
