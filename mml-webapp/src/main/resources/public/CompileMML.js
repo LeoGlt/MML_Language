@@ -14,6 +14,7 @@ function GenerateCompiler() {
     mymml += ValidationMML();
 
     console.log(mymml);
+    document.getElementById('mmlcode').value = mymml;
     return (mymml);
   };
 
@@ -21,7 +22,7 @@ function GenerateCompiler() {
 function DataMML(){
     
     var SepValue = document.querySelector('input[name=Sep]:checked').value;
-    var datamml = "datainput " + String(fileSent) + " separator " + SepValue + "\n";
+    var datamml = "datainput " + String(fileSent.value).substr(12) + " separator " + SepValue + "\n";
   
     if (NB_algo == 0) {
       alert("You may choose an algorithm before compiling please.");

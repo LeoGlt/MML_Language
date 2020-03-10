@@ -86,7 +86,7 @@ function CompletePredictorsCheckbox(fields){
 
     targ_var = document.getElementById('variable_selection');
     targ_var.addEventListener("change",SwitchPredictiveDisplay)
-    
+
 }
 
 function GenerateFieldHTML(variable,toselect = false,call = "target"){
@@ -132,5 +132,3 @@ function SwitchPredictiveDisplay(){
 }
 
 var targ_var;
-
-//creer le listener dans une fonction en modifiant une var globale vide au début
