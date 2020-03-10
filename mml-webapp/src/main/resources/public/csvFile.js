@@ -1,5 +1,4 @@
 var fileSent = document.getElementById("fileSelect");
-
 fileSent.addEventListener('change', GetFile);
 
 

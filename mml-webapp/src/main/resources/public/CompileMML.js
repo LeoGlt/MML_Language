@@ -22,13 +22,17 @@ function GenerateCompiler() {
 
 
 function DataMML(){
-    
+
     var SepValue = document.querySelector('input[name=Sep]:checked').value;
     var datamml = "datainput " + String(fileSent.value).substr(12) + " separator " + SepValue + "\n";
   
     if (NB_algo == 0) {
       alert("You may choose an algorithm before compiling please.");
       return (0);
+    }
+
+    if (fileSent.files[0] == null){
+      alert("You may upload a dataset before compiling please.");
     }
     return(datamml)
 
