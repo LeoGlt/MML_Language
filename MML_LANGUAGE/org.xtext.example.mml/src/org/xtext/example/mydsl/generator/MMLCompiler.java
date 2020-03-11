@@ -38,7 +38,7 @@ public class MMLCompiler {
 		String fileLocation = dataInput.getFilelocation();
 	
 		
-		String pythonImport = "import pandas as pd\n"; 
+		String pythonImport = "import pandas as pd \n"; 
 		String RImport = "library(utils)\nlibrary(dplyr)";
 		
 		String DEFAULT_COLUMN_SEPARATOR = ","; // by default

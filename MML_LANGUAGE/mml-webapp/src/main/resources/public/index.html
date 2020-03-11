@@ -3,33 +3,37 @@
 
 <head>
   <div style='margin-top: 1em;font-family: "sans-serif"'>
-    <center><h1>Multi Machine Learning Language</h1></center>
+    <center>
+      <h1>Multi Machine Learning Language</h1>
+    </center>
   </div>
-  
+
 </head>
 
 <body>
-  <div id = questionnaire class=questionnaire>
-      <center><h2>Questionnaire</h2></center>
-    <div id = data class=selection>
+  <div id=questionnaire class=questionnaire>
+    <center>
+      <h2>Questionnaire</h2>
+    </center>
+    <div id=data class=selection>
       <h2>Data</h2>
-      
-      
-        <label class = "button_upload">
-          <form method="post" action="/upload" enctype="multipart/form-data" target="hiddenFrame">
-            <input id="fileSelect" type="file" name ="files" accept=".csv"/> Upload a CSV file
-            <button id="submit_file" style="display:none">Submit the file</button>
-          </form>
-        </label>
-      
 
-      <div id= "separator">
+
+      <label class="button_upload">
+        <form method="post" action="/upload" enctype="multipart/form-data" target="hiddenFrame">
+          <input id="fileSelect" type="file" name="files" accept=".csv" /> Upload a CSV file
+          <button id="submit_file" style="display:none">Submit the file</button>
+        </form>
+      </label>
+
+
+      <div id="separator">
         <p>Choose a separator if need be :</p>
         <input type="radio" name="Sep" id="sepcol" value="," checked>,</input>
         <input type="radio" name="Sep" id="sepsemicol" value=";">;</input>
       </div>
-      
-      
+
+
       <div id='zone_insert'></div>
 
     </div>
@@ -138,26 +142,64 @@
   </div>
 
   <div class=results>
-    
+
     <div class=mmlstyle>
-        <center><h2>MML code</h2></center>
-        <form method="post" action="/generate">
-          <textarea name="mml" id ="mmlcode" rows = 10 style = 'width: 100%;'></textarea>
-          <br>
-          <button class = "button_sub"><span>Submit</span></button>
-        </form>
+      <center>
+        <h2>MML code</h2>
+      </center>
+      <form method="post" action="/generate" target="hiddenFrame">
+        <textarea name="mml" id="mmlcode" rows=10 style='width: 100%;'></textarea>
+        <br>
+        <button class="button_sub"><span>Submit</span></button>
+      </form>
     </div>
-    
+
   </div>
+
+
+
+  <div id= "script" class=script>
+
+    <div>
+      <div class="button_left">
+        <center><input type="button" value="Display Python script" id="DisplayPy" class="button_algo"></center>
+      </div>
+      <div class="button_right">
+        <center><input type="button" value="Display R script" id="DisplayR" class="button_algo"></center>
+      </div>
+    </div>
+    <div id="Code_Python" class=codePy>
+
+      <center>
+        <h2>Python script</h2>
+      </center>
+      <textarea name="py" id="pyscript" rows=30 style='width: 100%;'></textarea>
+    </div>
+
+    <div id="Code_R" class=codeR>
+
+      <center>
+        <h2>R script</h2>
+      </center>
+      <textarea name="R" id="Rscript" rows=30 style='width: 100%;'></textarea>
+      <br>
+
+    </div>
+
+  </div>
+
+
 </body>
-<iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+<iframe id="iframe_script" name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+
 </html>
 
 <link rel="stylesheet" href="style.css">
 
-<script src="script.js"></script>
-<script src="CompileMML.js"></script>
+<script src="algo.js"></script>
+<script src="compileMML.js"></script>
 <script src="./papaparse.min.js"></script>
 <script src="csvFile.js"></script>
+<script src="display_R_Py.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> >
  

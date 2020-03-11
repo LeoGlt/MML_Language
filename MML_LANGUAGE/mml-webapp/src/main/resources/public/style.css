@@ -160,3 +160,45 @@ input[type="file"] {
 .cb_expl_style2 {
   margin-left: 52%;
 }
+
+.codeR {
+  margin-left : 52%;
+  display: none;
+  padding-right: 2%;
+  padding-bottom: 2%;
+}
+
+.codePy {
+  float: left;
+  width: 48%;
+  display: none;
+  padding-left: 2%;
+}
+
+.buttons_code {
+  width : 100%;
+  float: left;
+}
+
+.button_left {
+  width: 50%;
+  float: left;
+}
+
+.button_right {
+  margin-left : 52%;
+}
+
+.script {
+  font-family: "sans-serif";
+  margin-left: 34%;
+  margin-top: 20px;
+  width: 64%;
+  background-color: rgb(240,240,240);
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-style: inset;
+  border-width: 7px;
+}

@@ -178,7 +178,7 @@ function chooseValidation(method) {
 
 }
 
-function chooseMetric(metrics) {
+function chooseMetric() {
 
   var met = document.getElementById("metric_choice");
 

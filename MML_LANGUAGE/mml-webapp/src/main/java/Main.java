@@ -14,7 +14,7 @@ public class Main {
         }).start(8080);
 
         app.post("/generate", ctx -> {
-            ctx.html(processMML(ctx.formParam("mml")));
+            ctx.html("<div id = 'script_py'>" + processMML(ctx.formParam("mml")) + "</div>");
         });
         
         app.post("/compute", ctx -> {
