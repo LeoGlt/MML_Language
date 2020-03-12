@@ -107,7 +107,7 @@ function FormulaMML(){
 
   for(var i = 0; i < predictive_variables.length;i++){    
     var v = predictive_variables[i];
-    if(v.checked){
+    if(v.checked && v.value != targetvariable){
       if(i > 0 && predictors != ''){
         predictors += ' + '
       };

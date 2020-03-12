@@ -28,9 +28,6 @@ public class Main {
             ctx.html("Upload successful");
             ctx.redirect("/"); 
         });
-        
-
-
     }
 
 	private static String processMML(String mmlContent) {

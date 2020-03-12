@@ -16,7 +16,7 @@ function Display_Py(){
         this.value = "Undisplay";
         script.style.height = "592px";
 
-        textpy.value = iframe.getElementById("script_py").innerHTML;
+        textpy.value = iframe.getElementById("script_py").textContent;
     }
     else{
         scriptpy.style.display = 'none';
@@ -35,7 +35,7 @@ function Display_R(){
     if(this.value == "Display R script"){
         scriptr.style.display = 'block';
         this.value = "Undisplay";
-        textr.value = iframe.getElementById("script_r").innerHTML;
+        textr.value = iframe.getElementById("script_r").textContent;
 
     }
     else{
