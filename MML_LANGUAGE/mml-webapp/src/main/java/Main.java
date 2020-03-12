@@ -1,3 +1,5 @@
+import java.util.List;
+
 import org.xtext.example.mydsl.generator.MMLCompiler;
 import org.xtext.example.mydsl.mml.MMLModel;
 
@@ -14,7 +16,11 @@ public class Main {
         }).start(8080);
 
         app.post("/generate", ctx -> {
-            ctx.html("<div id = 'script_py'>" + processMML(ctx.formParam("mml")) + "</div>");
+        	List<String> code_output = processMML(ctx.formParam("mml"));
+            ctx.html("<div id = 'script_py'>" + code_output.get(0) + "</div>");
+            //ctx.html("<div id = 'script_R'>" + code_output.get(1) + "</div>");
+            //ctx.html("<div id = 'results'>" + code_output.get(2) + "</div>");
+
         });
         
         app.post("/compute", ctx -> {
@@ -30,7 +36,7 @@ public class Main {
         });
     }
 
-	private static String processMML(String mmlContent) {
+	private static List<String> processMML(String mmlContent) {
 		MMLLoader mmlLoader = new MMLLoader();	    
 		MMLModel mml = mmlLoader.loadModel(mmlContent);
 		MMLCompiler mmlCompiler = new MMLCompiler(mml);

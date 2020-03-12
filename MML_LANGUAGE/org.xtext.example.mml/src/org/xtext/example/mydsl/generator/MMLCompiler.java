@@ -1,8 +1,15 @@
 package org.xtext.example.mydsl.generator;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.python.util.PythonInterpreter;
 import org.xtext.example.mydsl.mml.CSVParsingConfiguration;
 import org.xtext.example.mydsl.mml.DT;
 import org.xtext.example.mydsl.mml.DTCriterion;
@@ -30,7 +37,7 @@ public class MMLCompiler {
 		this.mml = mml;
 	}
 	
-	public String generate_code() {
+	public List<String> generate_code() {
 		
 		
 		
@@ -38,7 +45,9 @@ public class MMLCompiler {
 		String fileLocation = dataInput.getFilelocation();
 	
 		
-		String pythonImport = "import pandas as pd \n"; 
+		String pythonImport = "#!/usr/bin/env python3\n" + 
+				"# -*- coding: utf-8 -*-\n"
+				+ "import pandas as pd \n"; 
 		String RImport = "library(utils)\nlibrary(dplyr)";
 		
 		String DEFAULT_COLUMN_SEPARATOR = ","; // by default
@@ -48,7 +57,7 @@ public class MMLCompiler {
 			System.out.println("parsing instruction..." + parsingInstruction);
 			csv_separator = parsingInstruction.getSep().toString();
 		}
-		String csvReading = "mml_data = pd.read_csv(" + mkValueInSingleQuote(fileLocation) + ", sep=" + mkValueInSingleQuote(csv_separator) + ")\n";						
+		String csvReading = "mml_data = pd.read_csv(\"upload/" + fileLocation + "\", sep=" + mkValueInSingleQuote(csv_separator) + ")\n";						
 		String pandasCode = csvReading;
 		
 		String csvReadingR = "data <- read.csv(" + mkValueInSingleQuote(fileLocation) + ", sep=" + mkValueInSingleQuote(csv_separator) + ")\n";
@@ -203,6 +212,7 @@ public class MMLCompiler {
 		
 		
 		EList<MLChoiceAlgorithm> algos = mml.getAlgorithms();
+		int i = 1;
 		for (MLChoiceAlgorithm algo:algos) {
 			MLAlgorithm mlalgo = algo.getAlgorithm();
 			FrameworkLang framework = algo.getFramework();
@@ -240,9 +250,10 @@ public class MMLCompiler {
 						codeC = svm.getC();  
 					}
 					String codeGamma = "'auto'";
-					if (svm.isGammaSpecified()) {
+					if (svm.isGammaSpecified()){
 						codeGamma = svm.getGamma();
 					}
+					System.out.println(codeGamma);
 					String algoTraining = "clf = SVC(gamma=" + codeGamma +",C=" +codeC + ", kernel = \""+ kernel +"\")\n";
 					pandasCode += algoTraining;
 				}
@@ -283,7 +294,7 @@ public class MMLCompiler {
 					regPenalty penalty = logisticregression.getPenalty();
 					
 					String algoTraining = "clf = LogisticRegression(penalty=\""+ penalty +
-							", tol=" + tol +
+							"\", tol=" + tol +
 							", C=" + C +
 							
 							",random_state=0, multi_class='auto')\n";
@@ -381,12 +392,12 @@ public class MMLCompiler {
 					// Recall for Python
 					if (validation_method instanceof TrainingTest) {
 						String validationCode = "recall = recall_score(y_test, y_pred, average = 'weighted')\n"+
-											"print(\"Recall : \" +  str(recall))\n";
+											"print(\"Recall_"+ i + " : \" +  str(recall))\n";
 						pandasCode+= validationCode;
 					}
 					else {
 						String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall_weighted')"+
-												"print(recall)";
+								"print(\"Recall_"+ i + " : \" +  str(recall))\n";
 						pandasCode+=validationCode;
 
 					}
@@ -400,12 +411,12 @@ public class MMLCompiler {
 					// Accuracy for Python
 					if (validation_method instanceof TrainingTest) {
 						String validationCode = "accuracy = accuracy_score(y_test, y_pred)\n"+
-											"print(\"Accuracy : \" + str(accuracy))";
+											"print(\"Accuracy_" + i+" : \" + str(accuracy))\n";
 						pandasCode+= validationCode;
 					}
 					else {
 						String validationCode = "accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +")"+
-								"print(\"Accuracy : \" + str(np.mean(accuracy)))\n";
+								"print(\"Accuracy_" + i + " : \" + str(np.mean(accuracy)))\n";
 						pandasCode+=validationCode;
 					}
 					// Accuracy for R
@@ -418,12 +429,12 @@ public class MMLCompiler {
 					//BALANCED_ACCURACY for Python
 					if (validation_method instanceof TrainingTest) {
 						String validationCode = "balanced_accuracy = balanced_accuracy_score(y_test, y_pred) \n" + 
-								"print(\"Balanced_accuracy : \" +  str(balanced_accuracy))";
+								"print(\"Balanced_accuracy_" + i +": \" +  str(balanced_accuracy))\n";
 						pandasCode+=validationCode;
 					}
 					else {
-						String validationCode = "balanced_accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='balanced_accuracy')"+
-								"print(\"Balanced accuracy : \" + str(np.mean(balanced_accuracy)))";
+						String validationCode = "balanced_accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='balanced_accuracy')\n"+
+								"print(\"Balanced accuracy_"+ i +" : \" + str(np.mean(balanced_accuracy)))\n";
 						pandasCode+=validationCode;
 					}
 					
@@ -437,13 +448,13 @@ public class MMLCompiler {
 					//F1 score for Python
 					if (validation_method instanceof TrainingTest) {
 						String validationCode = "f1_score = f1_score(y_test, y_pred, average='weighted')\n" + 
-								"print(\"f1_score : \" + str(f1_score))";
+								"print(\"f1_score_" + i + ": \" + str(f1_score))\n";
 						pandasCode+=validationCode;
 					}
 					else {
 						
 						String validationCode = "f1_score = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='f1_weighted')"+ 
-						"print(\"F1 score : \" + str(np.mean(f1_score)))";
+						"print(\"f1_score_" + i + " : \" + str(np.mean(f1_score)))\n";
 						
 					}
 					//F1 score for R
@@ -454,18 +465,19 @@ public class MMLCompiler {
 					//Precision for Python
 					if (validation_method instanceof TrainingTest) {
 						String validationCode = "precision_score = precision_score(y_test, y_pred, average='weighted')\n" + 
-								"print(\"precision_score : \" + str(precision_score))";
+								"print(\"precision_score_" + i + " : \" + str(precision_score))\n";
 						pandasCode+=validationCode;
 					}
 					else {
 						String validationCode = "precision = cross_val_score(clf, X, y, cv=10, scoring='precision_weighted')\n" + 
-								"print(\"Precision : \" + str(np.mean(precision)))";
+								"print(\"Precision_" + i+ " : \" + str(np.mean(precision)))\n";
 						pandasCode+=validationCode;
 						
 					}
 					//Precision for R
 				}
 			}
+			i = i + 1;
 		}
 		
 		
@@ -474,13 +486,44 @@ public class MMLCompiler {
 		//Final Python Code
 		pandasCode = pythonImport + pandasCode;
 		
+		//Save Python Code to file
+		try {
+			File file = new File("upload/mmltest.py");
+			FileWriter fileWriter = new FileWriter(file);
+			fileWriter.write(pandasCode);
+			fileWriter.flush();
+			fileWriter.close();
+			file.setExecutable(true);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		//Exec Python Code
+		String pythonOutput = "";
+		Runtime runtime = Runtime.getRuntime();
+		try {
+			Process p = Runtime.getRuntime().exec("upload/mmltest.py");
+			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			String read = in.readLine();
+			while(read != null) {
+				pythonOutput += read + "\n";
+				read = in.readLine();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		
+		System.out.println(pandasCode);
+		System.out.println(pythonOutput);
+		
 		//Final R Code
 		Rcode = RImport + Rcode;
 		
-		PythonInterpreter pi = new PythonInterpreter();
-	    pi.exec("import pandas as pd");
+		List<String> code_output = Arrays.asList(pandasCode, Rcode, pythonOutput);
 		
-		return pandasCode;
+		return code_output;
 	}
 	
 	private String mkValueInSingleQuote(String val) {

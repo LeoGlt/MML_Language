@@ -49,16 +49,11 @@ MLAlgorithm : (SVM|DT|RandomForest|LogisticRegression) ;
 
 SVM: 
 	{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=FLOAT)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel=' kernel=SVMKernel)?
-	//(classificationSpecified?='classification' svmclassification = SVMClassification)?
 	;
 
 enum SVMKernel:
 	rbf = 'rbf' | linear='linear'|poly='poly'|sigmoid='sigmoid'
 ;
-
-//enum SVMClassification:
-	//cClass= "C-classification" | nuClass ="nu-classification" | oneClass="one-classification"
-//;
 
 DT:
 	{DT} ('DT'|'DecisionTree') (maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion=' criterion= DTCriterion)? ; // TODO: additional hyperparameters
