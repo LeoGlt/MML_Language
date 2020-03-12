@@ -1,6 +1,8 @@
 package org.xtext.example.mydsl.generator;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.python.util.PythonInterpreter;
 import org.xtext.example.mydsl.mml.CSVParsingConfiguration;
 import org.xtext.example.mydsl.mml.DT;
 import org.xtext.example.mydsl.mml.DTCriterion;
@@ -19,10 +21,8 @@ import org.xtext.example.mydsl.mml.StratificationMethod;
 import org.xtext.example.mydsl.mml.TrainingTest;
 import org.xtext.example.mydsl.mml.Validation;
 import org.xtext.example.mydsl.mml.ValidationMetric;
+import org.xtext.example.mydsl.mml.XFormula;
 import org.xtext.example.mydsl.mml.regPenalty;
-
-import org.python.util.PythonInterpreter;
-import org.python.core.PyObject;
 
 public class MMLCompiler {
 	MMLModel mml;
@@ -45,7 +45,7 @@ public class MMLCompiler {
 		String csv_separator = DEFAULT_COLUMN_SEPARATOR;
 		CSVParsingConfiguration parsingInstruction = dataInput.getParsingInstruction();
 		if (parsingInstruction != null) {			
-			System.err.println("parsing instruction..." + parsingInstruction);
+			System.out.println("parsing instruction..." + parsingInstruction);
 			csv_separator = parsingInstruction.getSep().toString();
 		}
 		String csvReading = "mml_data = pd.read_csv(" + mkValueInSingleQuote(fileLocation) + ", sep=" + mkValueInSingleQuote(csv_separator) + ")\n";						
@@ -57,15 +57,36 @@ public class MMLCompiler {
 		RFormula formula = mml.getFormula();
 		
 		if (formula != null) {
-			//Formula for Python
 			FormulaItem var_Y = formula.getPredictive();
-			String nom_y = var_Y.getColName();	
-			String var_code = "y = mml_data.loc[:,['" + var_Y +"']]\n" +
-							 "X =  mml_data.drop(['"+ var_Y +"'], axis=1)\n";
-			pandasCode += var_code;
+			String nom_y = var_Y.getColName();
+			XFormula X = formula.getPredictors();
+			EList<EObject> predictors = X.eContents();
+			
+			//Formula for Python
+			if (predictors.size() > 0) {
+				String Xpython = "[";
+				for(int i =0; i <= predictors.size()-1; i++) {
+					FormulaItem predictor = (FormulaItem) predictors.get(i);
+					if (i != predictors.size()-1) {
+						Xpython += "'" + predictor.getColName() + "',";
+					}
+					else {
+						Xpython += "'" + predictor.getColName() + "']";
+					}
+				}
+				String var_code = "y = mml_data.loc[:,['" + nom_y +"']]\n" +
+								 "X =  mml_data.loc[:,"+ Xpython + "]\n";
+				pandasCode += var_code;
+			}
+			else {
+				String var_code = "y = mml_data.loc[:,['" + nom_y +"']]\n" +
+						 "X =  mml_data.drop(['"+ nom_y +"'],axis = 1)\n";
+				pandasCode += var_code;
+			}
+			
 			//Formula for R
-			String var_codeR = "y <- data %>% select('"+var_Y+"')\n" +
-							 "X <- data %>% select(-'"+var_Y+"')";
+			String var_codeR = "y <- data %>% select('"+nom_y+"')\n" +
+							 "X <- data %>% select(-'"+nom_y+"')\n";
 			Rcode += var_codeR;
 			
 		}
@@ -456,8 +477,8 @@ public class MMLCompiler {
 		//Final R Code
 		Rcode = RImport + Rcode;
 		
-		
-		// execute a function that takes a string and returns a string
+		PythonInterpreter pi = new PythonInterpreter();
+	    pi.exec("import pandas as pd");
 		
 		return pandasCode;
 	}
