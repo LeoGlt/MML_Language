@@ -50,6 +50,7 @@ public class MMLCompiler {
 				+ "import pandas as pd \n"; 
 		String RImport = "library(utils)\nlibrary(dplyr)";
 		
+		//Data import
 		String DEFAULT_COLUMN_SEPARATOR = ","; // by default
 		String csv_separator = DEFAULT_COLUMN_SEPARATOR;
 		CSVParsingConfiguration parsingInstruction = dataInput.getParsingInstruction();
@@ -62,7 +63,8 @@ public class MMLCompiler {
 		
 		String csvReadingR = "data <- read.csv(" + mkValueInSingleQuote(fileLocation) + ", sep=" + mkValueInSingleQuote(csv_separator) + ")\n";
 		String Rcode = csvReadingR;
-
+		
+		//Formula
 		RFormula formula = mml.getFormula();
 		
 		if (formula != null) {
@@ -110,7 +112,10 @@ public class MMLCompiler {
 			Rcode += var_codeR;
 		}
 		
+		//Model results initialisation
+		pandasCode+= "results = []\n";
 		
+		//Validation imports and data split 
 		Validation validation = mml.getValidation();
 		StratificationMethod validation_method =  validation.getStratification();
 		
@@ -212,8 +217,10 @@ public class MMLCompiler {
 		
 		
 		EList<MLChoiceAlgorithm> algos = mml.getAlgorithms();
-		int i = 1;
+		int i = 0;
 		for (MLChoiceAlgorithm algo:algos) {
+			pandasCode += "results.append({})\n";
+			
 			MLAlgorithm mlalgo = algo.getAlgorithm();
 			FrameworkLang framework = algo.getFramework();
 			
@@ -391,14 +398,15 @@ public class MMLCompiler {
 				if (metric == ValidationMetric.RECALL) {
 					// Recall for Python
 					if (validation_method instanceof TrainingTest) {
-						String validationCode = "recall = recall_score(y_test, y_pred, average = 'weighted')\n"+
-											"print(\"Recall_"+ i + " : \" +  str(recall))\n";
+						String validationCode = "recall = recall_score(y_test, y_pred, average = 'weighted')\n";
 						pandasCode+= validationCode;
+						pandasCode+= "results[" + i + "]['recall'] = recall\n";
 					}
 					else {
-						String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall_weighted')"+
-								"print(\"Recall_"+ i + " : \" +  str(recall))\n";
+						String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall_weighted')";
 						pandasCode+=validationCode;
+						pandasCode+= "results[" + i + "]['recall'] = recall\n";
+
 
 					}
 					// Recall for R
@@ -410,14 +418,16 @@ public class MMLCompiler {
 				if (metric == ValidationMetric.ACCURACY) {
 					// Accuracy for Python
 					if (validation_method instanceof TrainingTest) {
-						String validationCode = "accuracy = accuracy_score(y_test, y_pred)\n"+
-											"print(\"Accuracy_" + i+" : \" + str(accuracy))\n";
+						String validationCode = "accuracy = accuracy_score(y_test, y_pred)\n";
 						pandasCode+= validationCode;
+						pandasCode+= "results[" + i + "]['accuracy'] = accuracy\n";
+
 					}
 					else {
-						String validationCode = "accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +")"+
-								"print(\"Accuracy_" + i + " : \" + str(np.mean(accuracy)))\n";
+						String validationCode = "accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +")";
 						pandasCode+=validationCode;
+						pandasCode+= "results[" + i + "]['accuracy'] = str(np.mean(accuracy))\n";
+
 					}
 					// Accuracy for R
 					String validationCodeR = "accuracy = precision(mat_conf, reference = y_test, relevant = \"Relevant\")\n";
@@ -428,14 +438,16 @@ public class MMLCompiler {
 				if (metric == ValidationMetric.BALANCED_ACCURACY) {
 					//BALANCED_ACCURACY for Python
 					if (validation_method instanceof TrainingTest) {
-						String validationCode = "balanced_accuracy = balanced_accuracy_score(y_test, y_pred) \n" + 
-								"print(\"Balanced_accuracy_" + i +": \" +  str(balanced_accuracy))\n";
+						String validationCode = "balanced_accuracy = balanced_accuracy_score(y_test, y_pred) \n";
 						pandasCode+=validationCode;
+						pandasCode+= "results[" + i + "]['balanced_accuracy'] = balanced_accuracy\n";
+
 					}
 					else {
-						String validationCode = "balanced_accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='balanced_accuracy')\n"+
-								"print(\"Balanced accuracy_"+ i +" : \" + str(np.mean(balanced_accuracy)))\n";
+						String validationCode = "balanced_accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='balanced_accuracy')\n";
 						pandasCode+=validationCode;
+						pandasCode+= "results[" + i + "]['balanced_accuracy'] = str(np.mean(balanced_accuracy))\n";
+
 					}
 					
 					//BALANCED_ACCURACY for R
@@ -447,14 +459,16 @@ public class MMLCompiler {
 				if (metric == ValidationMetric.F1) {
 					//F1 score for Python
 					if (validation_method instanceof TrainingTest) {
-						String validationCode = "f1_score = f1_score(y_test, y_pred, average='weighted')\n" + 
-								"print(\"f1_score_" + i + ": \" + str(f1_score))\n";
+						String validationCode = "f1_score = f1_score(y_test, y_pred, average='weighted')\n";
 						pandasCode+=validationCode;
+						pandasCode+= "results[" + i + "]['f1_score'] = f1_score\n";
+
 					}
 					else {
 						
-						String validationCode = "f1_score = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='f1_weighted')"+ 
-						"print(\"f1_score_" + i + " : \" + str(np.mean(f1_score)))\n";
+						String validationCode = "f1_score = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='f1_weighted')";
+						pandasCode+= "results[" + i + "]['f1_score'] = str(np.mean(f1_score))\n";
+
 						
 					}
 					//F1 score for R
@@ -464,14 +478,15 @@ public class MMLCompiler {
 				if (metric == ValidationMetric.PRECISION) {
 					//Precision for Python
 					if (validation_method instanceof TrainingTest) {
-						String validationCode = "precision_score = precision_score(y_test, y_pred, average='weighted')\n" + 
-								"print(\"precision_score_" + i + " : \" + str(precision_score))\n";
+						String validationCode = "precision_score = precision_score(y_test, y_pred, average='weighted')\n";
 						pandasCode+=validationCode;
+						pandasCode+= "results[" + i + "]['precision'] = precision\n";
+
 					}
 					else {
-						String validationCode = "precision = cross_val_score(clf, X, y, cv=10, scoring='precision_weighted')\n" + 
-								"print(\"Precision_" + i+ " : \" + str(np.mean(precision)))\n";
+						String validationCode = "precision = cross_val_score(clf, X, y, cv=10, scoring='precision_weighted')\n";
 						pandasCode+=validationCode;
+						pandasCode+= "results[" + i + "]['precision'] = str(np.mean(precision))\n";
 						
 					}
 					//Precision for R
@@ -479,6 +494,8 @@ public class MMLCompiler {
 			}
 			i = i + 1;
 		}
+		//Display the results
+		pandasCode+="print(results)\n";
 		
 		
 		
@@ -488,7 +505,7 @@ public class MMLCompiler {
 		
 		//Save Python Code to file
 		try {
-			File file = new File("upload/mmltest.py");
+			File file = new File("upload/mml.py");
 			FileWriter fileWriter = new FileWriter(file);
 			fileWriter.write(pandasCode);
 			fileWriter.flush();
@@ -503,7 +520,7 @@ public class MMLCompiler {
 		String pythonOutput = "";
 		Runtime runtime = Runtime.getRuntime();
 		try {
-			Process p = Runtime.getRuntime().exec("upload/mmltest.py");
+			Process p = Runtime.getRuntime().exec("upload/mml.py");
 			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String read = in.readLine();
 			while(read != null) {
