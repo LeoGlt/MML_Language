@@ -35,7 +35,7 @@ function Display_R(){
     if(this.value == "Display R script"){
         scriptr.style.display = 'block';
         this.value = "Undisplay";
-        textr.value = iframe.getElementById("script_r").textContent;
+        textr.value = iframe.getElementById("script_R").textContent;
 
     }
     else{

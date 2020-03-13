@@ -17,9 +17,10 @@ public class Main {
 
         app.post("/generate", ctx -> {
         	List<String> code_output = processMML(ctx.formParam("mml"));
-            ctx.html("<div id = 'script_py'>" + code_output.get(0) + "</div>");
-            //ctx.html("<div id = 'script_R'>" + code_output.get(1) + "</div>");
-            //ctx.html("<div id = 'results'>" + code_output.get(2) + "</div>");
+        	String html = "<div id = 'script_py'>" + code_output.get(0) + "</div>";
+        	html += "<div id = 'script_R'>" + code_output.get(1) + "</div>";
+        	html += "<div id = 'results'>" + code_output.get(2) + "</div>";
+            ctx.html(html);
 
         });
         
