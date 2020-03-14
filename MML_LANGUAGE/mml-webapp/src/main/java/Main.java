@@ -19,7 +19,10 @@ public class Main {
         	List<String> code_output = processMML(ctx.formParam("mml"));
             ctx.html("<div id = 'script_py'>" + code_output.get(0) + "</div>");
             //ctx.html("<div id = 'script_R'>" + code_output.get(1) + "</div>");
-            //ctx.html("<div id = 'results'>" + code_output.get(2) + "</div>");
+            //ctx.html("<div id = 'results_pyton'>" + code_output.get(2) + "</div>");
+            //ctx.html("<div id = 'results_R'>" + code_output.get(3) + "</div>");
+            //ctx.html("<div id = 'errors_python'>" + code_output.get(4) + "</div>");
+            //ctx.html("<div id = 'errors_R'>" + code_output.get(5) + "</div>");
 
         });
         

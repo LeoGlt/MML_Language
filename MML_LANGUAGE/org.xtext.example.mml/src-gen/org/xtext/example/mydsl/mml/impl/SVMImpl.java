@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.xtext.example.mydsl.mml.Gamma;
 import org.xtext.example.mydsl.mml.MmlPackage;
 import org.xtext.example.mydsl.mml.SVM;
 import org.xtext.example.mydsl.mml.SVMKernel;
@@ -61,7 +62,7 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
    * @generated
    * @ordered
    */
-  protected static final String GAMMA_EDEFAULT = null;
+  protected static final Gamma GAMMA_EDEFAULT = Gamma.AUTO;
 
   /**
    * The cached value of the '{@link #getGamma() <em>Gamma</em>}' attribute.
@@ -71,7 +72,7 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
    * @generated
    * @ordered
    */
-  protected String gamma = GAMMA_EDEFAULT;
+  protected Gamma gamma = GAMMA_EDEFAULT;
 
   /**
    * The default value of the '{@link #isCSpecified() <em>CSpecified</em>}' attribute.
@@ -205,7 +206,7 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
    * @generated
    */
   @Override
-  public String getGamma()
+  public Gamma getGamma()
   {
     return gamma;
   }
@@ -216,10 +217,10 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
    * @generated
    */
   @Override
-  public void setGamma(String newGamma)
+  public void setGamma(Gamma newGamma)
   {
-    String oldGamma = gamma;
-    gamma = newGamma;
+    Gamma oldGamma = gamma;
+    gamma = newGamma == null ? GAMMA_EDEFAULT : newGamma;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MmlPackage.SVM__GAMMA, oldGamma, gamma));
   }
@@ -364,7 +365,7 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
         setGammaSpecified((Boolean)newValue);
         return;
       case MmlPackage.SVM__GAMMA:
-        setGamma((String)newValue);
+        setGamma((Gamma)newValue);
         return;
       case MmlPackage.SVM__CSPECIFIED:
         setCSpecified((Boolean)newValue);
@@ -427,7 +428,7 @@ public class SVMImpl extends MLAlgorithmImpl implements SVM
       case MmlPackage.SVM__GAMMA_SPECIFIED:
         return gammaSpecified != GAMMA_SPECIFIED_EDEFAULT;
       case MmlPackage.SVM__GAMMA:
-        return GAMMA_EDEFAULT == null ? gamma != null : !GAMMA_EDEFAULT.equals(gamma);
+        return gamma != GAMMA_EDEFAULT;
       case MmlPackage.SVM__CSPECIFIED:
         return cSpecified != CSPECIFIED_EDEFAULT;
       case MmlPackage.SVM__C:

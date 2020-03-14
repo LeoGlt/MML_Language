@@ -103,6 +103,8 @@ public class MmlFactoryImpl extends EFactoryImpl implements MmlFactory
         return createCSVSeparatorFromString(eDataType, initialValue);
       case MmlPackage.FRAMEWORK_LANG:
         return createFrameworkLangFromString(eDataType, initialValue);
+      case MmlPackage.GAMMA:
+        return createGammaFromString(eDataType, initialValue);
       case MmlPackage.SVM_KERNEL:
         return createSVMKernelFromString(eDataType, initialValue);
       case MmlPackage.DT_CRITERION:
@@ -130,6 +132,8 @@ public class MmlFactoryImpl extends EFactoryImpl implements MmlFactory
         return convertCSVSeparatorToString(eDataType, instanceValue);
       case MmlPackage.FRAMEWORK_LANG:
         return convertFrameworkLangToString(eDataType, instanceValue);
+      case MmlPackage.GAMMA:
+        return convertGammaToString(eDataType, instanceValue);
       case MmlPackage.SVM_KERNEL:
         return convertSVMKernelToString(eDataType, instanceValue);
       case MmlPackage.DT_CRITERION:
@@ -399,6 +403,28 @@ public class MmlFactoryImpl extends EFactoryImpl implements MmlFactory
    * @generated
    */
   public String convertFrameworkLangToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Gamma createGammaFromString(EDataType eDataType, String initialValue)
+  {
+    Gamma result = Gamma.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertGammaToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

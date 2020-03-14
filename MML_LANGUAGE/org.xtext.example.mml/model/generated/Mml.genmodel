@@ -16,6 +16,10 @@
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//FrameworkLang/JavaWeka"/>
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//FrameworkLang/XGBoost"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mml.ecore#//Gamma">
+      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//Gamma/auto"/>
+      <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//Gamma/scale"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mml.ecore#//SVMKernel">
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//SVMKernel/rbf"/>
       <genEnumLiterals ecoreEnumLiteral="Mml.ecore#//SVMKernel/linear"/>

@@ -37,11 +37,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="MLAlgorithm"/>
   <eClassifiers xsi:type="ecore:EClass" name="SVM" eSuperTypes="#//MLAlgorithm">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="gammaSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gamma" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gamma" eType="#//Gamma"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="CSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="C" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kernelSpecified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kernel" eType="#//SVMKernel"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Gamma">
+    <eLiterals name="auto" literal="auto"/>
+    <eLiterals name="scale" value="1" literal="scale"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SVMKernel">
     <eLiterals name="rbf" literal="rbf"/>

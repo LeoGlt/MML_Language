@@ -40,6 +40,7 @@ public class MmlParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStratificationMethodAccess().getAlternatives(), "rule__StratificationMethod__Alternatives");
 			builder.put(grammarAccess.getCSVSeparatorAccess().getAlternatives(), "rule__CSVSeparator__Alternatives");
 			builder.put(grammarAccess.getFrameworkLangAccess().getAlternatives(), "rule__FrameworkLang__Alternatives");
+			builder.put(grammarAccess.getGammaAccess().getAlternatives(), "rule__Gamma__Alternatives");
 			builder.put(grammarAccess.getSVMKernelAccess().getAlternatives(), "rule__SVMKernel__Alternatives");
 			builder.put(grammarAccess.getDTCriterionAccess().getAlternatives(), "rule__DTCriterion__Alternatives");
 			builder.put(grammarAccess.getRegPenaltyAccess().getAlternatives(), "rule__RegPenalty__Alternatives");

@@ -556,6 +556,22 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Rule Gamma
+ruleGamma
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getGammaAccess().getAlternatives()); }
+		(rule__Gamma__Alternatives)
+		{ after(grammarAccess.getGammaAccess().getAlternatives()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Rule SVMKernel
 ruleSVMKernel
 	@init {
@@ -827,6 +843,27 @@ rule__FrameworkLang__Alternatives
 		{ before(grammarAccess.getFrameworkLangAccess().getXGBoostEnumLiteralDeclaration_3()); }
 		('xgboost')
 		{ after(grammarAccess.getFrameworkLangAccess().getXGBoostEnumLiteralDeclaration_3()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Gamma__Alternatives
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getGammaAccess().getAutoEnumLiteralDeclaration_0()); }
+		('auto')
+		{ after(grammarAccess.getGammaAccess().getAutoEnumLiteralDeclaration_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getGammaAccess().getScaleEnumLiteralDeclaration_1()); }
+		('scale')
+		{ after(grammarAccess.getGammaAccess().getScaleEnumLiteralDeclaration_1()); }
 	)
 ;
 finally {
@@ -3239,9 +3276,9 @@ rule__SVM__GammaAssignment_2_1
 	}
 :
 	(
-		{ before(grammarAccess.getSVMAccess().getGammaFLOATParserRuleCall_2_1_0()); }
-		ruleFLOAT
-		{ after(grammarAccess.getSVMAccess().getGammaFLOATParserRuleCall_2_1_0()); }
+		{ before(grammarAccess.getSVMAccess().getGammaGammaEnumRuleCall_2_1_0()); }
+		ruleGamma
+		{ after(grammarAccess.getSVMAccess().getGammaGammaEnumRuleCall_2_1_0()); }
 	)
 ;
 finally {

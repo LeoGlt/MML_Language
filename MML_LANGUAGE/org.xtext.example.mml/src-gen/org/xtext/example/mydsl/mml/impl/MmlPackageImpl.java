@@ -19,6 +19,7 @@ import org.xtext.example.mydsl.mml.DTCriterion;
 import org.xtext.example.mydsl.mml.DataInput;
 import org.xtext.example.mydsl.mml.FormulaItem;
 import org.xtext.example.mydsl.mml.FrameworkLang;
+import org.xtext.example.mydsl.mml.Gamma;
 import org.xtext.example.mydsl.mml.LogisticRegression;
 import org.xtext.example.mydsl.mml.MLAlgorithm;
 import org.xtext.example.mydsl.mml.MLChoiceAlgorithm;
@@ -183,6 +184,13 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   private EEnum frameworkLangEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum gammaEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -941,6 +949,17 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
    * @generated
    */
   @Override
+  public EEnum getGamma()
+  {
+    return gammaEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EEnum getSVMKernel()
   {
     return svmKernelEEnum;
@@ -1089,6 +1108,7 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
     // Create enums
     csvSeparatorEEnum = createEEnum(CSV_SEPARATOR);
     frameworkLangEEnum = createEEnum(FRAMEWORK_LANG);
+    gammaEEnum = createEEnum(GAMMA);
     svmKernelEEnum = createEEnum(SVM_KERNEL);
     dtCriterionEEnum = createEEnum(DT_CRITERION);
     regPenaltyEEnum = createEEnum(REG_PENALTY);
@@ -1155,7 +1175,7 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
 
     initEClass(svmEClass, org.xtext.example.mydsl.mml.SVM.class, "SVM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSVM_GammaSpecified(), ecorePackage.getEBoolean(), "gammaSpecified", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSVM_Gamma(), ecorePackage.getEString(), "gamma", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSVM_Gamma(), this.getGamma(), "gamma", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSVM_CSpecified(), ecorePackage.getEBoolean(), "CSpecified", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSVM_C(), ecorePackage.getEString(), "C", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSVM_KernelSpecified(), ecorePackage.getEBoolean(), "kernelSpecified", null, 0, 1, org.xtext.example.mydsl.mml.SVM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1220,6 +1240,10 @@ public class MmlPackageImpl extends EPackageImpl implements MmlPackage
     addEEnumLiteral(frameworkLangEEnum, FrameworkLang.R);
     addEEnumLiteral(frameworkLangEEnum, FrameworkLang.JAVA_WEKA);
     addEEnumLiteral(frameworkLangEEnum, FrameworkLang.XG_BOOST);
+
+    initEEnum(gammaEEnum, Gamma.class, "Gamma");
+    addEEnumLiteral(gammaEEnum, Gamma.AUTO);
+    addEEnumLiteral(gammaEEnum, Gamma.SCALE);
 
     initEEnum(svmKernelEEnum, SVMKernel.class, "SVMKernel");
     addEEnumLiteral(svmKernelEEnum, SVMKernel.RBF);
