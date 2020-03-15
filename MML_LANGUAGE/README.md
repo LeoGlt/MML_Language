@@ -46,10 +46,10 @@ Finally, submitting will show you the outputs, and offer you the possibility to 
 
 ## Authors
 
-Elimas Mathilde
-Fabre Benjamin
-Gillette Léo
-Vareille Alexandre
-Vitré Allan
++ Elimas Mathilde
++ Fabre Benjamin
++ Gillette Léo
++ Vareille Alexandre
++ Vitré Allan
 
 
