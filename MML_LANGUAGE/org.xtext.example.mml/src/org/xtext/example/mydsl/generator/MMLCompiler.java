@@ -58,7 +58,7 @@ public class MMLCompiler {
 		String csv_separator = DEFAULT_COLUMN_SEPARATOR;
 		CSVParsingConfiguration parsingInstruction = dataInput.getParsingInstruction();
 		if (parsingInstruction != null) {			
-			System.out.println("parsing instruction..." + parsingInstruction);
+			//System.out.println("parsing instruction..." + parsingInstruction);
 			csv_separator = parsingInstruction.getSep().toString();
 		}
 		String csvReading = "mml_data = pd.read_csv(\"upload/" + fileLocation + "\", sep=" + mkValueInSingleQuote(csv_separator) + ", engine='python')\n";						
@@ -265,7 +265,7 @@ public class MMLCompiler {
 					if (svm.isCSpecified()) {
 						codeC = svm.getC();  
 					}
-					String codeGamma = "'auto'";
+					String codeGamma = "auto";
 					if (svm.isGammaSpecified()){
 						codeGamma = svm.getGamma().getName();
 					}
@@ -605,7 +605,6 @@ public class MMLCompiler {
 			}catch (InterruptedException ie){
 		        System.out.println("InterruptedException");
 			}
-			System.out.println(Rcode);
 			System.out.println(RErrors);
 			System.out.println(ROutput);
 			

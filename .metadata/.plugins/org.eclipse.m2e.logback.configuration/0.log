@@ -1,1 +1,11 @@
 2020-02-05 12:21:52,940 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2020-03-15 15:33:25,356 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-03-15 15:33:44,046 [Worker-4: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: mml:webapp:1.0-SNAPSHOT @ /home/leo/Documents/Projet Web/MML_Language/MML_LANGUAGE/mml-webapp/pom.xml.
+2020-03-15 15:33:59,358 [Worker-5: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-03-15 15:33:59,368 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2020-03-15 15:33:59,379 [Worker-5: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-03-15 15:33:59,380 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/leo/Documents/Projet Web/MML_Language/MML_LANGUAGE/mml-webapp/src/test/resources
+2020-03-15 15:50:14,334 [Worker-21: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-03-15 15:50:14,338 [Worker-21: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-03-15 15:50:14,340 [Worker-21: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-03-15 15:50:14,340 [Worker-21: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/leo/Documents/Projet Web/MML_Language/MML_LANGUAGE/mml-webapp/src/test/resources
