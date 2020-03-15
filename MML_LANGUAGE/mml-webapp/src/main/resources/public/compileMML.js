@@ -26,7 +26,15 @@ function GenerateCompiler() {
     mymml += FormulaMML();
     
     //validation et metrics
-    mymml += ValidationMML();
+
+    let valmml = ValidationMML();
+    if(valmml[0] != "error"){
+      mymml += valmml;
+    } else { 
+      document.getElementById('mmlcode').value = valmml[1];
+      document.body.scrollTop = 0;
+      return(valmml[1])
+    };
 
     console.log(mymml);
     document.getElementById('mmlcode').value = mymml;
@@ -76,7 +84,7 @@ function AlgoMML(){
         }
         else if (PickedAlgo.value.substr(0, 2) == "DT") {
           var criterion = document.querySelector("input[name = DT_criterion" + String(i) + "]:checked").value
-          var maxdepth = document.querySelector("input[name = DTmaxdepth" + String(i) + "]").value
+          var maxdepth = Number.parseFloat(document.querySelector("input[name = DTmaxdepth" + String(i) + "]").value);
 
           if(maxdepth <= 0 | !Number.isInteger(maxdepth)){
             return(["error","Max depth argument for Decisition Tree should be a stricly positive integer"])
@@ -87,21 +95,21 @@ function AlgoMML(){
           
         }
         else if (PickedAlgo.value.substr(0, 3) == "SVM") {
-          var gamma = document.querySelector("input[name = gamma_svm" + String(i) + "]:checked").value
-          var C = document.querySelector("input[name = C_float" + String(i) + "]").value
-          var kernel = document.querySelector("input[name = kernel_svm" + String(i) + "]:checked").value
+          var gamma = document.querySelector("input[name = gamma_svm" + String(i) + "]:checked").value;
+          var C = Number.parseFloat(document.querySelector("input[name = C_float" + String(i) + "]").value);
+          var kernel = document.querySelector("input[name = kernel_svm" + String(i) + "]:checked").value;
 
           if(C <= 0 | Number.isNaN(C)){
             return(["error","C argument for SVM should be a stricly positive float number"])
           } else{
-            algomml += "SVM gamma=" + gamma + " C=" + C + " kernel=" + kernel;
+            algomml += "SVM gamma=" + gamma + " C=" + String(C) + " kernel=" + kernel;
           }    
           
         }
         else if (PickedAlgo.value.substr(0, 2) == "LR") {
-          var penalty = document.querySelector("input[name = penalty_lr" + String(i) + "]:checked").value
-          var C = document.querySelector("input[name = C_LR" + String(i) + "]").value
-          var tol = document.querySelector("input[name = tol_LR" + String(i) + "]").value
+          var penalty = document.querySelector("input[name = penalty_lr" + String(i) + "]:checked").value;
+          var C = Number.parseFloat(document.querySelector("input[name = C_LR" + String(i) + "]").value);
+          var tol = Number.parseFloat(document.querySelector("input[name = tol_LR" + String(i) + "]").value);
 
           if(C <= 0 | Number.isNaN(C)){
             return(["error","C argument for SVM should be a stricly positive float number"])
@@ -114,9 +122,10 @@ function AlgoMML(){
         else {
           var criterion = document.querySelector("input[name = RF_criterion" + String(i) + "]:checked").value;
           var maxdepth = document.querySelector("input[name = RFmaxdepth" + String(i) + "]").value;
-          var n_estimators = document.querySelector("input[name = RFnestimators" + String(i) + "]").value;
+          var n_estimators = Number.parseFloat(document.querySelector("input[name = RFnestimators" + String(i) + "]").value);
           
           if(maxdepth != ""){
+            maxdepth = Number.parseFloat(maxdepth)
             if(maxdepth <= 0 | !Number.isInteger(maxdepth)){
               return(["error","Max depth argument for Random Forest should either be a strictly positive integer or nothing (to allow maximum depth possible)"])
             }
@@ -187,11 +196,19 @@ function ValidationMML(){
     var PickedValidation = document.querySelector('input[name=validation]:checked').value;
   
     if (PickedValidation == "crossval") {
-        valmml += "CrossValidation { numRepetitionCross " + document.querySelector("textarea[name = folds]").value + " } \n"
+      var folds = Number.parseFloat(document.querySelector("input[name = folds_val]").value);
+      
+      if(folds <= 0 | !Number.isInteger(folds)){
+        return(["error","Number of folds for cross validation should be a strictly positive integer"]);
+      } else {
+        valmml += "CrossValidation { numRepetitionCross " + folds + " } \n";
+      };
+
+        
     }
     else {
-        valmml += "TrainingTest { percentageTraining " + document.querySelector("input[name = split_val]").value + " } \n"
-    }
+        valmml += "TrainingTest { percentageTraining " + document.querySelector("input[name = split_val]").value + " } \n";
+    };
   
     //metrics
     
@@ -206,11 +223,11 @@ function ValidationMML(){
         }
     };
     if(NB_met == 0){
-      alert("You may choose at least one output metric before compiling please")
-    }
+      return(["error","You may choose at least one output metric before compiling please"]);
+    };
 
 
-    valmml += "\n"
+    valmml += "\n";
 
     return(valmml)
 };

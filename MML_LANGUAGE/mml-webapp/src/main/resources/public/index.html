@@ -38,51 +38,51 @@
 
     </div>
 
-    <form action="">
-      <div id="Algo" class=selection>
-        <h2>Algorithms</h2>
-        <div id='Add_algo_button'>
-          <input type="button" value="Add" id="Add_algo" class="button_algo">
-        </div>
 
-        <div id='Remove_algo_button'>
-          <input type="button" value="Remove" id="Remove_algo" style="display:none" class="button_algo">
-        </div>
-
+    <div id="Algo" class=selection>
+      <h2>Algorithms</h2>
+      <div id='Add_algo_button'>
+        <input type="button" value="Add" id="Add_algo" class="button_algo">
       </div>
 
-      <div class=selection>
-        <h2>Validation method</h2>
-        <p>Choose a validation method for your results</p>
-        <div>
-          <input type="radio" id="split" name="validation" value="split" checked onclick="chooseValidation(this);">
-          <label for="split">Split into two sets</label>
-        </div>
-
-        <div>
-          <input type="radio" id="crossval" name="validation" value="crossval" onclick="chooseValidation(this);">
-          <label for="split">Cross-validation</label>
-        </div>
-        <div id="Split_val" style="display:block">
-          <h2>Training data</h2>
-          <p>Choose the percentage of data used for the training set</p>
-          <div>
-            <input type="range" id="split_val" name="split_val" min="0" max="100" step="5" value="80">
-            <br> <br>
-            <label for="Select pourcentage">Chosen pourcentage : <span class="output">80
-          </div>
-        </div>
-
-        <div id="Cross_val" style="display:none">
-          <h2>Number of folds</h2>
-          <p>Select the number of folds for the cross-validation</p>
-          <div>
-            <form name="folds_val" id="folds"> <textarea name="folds" rows="1" cols="10"></textarea></form>
-          </div>
-        </div>
-
+      <div id='Remove_algo_button'>
+        <input type="button" value="Remove" id="Remove_algo" style="display:none" class="button_algo">
       </div>
-    
+
+    </div>
+
+    <div class=selection>
+      <h2>Validation method</h2>
+      <p>Choose a validation method for your results</p>
+      <div>
+        <input type="radio" id="split" name="validation" value="split" checked onclick="chooseValidation(this);">
+        <label for="split">Split into two sets</label>
+      </div>
+
+      <div>
+        <input type="radio" id="crossval" name="validation" value="crossval" onclick="chooseValidation(this);">
+        <label for="split">Cross-validation</label>
+      </div>
+      <div id="Split_val" style="display:block">
+        <h2>Training data</h2>
+        <p>Choose the percentage of data used for the training set</p>
+        <div>
+          <input type="range" id="split_val" name="split_val" min="0" max="100" step="5" value="80">
+          <br> <br>
+          <label for="Select pourcentage">Chosen pourcentage : <span class="output">80
+        </div>
+      </div>
+
+      <div id="Cross_val" style="display:none">
+        <h2>Number of folds</h2>
+        <p>Select the number of folds for the cross-validation</p>
+        <div>
+          <input type="number" id="folds" name="folds_val" min="0" step="1" value="5">
+        </div>
+      </div>
+
+    </div>
+
 
 
     <div class=selection>
@@ -125,7 +125,6 @@
       <h2>Begin data processing</h2>
       <button class="button_sub" id="Compile"><span>Compile</span></button>
     </div>
-  </form>
   </div>
 
   <div class=results>
