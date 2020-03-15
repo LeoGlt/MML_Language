@@ -49,7 +49,8 @@ public class MMLCompiler {
 				"# -*- coding: utf-8 -*-\n"
 				+ "import pandas as pd \n"+
 				"import numpy as np\n" +
-				"import json\n"; 
+				"import json\n" + 
+				"import warnings\n"; 
 		String RImport = "library(utils)\nlibrary(dplyr)";
 		
 		//Data import
@@ -516,7 +517,7 @@ public class MMLCompiler {
 		String pythonErrors = "";
 		if (pythonalgo) {
 			//Final Python Code
-			pandasCode = pythonImport + pandasCode;
+			pandasCode = pythonImport + "warnings.filterwarnings(\"ignore\")\n" + pandasCode;
 			
 			//Save Python Code to file
 			try {

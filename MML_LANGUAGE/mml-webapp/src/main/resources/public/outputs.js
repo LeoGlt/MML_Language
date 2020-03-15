@@ -89,12 +89,13 @@ function DisplayErrors(errors_py,errors_R){
         DisplayErrors(errors_py,errors_R)
     }
     else{
-        if(errors_py != "null"){
+    	console.log(errors_py)
+        if(errors_py != "null" & errors_py != ""){
             errdiv.style.display = 'block'
             errdiv.innerHTML += "<div class=error id='pyerr'> <h5>Python errors : </h5> " + errors_py + "</div>"
         };
 
-        if(errors_R != "null"){
+        if(errors_R != "null" & errors_R != ""){
             errdiv.style.display = 'block'
             errdiv.innerHTML += "<div class=error id='Rerr'> <h5>R errors : </h5> " + errors_R + "</div>"
         };
