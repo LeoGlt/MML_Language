@@ -39,7 +39,8 @@ function MakeDThtml(nb_algo) {
   t += '<input type="radio" id="DT_entropy' + String(nb_algo) + '" name="DT_criterion' + String(nb_algo) + '" value="entropy"> <label for="DT_etropy' + String(nb_algo) + '">Entropy</label> </div>';
 
   t += '<div id ="DT_max_depth' + String(nb_algo) + '" style="margin-left : 1em;">Max depth :';
-  t += '<form name="DT_maxdepth' + String(nb_algo) + '" id="DT_maxdepth' + String(nb_algo) + '"> <textarea name="DTmaxdepth' + String(nb_algo) + '" rows="1" cols="10"></textarea> </form> </div>'
+  t += '<input type="number" id="DT_maxdepth' + String(nb_algo) + '" name="DTmaxdepth' + String(nb_algo) + '" min="0" value="1" step = "1"></div>'
+
 
   t += ' </div>';
   return (t)
@@ -100,16 +101,14 @@ function MakeRFhtml(nb_algo) {
   t += '<div id="RF_param' + String(nb_algo) + '">'
 
   t += '<div id ="RF_nestimators' + String(nb_algo) + '" style="margin-left : 1em;">Number of trees :';
-  t += '<form name="RF_n_estimators' + String(nb_algo) + '" id="RF_n_estimators' + String(nb_algo) + '"> <textarea name="RFnestimators' + String(nb_algo) + '" rows="1" cols="10"></textarea> </form> </div>'
-
+  t += '<input type="number" id="RF_n_estimators' + String(nb_algo) + '" name="RFnestimators' + String(nb_algo) + '" min="0" step="1" value="10"></div>';
 
   t += '<div id="RF_Criterion' + String(nb_algo) + '" style="margin-left : 1em;">Criterion :';
   t += '<input type="radio" id="RF_gini' + String(nb_algo) + '" name="RF_criterion' + String(nb_algo) + '" value="gini" checked> <label for="gini' + String(nb_algo) + '">Gini</label>';
   t += '<input type="radio" id="RF_entropy' + String(nb_algo) + '" name="RF_criterion' + String(nb_algo) + '" value="entropy"> <label for="etropy' + String(nb_algo) + '">Entropy</label> </div>';
 
   t += '<div id ="RF_max_depth' + String(nb_algo) + '" style="margin-left : 1em;">Max depth :';
-  t += '<form name="RF_maxdepth' + String(nb_algo) + '" id="RF_maxdepth' + String(nb_algo) + '"> <textarea name="RFmaxdepth' + String(nb_algo) + '" rows="1" cols="10"></textarea> </form> </div>'
-
+   t += '<input type="number" id="RF_maxdepth' + String(nb_algo) + '" name="RFmaxdepth' + String(nb_algo) + '" min="0" step="1" placehold="1"></div>'
   t += '</div>';
 
   return (t)
@@ -178,18 +177,6 @@ function chooseValidation(method) {
 
 }
 
-function chooseMetric() {
-
-  var met = document.getElementById("metric_choice");
-
-  if (met.style.display == "block") {
-    met.style.display = "none";
-  }
-  else {
-    met.style.display = "block";
-  };
-
-}
 
 var SplitValidationSlider = document.querySelector('input[name="split_val"]');
 SplitValidationSlider.oninput = function () {

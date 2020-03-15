@@ -799,6 +799,16 @@ public interface MmlPackage extends EPackage
   int FRAMEWORK_LANG = 19;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.mml.Gamma <em>Gamma</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.mml.Gamma
+   * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getGamma()
+   * @generated
+   */
+  int GAMMA = 20;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.mml.SVMKernel <em>SVM Kernel</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -806,7 +816,7 @@ public interface MmlPackage extends EPackage
    * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getSVMKernel()
    * @generated
    */
-  int SVM_KERNEL = 20;
+  int SVM_KERNEL = 21;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.mml.DTCriterion <em>DT Criterion</em>}' enum.
@@ -816,7 +826,7 @@ public interface MmlPackage extends EPackage
    * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getDTCriterion()
    * @generated
    */
-  int DT_CRITERION = 21;
+  int DT_CRITERION = 22;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.mml.regPenalty <em>reg Penalty</em>}' enum.
@@ -826,7 +836,7 @@ public interface MmlPackage extends EPackage
    * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getregPenalty()
    * @generated
    */
-  int REG_PENALTY = 22;
+  int REG_PENALTY = 23;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.mml.ValidationMetric <em>Validation Metric</em>}' enum.
@@ -836,7 +846,7 @@ public interface MmlPackage extends EPackage
    * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getValidationMetric()
    * @generated
    */
-  int VALIDATION_METRIC = 23;
+  int VALIDATION_METRIC = 24;
 
 
   /**
@@ -1480,6 +1490,16 @@ public interface MmlPackage extends EPackage
   EEnum getFrameworkLang();
 
   /**
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.mml.Gamma <em>Gamma</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Gamma</em>'.
+   * @see org.xtext.example.mydsl.mml.Gamma
+   * @generated
+   */
+  EEnum getGamma();
+
+  /**
    * Returns the meta object for enum '{@link org.xtext.example.mydsl.mml.SVMKernel <em>SVM Kernel</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2061,6 +2081,16 @@ public interface MmlPackage extends EPackage
      * @generated
      */
     EEnum FRAMEWORK_LANG = eINSTANCE.getFrameworkLang();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.mml.Gamma <em>Gamma</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.mml.Gamma
+     * @see org.xtext.example.mydsl.mml.impl.MmlPackageImpl#getGamma()
+     * @generated
+     */
+    EEnum GAMMA = eINSTANCE.getGamma();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.mml.SVMKernel <em>SVM Kernel</em>}' enum.

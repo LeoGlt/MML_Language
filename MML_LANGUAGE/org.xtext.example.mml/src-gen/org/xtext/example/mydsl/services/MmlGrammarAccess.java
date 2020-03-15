@@ -209,7 +209,7 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cGammaSpecifiedAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
 		private final Keyword cGammaSpecifiedGammaKeyword_2_0_0 = (Keyword)cGammaSpecifiedAssignment_2_0.eContents().get(0);
 		private final Assignment cGammaAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cGammaFLOATParserRuleCall_2_1_0 = (RuleCall)cGammaAssignment_2_1.eContents().get(0);
+		private final RuleCall cGammaGammaEnumRuleCall_2_1_0 = (RuleCall)cGammaAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Assignment cCSpecifiedAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
 		private final Keyword cCSpecifiedCKeyword_3_0_0 = (Keyword)cCSpecifiedAssignment_3_0.eContents().get(0);
@@ -222,13 +222,11 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cKernelSVMKernelEnumRuleCall_4_1_0 = (RuleCall)cKernelAssignment_4_1.eContents().get(0);
 		
 		//SVM:
-		//	{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=FLOAT)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel='
-		//	kernel=SVMKernel)?
-		//	//(classificationSpecified?='classification' svmclassification = SVMClassification)?
-		//;
+		//	{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=Gamma)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel='
+		//	kernel=SVMKernel)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=FLOAT)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel='
+		//{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=Gamma)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel='
 		//kernel=SVMKernel)?
 		public Group getGroup() { return cGroup; }
 		
@@ -238,7 +236,7 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		//'SVM'
 		public Keyword getSVMKeyword_1() { return cSVMKeyword_1; }
 		
-		//(gammaSpecified?='gamma=' gamma=FLOAT)?
+		//(gammaSpecified?='gamma=' gamma=Gamma)?
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//gammaSpecified?='gamma='
@@ -247,11 +245,11 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		//'gamma='
 		public Keyword getGammaSpecifiedGammaKeyword_2_0_0() { return cGammaSpecifiedGammaKeyword_2_0_0; }
 		
-		//gamma=FLOAT
+		//gamma=Gamma
 		public Assignment getGammaAssignment_2_1() { return cGammaAssignment_2_1; }
 		
-		//FLOAT
-		public RuleCall getGammaFLOATParserRuleCall_2_1_0() { return cGammaFLOATParserRuleCall_2_1_0; }
+		//Gamma
+		public RuleCall getGammaGammaEnumRuleCall_2_1_0() { return cGammaGammaEnumRuleCall_2_1_0; }
 		
 		//(CSpecified?='C=' C=FLOAT)?
 		public Group getGroup_3() { return cGroup_3; }
@@ -301,9 +299,6 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCriterionAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cCriterionDTCriterionEnumRuleCall_3_1_0 = (RuleCall)cCriterionAssignment_3_1.eContents().get(0);
 		
-		////enum SVMClassification:
-		////cClass= "C-classification" | nuClass ="nu-classification" | oneClass="one-classification"
-		////;
 		//DT:
 		//	{DT} ('DT' | 'DecisionTree') (maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion='
 		//	criterion=DTCriterion)?;
@@ -891,6 +886,33 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		//"xgboost"
 		public Keyword getXGBoostXgboostKeyword_3_0() { return cXGBoostXgboostKeyword_3_0; }
 	}
+	public class GammaElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.Gamma");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cAutoEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cAutoAutoKeyword_0_0 = (Keyword)cAutoEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cScaleEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cScaleScaleKeyword_1_0 = (Keyword)cScaleEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum Gamma:
+		//	auto | scale;
+		public EnumRule getRule() { return rule; }
+		
+		//auto | scale
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//auto
+		public EnumLiteralDeclaration getAutoEnumLiteralDeclaration_0() { return cAutoEnumLiteralDeclaration_0; }
+		
+		//'auto'
+		public Keyword getAutoAutoKeyword_0_0() { return cAutoAutoKeyword_0_0; }
+		
+		//scale
+		public EnumLiteralDeclaration getScaleEnumLiteralDeclaration_1() { return cScaleEnumLiteralDeclaration_1; }
+		
+		//'scale'
+		public Keyword getScaleScaleKeyword_1_0() { return cScaleScaleKeyword_1_0; }
+	}
 	public class SVMKernelElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Mml.SVMKernel");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1064,6 +1086,7 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 	private final FrameworkLangElements eFrameworkLang;
 	private final MLAlgorithmElements pMLAlgorithm;
 	private final SVMElements pSVM;
+	private final GammaElements eGamma;
 	private final SVMKernelElements eSVMKernel;
 	private final DTElements pDT;
 	private final DTCriterionElements eDTCriterion;
@@ -1099,6 +1122,7 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		this.eFrameworkLang = new FrameworkLangElements();
 		this.pMLAlgorithm = new MLAlgorithmElements();
 		this.pSVM = new SVMElements();
+		this.eGamma = new GammaElements();
 		this.eSVMKernel = new SVMKernelElements();
 		this.pDT = new DTElements();
 		this.eDTCriterion = new DTCriterionElements();
@@ -1229,16 +1253,24 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//SVM:
-	//	{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=FLOAT)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel='
-	//	kernel=SVMKernel)?
-	//	//(classificationSpecified?='classification' svmclassification = SVMClassification)?
-	//;
+	//	{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=Gamma)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel='
+	//	kernel=SVMKernel)?;
 	public SVMElements getSVMAccess() {
 		return pSVM;
 	}
 	
 	public ParserRule getSVMRule() {
 		return getSVMAccess().getRule();
+	}
+	
+	//enum Gamma:
+	//	auto | scale;
+	public GammaElements getGammaAccess() {
+		return eGamma;
+	}
+	
+	public EnumRule getGammaRule() {
+		return getGammaAccess().getRule();
 	}
 	
 	//enum SVMKernel:
@@ -1251,9 +1283,6 @@ public class MmlGrammarAccess extends AbstractGrammarElementFinder {
 		return getSVMKernelAccess().getRule();
 	}
 	
-	////enum SVMClassification:
-	////cClass= "C-classification" | nuClass ="nu-classification" | oneClass="one-classification"
-	////;
 	//DT:
 	//	{DT} ('DT' | 'DecisionTree') (maxdepthSpecified?='max_depth=' max_depth=INT)? (criterionSpecified?='criterion='
 	//	criterion=DTCriterion)?;

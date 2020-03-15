@@ -48,8 +48,11 @@ MLAlgorithm : (SVM|DT|RandomForest|LogisticRegression) ;
 
 
 SVM: 
-	{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=FLOAT)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel=' kernel=SVMKernel)?
+	{SVM} 'SVM' (gammaSpecified?='gamma=' gamma=Gamma)? (CSpecified?='C=' C=FLOAT)? (kernelSpecified?='kernel=' kernel=SVMKernel)?
 	;
+
+enum Gamma:
+	auto = 'auto' | scale = 'scale';
 
 enum SVMKernel:
 	rbf = 'rbf' | linear='linear'|poly='poly'|sigmoid='sigmoid'

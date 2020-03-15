@@ -51,25 +51,28 @@ public interface SVM extends MLAlgorithm
 
   /**
    * Returns the value of the '<em><b>Gamma</b></em>' attribute.
+   * The literals are from the enumeration {@link org.xtext.example.mydsl.mml.Gamma}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Gamma</em>' attribute.
-   * @see #setGamma(String)
+   * @see org.xtext.example.mydsl.mml.Gamma
+   * @see #setGamma(Gamma)
    * @see org.xtext.example.mydsl.mml.MmlPackage#getSVM_Gamma()
    * @model
    * @generated
    */
-  String getGamma();
+  Gamma getGamma();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.mml.SVM#getGamma <em>Gamma</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Gamma</em>' attribute.
+   * @see org.xtext.example.mydsl.mml.Gamma
    * @see #getGamma()
    * @generated
    */
-  void setGamma(String value);
+  void setGamma(Gamma value);
 
   /**
    * Returns the value of the '<em><b>CSpecified</b></em>' attribute.

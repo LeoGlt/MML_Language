@@ -422,9 +422,9 @@ ruleSVM returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSVMAccess().getGammaFLOATParserRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getSVMAccess().getGammaGammaEnumRuleCall_2_1_0());
 					}
-					lv_gamma_3_0=ruleFLOAT
+					lv_gamma_3_0=ruleGamma
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getSVMRule());
@@ -433,7 +433,7 @@ ruleSVM returns [EObject current=null]
 							$current,
 							"gamma",
 							lv_gamma_3_0,
-							"org.xtext.example.mydsl.Mml.FLOAT");
+							"org.xtext.example.mydsl.Mml.Gamma");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1455,6 +1455,33 @@ ruleFrameworkLang returns [Enumerator current=null]
 			{
 				$current = grammarAccess.getFrameworkLangAccess().getXGBoostEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_3, grammarAccess.getFrameworkLangAccess().getXGBoostEnumLiteralDeclaration_3());
+			}
+		)
+	)
+;
+
+// Rule Gamma
+ruleGamma returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0='auto'
+			{
+				$current = grammarAccess.getGammaAccess().getAutoEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getGammaAccess().getAutoEnumLiteralDeclaration_0());
+			}
+		)
+		    |
+		(
+			enumLiteral_1='scale'
+			{
+				$current = grammarAccess.getGammaAccess().getScaleEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getGammaAccess().getScaleEnumLiteralDeclaration_1());
 			}
 		)
 	)

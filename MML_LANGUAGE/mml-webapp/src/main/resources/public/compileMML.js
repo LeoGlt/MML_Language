@@ -2,10 +2,25 @@ function GenerateCompiler() {
     var mymml = "";
   
     //datainput
-    mymml += DataMML();
+    let datamml = DataMML();
+    if(datamml[0] != "error"){
+      mymml += datamml;
+    } else { 
+      document.getElementById('mmlcode').value = datamml[1];
+      document.body.scrollTop = 0;
+      return(datamml[1])
+    };
+    
     
     //algorithms
-    mymml += AlgoMML();
+    let algomml = AlgoMML();
+    if(algomml[0] != "error"){
+      mymml += algomml;
+    } else { 
+      document.getElementById('mmlcode').value = algomml[1];
+      document.body.scrollTop = 0;
+      return(algomml[1])
+    };
 
     //formula
     mymml += FormulaMML();
@@ -23,17 +38,18 @@ function GenerateCompiler() {
 
 function DataMML(){
 
+    if (fileSent == null){
+      return (["error","You may upload a dataset before compiling please."]);
+    }
+
+    if (NB_algo == 0) {
+      return (["error","You may choose an algorithm before compiling please."]);
+    }
+
     var SepValue = document.querySelector('input[name=Sep]:checked').value;
     var datamml = 'datainput "' + String(fileSent.value).substr(12) + '" separator ' + SepValue + '\n';
   
-    if (NB_algo == 0) {
-      alert("You may choose an algorithm before compiling please.");
-      return (0);
-    }
-
-    if (fileSent.files[0] == null){
-      alert("You may upload a dataset before compiling please.");
-    }
+    
     return(datamml)
 
 };
@@ -56,37 +72,71 @@ function AlgoMML(){
         //algorithm
         algomml += "algorithm ";
         if (PickedAlgo == null) {
-          alert("You may choose an algorithm before compiling please.");
-          return (0);
+          return (["error","You may choose an algorithm before compiling please."]);
         }
         else if (PickedAlgo.value.substr(0, 2) == "DT") {
           var criterion = document.querySelector("input[name = DT_criterion" + String(i) + "]:checked").value
-          var maxdepth = document.querySelector("textarea[name = DTmaxdepth" + String(i) + "]").value
+          var maxdepth = document.querySelector("input[name = DTmaxdepth" + String(i) + "]").value
+
+          if(maxdepth <= 0 | !Number.isInteger(maxdepth)){
+            return(["error","Max depth argument for Decisition Tree should be a stricly positive integer"])
+          } else{
+            algomml += "DT max_depth=" + String(maxdepth) + " criterion=" + criterion;
+          }
     
-          algomml += "DT max_depth=" + String(maxdepth) + " criterion=" + criterion;
+          
         }
         else if (PickedAlgo.value.substr(0, 3) == "SVM") {
           var gamma = document.querySelector("input[name = gamma_svm" + String(i) + "]:checked").value
           var C = document.querySelector("input[name = C_float" + String(i) + "]").value
-          var kernel = document.querySelector("input[name = kernel_svm" + String(i) + "]").value
-    
-          algomml += "SVM gamma=" + gamma + " C=" + C + " kernel=" + kernel;
+          var kernel = document.querySelector("input[name = kernel_svm" + String(i) + "]:checked").value
+
+          if(C <= 0 | Number.isNaN(C)){
+            return(["error","C argument for SVM should be a stricly positive float number"])
+          } else{
+            algomml += "SVM gamma=" + gamma + " C=" + C + " kernel=" + kernel;
+          }    
+          
         }
         else if (PickedAlgo.value.substr(0, 2) == "LR") {
           var penalty = document.querySelector("input[name = penalty_lr" + String(i) + "]:checked").value
           var C = document.querySelector("input[name = C_LR" + String(i) + "]").value
           var tol = document.querySelector("input[name = tol_LR" + String(i) + "]").value
-    
-          algomml += "LR penalty=" + penalty + " tol=" + String(tol) + " C=" + String(C);
+
+          if(C <= 0 | Number.isNaN(C)){
+            return(["error","C argument for SVM should be a stricly positive float number"])
+          } else if(tol <= 0 | Number.isNaN(tol)){
+            return(["error","tol argument for SVM should be a stricly positive float number"])
+          } else { 
+            algomml += "LR penalty=" + penalty + " tol=" + String(tol) + " C=" + String(C);
+          }  
         }
         else {
-          var criterion = document.querySelector("input[name = RF_criterion" + String(i) + "]:checked").value
-          var maxdepth = document.querySelector("textarea[name = RFmaxdepth" + String(i) + "]").value
-          var n_estimators = document.querySelector("textarea[name = RFnestimators" + String(i) + "]").value
-    
-          algomml += "RF n_estimators=" + n_estimators + " max_depth=" + String(maxdepth) + " criterion=" + criterion;
-        }
-        ;
+          var criterion = document.querySelector("input[name = RF_criterion" + String(i) + "]:checked").value;
+          var maxdepth = document.querySelector("input[name = RFmaxdepth" + String(i) + "]").value;
+          var n_estimators = document.querySelector("input[name = RFnestimators" + String(i) + "]").value;
+          
+          if(maxdepth != ""){
+            if(maxdepth <= 0 | !Number.isInteger(maxdepth)){
+              return(["error","Max depth argument for Random Forest should either be a strictly positive integer or nothing (to allow maximum depth possible)"])
+            }
+            
+          }
+          else if(n_estimators <= 0 | !Number.isInteger(n_estimators)){
+            return(["error","Number of trees argument for Random Forest should be a strictly positive integer"])
+          }
+          else{
+            if(maxdepth == ""){
+              algomml += "RF n_estimators=" + n_estimators + " criterion=" + criterion;
+            }
+            else{
+              algomml += "RF n_estimators=" + n_estimators + " max_depth=" + String(maxdepth) + " criterion=" + criterion;
+            };
+            
+          };
+
+          
+        };
         algomml += "\n";
     };
 
@@ -145,17 +195,23 @@ function ValidationMML(){
   
     //metrics
     
-    if(document.getElementById("metrics").checked){
+    var Metrics = document.getElementsByName("metric");
 
-        var Metrics = document.getElementsByName("metric");
-        for (var i = 0; i < Metrics.length; i++) {
-            var met = Metrics[i];
-            if (met.checked) {
-                valmml += met.value + " "
-            }
+    var NB_met = 0;
+    for (var i = 0; i < Metrics.length; i++) {
+        var met = Metrics[i];
+        if (met.checked) {
+            valmml += met.value + " "
+            NB_met += 1
         }
-        valmml += "\n"
     };
+    if(NB_met == 0){
+      alert("You may choose at least one output metric before compiling please")
+    }
+
+
+    valmml += "\n"
+
     return(valmml)
 };
 

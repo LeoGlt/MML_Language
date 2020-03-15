@@ -47,7 +47,8 @@ public class MMLCompiler {
 		
 		String pythonImport = "#!/usr/bin/env python3\n" + 
 				"# -*- coding: utf-8 -*-\n"
-				+ "import pandas as pd \n"; 
+				+ "import pandas as pd \n"+
+				"import numpy as np\n"; 
 		String RImport = "library(utils)\nlibrary(dplyr)";
 		
 		//Data import
@@ -58,7 +59,7 @@ public class MMLCompiler {
 			System.out.println("parsing instruction..." + parsingInstruction);
 			csv_separator = parsingInstruction.getSep().toString();
 		}
-		String csvReading = "mml_data = pd.read_csv(\"upload/" + fileLocation + "\", sep=" + mkValueInSingleQuote(csv_separator) + ")\n";						
+		String csvReading = "mml_data = pd.read_csv(\"upload/" + fileLocation + "\", sep=" + mkValueInSingleQuote(csv_separator) + ", engine='python')\n";						
 		String pandasCode = csvReading;
 		
 		String csvReadingR = "data <- read.csv(" + mkValueInSingleQuote(fileLocation) + ", sep=" + mkValueInSingleQuote(csv_separator) + ")\n";
@@ -216,6 +217,8 @@ public class MMLCompiler {
 		}
 		
 		
+		boolean Ralgo = false;
+		boolean pythonalgo = false;
 		EList<MLChoiceAlgorithm> algos = mml.getAlgorithms();
 		int i = 0;
 		for (MLChoiceAlgorithm algo:algos) {
@@ -226,6 +229,7 @@ public class MMLCompiler {
 			
 			if (framework == FrameworkLang.SCIKIT) {
 				System.out.println("Scikit-learn is targeted");
+				pythonalgo = true;
 				if (mlalgo instanceof DT) {
 					DT dt = (DT) mlalgo;
 					int maxDepth = dt.getMax_depth();
@@ -258,10 +262,9 @@ public class MMLCompiler {
 					}
 					String codeGamma = "'auto'";
 					if (svm.isGammaSpecified()){
-						codeGamma = svm.getGamma();
+						codeGamma = svm.getGamma().getName();
 					}
-					System.out.println(codeGamma);
-					String algoTraining = "clf = SVC(gamma=" + codeGamma +",C=" +codeC + ", kernel = \""+ kernel +"\")\n";
+					String algoTraining = "clf = SVC(gamma='" + codeGamma +"',C=" +codeC + ", kernel = \""+ kernel +"\")\n";
 					pandasCode += algoTraining;
 				}
 				if (mlalgo instanceof RandomForest) {
@@ -274,7 +277,6 @@ public class MMLCompiler {
 					
 					int maxDepth = randomforest.getMax_depth();
 					DTCriterion criterion = randomforest.getCriterion();
-					System.out.println(criterion);
 					if (randomforest.isMaxdepthSpecified()) {
 						String algoTraining = "clf = RandomForestClassifier(criterion = \"" + criterion +"\", n_estimators = "
 								+ Nestim+",max_depth="+ maxDepth + " ,random_state = 42)\n";
@@ -316,6 +318,7 @@ public class MMLCompiler {
 				
 			}
 			if (framework == FrameworkLang.R) {
+				Ralgo = true;
 				System.out.println("R is targeted");
 				String modelData = "dataTrain = dataframe(X_train,y_train)\n"+
 								  "dataTest = dataframe(X_test,y_test)\n";
@@ -353,7 +356,7 @@ public class MMLCompiler {
 					}
 					String codeGamma = "'auto'";
 					if (svm.isGammaSpecified()) {
-						codeGamma = svm.getGamma();
+						codeGamma = svm.getGamma().getName();
 					}
 					String algoTraining = "clf = svm(gamma=" + codeGamma +",C=" +codeC + ", kernel = \""+ kernel +"\", data = dataTrain)\n" + 
 							"y_pred=predict(clf,dataTest)\n";
@@ -403,9 +406,9 @@ public class MMLCompiler {
 						pandasCode+= "results[" + i + "]['recall'] = recall\n";
 					}
 					else {
-						String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall_weighted')";
+						String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall_weighted')\n";
 						pandasCode+=validationCode;
-						pandasCode+= "results[" + i + "]['recall'] = recall\n";
+						pandasCode+= "results[" + i + "]['recall'] = str(np.mean(recall))\n";
 
 
 					}
@@ -424,7 +427,7 @@ public class MMLCompiler {
 
 					}
 					else {
-						String validationCode = "accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +")";
+						String validationCode = "accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +")\n";
 						pandasCode+=validationCode;
 						pandasCode+= "results[" + i + "]['accuracy'] = str(np.mean(accuracy))\n";
 
@@ -459,15 +462,16 @@ public class MMLCompiler {
 				if (metric == ValidationMetric.F1) {
 					//F1 score for Python
 					if (validation_method instanceof TrainingTest) {
-						String validationCode = "f1_score = f1_score(y_test, y_pred, average='weighted')\n";
+						String validationCode = "f1score = f1_score(y_test, y_pred, average='weighted')\n";
 						pandasCode+=validationCode;
-						pandasCode+= "results[" + i + "]['f1_score'] = f1_score\n";
+						pandasCode+= "results[" + i + "]['f1_score'] = f1score\n";
 
 					}
 					else {
 						
-						String validationCode = "f1_score = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='f1_weighted')";
-						pandasCode+= "results[" + i + "]['f1_score'] = str(np.mean(f1_score))\n";
+						String validationCode = "f1score = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='f1_weighted')\n";
+						pandasCode+= validationCode;
+						pandasCode+= "results[" + i + "]['f1_score'] = str(np.mean(f1score))\n";
 
 						
 					}
@@ -478,7 +482,7 @@ public class MMLCompiler {
 				if (metric == ValidationMetric.PRECISION) {
 					//Precision for Python
 					if (validation_method instanceof TrainingTest) {
-						String validationCode = "precision_score = precision_score(y_test, y_pred, average='weighted')\n";
+						String validationCode = "precision = precision_score(y_test, y_pred, average='weighted')\n";
 						pandasCode+=validationCode;
 						pandasCode+= "results[" + i + "]['precision'] = precision\n";
 
@@ -498,47 +502,112 @@ public class MMLCompiler {
 		pandasCode+="print(results)\n";
 		
 		
-		
-		
-		//Final Python Code
-		pandasCode = pythonImport + pandasCode;
-		
-		//Save Python Code to file
-		try {
-			File file = new File("upload/mml.py");
-			FileWriter fileWriter = new FileWriter(file);
-			fileWriter.write(pandasCode);
-			fileWriter.flush();
-			fileWriter.close();
-			file.setExecutable(true);
-		} catch (IOException e) {
-			e.printStackTrace();
+		String pythonOutput = "";
+		String pythonErrors = "";
+		if (pythonalgo) {
+			//Final Python Code
+			pandasCode = pythonImport + pandasCode;
+			
+			//Save Python Code to file
+			try {
+				File file = new File("upload/mml.py");
+				FileWriter fileWriter = new FileWriter(file);
+				fileWriter.write(pandasCode);
+				fileWriter.flush();
+				fileWriter.close();
+				file.setExecutable(true);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			//Exec Python Code
+			
+			Runtime runtime = Runtime.getRuntime();
+			try {
+				Process p = Runtime.getRuntime().exec("upload/mml.py");
+				BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				BufferedReader errinput = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+				String read = in.readLine();
+				while(read != null) {
+					pythonOutput += read + "\n";
+					read = in.readLine();
+				}
+				String read_error = errinput.readLine();
+				while(read_error != null) {
+					pythonErrors += read_error + "\n";
+					read_error = errinput.readLine();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			
+			System.out.println(pythonErrors);
+			System.out.println(pythonOutput);
+		}
+		else {
+			pandasCode = null;
+			pythonOutput = null;
+			pythonErrors = null;
 		}
 		
 		
-		//Exec Python Code
-		String pythonOutput = "";
-		Runtime runtime = Runtime.getRuntime();
-		try {
-			Process p = Runtime.getRuntime().exec("upload/mml.py");
-			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			String read = in.readLine();
-			while(read != null) {
-				pythonOutput += read + "\n";
-				read = in.readLine();
+		
+		String ROutput = "";
+		String RErrors = "";
+		if (Ralgo) {
+			//Final R Code
+			Rcode = RImport + Rcode;
+			
+			//Save R Code to file
+			try {
+				File fileR = new File("upload/mml.R");
+				FileWriter fileWriterR = new FileWriter(fileR);
+				fileWriterR.write(Rcode);
+				fileWriterR.close();
+				fileR.setExecutable(true);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+			
+			//Exec R Code
+			
+			try{
+		        Process pR = Runtime.getRuntime().exec("upload/mml.R");
+		        pR.waitFor();
+		        
+		        BufferedReader inR = new BufferedReader(new InputStreamReader(pR.getInputStream()));
+				BufferedReader errinput = new BufferedReader(new InputStreamReader(pR.getErrorStream()));
+				String read = inR.readLine();
+				while(read != null) {
+					ROutput += read + "\n";
+					read = inR.readLine();
+				}
+				String read_error = errinput.readLine();
+				while(read_error != null) {
+					RErrors += read_error + "\n";
+					read_error = errinput.readLine();
+				}
+				
+			}catch (IOException ioe){
+		        System.out.println("IOException");
+			}catch (InterruptedException ie){
+		        System.out.println("InterruptedException");
+			}
+			System.out.println(Rcode);
+			System.out.println(RErrors);
+			System.out.println(ROutput);
+			
+		}
+		else {
+			Rcode = null;
+			ROutput = null;
+			RErrors = null;
+		}
 		
-		System.out.println(pandasCode);
-		System.out.println(pythonOutput);
 		
-		//Final R Code
-		Rcode = RImport + Rcode;
 		
-		List<String> code_output = Arrays.asList(pandasCode, Rcode, pythonOutput);
+		List<String> code_output = Arrays.asList(pandasCode, Rcode, pythonOutput, ROutput, pythonErrors, RErrors);
 		
 		return code_output;
 	}
