@@ -5,8 +5,9 @@ import numpy as np
 import json
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from sklearn.metrics import balanced_accuracy_score
+from sklearn.metrics import f1_score
 from sklearn.ensemble import RandomForestClassifier
+from sklearn import tree
 mml_data = pd.read_csv("upload/iris.csv", sep=',', engine='python')
 y = mml_data.loc[:,['variety']]
 X =  mml_data.drop(['variety'],axis = 1)
@@ -20,6 +21,16 @@ clf.fit(X_train, y_train)
 y_pred=clf.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 results[0]["output"].append({"metric" : "accuracy", "value" : accuracy})
-balanced_accuracy = balanced_accuracy_score(y_test, y_pred) 
-results[0]["output"].append({"metric" : "Balanced accuracy", "value" : balanced_accuracy})
+f1score = f1_score(y_test, y_pred, average='weighted')
+results[0]["output"].append({"metric" : "f1 score", "value" : f1score})
+results.append({})
+results[1]["output"] = []
+results[1]["model"] = "Decision tree"
+clf = tree.DecisionTreeClassifier(criterion = "gini", max_depth = 1)
+clf.fit(X_train, y_train)
+y_pred=clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+results[1]["output"].append({"metric" : "accuracy", "value" : accuracy})
+f1score = f1_score(y_test, y_pred, average='weighted')
+results[1]["output"].append({"metric" : "f1 score", "value" : f1score})
 print(json.dumps(results))

@@ -15,8 +15,12 @@ function Display_Py(){
         scriptpy.style.display = 'block';
         this.value = "Undisplay";
         script.style.height = "592px";
-
-        textpy.value = iframe.getElementById("script_py").textContent;
+        
+        txt = iframe.getElementById("script_py").textContent
+        if(txt != "null"){
+            textpy.value = txt;
+        }
+        
     }
     else{
         scriptpy.style.display = 'none';
@@ -35,8 +39,10 @@ function Display_R(){
     if(this.value == "Display R script"){
         scriptr.style.display = 'block';
         this.value = "Undisplay";
-        textr.value = iframe.getElementById("script_R").textContent;
-
+        txt = iframe.getElementById("script_R").textContent;
+        if(txt != "null"){
+            textr.value = txt;
+        }
     }
     else{
         scriptr.style.display = 'none';
