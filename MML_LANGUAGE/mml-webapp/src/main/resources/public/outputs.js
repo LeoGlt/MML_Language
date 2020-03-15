@@ -46,7 +46,7 @@ function DisplayPyOut(results_py){
 function DisplayROut(results_R){
 
     if(parent.document.getElementById("R_out_div") == null){
-        if(results_R.textContent != "null" & results_R.textContent != ""){
+        if(results_R != "null" & results_R != ""){
             parsedresults = JSON.parse(results_R)
             var Rdiv = parent.document.createElement("div")
             Rdiv.setAttribute("class","Routputs") 
