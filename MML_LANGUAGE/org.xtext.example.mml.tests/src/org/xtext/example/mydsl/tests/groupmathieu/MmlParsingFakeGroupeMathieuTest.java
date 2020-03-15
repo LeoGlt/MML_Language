@@ -93,7 +93,7 @@ public class MmlParsingFakeGroupeMathieuTest {
 		MLAlgorithm alg1 = ml1.getAlgorithm();
 		Assertions.assertTrue(alg1 instanceof SVM);
 		Assertions.assertTrue(((SVM) alg1).isKernelSpecified());
-		Assertions.assertEquals(((SVM) alg1).getKernel(), SVMKernel.RADIAL);
+
 		
 		MLChoiceAlgorithm ml2 = result.getAlgorithms().get(1);
 		MLAlgorithm alg2 = ml2.getAlgorithm();

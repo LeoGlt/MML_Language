@@ -5,9 +5,6 @@ function DisplayOutputs(){
     var results_R = document.getElementById("results_R").textContent;
     var errors_py = document.getElementById("errors_python").textContent;
     var errors_R = document.getElementById("errors_R").textContent;
-
-    txt = '[{"model": "Random Forest","output": [{"metric": "accuracy","value": "0.8" },{"metric": "recall","value": "0.5"}]}, {"model": "Logistic Regression","output": [{"metric": "accuracy","value": "0.7"},{"metric": "recall","value": "0.6"} ]}]'
-
     DisplayPyOut(results_py);
     //DisplayROut(results_R);
     DisplayErrors(errors_py,errors_R);
@@ -56,7 +53,7 @@ function DisplayROut(results_R){
             var Rdiv = parent.document.createElement("div")
             Rdiv.setAttribute("class","Routputs") 
             Rdiv.setAttribute("id","R_out_div")
-            Rdiv.innerHTML += "<h4> Algorithms with scikit framework outputs </h4>"
+            Rdiv.innerHTML += "<h4> Algorithms with R framework outputs </h4>"
             
             for(var i=0;i < parsedresults.length;i++){
 
