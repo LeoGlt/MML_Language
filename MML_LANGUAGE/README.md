@@ -12,10 +12,10 @@ To get information on how to install the MML application and the required depend
 
 ### Algorithms
 Available Machine Learning algorithms are:
-  -Decision Tree
-  -Support Vector Machines
-  -Logistic Regression
-  -Random Forest
+- Decision Tree
+- Support Vector Machines
+- Logistic Regression
+- Random Forest
 
 ### Frameworks
 You may choose between two frameworks for your algorithm to be implemented in: scikit-learn (Python) and R.
@@ -25,11 +25,11 @@ Two validation methods are proposed: Train/Test split and Cross-validation.
 
 ### Outputs
 Available metrics to be shown in the outputs:
-  -Accuracy
-  -Recall
-  -Precision
-  -F1
-  -Balanced Accuracy
+- Accuracy
+- Recall
+- Precision
+- F1
+- Balanced Accuracy
 
 ## Usage
 
