@@ -273,7 +273,7 @@ public class MMLCompiler {
 					pandasCode += algoTraining;
 				}
 				if (mlalgo instanceof RandomForest) {
-					pandasCode+= "results[" + i + "][\"model\"] = \"SVM\"\n";
+					pandasCode+= "results[" + i + "][\"model\"] = \"Random Forest\"\n";
 					RandomForest randomforest = (RandomForest) mlalgo;
 					pythonImport+= "from sklearn.ensemble import RandomForestClassifier\n";
 					int Nestim = 100;
