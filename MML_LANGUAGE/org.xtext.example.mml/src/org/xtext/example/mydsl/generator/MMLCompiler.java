@@ -222,7 +222,8 @@ public class MMLCompiler {
 		EList<MLChoiceAlgorithm> algos = mml.getAlgorithms();
 		int i = 0;
 		for (MLChoiceAlgorithm algo:algos) {
-			pandasCode += "results.append({})\n";
+			pandasCode += "results.append({})\n" +
+					"results[" + i + "]['output'] = []\n";
 			
 			MLAlgorithm mlalgo = algo.getAlgorithm();
 			FrameworkLang framework = algo.getFramework();
@@ -231,6 +232,7 @@ public class MMLCompiler {
 				System.out.println("Scikit-learn is targeted");
 				pythonalgo = true;
 				if (mlalgo instanceof DT) {
+					pandasCode+= "results[" + i + "]['model'] = 'Decision tree'\n";
 					DT dt = (DT) mlalgo;
 					int maxDepth = dt.getMax_depth();
 					DTCriterion criterion = dt.getCriterion();
@@ -252,6 +254,7 @@ public class MMLCompiler {
 					
 				}
 				if (mlalgo instanceof SVM) {
+					pandasCode+= "results[" + i + "]['model'] = 'SVM'\n";
 					pythonImport+= "from sklearn.svm import SVC\n";
 					SVM svm = (SVM) mlalgo;
 					SVMKernel kernel = svm.getKernel();
@@ -268,6 +271,7 @@ public class MMLCompiler {
 					pandasCode += algoTraining;
 				}
 				if (mlalgo instanceof RandomForest) {
+					pandasCode+= "results[" + i + "]['model'] = 'SVM'\n";
 					RandomForest randomforest = (RandomForest) mlalgo;
 					pythonImport+= "from sklearn.ensemble import RandomForestClassifier\n";
 					int Nestim = 100;
@@ -290,6 +294,7 @@ public class MMLCompiler {
 					
 				}
 				if (mlalgo instanceof LogisticRegression) {
+					pandasCode+= "results[" + i + "]['model'] = 'Logistic Regression'\n";
 					pythonImport += "from sklearn.linear_model import LogisticRegression\n";
 					LogisticRegression logisticregression = (LogisticRegression) mlalgo;
 					String tol = "0.0001";
@@ -403,12 +408,12 @@ public class MMLCompiler {
 					if (validation_method instanceof TrainingTest) {
 						String validationCode = "recall = recall_score(y_test, y_pred, average = 'weighted')\n";
 						pandasCode+= validationCode;
-						pandasCode+= "results[" + i + "]['recall'] = recall\n";
+						pandasCode+= "results[" + i + "]['output'].append({'metric' : 'recall', 'value' : recall})\n";
 					}
 					else {
 						String validationCode = "recall = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='recall_weighted')\n";
 						pandasCode+=validationCode;
-						pandasCode+= "results[" + i + "]['recall'] = str(np.mean(recall))\n";
+						pandasCode+= "results[" + i + "]['output'].append({'metric' : 'recall', 'value' : str(np.mean(recall))})\n";
 
 
 					}
@@ -423,13 +428,14 @@ public class MMLCompiler {
 					if (validation_method instanceof TrainingTest) {
 						String validationCode = "accuracy = accuracy_score(y_test, y_pred)\n";
 						pandasCode+= validationCode;
-						pandasCode+= "results[" + i + "]['accuracy'] = accuracy\n";
+						pandasCode+= "results[" + i + "]['output'].append({'metric' : 'accuracy', 'value' : accuracy})\n";
 
 					}
 					else {
 						String validationCode = "accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +")\n";
 						pandasCode+=validationCode;
-						pandasCode+= "results[" + i + "]['accuracy'] = str(np.mean(accuracy))\n";
+						pandasCode+= "results[" + i + "]['output'].append({'metric' : 'accuracy', 'value' : str(np.mean(accuracy))})\n";
+
 
 					}
 					// Accuracy for R
@@ -443,13 +449,14 @@ public class MMLCompiler {
 					if (validation_method instanceof TrainingTest) {
 						String validationCode = "balanced_accuracy = balanced_accuracy_score(y_test, y_pred) \n";
 						pandasCode+=validationCode;
-						pandasCode+= "results[" + i + "]['balanced_accuracy'] = balanced_accuracy\n";
+						pandasCode+= "results[" + i + "]['output'].append({'metric' : 'balanced accuracy', 'value' : balanced_accuracy})\n";
 
 					}
 					else {
 						String validationCode = "balanced_accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='balanced_accuracy')\n";
 						pandasCode+=validationCode;
-						pandasCode+= "results[" + i + "]['balanced_accuracy'] = str(np.mean(balanced_accuracy))\n";
+						pandasCode+= "results[" + i + "]['output'].append({'metric' : 'balanced accuracy', 'value' : str(np.mean(balanced_accuracy))})\n";
+
 
 					}
 					
@@ -464,14 +471,16 @@ public class MMLCompiler {
 					if (validation_method instanceof TrainingTest) {
 						String validationCode = "f1score = f1_score(y_test, y_pred, average='weighted')\n";
 						pandasCode+=validationCode;
-						pandasCode+= "results[" + i + "]['f1_score'] = f1score\n";
+						pandasCode+= "results[" + i + "]['output'].append({'metric' : 'f1 score', 'value' : f1score})\n";
+
 
 					}
 					else {
 						
 						String validationCode = "f1score = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +", scoring='f1_weighted')\n";
 						pandasCode+= validationCode;
-						pandasCode+= "results[" + i + "]['f1_score'] = str(np.mean(f1score))\n";
+						pandasCode+= "results[" + i + "]['output'].append({'metric' : 'f1 score', 'value' : str(np.mean(f1score))})\n";
+
 
 						
 					}
@@ -484,14 +493,14 @@ public class MMLCompiler {
 					if (validation_method instanceof TrainingTest) {
 						String validationCode = "precision = precision_score(y_test, y_pred, average='weighted')\n";
 						pandasCode+=validationCode;
-						pandasCode+= "results[" + i + "]['precision'] = precision\n";
+						pandasCode+= "results[" + i + "]['output'].append({'metric' : 'precision', 'value' : precision})\n";
+
 
 					}
 					else {
 						String validationCode = "precision = cross_val_score(clf, X, y, cv=10, scoring='precision_weighted')\n";
 						pandasCode+=validationCode;
-						pandasCode+= "results[" + i + "]['precision'] = str(np.mean(precision))\n";
-						
+						pandasCode+= "results[" + i + "]['output'].append({'metric' : 'precision', 'value' : str(np.mean(precision))})\n";
 					}
 					//Precision for R
 				}
