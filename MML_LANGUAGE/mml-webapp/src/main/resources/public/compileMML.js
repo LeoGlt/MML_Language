@@ -124,22 +124,20 @@ function AlgoMML(){
           var maxdepth = document.querySelector("input[name = RFmaxdepth" + String(i) + "]").value;
           var n_estimators = Number.parseFloat(document.querySelector("input[name = RFnestimators" + String(i) + "]").value);
           
-          if(maxdepth != ""){
-            maxdepth = Number.parseFloat(maxdepth)
-            if(maxdepth <= 0 | !Number.isInteger(maxdepth)){
+          if(maxdepth != "" & (Number.parseFloat(maxdepth) <= 0 | !Number.isInteger(Number.parseFloat(maxdepth)))){
               return(["error","Max depth argument for Random Forest should either be a strictly positive integer or nothing (to allow maximum depth possible)"])
-            }
-            
           }
           else if(n_estimators <= 0 | !Number.isInteger(n_estimators)){
             return(["error","Number of trees argument for Random Forest should be a strictly positive integer"])
           }
           else{
+            console.log(maxdepth)
             if(maxdepth == ""){
               algomml += "RF n_estimators=" + n_estimators + " criterion=" + criterion;
             }
             else{
-              algomml += "RF n_estimators=" + n_estimators + " max_depth=" + String(maxdepth) + " criterion=" + criterion;
+              console.log(maxdepth)
+              algomml += "RF n_estimators=" + n_estimators + " max_depth=" + maxdepth + " criterion=" + criterion;
             };
             
           };
