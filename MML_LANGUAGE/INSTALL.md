@@ -26,5 +26,10 @@ The following librairies are required :
 - pandas
 - json
 - R 
+- dplyr
+- rpart
+- randomForest
+- questionr
+- caret
 
 
