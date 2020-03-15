@@ -18,8 +18,6 @@ public class Main {
         app.post("/generate", ctx -> {
         	
         	List<String> code_output = processMML(ctx.formParam("mml"));
-        	
-        	System.out.println(code_output.get(2));
         	String html = "<body onload = 'DisplayOutputs(this);'>";
         	html += "<div id = 'script_py'>" + code_output.get(0) + "</div>";
         	html += "<div id = 'results_python' >" + code_output.get(2) + "</div>";

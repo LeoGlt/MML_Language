@@ -1,9 +1,6 @@
 function DisplayOutputs(){
     
-    var outputs = parent.document.createElement("outputs");
-    console.log(outputs)
-
-    var results_py = document.getElementById("results_python");
+    var results_py = document.getElementById("results_python").textContent;
     console.log(results_py)
     var results_R = document.getElementById("results_R").textContent;
     var errors_py = document.getElementById("errors_python").textContent;
@@ -11,7 +8,7 @@ function DisplayOutputs(){
 
     txt = '[{"model": "Random Forest","output": [{"metric": "accuracy","value": "0.8" },{"metric": "recall","value": "0.5"}]}, {"model": "Logistic Regression","output": [{"metric": "accuracy","value": "0.7"},{"metric": "recall","value": "0.6"} ]}]'
 
-    //DisplayPyOut(results_py);
+    DisplayPyOut(results_py);
     //DisplayROut(results_R);
     DisplayErrors(errors_py,errors_R);
 
@@ -22,6 +19,7 @@ function DisplayPyOut(results_py){
 
     if(parent.document.getElementById("py_out_div") == null){
         if(results_py.textContent != "null"){
+            console.log()
             parsedresults = JSON.parse(results_py)
             var pydiv = parent.document.createElement("div")
             pydiv.setAttribute("class","pyoutputs") 
