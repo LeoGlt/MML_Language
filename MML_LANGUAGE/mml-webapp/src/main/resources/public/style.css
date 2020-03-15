@@ -203,6 +203,60 @@ input[type="file"] {
   border-width: 7px;
 }
 
+.outputs {
+  font-family: "sans-serif";
+  margin-left: 34%;
+  margin-top: 20px;
+  width: 64%;
+  background-color: rgb(240,240,240);
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-style: inset;
+  border-width: 7px;
+}
+
+.pyoutputs {
+  margin: 0.5em;
+  background-color: #F3FEFF;
+  padding-left: 1em;
+  padding-right: 0.5em;
+  padding-bottom: 5mm;
+  padding-top: 0.5mm;
+  margin-top: 5mm;
+  border-width: 2px;
+  border-style: solid;
+  /*border-color: rgb(37, 39, 39);*/
+}
+
+.Routputs {
+  margin: 0.5em;
+  background-color: #F3FEFF;
+  padding-left: 1em;
+  padding-right: 0.5em;
+  padding-bottom: 5mm;
+  padding-top: 0.5mm;
+  margin-top: 5mm;
+  border-width: 2px;
+  border-style: solid;
+  /*border-color: rgb(37, 39, 39);*/
+}
+
+.error {
+  margin: 0.5em;
+  background-color: #F3FEFF;
+  padding-left: 1em;
+  padding-right: 0.5em;
+  padding-bottom: 5mm;
+  padding-top: 0.5mm;
+  margin-top: 5mm;
+  border-width: 2px;
+  border-style: solid;
+  color: red;
+  /*border-color: rgb(37, 39, 39);*/
+}
+
 /*input:invalid {
   box-shadow: 0 0 5px 1px red;
 }

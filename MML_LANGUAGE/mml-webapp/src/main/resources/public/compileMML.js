@@ -131,12 +131,10 @@ function AlgoMML(){
             return(["error","Number of trees argument for Random Forest should be a strictly positive integer"])
           }
           else{
-            console.log(maxdepth)
             if(maxdepth == ""){
               algomml += "RF n_estimators=" + n_estimators + " criterion=" + criterion;
             }
             else{
-              console.log(maxdepth)
               algomml += "RF n_estimators=" + n_estimators + " max_depth=" + maxdepth + " criterion=" + criterion;
             };
             

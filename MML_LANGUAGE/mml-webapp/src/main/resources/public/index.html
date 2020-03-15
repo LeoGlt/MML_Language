@@ -106,17 +106,6 @@
         <input type="checkbox" id="balanced_accuracy" name="metric" value="balanced_accuracy">
         <label for="balanced_accuracy">Balanced accuracy</label>
 
-        <input type="checkbox" id="macro_recall" name="metric" value="macro_recall">
-        <label for="macro_recall">Macro recall</label>
-
-        <input type="checkbox" id="macro_precision" name="metric" value="macro_precision">
-        <label for="macro_precision">Macro precision</label>
-
-        <input type="checkbox" id="macro_F1" name="metric" value="macro_F1">
-        <label for="macro_F1">Macro F1</label>
-
-        <input type="checkbox" id="macro_accuracy" name="metric" value="macro_accuracy">
-        <label for="macro_accuracy">Macro accuracy</label>
       </div>
 
     </div>
@@ -143,7 +132,16 @@
 
   </div>
 
+  <div id="outputs" class=outputs>
 
+    <center>
+      <h2>Ouputs</h2>
+    </center>
+
+    <div id = "errors" class=selection style="display:none"></div>
+
+
+  </div>
 
   <div id="script" class=script>
 
@@ -187,5 +185,6 @@
 <script src="./papaparse.min.js"></script>
 <script src="csvFile.js"></script>
 <script src="display_R_Py.js"></script>
+<script src="outputs.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> >
  

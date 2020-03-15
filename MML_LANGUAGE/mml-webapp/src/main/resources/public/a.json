@@ -1,0 +1,28 @@
+[
+    {
+        "model": "Random Forest",
+        "output": [
+            {
+                "metric": "accuracy",
+                "value": "0.8"
+            },
+            {
+                "metric": "recall",
+                "value": "0.5"
+            }
+        ]
+    },
+    {
+        "model": "Logistic Regression",
+        "output": [
+            {
+                "metric": "accuracy",
+                "value": "0.7"
+            },
+            {
+                "metric": "recall",
+                "value": "0.6"
+            }
+        ]
+    }
+]
