@@ -1,7 +1,6 @@
 function DisplayOutputs(){
     
     var results_py = document.getElementById("results_python").textContent;
-    console.log(results_py)
     var results_R = document.getElementById("results_R").textContent;
     var errors_py = document.getElementById("errors_python").textContent;
     var errors_R = document.getElementById("errors_R").textContent;
@@ -15,8 +14,7 @@ function DisplayOutputs(){
 function DisplayPyOut(results_py){
 
     if(parent.document.getElementById("py_out_div") == null){
-        if(results_py.textContent != "null"){
-            console.log()
+        if(results_py != "null" & results_py != ""){
             parsedresults = JSON.parse(results_py)
             var pydiv = parent.document.createElement("div")
             pydiv.setAttribute("class","pyoutputs") 
@@ -48,7 +46,7 @@ function DisplayPyOut(results_py){
 function DisplayROut(results_R){
 
     if(parent.document.getElementById("R_out_div") == null){
-        if(results_py.textContent != "null"){
+        if(results_R.textContent != "null" & results_R.textContent != ""){
             parsedresults = JSON.parse(results_R)
             var Rdiv = parent.document.createElement("div")
             Rdiv.setAttribute("class","Routputs") 
