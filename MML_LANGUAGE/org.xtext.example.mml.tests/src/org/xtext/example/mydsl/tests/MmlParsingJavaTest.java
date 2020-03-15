@@ -24,7 +24,6 @@ import org.xtext.example.mydsl.mml.MMLModel;
 import org.xtext.example.mydsl.mml.RFormula;
 import org.xtext.example.mydsl.mml.RandomForest;
 import org.xtext.example.mydsl.mml.SVM;
-import org.xtext.example.mydsl.mml.SVMClassification;
 import org.xtext.example.mydsl.mml.SVMKernel;
 import org.xtext.example.mydsl.mml.StratificationMethod;
 import org.xtext.example.mydsl.mml.TrainingTest;
@@ -132,7 +131,6 @@ public class MmlParsingJavaTest {
 					pythonImport+= "from sklearn.svm import SVC\n";
 					SVM svm = (SVM) mlalgo;
 					SVMKernel kernel = svm.getKernel();
-					SVMClassification classification = svm.getSvmclassification();
 					String algoTraining = "clf = SVC(gamma='auto')\n" + 
 							"clf.fit(X_train, y_train)\n" +
 							"y_pred=clf.predict(X_test)\n";
