@@ -24,5 +24,7 @@ The following librairies are required :
 - Numpy
 - scikit-learn
 - pandas
+- json
 - R 
+
 

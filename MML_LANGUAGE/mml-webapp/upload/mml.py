@@ -3,40 +3,67 @@
 import pandas as pd 
 import numpy as np
 import json
-from sklearn.model_selection import cross_val_score
-import numpy as np
+import warnings
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import precision_score
 from sklearn import tree
 from sklearn.svm import SVC
-mml_data = pd.read_csv("upload/iris.csv", sep=',', engine='python')
-y = mml_data.loc[:,['variety']]
-X =  mml_data.drop(['variety'],axis = 1)
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+warnings.filterwarnings("ignore")
+mml_data = pd.read_csv("upload/Spotify.csv", sep=';', engine='python')
+y = mml_data.loc[:,['like']]
+X =  mml_data.loc[:,['NumId','acousticness','danceability','duration','energy','instrumentalness','key','liveness','loudness','mode','speechiness','tempo','time_signature','valence']]
 results = []
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.19999999, random_state=0)
 results.append({})
 results[0]["output"] = []
 results[0]["model"] = "Decision tree"
 clf = tree.DecisionTreeClassifier(criterion = "gini", max_depth = 1)
-accuracy = cross_val_score(clf, X, y, cv=5)
-results[0]["output"].append({"metric" : "accuracy", "value" : str(np.mean(accuracy))})
-recall = cross_val_score(clf, X, y, cv=5, scoring='recall_weighted')
-results[0]["output"].append({"metric" : "recall", "value" : str(np.mean(recall))})
-precision = cross_val_score(clf, X, y, cv=10, scoring='precision_weighted')
-results[0]["output"].append({"metric" : "precision", "value" : str(np.mean(precision))})
-f1score = cross_val_score(clf, X, y, cv=5, scoring='f1_weighted')
-results[0]["output"].append({"metric" : "f1 score", "value" : str(np.mean(f1score))})
-balanced_accuracy = cross_val_score(clf, X, y, cv=5, scoring='balanced_accuracy')
-results[0]["output"].append({"metric" : "balanced accuracy", "value" : str(np.mean(balanced_accuracy))})
+clf.fit(X_train, y_train)
+y_pred=clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+results[0]["output"].append({"metric" : "accuracy", "value" : accuracy})
+recall = recall_score(y_test, y_pred, average = 'weighted')
+results[0]["output"].append({"metric" : "recall", "value" : recall})
+precision = precision_score(y_test, y_pred, average='weighted')
+results[0]["output"].append({"metric" : "precision", "value" : precision})
 results.append({})
 results[1]["output"] = []
 results[1]["model"] = "SVM"
 clf = SVC(gamma='auto',C=1, kernel = "rbf")
-accuracy = cross_val_score(clf, X, y, cv=5)
-results[1]["output"].append({"metric" : "accuracy", "value" : str(np.mean(accuracy))})
-recall = cross_val_score(clf, X, y, cv=5, scoring='recall_weighted')
-results[1]["output"].append({"metric" : "recall", "value" : str(np.mean(recall))})
-precision = cross_val_score(clf, X, y, cv=10, scoring='precision_weighted')
-results[1]["output"].append({"metric" : "precision", "value" : str(np.mean(precision))})
-f1score = cross_val_score(clf, X, y, cv=5, scoring='f1_weighted')
-results[1]["output"].append({"metric" : "f1 score", "value" : str(np.mean(f1score))})
-balanced_accuracy = cross_val_score(clf, X, y, cv=5, scoring='balanced_accuracy')
-results[1]["output"].append({"metric" : "balanced accuracy", "value" : str(np.mean(balanced_accuracy))})
+clf.fit(X_train, y_train)
+y_pred=clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+results[1]["output"].append({"metric" : "accuracy", "value" : accuracy})
+recall = recall_score(y_test, y_pred, average = 'weighted')
+results[1]["output"].append({"metric" : "recall", "value" : recall})
+precision = precision_score(y_test, y_pred, average='weighted')
+results[1]["output"].append({"metric" : "precision", "value" : precision})
+results.append({})
+results[2]["output"] = []
+results[2]["model"] = "Logistic Regression"
+clf = LogisticRegression(penalty="l2", tol=0.0001, C=1,random_state=0, multi_class='auto')
+clf.fit(X_train, y_train)
+y_pred=clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+results[2]["output"].append({"metric" : "accuracy", "value" : accuracy})
+recall = recall_score(y_test, y_pred, average = 'weighted')
+results[2]["output"].append({"metric" : "recall", "value" : recall})
+precision = precision_score(y_test, y_pred, average='weighted')
+results[2]["output"].append({"metric" : "precision", "value" : precision})
+results.append({})
+results[3]["output"] = []
+results[3]["model"] = "SVM"
+clf = RandomForestClassifier(criterion = "gini", n_estimators = 10,random_state = 42)
+clf.fit(X_train, y_train)
+y_pred=clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+results[3]["output"].append({"metric" : "accuracy", "value" : accuracy})
+recall = recall_score(y_test, y_pred, average = 'weighted')
+results[3]["output"].append({"metric" : "recall", "value" : recall})
+precision = precision_score(y_test, y_pred, average='weighted')
+results[3]["output"].append({"metric" : "precision", "value" : precision})
 print(json.dumps(results))
