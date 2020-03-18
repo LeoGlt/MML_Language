@@ -480,7 +480,7 @@ public class MMLCompiler {
 						}
 						String algoTraining = "clf = train(gamma=" + codeGamma +",C=" +codeC + ", kernel = \""+ kernel +"\", data = dataTrain, trControl = fit.control)\n" + 
 								"y_pred=predict(clf,dataTest, type = \"class\")\n";
-						pandasCode += algoTraining;
+						Rcode += algoTraining;
 						
 					}
 					if (mlalgo instanceof RandomForest) {
@@ -566,7 +566,7 @@ public class MMLCompiler {
 						else {
 							String validationCode = "accuracy = cross_val_score(clf, X, y, cv="+validation_method.getNumber() +")\n";
 							pandasCode+=validationCode;
-							pandasCode+= "results[" + ipyth + "][\"output\"].append({\"metric\" = \"accuracy\", \"value\" : str(np.mean(accuracy))})\n";
+							pandasCode+= "results[" + ipyth + "][\"output\"].append({\"metric\" : \"accuracy\", \"value\" : str(np.mean(accuracy))})\n";
 						}
 					}
 					else {
