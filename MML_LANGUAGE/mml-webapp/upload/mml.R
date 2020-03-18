@@ -1,0 +1,31 @@
+library(utils)
+library(dplyr)
+library(caret)
+library(e1071)
+library(rpart)
+library(questionr)library(rjson)
+data <- read.csv('iris.csv', sep=',')
+y <- "variety"
+X <- colnames(data %>% select(-"variety"))
+formula = as.formula(paste(y, paste(X,collapse = " + "), sep = " ~ "))
+results = list()
+set <- sample(1:nrow(data),floor(0.8*nrow(data)))
+dataTrain <- data[set,]
+dataTest <- data[-set,]
+results[[1]] = list(model=c(), output=list())
+results[[1]]$model = "Decision tree"
+clf = rpart(formula = formula,data = dataTrain, method = "class",control = (maxdepth = 1),parms = list(split ="gini"))
+y_pred = predict(clf, dataTest, type = "class")
+mat_conf <- table(y_pred,unlist(dataTest %>% select(y)))
+accuracy = sum(diag(mat_conf))/sum(mat_conf)
+results[[1]]$output[[1]] = list(metric = "accuracy", value = accuracy)
+mat_conf <- table(y_pred,unlist(dataTest %>% select(y)))
+results[[2]] = list(model=c(), output=list())
+results[[2]]$model = "Logistic Regression"
+clf = glmnet(formula, data = dataTrain, family = binomial(logit))
+y_pred=predict(clf,type = "response", newdata = dataTest)
+mat_conf <- table(y_pred,unlist(dataTest %>% select(y)))
+accuracy = sum(diag(mat_conf))/sum(mat_conf)
+results[[2]]$output[[1]] = list(metric = "accuracy", value = accuracy)
+mat_conf <- table(y_pred,unlist(dataTest %>% select(y)))
+print(toJSON(results))
