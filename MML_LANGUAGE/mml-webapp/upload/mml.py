@@ -4,21 +4,35 @@ import pandas as pd
 import numpy as np
 import json
 import warnings
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score
+import numpy as np
+from sklearn import tree
+from sklearn.svm import SVC
 warnings.filterwarnings("ignore")
 mml_data = pd.read_csv("upload/iris.csv", sep=',', engine='python')
 y = mml_data.loc[:,['variety']]
 X =  mml_data.drop(['variety'],axis = 1)
 results = []
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.19999999, random_state=0)
 results.append({})
 results[0]["output"] = []
-results[0]["model"] = "SVM"
-clf = RandomForestClassifier(criterion = "gini", n_estimators = 10,random_state = 42)
-clf.fit(X_train, y_train)
-y_pred=clf.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-results[0]["output"].append({"metric" : "accuracy", "value" : accuracy})
+results[0]["model"] = "Decision tree"
+clf = tree.DecisionTreeClassifier(criterion = "gini", max_depth = 1)
+accuracy = cross_val_score(clf, X, y, cv=10)
+results[0]["output"].append({"metric" : "accuracy", "value" : str(np.mean(accuracy))})
+recall = cross_val_score(clf, X, y, cv=10, scoring='recall_weighted')
+results[0]["output"].append({"metric" : "recall", "value" : str(np.mean(recall))})
+results.append({})
+results[1]["output"] = []
+results[1]["model"] = "SVM"
+clf = SVC(gamma='auto',C=1, kernel = "rbf")
+accuracy = cross_val_score(clf, X, y, cv=10)
+results[1]["output"].append({"metric" : "accuracy", "value" : str(np.mean(accuracy))})
+recall = cross_val_score(clf, X, y, cv=10, scoring='recall_weighted')
+results[1]["output"].append({"metric" : "recall", "value" : str(np.mean(recall))})
+results.append({})
+results[2]["output"] = []
+accuracy = cross_val_score(clf, X, y, cv=10)
+results[2]["output"].append({"metric" : "accuracy", "value" : str(np.mean(accuracy))})
+recall = cross_val_score(clf, X, y, cv=10, scoring='recall_weighted')
+results[2]["output"].append({"metric" : "recall", "value" : str(np.mean(recall))})
 print(json.dumps(results))
