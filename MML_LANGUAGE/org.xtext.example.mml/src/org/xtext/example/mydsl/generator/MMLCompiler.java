@@ -64,7 +64,7 @@ public class MMLCompiler {
 		String csvReading = "mml_data = pd.read_csv(\"upload/" + fileLocation + "\", sep=" + mkValueInSingleQuote(csv_separator) + ", engine='python')\n";						
 		String pandasCode = csvReading;
 		
-		String csvReadingR = "data <- read.csv(" + mkValueInSingleQuote(fileLocation) + ", sep=" + mkValueInSingleQuote(csv_separator) + ")\n";
+		String csvReadingR = "data <- read.csv(\"upload/" + fileLocation + "\", sep=" + mkValueInSingleQuote(csv_separator) + ")\n";
 		String Rcode = csvReadingR;
 		
 		//Formula
@@ -755,7 +755,7 @@ public class MMLCompiler {
 			
 			Runtime runtime = Runtime.getRuntime();			
 			try{
-				Process pR = Runtime.getRuntime().exec("upload/mml.R");      
+				Process pR = Runtime.getRuntime().exec("Rscript upload/mml.R");      
 				BufferedReader inR = new BufferedReader(new InputStreamReader(pR.getInputStream()));
 				
 				BufferedReader errinput = new BufferedReader(new InputStreamReader(pR.getErrorStream()));
