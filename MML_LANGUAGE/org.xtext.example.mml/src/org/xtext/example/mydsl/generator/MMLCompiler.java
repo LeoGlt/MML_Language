@@ -341,8 +341,15 @@ public class MMLCompiler {
 						C = logisticregression.getC();
 					}
 					regPenalty penalty = logisticregression.getPenalty();
+					String penaltycode = "";
+					if (penalty.getName() != "none") {
+						penaltycode = "l2";
+					}
+					else {
+						penaltycode = "none";
+					}
 					
-					String algoTraining = "clf = LogisticRegression(penalty=\""+ penalty +
+					String algoTraining = "clf = LogisticRegression(penalty=\""+ penaltycode +
 							"\", tol=" + tol +
 							", C=" + C +
 							
