@@ -397,7 +397,7 @@ public class MMLCompiler {
 					}
 					if (mlalgo instanceof SVM) {
 						Rcode+= "results[[" + (iR+1) + "]]$model = \"SVM\"\n";
-						RImport+= "library(SVM)";
+						RImport+= "library(SVM)\n";
 						SVM svm = (SVM) mlalgo;
 						SVMKernel kernel = svm.getKernel();
 						//SVMClassification classification = svm.getSvmclassification();
@@ -678,7 +678,7 @@ public class MMLCompiler {
 		//Display the results
 		pandasCode+="print(json.dumps(results))\n";
 		RImport+="library(rjson)\n";
-		Rcode+="print(toJSON(results))\n";
+		Rcode+="print(writeLines(toJSON(results)))\n";
 				
 		
 		String pythonOutput = "";
@@ -774,8 +774,8 @@ public class MMLCompiler {
 			} catch (IOException ioe){
 				ioe.printStackTrace();
 			} 
-			ROutput = ROutput.substring(5,ROutput.length()-2);
-
+			//ROutput = ROutput.substring(5,ROutput.length()-2);
+			ROutput = ROutput.replaceAll("NULL", "");
 			System.out.println(RErrors);
 			System.out.println(ROutput);
 			
