@@ -5,7 +5,7 @@ function DisplayOutputs(){
     var errors_py = document.getElementById("errors_python").textContent;
     var errors_R = document.getElementById("errors_R").textContent;
     DisplayPyOut(results_py);
-    //DisplayROut(results_R);
+    DisplayROut(results_R);
     DisplayErrors(errors_py,errors_R);
 
 }

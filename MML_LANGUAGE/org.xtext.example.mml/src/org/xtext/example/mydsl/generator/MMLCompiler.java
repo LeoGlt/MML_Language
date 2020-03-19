@@ -49,7 +49,7 @@ public class MMLCompiler {
 				"import numpy as np\n" +
 				"import json\n" + 
 				"import warnings\n"; 
-		String RImport = "library(utils)\nlibrary(dplyr)\nlibrary(caret)\nlibrary(e1071)\n";
+		String RImport = "library(utils)\nlibrary(dplyr, warn.conflicts = FALSE)\nlibrary(caret)\nlibrary(e1071)\n";
 		
 		//Data import
 		String DEFAULT_COLUMN_SEPARATOR = ","; // by default
@@ -774,7 +774,8 @@ public class MMLCompiler {
 			} catch (IOException ioe){
 				ioe.printStackTrace();
 			} 
-			
+			ROutput = ROutput.substring(5,ROutput.length()-2);
+
 			System.out.println(RErrors);
 			System.out.println(ROutput);
 			
