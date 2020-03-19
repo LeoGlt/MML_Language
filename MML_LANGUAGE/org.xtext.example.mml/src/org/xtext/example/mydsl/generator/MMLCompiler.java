@@ -397,7 +397,7 @@ public class MMLCompiler {
 					}
 					if (mlalgo instanceof SVM) {
 						Rcode+= "results[[" + (iR+1) + "]]$model = \"SVM\"\n";
-						RImport+= "library(SVM)\n";
+						//RImport+= "library(SVM)\n";
 						SVM svm = (SVM) mlalgo;
 						SVMKernel kernel = svm.getKernel();
 						//SVMClassification classification = svm.getSvmclassification();
@@ -439,7 +439,7 @@ public class MMLCompiler {
 						}
 						regPenalty penalty = logisticregression.getPenalty();
 						
-						RImport += "library(questionr)";
+						RImport += "library(questionr)\n";
 						String algoTraining = "clf = glmnet(formula, data = dataTrain, family = binomial(logit))\n" + 
 								"y_pred=predict(clf,type = \"response\", newdata = dataTest)\n";
 						Rcode += algoTraining;

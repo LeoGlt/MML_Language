@@ -31,5 +31,5 @@ The following librairies are required :
 - randomForest
 - questionr
 - caret
-
+- e1071
 
