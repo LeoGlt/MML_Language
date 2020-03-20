@@ -49,7 +49,12 @@ public class MMLCompiler {
 				"import numpy as np\n" +
 				"import json\n" + 
 				"import warnings\n"; 
-		String RImport = "library(utils)\nlibrary(dplyr, warn.conflicts = FALSE)\nlibrary(caret)\nlibrary(e1071)\n";
+		String RImport = "suppressPackageStartupMessages(library(utils))\n"
+				+ "suppressPackageStartupMessages(library(dplyr))\n"
+				+ "suppressPackageStartupMessages(library(caret))\n"
+				+ "suppressPackageStartupMessages(library(e1071))\n"
+				+ "suppressPackageStartupMessages(library(lattice))\n"
+				+ "suppressPackageStartupMessages(library(ggplot2))\n";
 		
 		//Data import
 		String DEFAULT_COLUMN_SEPARATOR = ","; // by default
@@ -99,6 +104,7 @@ public class MMLCompiler {
 			}
 			
 			//Formula for R
+
 			if (predictors.size() > 0) {
 				String XR = "c(";
 				for(int i =0; i <= predictors.size()-1; i++) {
@@ -376,20 +382,20 @@ public class MMLCompiler {
 						DT dt = (DT) mlalgo;
 						int maxDepth = dt.getMax_depth();
 						DTCriterion criterion = dt.getCriterion(); // criterion = information si pas gini
-						RImport += "library(rpart)\n";
+						RImport += "suppressPackageStartupMessages(library(rpart))\n";
 						if (dt.isMaxdepthSpecified()) {
-							String algoTraining = "clf = rpart(formula = formula," +
+							String algoTraining = "clf = rpart(formula," +
 									"data = dataTrain, method = \"class\"," + 
 									"control = (maxdepth = " + maxDepth +")," +
 									"parms = list(split =\""+ criterion + "\"))\n" + 
-									"y_pred = predict(clf, dataTest, type = \"class\")\n";
+									"y_pred = predict(clf, newdata = dataTest, type = \"class\")\n";
 							Rcode += algoTraining;
 						}
 						else {
-							String algoTraining = "clf = rpart(formula = formula," +
+							String algoTraining = "clf = rpart(formula," +
 									"data = dataTrain, method = \"class\"," + 
 									"parms = list(split =\""+ criterion + "\"))\n" + 
-									"y_pred = predict(clf, dataTest, type = \"class\")\n";
+									"y_pred = predict(clf, newdata = dataTest, type = \"class\")\n";
 							Rcode += algoTraining;
 
 						
@@ -397,7 +403,6 @@ public class MMLCompiler {
 					}
 					if (mlalgo instanceof SVM) {
 						Rcode+= "results[[" + (iR+1) + "]]$model = \"SVM\"\n";
-						//RImport+= "library(SVM)\n";
 						SVM svm = (SVM) mlalgo;
 						SVMKernel kernel = svm.getKernel();
 						//SVMClassification classification = svm.getSvmclassification();
@@ -415,13 +420,13 @@ public class MMLCompiler {
 					if (mlalgo instanceof RandomForest) {
 						Rcode+= "results[[" + (iR+1) + "]]$model = \"Random Forest\"\n";
 						RandomForest randomforest = (RandomForest) mlalgo;
-						RImport += "library(randomForest)\n";
+						RImport += "suppressPackageStartupMessages(library(randomForest))\n";
 						int Nestim = 100;
 						if (randomforest.isNestimSpecified()) {
 							Nestim = randomforest.getN_estimators();
 						}
 											
-						String algoTraining = "clf = randomForest(y = as.factor(dataTrain[,y]), x = dataTrain[,X], ntree = "+Nestim+")\n" + 
+						String algoTraining = "clf = randomForest(formula, data = dataTrain, ntree = "+Nestim+")\n" + 
 								"y_pred=predict(clf,dataTest, type = \"class\")\n";
 						Rcode += algoTraining;
 						
@@ -439,8 +444,8 @@ public class MMLCompiler {
 						}
 						regPenalty penalty = logisticregression.getPenalty();
 						
-						RImport += "library(questionr)\n";
-						String algoTraining = "clf = glmnet(formula, data = dataTrain, family = binomial(logit))\n" + 
+						RImport += "suppressPackageStartupMessages(library(questionr))\n";
+						String algoTraining = "clf = glm(formula, data = dataTrain, family = binomial(logit))\n" + 
 								"y_pred=predict(clf,type = \"response\", newdata = dataTest)\n";
 						Rcode += algoTraining;
 											
@@ -448,25 +453,27 @@ public class MMLCompiler {
 					}
 				}
 				else {
+					int nb_fold = validation_method.getNumber();
+
 					if (mlalgo instanceof DT) {
 						Rcode+= "results[[" + (iR+1) + "]]$model = \"Decision tree\"\n";
 						DT dt = (DT) mlalgo;
 						int maxDepth = dt.getMax_depth();
 						DTCriterion criterion = dt.getCriterion(); // criterion = information si pas gini
-						RImport += "library(rpart)\n";
+						RImport += "suppressPackageStartupMessages(library(rpart))\n";
 						if (dt.isMaxdepthSpecified()) {
-							String algoTraining = "clf = train(formula = formula," +
-									"data = dataTrain, method = \"rpart\"," + 
+							String algoTraining = "clf = train(formula," +
+									"data = data, method = \"rpart\"," + 
 									"control = (maxdepth = " + maxDepth +")," +
 									"parms = list(split =\""+ criterion + "\", trControl = fit.control))\n" + 
-									"y_pred = predict(clf, dataTest, type = \"class\")\n";
+									"y_pred = predict(clf, type = \"raw\")\n";
 							Rcode += algoTraining;
 						}
 						else {
-							String algoTraining = "clf = rpart(formula = formula," +
-									"data = dataTrain, method = \"class\"," + 
+							String algoTraining = "clf = rpart(formula," +
+									"data = data, method = \"class\"," + 
 									"parms = list(split =\""+ criterion + "\", trControl = fit.control))\n" + 
-									"y_pred = predict(clf, dataTest, type = \"class\")\n";
+									"y_pred = predict(clf, type = \"raw\")\n";
 							Rcode += algoTraining;
 
 						
@@ -485,22 +492,25 @@ public class MMLCompiler {
 						if (svm.isGammaSpecified()) {
 							codeGamma = svm.getGamma().getName();
 						}
-						String algoTraining = "clf = train(gamma=" + codeGamma +",C=" +codeC + ", kernel = \""+ kernel +"\", data = dataTrain, trControl = fit.control)\n" + 
-								"y_pred=predict(clf,dataTest, type = \"class\")\n";
+						String algoTraining = "if (\""+kernel+"\"==\"rbf\"){\n"
+								+ "clf = svm(formula, gamma= 1/length(X),C=" +codeC + ", kernel = \"radial\", data = data,  type = \"C-classification\", cross="+nb_fold+")\n}"
+								+ "else{\nclf = svm(formula, gamma= 1/length(X),C=" +codeC + ", kernel = \""+ kernel +"\", data = data,  type = \"C-classification\", cross = "+nb_fold+")\n}\n" + 
+									"y_pred=predict(clf,type = \"response\")\n";
+
 						Rcode += algoTraining;
 						
 					}
 					if (mlalgo instanceof RandomForest) {
 						Rcode+= "results[[" + (iR+1) + "]]$model = \"Random Forest\"\n";
 						RandomForest randomforest = (RandomForest) mlalgo;
-						RImport += "library(randomForest)\n";
+						RImport += "suppressPackageStartupMessages(library(randomForest))\n";
 						int Nestim = 100;
 						if (randomforest.isNestimSpecified()) {
 							Nestim = randomforest.getN_estimators();
 						}
 											
-						String algoTraining = "clf = train(dataTrain[,y]), x = dataTrain[,X], data = dataTrain, method = \"rf\", trControl = fit.control)\n" + 
-								"y_pred=predict(clf,dataTest, type = \"class\")\n";
+						String algoTraining = "clf = train(y=data[,y], x = data[,X], method = \"rf\", trControl = fit.control)\n" + 
+								"y_pred=predict(clf, data, type = \"raw\")\n";
 						Rcode += algoTraining;
 						
 					}
@@ -510,9 +520,9 @@ public class MMLCompiler {
 						String tol = "0.0001";
 						regPenalty penalty = logisticregression.getPenalty();
 						
-						RImport += "library(questionr)";
-						String algoTraining = "clf = train(formula, data = dataTrain, method = \"glm\", trControl = fit.control)\n" + 
-								"y_pred=predict(clf,type = \"response\", newdata = dataTest)\n";
+						RImport += "suppressPackageStartupMessages(library(questionr))\n";
+						String algoTraining = "clf = train(formula, data = data, method = \"glm\", trControl = fit.control)\n" + 
+								"y_pred=predict(clf,type = \"raw\")\n";
 						Rcode += algoTraining;
 											
 								
@@ -531,8 +541,11 @@ public class MMLCompiler {
 			}
 		
 			// R confusion table
-			Rcode += "mat_conf <- table(y_pred,unlist(dataTest %>% select(y)))\n";
-
+			if (validation_method instanceof TrainingTest) {
+				Rcode += "mat_conf <- table(y_pred,unlist(dataTest %>% select(y)))\n";
+			}else {
+				Rcode += "mat_conf <- table(y_pred,unlist(data %>% select(y)))\n";
+			}
 
 			for (ValidationMetric metric:metrics) {
 				
@@ -677,7 +690,7 @@ public class MMLCompiler {
 
 		//Display the results
 		pandasCode+="print(json.dumps(results))\n";
-		RImport+="library(rjson)\n";
+		RImport+="suppressPackageStartupMessages(library(rjson))\n";
 		Rcode+="print(writeLines(toJSON(results)))\n";
 				
 		
