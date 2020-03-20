@@ -32,4 +32,8 @@ The following librairies are required :
 - questionr
 - caret
 - e1071
+- lattice
+- ggplot2
+- rjson
+- utils
 
